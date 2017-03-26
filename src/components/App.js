@@ -5,6 +5,10 @@ import { Router, Route, hashHistory ,IndexRoute } from 'react-router'; //引入r
 //import Footer from './Footer.js';
 
 import Home from './Home.js';
+import Room from './Room.js';
+import FullRoom from './FullRoom.js';
+
+
 import Shop from './Shop.js';
 import User from './User.js';
 
@@ -31,15 +35,18 @@ class App extends React.Component{
 }
 
 ReactDOM.render((
-    <Router history={hashHistory}>
-      <Route path='/' component={App}>
-        <IndexRoute component={Home} />
-        <Route path='home' component={Home} />
-        <Route path='shop' component={Shop} />
-        <Route path='user' component={User} />
+  <Router history={hashHistory}>
+    <Route path='/' component={App}>
+      <IndexRoute component={Home} />
+      <Route path='home' component={Home}>
+        <IndexRoute component={Room} />
+        <Route path='room' component={Room} />
+        <Route path='fullroom' component={FullRoom} />
       </Route>
-    </Router>
-), document.getElementById('root'));
+      <Route path='shop' component={Shop} />
+      <Route path='user' component={User} />
+    </Route>
+  </Router>), document.getElementById('root'));
 
 
 

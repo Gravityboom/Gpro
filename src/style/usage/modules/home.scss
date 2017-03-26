@@ -1,0 +1,37 @@
+@import "../fragment/yo-header.scss";
+@import "../fragment/yo-tab.scss";
+@import "../component/scroller.scss";
+#header_and_content{
+  .Home_container{
+    height:100%;
+      @include flexbox();
+      @include flex-direction(column);
+      @include  yo-header(
+      $height:0.46rem,
+      $bgcolor: #fff,
+      $border-width: 0,
+      $font-size: 0,
+      $color:#333,
+      $item-color:#333,
+      $item-font-size:0.15rem
+      ){
+        .regret{
+
+        }
+        .affirm{
+
+        }
+      }
+
+      .scroller_container{
+        overflow:auto;
+        height:.1px;
+        position: relative;
+        flex:1;
+        .yo-scroller{
+          touch-action: none;
+        }
+      }
+
+  }
+}
