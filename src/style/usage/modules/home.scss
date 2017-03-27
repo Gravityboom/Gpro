@@ -1,9 +1,31 @@
 @import "../fragment/yo-header.scss";
 @import "../fragment/yo-tab.scss";
 @import "../component/scroller.scss";
+
+@font-face {
+  font-family: yofont;
+  src:url(/iconfont/iconfont.woff) format('woff'),
+  url(/iconfont/iconfont.ttf) format('truetype');
+}
+
 #header_and_content{
   .Home_container{
     height:100%;
+
+    .yo-header{
+      .title{
+        section{
+          width:0.51rem;
+          height:0.25rem;
+          display: inline-block;
+          background-size: cover;
+          vertical-align:middle;
+          background-image: url(/home_img/logo.png);
+        }
+      }
+    }
+
+
       @include flexbox();
       @include flex-direction(column);
       @include  yo-header(
@@ -13,25 +35,31 @@
       $font-size: 0,
       $color:#333,
       $item-color:#333,
-      $item-font-size:0.15rem
+      $item-font-size:0.15rem,
+      $item-ico-size:0.14rem,
+      $item-ico-color:#333
       ){
         .regret{
-
+          letter-spacing:1px;
         }
         .affirm{
+          letter-spacing:1px;
 
         }
-      }
-
-      .scroller_container{
-        overflow:auto;
-        height:.1px;
-        position: relative;
-        flex:1;
-        .yo-scroller{
-          touch-action: none;
+        .regret i,.affirm i{
+          position:relative;
+          bottom:0.04rem;
         }
-      }
 
+      }
+    .scroller_container{
+      overflow:auto;
+      height:.1px;
+      position: relative;
+      flex:1;
+      .yo-scroller{
+        touch-action: none;
+      }
+    }
   }
 }
