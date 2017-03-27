@@ -1,0 +1,180 @@
+section{
+    background: #fff;
+    #user{
+    font-size: .14rem;
+    height:100%; 
+    font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+    .fr{
+        width: 100%;
+        height: .1rem;
+        background-color: #f5f5f5; 
+    } 
+        .user-head{
+            height:2.24844rem;
+            overflow: hidden;
+            .user-header{
+                height:2.14844rem;
+                background: url('http://static.haozaishop.com/mobile2/v1/img/u_b.png') 50% 50% / 120% no-repeat;
+                .img{
+                    height:1.03rem;
+                    padding-top:.3rem;
+                    img{
+                        width:.73rem;
+                        height:.73rem;
+                        margin: auto;
+                        border-radius: 100%;
+                        display: block;
+                    }
+                }
+                
+            .login_a{
+                height:.3rem;
+                background: none;
+                margin-top:.3rem;
+                div{
+                    width:.98rem;
+                    height:.3rem;
+                    background: none;
+                    color:#fff;
+                    border-bottom: 1px solid #fff;
+                    text-align: center;
+                    margin:auto;
+                    line-height:.3rem;
+                }
+            }
+            }
+            
+        }
+        .my_order {
+            width:100%;
+            height: .371563rem;
+            line-height: .351563rem;
+            border-bottom: 1px solid #CCC;
+            background-color: #fff;
+            display:flex;
+            flex-direction: row;
+            p{
+                flex:2;
+                padding-left:.1rem;
+            }
+           .look_all_order {
+               padding-left:.1rem;
+               font-size:12px;
+               margin-right:.1rem;
+            } 
+            .right_go {
+                
+                background: url('http://m.haozaishop.com/js_web/images/arrows.png') no-repeat;
+                width:.28rem;
+                height:.23rem;
+                background-size: 100% auto;
+                margin-top: .046rem; 
+            }
+        }
+        .order_list {
+            height:.585938rem;
+            background-color: #fff;
+            display:-webkit-box;
+            
+            .order_list_box{
+                -webkit-box-flex:1;
+                .no_pay{
+                    background: url('http://m.haozaishop.com/js_web/images/no_pay.png') no-repeat;
+                margin-left:.1875rem;
+                }
+                .no_consignment{
+                    background: url('http://m.haozaishop.com/js_web/images/no_consignment.png') no-repeat;
+                margin-left:.1875rem;
+                    
+                }
+                .no_receipt{
+                    background: url('http://m.haozaishop.com/js_web/images/no_receipt.png') no-repeat;
+                margin-left:.1875rem;
+                }
+                .finish{
+                    background: url('http://m.haozaishop.com/js_web/images/finish.png') no-repeat;
+                margin-left:.1875rem;
+                }
+                .order_list_one{
+                    background-size: 100%;
+                    width: .585938rem;
+                    height: .585938rem;
+                    position: relative;
+                    margin-left: .1875rem;
+                }
+            }
+        }
+        .my_bar{
+            height:1.184689rem;
+            background-color: #fff;
+            .right_go {
+                float: right;
+                background: url('http://m.haozaishop.com/js_web/images/arrows.png') no-repeat;
+                width:.28rem;
+                height:.23rem;
+                background-size: 100% auto;
+                margin-top: .046rem; 
+            }
+            .my_coupon{
+                height:.361563rem;
+                line-height: .361563rem;
+                border-bottom: 1px solid #ccc;
+                padding-left: .1rem;
+                .my_icon {
+                    width: .28125rem;
+                    height: .28125rem;
+                    line-height: .28125rem;
+                    margin-top:.023475rem;
+                    margin-right:.046875rem;
+                    float: left;
+                    background: url('http://m.haozaishop.com/js_web/images/coupon.png') no-repeat;   
+                    background-size: 100% auto;
+                }
+                
+            }
+            
+            .my_car{
+                height:.361563rem;
+                line-height: .361563rem;
+                border-bottom: 1px solid #ccc;
+                padding-left: .1rem;
+                .my_icon {
+                    width: .28125rem;
+                    height: .28125rem;
+                    line-height: .28125rem;
+                    margin-top:.023475rem;
+                    margin-right:.046875rem;
+                    float: left;
+                    background: url('http://m.haozaishop.com/js_web/images/buycar1.png') no-repeat;   
+                    background-size: 100% auto;
+                }
+                
+            }
+            .my_adress{
+                height:.361563rem;
+                line-height: .361563rem;
+                border-bottom: 1px solid #ccc;
+                padding-left: .1rem;
+                .my_icon {
+                    width: .28125rem;
+                    height: .28125rem;
+                    line-height: .28125rem;
+                    margin-top:.023475rem;
+                    margin-right:.046875rem;
+                    float: left;
+                    background: url('http://m.haozaishop.com/js_web/images/address.png') no-repeat;   
+                    background-size: 100% auto;
+                }
+                
+            }
+            
+            
+            
+            
+            
+        }      
+    }
+}
+
+
+
