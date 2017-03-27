@@ -20,8 +20,10 @@ module.exports = {
     historyApiFallback: false,//使用h5的api进行返回操作
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: {'^/api': ''}
+        // target: 'http://localhost:3000',
+        target:'http://m.haozaishop.com/',
+        pathRewrite: {'^/api': ''},
+        changeOrigin:true
       }
     }
   },
@@ -70,7 +72,7 @@ module.exports = {
     //     comments: false //删除注释文字
     //   }
     // }),
-    
+
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template:'./index.ejs',
