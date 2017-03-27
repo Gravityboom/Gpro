@@ -25,12 +25,11 @@
  * @instructions {instruInfo: ./carousel.md}{instruUrl: carousel/index.html?hideIcon}
  */
 
-import './style.scss';
 import React, { Component, PropTypes } from 'react';
 import aniScrollX from './aniScrollx.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CarouselItem from './carouselItem';
-import CarouselLocat from './carouselLocat';
+
 
 const DEFAULTANI = aniScrollX();
 
@@ -443,11 +442,7 @@ class Carousel extends Component {
                 <ul className={'cont'}>
                     {children}
                 </ul>
-                {
-                    this.props.dots
-                    ? <CarouselLocat num={this.aniObj.pagesNum} page={this.state.page} onItemTap={(num) => { this.arrive(num); }} />
-                    : null
-                }
+               
             </div>
         );
     }

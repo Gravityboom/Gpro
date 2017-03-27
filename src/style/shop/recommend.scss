@@ -1,0 +1,10 @@
+@import "../lib/fragment/yo-header";
+.shop-recommend{
+	height: 1rem;
+}
+@include yo-header($name:recommend,$color:#000,$bgcolor:#fff,$border-width: 0){
+	.affirm{
+		color:#000;
+	}
+
+}
