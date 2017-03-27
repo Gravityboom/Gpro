@@ -11,9 +11,9 @@ class Home extends React.Component{
     return(
       <div className="Home_container">
         <div className="yo-header">
-          <h2 className="title">好在</h2>
-          <span className="regret"><i class="yo-ico"></i>北京</span>
-          <span className="affirm">筛选<i class="yo-ico"></i></span>
+          <h2 className="title"><section></section></h2>
+          <span className="regret"><i className="yo-ico">&#xe61c;</i>北京</span>
+          <span className="affirm">筛选<i className="yo-ico">&#xe62d;</i></span>
         </div>
         <ul className="yo-tab">
           <li className="item item-on"><Link to='home/room'>房间</Link></li>
