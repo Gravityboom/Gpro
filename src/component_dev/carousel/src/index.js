@@ -30,7 +30,22 @@ import React, { Component, PropTypes } from 'react';
 import aniScrollX from './aniScrollx.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CarouselItem from './carouselItem';
-import CarouselLocat from './carouselLocat';
+
+const Dots = props => {
+    let liNodes = [];
+    for (let i = 0; i < props.num; i++) {
+        liNodes.push(<li key={i} className={props.page === i + 1 ? 'on' : ''} />);
+    }
+    return (
+        <ul className="index">
+            {liNodes}
+        </ul>
+    );
+};
+Dots.propTypes = {
+    num: PropTypes.number,
+    page: PropTypes.number
+};
 
 const DEFAULTANI = aniScrollX();
 
@@ -277,14 +292,11 @@ class Carousel extends Component {
     }
 
     format(children) {
-        let childrenList = children;
-        if (children[0].type === CarouselItem) {
-            childrenList = React.Children.map(children, (childElement, index) => {
-                return  React.cloneElement(childElement, {
-                    index: index + 1
-                })
-            });
-        }
+        const childrenList = React.Children.map(children, (childElement, index) => (
+            React.cloneElement(childElement, {
+                index: index + 1
+            })
+        ));
         return this.ani.handleData(this.aniObj, childrenList);
     }
 
@@ -443,11 +455,7 @@ class Carousel extends Component {
                 <ul className={'cont'}>
                     {children}
                 </ul>
-                {
-                    this.props.dots
-                    ? <CarouselLocat num={this.aniObj.pagesNum} page={this.state.page} onItemTap={(num) => { this.arrive(num); }} />
-                    : null
-                }
+                {this.props.dots ? <Dots num={this.aniObj.pagesNum} page={this.state.page} /> : ''}
             </div>
         );
     }

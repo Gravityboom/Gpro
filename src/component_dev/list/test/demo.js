@@ -45,7 +45,6 @@ const DemoItem = (props) => (
         >
             <div className="comment-wrap">
                 <Touchable
-                    disabled={props.item.get('color') === 'red'}
                     touchClass="yellow"
                     onTap={() => {
                         props.red();

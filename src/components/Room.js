@@ -20,7 +20,7 @@ class Room extends React.Component{
 
   componentDidMount () {
 
-    fetch('http://localhost:18080/data?x=1')
+    fetch('/api/v2/h5/index/space?is_json=1&page='+ 1 +'&space=&style=')
 
     .then(function(response){
       return response.json();})

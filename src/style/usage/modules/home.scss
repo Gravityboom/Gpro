@@ -11,8 +11,30 @@
 #header_and_content{
   .Home_container{
     height:100%;
+    @include yo-tab(
+      $height:30px,
+      $bgcolor:#fff,
+      $border-width:0
+    ){
+      &{
 
-    .yo-header{
+        line-height:normal;
+      }
+      li{
+        >a{
+          color:#333;
+          display:inline-block;
+          width:0.421875rem;
+          letter-spacing:2px;
+          padding-bottom:0.083rem;
+          font-size:0.15rem;
+        }
+        >a.onsele{
+          border-bottom:2px solid #007846;
+        }
+      }
+    }
+    .yo-header-homeheader{
       .title{
         section{
           width:0.51rem;
@@ -25,10 +47,10 @@
       }
     }
 
-
-      @include flexbox();
-      @include flex-direction(column);
-      @include  yo-header(
+    @include flexbox();
+    @include flex-direction(column);
+    @include yo-header(
+      $name:homeheader,
       $height:0.46rem,
       $bgcolor: #fff,
       $border-width: 0,
@@ -38,20 +60,19 @@
       $item-font-size:0.15rem,
       $item-ico-size:0.14rem,
       $item-ico-color:#333
-      ){
-        .regret{
-          letter-spacing:1px;
-        }
-        .affirm{
-          letter-spacing:1px;
-
-        }
-        .regret i,.affirm i{
-          position:relative;
-          bottom:0.04rem;
-        }
+    ){
+      .regret{
+        letter-spacing:1px;
+      }
+      .affirm{
+        letter-spacing:1px;
 
       }
+      .regret i,.affirm i{
+        position:relative;
+        bottom:0.04rem;
+      }
+    }
     .scroller_container{
       overflow:auto;
       height:.1px;
@@ -59,6 +80,33 @@
       flex:1;
       .yo-scroller{
         touch-action: none;
+      }
+    }
+
+    /* Home定位弹框样式 */
+    .localtion_container{
+      position:absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0.71rem;
+      background:#fff;
+      >ul.location_in{
+        height:100%;
+        background-color: #eee;
+        margin:0 0.3515rem;
+
+        .location_top{
+          padding-bottom:0.1171rem;
+          padding-top:0.3515rem;
+          .okay{
+            float:right;
+          }
+        }
+        .location_main{
+          height:5.17rem;
+          background:yellow;
+        }
       }
     }
   }
