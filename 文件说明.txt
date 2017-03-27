@@ -1,0 +1,11 @@
+根目录下的index.ejs 为模板html文件
+
+src / entry.js 为入口文件（各文件的钩子）
+
+src / mock        文件夹 为模拟数据文件
+
+src / components  文件夹 为各组件的集合
+
+请将scss样式文件写在src/style/usage/modules下 并且在src/app.scss中引入
+
+

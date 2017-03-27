@@ -1,0 +1,33 @@
+#root{
+  height:100%;
+}
+#main_container{
+  @include flexbox();
+  @include flex-direction(column);
+  height: 100%;
+  section{
+    flex: 1;
+  }
+
+  #footer{
+    position: relative;
+    height: .5rem;
+    background: #fff;
+    ul{
+      height:100%;
+      @include flexbox();
+      @include flex-direction(row);
+      a{
+          flex:1;
+          height:100%;
+          li{
+            height:100%;
+            @include flexbox();
+            @include flex-direction(column);
+            align-items:center;
+            justify-content: center;
+          }
+      }
+    }
+  }
+}
