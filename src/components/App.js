@@ -10,7 +10,11 @@ import FullRoom from './FullRoom.js';
 
 
 import Shop from './Shop.js';
+
+
 import User from './User.js';
+import Login from './Login.js';
+
 
 import Footer from './Footer.js';
 
@@ -44,7 +48,10 @@ ReactDOM.render((
         <Route path='fullroom' component={FullRoom} />
       </Route>
       <Route path='shop' component={Shop} />
-      <Route path='user' component={User} />
+      <Route path='user' component={User} >
+	      <Route path='login' component={Login} />
+      </Route>
+      
     </Route>
   </Router>), document.getElementById('root'));
 
