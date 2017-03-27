@@ -4,6 +4,8 @@ import React from 'react';
 import Kind from './shop/kind'
 import Mycarousel from './shop/mycarousel'
 import Recommend from './shop/recommend'
+import Match from './shop/match'
+import Myscroller from './shop/scroller.js'
 class Shop extends React.Component{
 	constructor(props){
 		super(props)
@@ -26,6 +28,8 @@ class Shop extends React.Component{
         	<Mycarousel list={this.state.list} autoplay={this.state.playflag}/>
 			<Kind/>
 			<Recommend/>
+			<Match/>
+			<Myscroller/>
         </div>
       </div>
     )

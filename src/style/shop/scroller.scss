@@ -1,0 +1,14 @@
+li{
+	list-style:none;
+}
+.shop-scroller{
+	.scroller{
+			width:10rem;
+			@include flexbox;
+			@include flex-direction;
+			.item{
+				width:100rem;
+			}
+		
+	}
+}
