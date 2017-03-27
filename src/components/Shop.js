@@ -5,6 +5,13 @@ import Kind from './shop/kind'
 import Mycarousel from './shop/mycarousel'
 import Recommend from './shop/recommend'
 class Shop extends React.Component{
+	constructor(props){
+		super(props)
+		this.state={
+			list:["/shopimg/2017011216550161634.jpg"],
+			playflag:true
+		}
+	}
   render(){
     return(
       <div className="shop_container">
@@ -16,7 +23,7 @@ class Shop extends React.Component{
         	</div>
         </div>
         <div id="shop-content">
-        	<Mycarousel/>
+        	<Mycarousel list={this.state.list} autoplay={this.state.playflag}/>
 			<Kind/>
 			<Recommend/>
         </div>

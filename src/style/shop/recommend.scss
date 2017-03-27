@@ -1,8 +1,21 @@
 @import "../lib/fragment/yo-header";
+@import "../lib/fragment/yo-carousel";
 .shop-recommend{
-	height: 1rem;
+	margin-top:.2rem;
+	background: #fff;
+	padding-bottom: .2rem;
+	.item{
+		width: 90% !important;
+		margin-right: 5%;
+		height: 2.5rem;
+
+		img{
+			height: 100%;
+		}
+	}
 }
-@include yo-header($name:recommend,$color:#000,$bgcolor:#fff,$border-width: 0){
+@include yo-header($name:recommend,$color:#000,$bgcolor:#fff,$border-width: 0,$height:.7rem){
+
 	.affirm{
 		color:#000;
 	}

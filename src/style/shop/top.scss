@@ -9,6 +9,7 @@
 		height: .44rem;
 	}
 	#shop-content{
+		overflow-y:auto;
 		@include flex($flex:1,$direction:column);
 		.shop-kind{
 			.title{
