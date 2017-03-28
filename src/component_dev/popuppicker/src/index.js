@@ -8,7 +8,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
+
 import Touchable from '../../touchable/src';
 import Popup from '../../popup/src';
 import Picker from '../../picker/src';
@@ -24,56 +24,38 @@ const propTypes = {
     touchClass: PropTypes.string.isRequired,
     /**
      * @property value
-     * @type Number/String/Array <Number, String>
+     * @type Number/String
      * @default null
      * @description 组件的value，参考网页`select`标签的 value 属性。
      *
      * value 是一个严格受控属性，只能通过的父组件改变，你需要设置 onChange 属性来控制 value 属性的变化。
-     *
-     * 在开启了多列模式的情况下（通过设置options属性为一个二维数组），这个属性也应该相应地传入一个数组，每个元素对应着该列的value。
-     * 如果value数组和options数组的length不相等，那么空缺的value会被设为null。
      */
-    value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
-    ]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     /**
      * @property onChange
      * @type Function
-     * @param value 当前的 option 的 value，如果开启了多列模式，那么返回值将是一个包含了每一列value的数组。
+     * @param value 当前的 option 的 value
      * @description 弹出式选择器 Ok 按钮点击后的回调，必须。
      */
     onChange: PropTypes.func.isRequired,
     /**
      * @property options
-     * @type Array/Array <Array>
+     * @type Array
      * @default null
      * @description `Picker`组件的 options 属性。数组形式，元素的格式为`{text:string,value:string}`，
      *
      * text 为 option 显示的文本，value 为 option 对应的真实值（参考网页 option 标签），
      *
-     * text 的缺省值为 value，value 必须传入，且只能为字符串/数字类型。
-     *
-     * 如果你传入一个二维数组，那么PopupPicker将会是一个多列的Picker，二维数组的每一个子数组将会作为对应列的option。
+     * text 的缺省值为 value，value 必须传入，且只能为字符串/数字类型
      */
-    options: PropTypes.oneOfType([PropTypes.arrayOf(
+    options: PropTypes.arrayOf(
         PropTypes.shape(
             {
                 text: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
                 value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
             }
         )
-    ).isRequired, PropTypes.arrayOf(
-        PropTypes.arrayOf(
-            PropTypes.shape(
-                {
-                    text: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
-                }
-            )
-        )
-    )]),
+    ).isRequired,
     /**
      * @property popupHeader
      * @type Object
@@ -117,33 +99,16 @@ const propTypes = {
      * @property looped
      * @type Bool
      * @default true
-     * @description `Picker`组件的 looped 属性。是否采用循环模式，默认为 true。
-     *
-     * 这个属性可以接收两种形式的参数，如果你传入Bool类型，那么将会应用于所有的列上（如果你使用了多列的Picker）。
-     * 如果传入一个数组，那么可以针对每一列的Picker分别定义。
+     * @description `Picker`组件的 looped 属性。是否采用循环模式，默认为 true
      */
-    looped: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.arrayOf(PropTypes.bool)
-    ]),
+    looped: PropTypes.bool,
     /**
      * @property unit
-     * @type Number/String/Array
+     * @type Number
      * @default null
      * @description `Picker`组件的 unit 属性。显示在 picker 右侧的单位。
-     *
-     * 这个属性可以接收两种形式的参数，如果你传入Number或者String类型，那么将会应用于所有的列上（如果你使用了多列的Picker）。
-     * 如果传入一个数组，那么可以针对每一列的Picker分别定义。
      */
-    unit: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.number,
-                PropTypes.string
-            ])
-        )
-    ]),
+    unit: PropTypes.string,
     /**
      * @property popupExtraClass
      * @type String
@@ -173,6 +138,14 @@ const defaultProps = {
     popupExtraClass: null
 };
 
+// picker默认选择第一项
+function defaultPickerValue(options) {
+    if (Array.isArray(options) && options.length > 0) {
+        return (options[0].value);
+    }
+    return { value: null };
+}
+
 class PopupPicker extends Component {
     constructor(props) {
         super(props);
@@ -184,7 +157,15 @@ class PopupPicker extends Component {
 
     componentWillMount() {
         const { value, options } = this.props;
-        this.resetValue(value, options);
+        if (value === null || value === undefined) {
+            this.setState({
+                pickerValue: defaultPickerValue(options)
+            });
+        } else {
+            this.setState({
+                pickerValue: value
+            });
+        }
     }
 
     componentDidMount() {
@@ -194,7 +175,7 @@ class PopupPicker extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.value != null && nextProps.value !== this.state.pickerValue) {
             this.setState({
-                pickerValue: this.formatPickerProp(nextProps.value)
+                pickerValue: nextProps.value
             });
         }
     }
@@ -205,50 +186,6 @@ class PopupPicker extends Component {
 
     componentWillUnmount() {
         document.body.removeChild(this.wrapper);
-    }
-
-    getMultiPickerConfig({ options, looped, unit }) {
-        const value = this.state.pickerValue;
-        const renderedOpts = this.formatPickerOpt(options);
-        const renderedLooped = this.formatPickerProp(looped);
-        const renderedUnit = this.formatPickerProp(unit);
-
-        return renderedOpts.map((optGroup, i) => ({
-            options: optGroup,
-            value: value[i],
-            looped: renderedLooped[i] != null ? renderedLooped[i] : renderedLooped[0],
-            unit: renderedUnit[i] != null ? renderedUnit[i] : renderedUnit[0]
-        }));
-    }
-
-    getOnChangeValue(value, i) {
-        return this.state.pickerValue.map((val, idx) => idx === i ? value : val);
-    }
-
-    resetValue(value, options) {
-        if (value === null || value === undefined) {
-            this.setState({
-                pickerValue: this.defaultPickerValue(options)
-            });
-        } else {
-            this.setState({
-                pickerValue: this.formatPickerProp(value)
-            });
-        }
-    }
-
-    show() {
-        this.setState({ show: true });
-    }
-
-    hide() {
-        this.setState({ show: false });
-    }
-
-    handlePopupOk() {
-        const { onChange } = this.props;
-        this.hide();
-        onChange(this.state.pickerValue.length > 1 ? this.state.pickerValue : this.state.pickerValue[0]);
     }
 
     createWrapper() {
@@ -264,45 +201,52 @@ class PopupPicker extends Component {
         ReactDOM.unstable_renderSubtreeIntoContainer(this, this.renderPicker(), this.wrapper);
     }
 
-    defaultPickerValue(options) {
-        options = this.formatPickerOpt(options);
-        if (Array.isArray(options)) {
-            return options.map((pickerOpt) => pickerOpt[0].value);
-        }
-        throw new Error('yo-popuppicker: option属性必须为一个对象数组或者二维数组，请检查。');
+    show() {
+        this.setState({ show: true });
     }
 
-    formatPickerOpt(options) {
-        if (!Array.isArray(options[0])) {
-            return [options];
-        }
-        return options;
+    hide() {
+        this.setState({ show: false });
     }
 
-    formatPickerProp(prop) {
-        return Array.isArray(prop) ? prop : [prop];
+    handlePopupOk() {
+        const { onChange } = this.props;
+        return () => {
+            this.hide();
+            onChange(this.state.pickerValue);
+        };
     }
 
     handlePopupCancel() {
         const { value, options } = this.props;
         this.hide();
-        this.resetValue(value, options);
+        if (value === null || value === undefined) {
+            this.setState({
+                pickerValue: defaultPickerValue(options)
+            });
+        } else {
+            this.setState({
+                pickerValue: value
+            });
+        }
     }
 
-    handlePickerChange(option, i) {
+    handlePickerChange(option) {
         this.setState({
-            pickerValue: this.getOnChangeValue(option.value, i)
+            pickerValue: option.value
         });
     }
 
     renderPicker() {
         const {
+            options,
             popupHeader,
             duration,
             pickerHeight,
+            looped,
+            unit,
             popupExtraClass
         } = this.props;
-        const pickerConfigs = this.getMultiPickerConfig(this.props);
         let okBtn = null;
         let cancelBtn = null;
         let title = null;
@@ -316,47 +260,44 @@ class PopupPicker extends Component {
             <Popup
                 show={this.state.show}
                 duration={duration}
-                extraClass={classNames(popupExtraClass, 'yo-popup yo-popup yo-popup-picker')}
+                extraClass={popupExtraClass}
                 onMaskTap={this.handlePopupCancel.bind(this)}
             >
-                <header className="yo-header yo-header-popup-picker">
-                    <span className="title">{title}</span>
-                    <Touchable
-                        onTap={this.handlePopupCancel.bind(this)}
-                        touchClass={cancelBtn.touchClass || defaultProps.popupHeader.cancelBtn.touchClass}
-                    >
-                        <span className="regret">{cancelBtn.text || defaultProps.popupHeader.cancelBtn.text}</span>
-                    </Touchable>
-                    <Touchable
-                        onTap={() => {
-                            this.handlePopupOk();
-                        }}
-                        touchClass={okBtn.touchClass || defaultProps.popupHeader.okBtn.touchClass}
-                    >
-                        <div className="affirm">{okBtn.text || defaultProps.popupHeader.okBtn.text}</div>
-                    </Touchable>
-                </header>
-                <div className="bd">
-                    {pickerConfigs.map((cfg, i) => (
+                <div className="yo-popup yo-popup-picker">
+                    <header className="yo-header yo-header-popup-picker">
+                        <span className="title">{title}</span>
+                        <Touchable
+                            onTap={this.handlePopupCancel.bind(this)}
+                            touchClass={cancelBtn.touchClass || defaultProps.popupHeader.cancelBtn.touchClass}
+                        >
+                            <span className="regret">{cancelBtn.text || defaultProps.popupHeader.cancelBtn.text}</span>
+                        </Touchable>
+                        <Touchable
+                            onTap={this.handlePopupOk()}
+                            touchClass={okBtn.touchClass || defaultProps.popupHeader.okBtn.touchClass}
+                        >
+                            <div className="affirm">{okBtn.text || defaultProps.popupHeader.okBtn.text}</div>
+                        </Touchable>
+                    </header>
+                    <div className="bd">
                         <Picker
-                            key={i}
-                            options={cfg.options}
-                            value={cfg.value}
+                            options={options}
+                            value={this.state.pickerValue}
+                            onChange={this.handlePickerChange.bind(this)}
                             height={pickerHeight}
-                            looped={cfg.looped}
-                            unit={cfg.unit}
-                            onChange={(option) => {
-                                this.handlePickerChange(option, i);
-                            }}
+                            looped={looped}
+                            unit={unit}
                         />
-                    ))}
+                    </div>
                 </div>
             </Popup>
         );
     }
 
     render() {
-        const { touchClass } = this.props;
+        const {
+            touchClass
+        } = this.props;
         return (
             <Touchable
                 onTap={this.show.bind(this)}

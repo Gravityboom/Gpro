@@ -18,7 +18,7 @@ class User extends React.Component{
     		<User_list/>
     		<User_bar/>
     	</div>
-	      
+
     )
   }
 }

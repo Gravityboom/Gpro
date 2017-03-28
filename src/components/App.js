@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory ,IndexRoute } from 'react-router'; //引入router
+import { Router, Route, hashHistory ,IndexRoute, IndexRedirect, Redirect } from 'react-router'; //引入router
 
 //import Footer from './Footer.js';
 
@@ -37,9 +37,9 @@ class App extends React.Component{
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={Home} />
+      <IndexRedirect to="home/room" />
+      <Redirect from="home" to="home/room" />
       <Route path='home' component={Home}>
-        <IndexRoute component={Room} />
         <Route path='room' component={Room} />
         <Route path='fullroom' component={FullRoom} />
       </Route>
