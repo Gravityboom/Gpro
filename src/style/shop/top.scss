@@ -9,6 +9,7 @@
 		height: .44rem;
 	}
 	#shop-content{
+		touch-action:none;
 		overflow-y:auto;
 		@include flex($flex:1,$direction:column);
 		.shop-kind{
@@ -31,9 +32,11 @@
 					@include justify-content(center);
 					@include align-content(center);
 					text-align: center;
+
 					color:#000;
 					i{
 						height: .7rem;
+						line-height: .7rem;
 					}
 				}	
 			}

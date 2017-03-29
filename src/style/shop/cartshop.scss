@@ -1,0 +1,410 @@
+@import "./Matter.scss";
+@import "./standard.scss";
+@font-face {
+  font-family: yofont;
+  src: url(/iconfont/iconfontg.woff) format("woff"),
+  url(/iconfont/iconfontg.ttf) format("truetype");
+}
+@font-face {
+  font-family: yofont;
+  src: url(/iconfont/iconfont-he.woff) format("woff"),
+  url(/iconfont/iconfont-he.ttf) format("truetype");
+}
+@font-face {
+  font-family: yofont;
+  src: url(/iconfont/iconfont-he-1.woff) format("woff"),
+  url(/iconfont/iconfont-he-1.ttf) format("truetype");
+}
+.cartshop{
+    width:100%;
+    height: 100%;
+    @include flexbox();
+    @include flex-direction(column);
+    
+    section{
+        flex: 1;
+        background: #eeeeee;
+        overflow-y:auto ;
+        div{
+            background: #fff;
+        }
+        div.yo-carousel{
+            width:100%;
+            height: 3.75rem;
+            ul.cont{
+                width:100%;
+                height: 100%;
+                li{
+                    width:100%;
+                    height: 100%;
+                    img{
+                        width:100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        div.goodsName{
+            width:100%;
+            margin-top:.12rem;
+            font-size: 20px;
+            text-align: center;
+        }
+        div.price{
+            width:100%;
+            margin-top:.1rem;
+            font-size: .16rem;
+            color: red;
+            text-align: center;
+        }
+        div.changeNorms{
+            width:100%;
+            height:.53rem;
+            background: #fff;
+            div.contentNorms{
+                width:3.15rem;
+                height: 100%;
+                margin:0 auto;
+                @include border(.02rem 0 0 0);
+                @include flexbox();
+                justify-content: space-between;
+                align-items: center;
+                span{
+                    color: #000;
+                }
+            }
+        }
+        div.activity{
+            width:100%;
+            height:auto;
+            background: #fff;
+            div.contentActivity{
+                width:3.15rem;
+                height: 100%;
+                margin:0 auto;
+                padding:0.15rem 0.15rem 0.15rem 0.15rem;
+                @include border(.02rem 0 .02rem 0);
+                @include flexbox();
+                @include justify-content(center);
+                @include flex-wrap(wrap);
+                
+                div.left{
+                    flex: 1;
+                    @include flexbox();
+                    @include flex-direction();
+                    span{
+                        color:#000;
+                        font-weight: bold;
+                    }
+                    span.noMoney{
+                        
+                        display: block;
+                        width:.5rem;
+                        height: .23rem;
+                        background:#c80a0a;
+                        color: #fff;
+                        text-align: center;
+                        @include border-radius(.04rem);
+                        margin-left: 0.1rem;
+                    }
+                }
+                 div.hide{
+                    margin:0 auto;
+                    display: block;
+                    width:3.15rem;
+                    height: .25rem;
+                    font-size: .16rem;
+                    line-height: .4rem;
+                    display: none;
+                    color: #999999;
+                    
+                   
+                }
+            }
+            
+            
+        }
+        div.service{
+            width:100%;
+            height:.53rem ;
+            background: #fff;
+            div.contentService{
+                width:3.15rem;
+                height:100%;
+                margin:0 auto;
+                @include border(.02rem 0 0 0);
+            }
+            
+        }
+         div.advantage{
+              width:100%;
+              height:.53rem ;
+              background: #fff;
+             div.contentAdvantage{
+                width:3.15rem;
+                height:.53rem;
+                margin:0 auto;
+                @include border(.02rem 0 0 0);
+                @include flexbox();
+                justify-content: space-between;
+                align-items: center;
+                span{
+                    color: #000;
+                    @include flexbox();
+                    @include flex-direction();
+                    i{
+                        color:#c80a0a;
+                        font-size: .21rem;
+                       line-height:.53rem ;
+                       
+                    }
+                    em{
+                        font-size: .16rem;
+                       line-height:.65rem ;
+                    }
+                }
+            }
+        }
+        div.logo{
+              width:100%;
+              height:.53rem ;
+              background: #fff;
+              margin:.12rem 0 .12rem 0;
+             div.contentLogo{
+                width:3.15rem;
+                height:.53rem;
+                margin:0 auto;
+                @include flexbox();
+                justify-content: space-between;
+                align-items: center;
+                span{
+                    color: #000;
+                }
+            }
+        }
+        div.detail{
+            width:100%;
+            height: 10rem;
+            div.contentDetail{
+                width:100%;
+                height: 10rem;
+                
+                div.detailTop{
+                    width:100%;
+                    height: .36rem;
+                    @include flexbox();
+                    @include flex-direction();
+                    span{
+                        flex: 1;
+                        text-align: center;
+                        line-height: .36rem;
+                        @include flexbox();
+                        @include flex-direction();
+                        i{
+                            flex: 1;
+                            color: #007846;
+                            font-weight: bold;
+                            display: block;
+                        }
+                        a{
+                             margin:0 auto;
+                            display: block;
+                            width:.47rem;
+                            height: 100%;
+                        }
+                        a.active{
+                            margin:0 auto;
+                            display: block;
+                            width:.47rem;
+                            height: 100%;
+                            display: block;
+                            @include border(0 0 .04rem 0,#007846);
+                           
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    footer{
+        width:100%;       
+        height: .53rem;
+        ul{
+            width:100%;
+            height: 100%;
+            @include flexbox();
+            @include flex-direction(row);
+            justify-content: center;
+            align-items: center;
+            li:first-child{
+                flex:1;
+                text-align: center;
+                a{
+                   display: block;
+                   height: 100%;
+                   line-height: 0.53rem;
+                    font-size: .25rem;
+                    color: #999999;
+                }
+            }
+            li:nth-child(2){
+                flex:1;
+                text-align: center;
+                a{
+                   display: block;
+                   height: 100%;
+                   line-height: 0.53rem;
+                   font-size: .25rem;
+                    color: #999999;
+                }
+            }
+            li:nth-child(3){
+                flex:1.8;
+                text-align: center;
+                a{
+                   display: block;
+                   height: 100%;
+                   line-height: 0.53rem;
+                   background: #c5dcd2;
+                   color:#007846 ;
+                }
+            }
+            li:nth-child(4){
+                flex:2;
+                text-align: center;
+                a{
+                   display: block;
+                   height: 100%;
+                   line-height: 0.53rem;
+                   background: #007846;
+                   color: #fff;
+                }
+            }
+        }
+    }
+}
+.ani{
+    width:100%;
+    background: #fff;
+   position: relative;
+   img{
+       position:absolute ;
+       width:1.07rem;
+       height:1.07rem;
+       top:-.5rem;
+       z-index:1000000000;
+       background: #fff;
+       }
+       div.imgb{
+           width:3.4rem;
+           height:.86rem;
+           margin-top:.1rem;
+           overflow: hidden;
+           @include border(0 0 .02rem 0,#999999);
+           div.dmsgn{
+               width:2.34rem;
+               font-size: .16rem;
+               margin-left: 1.5rem;
+               
+           }
+            div.dmsgp{
+               width:2.34rem;
+               font-size: .16rem;
+               margin-left: 1.5rem;
+               color:red;
+           }
+       }
+       div.v{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .16rem;
+               }
+               i{
+                   display: block;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   em{
+                       width:.79rem;
+                       height: .3rem;
+                       margin-left: .2rem;
+                   }
+               }
+           }
+       }
+       div.color{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .16rem;
+               }
+               i{
+                   display: block;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   em{
+                       width:.4rem;
+                       height: .3rem;
+                       margin-left: .2rem;
+                   }
+               }
+           }
+       }
+       div.num{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .16rem;
+               }
+               i{
+                   display: block;
+                   margin-top:.1rem;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   div.yo-number{
+                       width:1.2rem;
+                       height: .25rem;
+                   }
+                   span{
+                       display: block;
+                        width:.4rem;
+                       height: .25rem;
+                       text-align: center;
+                       line-height: .25rem;
+                   }
+                   input{
+                       width:.4rem;
+                       height: .25rem;
+                        text-align: center;
+                       line-height: .25rem;
+                   }
+               }
+           }
+       }
+       div.foot{
+           width:100%;
+           height: .53rem;
+           line-height: .53rem;
+           text-align: center;
+           color: #fff;
+           background: #009999;
+           
+       }
+    
+}

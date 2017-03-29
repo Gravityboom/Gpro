@@ -34,7 +34,7 @@ class Myscroller extends React.Component{
 		})
 		return (
 			<div className="shop-scroller">
-				<Scroller scrollX={true}>
+				<Scroller scrollX={true} scrollY={false}>
 				<ul className="scroller-box">
 					{_list}
 			

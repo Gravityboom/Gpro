@@ -16,13 +16,15 @@
 			margin:.1rem;
 		}
 		p{
-			&:first-child{
-				margin-top:.2rem;
-			};
+			margin-left: .2rem;
 			float:left;
 			width:2rem;
 			height: .4rem;
-			line-height: .4rem;
+			line-height: .6rem;
+			p.goodsname{
+				margin-top:.2rem;
+			};
+			
 		}
 	}
 }

@@ -23,7 +23,22 @@
 @include yo-header($name:top,$bgcolor:#fff,$color:#000){
 
 	.title{
-		color: #027847;
+		img{
+			width:.5rem;
+			height:.24rem;
+		}
+	}
+	.regret{
+		img{
+			width:.2rem;
+			height:.2rem;
+		}
+	}
+	.affirm{
+		img{
+			width:.2rem;
+			height:.2rem;
+		}
 	}
 
 }

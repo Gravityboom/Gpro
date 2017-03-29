@@ -11,9 +11,10 @@ import FullRoom from './FullRoom.js';
 
 import Shop from './Shop.js';
 import User from './User.js';
-
+import Cartshop from './shop/cartshop'
 import Footer from './Footer.js';
-
+import Matter from './shop/Matter';
+import Standard from './shop/Standard';
 
 class App extends React.Component{
   render(){
@@ -45,6 +46,10 @@ ReactDOM.render((
       </Route>
       <Route path='shop' component={Shop} />
       <Route path='user' component={User} />
+    </Route>
+    <Route path='cartshop/:id' component={Cartshop}>
+      <Route path='matter' component={Matter}/>
+      <Route path='standard' component={Standard}/>
     </Route>
   </Router>), document.getElementById('root'));
 

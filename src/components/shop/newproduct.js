@@ -27,7 +27,7 @@ class Story extends React.Component {
 			_arr.push(res[i]);
 		}
 		_arr.map(function(item){
-				_list.push(<li className="item"><img src={item.urlimg}/><p>{item.name}</p><p>{item.price}</p></li>)
+				_list.push(<li className="item"><img src={item.urlimg}/><p className="goodsname">{item.name}</p><p>{item.price}</p></li>)
 			})
 		that.setState({
 			list:_list

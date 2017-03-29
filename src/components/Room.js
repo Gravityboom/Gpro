@@ -35,7 +35,7 @@ class Room extends React.Component{
         tempArr.push(
           <dl className='good_list'>
           <dt>
-            <a href="#"><img style={{width:'100%'}} src={item['img']} /></a>
+            <a href="#"><img style={{width:'100%'}} src={item.img}/></a>
           </dt>
           <dd>
             <ul>
