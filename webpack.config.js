@@ -93,6 +93,7 @@ module.exports = {
   externals: {
     'react': 'window.React',//类jquery思想 window.$ = jquery
     'react-dom': 'window.ReactDOM',
+    'react-addons-css-transition-group':'window.ReactCSSTransitionGroup',
     'react-router':'window.ReactRouter'//抽离ReactRouter
   }
 
