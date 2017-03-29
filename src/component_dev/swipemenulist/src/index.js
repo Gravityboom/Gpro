@@ -334,13 +334,11 @@ export default class SwipeMenuList extends Component {
         this.openIndex = index;
         this.setState({ openIndex: index });
 
-        const { onMenuOpen, onMenuClose, dataSource } = this.props;
-        const itemData = typeof dataSource.get === 'function' ? dataSource.get(index) : dataSource[index];
+        const { onMenuOpen, onMenuClose } = this.props;
         if (index !== -1) {
-            onMenuOpen(itemData, index);
+            onMenuOpen(this.props.dataSource[index], index);
         } else {
-            const lastOpenedItemData = typeof dataSource.get === 'function' ? dataSource.get(this.cachedOpenIndex) : dataSource[this.cachedOpenIndex];
-            onMenuClose(lastOpenedItemData, this.cachedOpenIndex);
+            onMenuClose(this.props.dataSource[this.cachedOpenIndex], this.cachedOpenIndex);
         }
     }
 
@@ -351,16 +349,6 @@ export default class SwipeMenuList extends Component {
      */
     refresh() {
         if (this.list) this.list.refresh();
-    }
-
-    /**
-     * @method resetLoadStatus
-     * @param {Bool} hasLoadMore 是否能够加载更多，如果传入false，加载更多区域的文字将会变成 没有更多了，并且继续向下滚动时不会触发onLoadMore。
-     * @description 重置加载更多功能。
-     * @version 3.0.7
-     */
-    resetLoadStatus(hasLoadMore) {
-        if (this.list) this.list.resetLoadStatus(hasLoadMore);
     }
 
     /**
@@ -491,10 +479,6 @@ export default class SwipeMenuList extends Component {
                     let target = evt.target;
                     let touchInFront = target === front;
                     while (target !== front && target !== action) {
-                        if (target == null) {
-                            touchInFront = true;
-                            break;
-                        }
                         if (target.parentNode === front) {
                             touchInFront = true;
                             break;

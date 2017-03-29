@@ -3,13 +3,11 @@ import { render } from 'react-dom';
 import '../../common/tapEventPluginInit';
 import Carousel from '../src/';
 import CarouselItem from '../src/carouselItem.js';
-import scrollX from '../src/aniScrollx.js';
 // import Modal from '../../modal/src';
 import aniInfinate from '../src/aniInfinate.js';
 import aniCss from '../src/aniCss.js';
 // import inlineInfinate from '../src/inlineScrollX.js';
 // import AniInfinate2 from '../src/aniInfinate2.js';
-// import './demo.scss';
 const dataList = [{
     img: 'http://gma.alicdn.com/simba/img/TB14ab1KpXXXXclXFXXSutbFXXX.jpg_q50.jpg',
     onTap: () => {
@@ -27,6 +25,26 @@ const dataList = [{
     }
 }, {
     img: 'http://gw.alicdn.com/tps/i1/TB12_iHHXXXXXaCXVXXdIns_XXX-1125-352.jpg_q50.jpg',
+    onTap: () => {
+        console.log('tap listener');
+    }
+}, {
+    img: 'http://gma.alicdn.com/simba/img/TB1CWf9KpXXXXbuXpXXSutbFXXX.jpg_q50.jpg',
+    onTap: () => {
+        console.log('tap listener');
+    }
+}, {
+    img: 'http://gma.alicdn.com/simba/img/TB1CWf9KpXXXXbuXpXXSutbFXXX.jpg_q50.jpg',
+    onTap: () => {
+        console.log('tap listener');
+    }
+}, {
+    img: 'http://gma.alicdn.com/simba/img/TB1CWf9KpXXXXbuXpXXSutbFXXX.jpg_q50.jpg',
+    onTap: () => {
+        console.log('tap listener');
+    }
+}, {
+    img: 'http://gma.alicdn.com/simba/img/TB1CWf9KpXXXXbuXpXXSutbFXXX.jpg_q50.jpg',
     onTap: () => {
         console.log('tap listener');
     }
@@ -81,7 +99,6 @@ class Container extends React.Component {
                 defaultPage={2}
                 aniObj={aniCss()}
                 isDrag={false}
-                speed={3}
                 ref={(node) => {
                     if (node){ window.carousel = node }
                 }}
@@ -92,7 +109,6 @@ class Container extends React.Component {
                         key={index + 1}
                         {...item}
                         lazyload={true}
-                       
                         activeClass={'top'}
                     />)
                 )
@@ -106,13 +122,11 @@ class Container extends React.Component {
                 beforeChange={(page)=>{this.beforeChange(page,'pageNow')}}
                 afterChange={(page)=>{this.updateChange(page,'pageNow')}}
                 dots={true}
-                defaultPage={1}
-                loop={true}
-                speed={3}
+                extraClass={"yo-carousel-scale"}
+                defaultPage={3}
                 autoplay={false}
-                aniObj={scrollX()}
                 ref={(node) => {
-                  if (node) {
+                  if(node){
                     window.scrollXCarousel = node;
                   }
                 }}
@@ -124,12 +138,7 @@ class Container extends React.Component {
                             key={index + 1}
                             // currentPage={this.state.pageNow}
                             {...item}
-                            renderContent={(img) => (
-                                <div className="unit">
-                                    {img}
-                                    <span>12345</span>
-                                </div>
-                            )}
+                            lazyload={true}
                         ></CarouselItem>);
                     })
             }

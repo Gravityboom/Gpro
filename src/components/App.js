@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory ,IndexRoute } from 'react-router'; //引入router
+import { Router, Route, hashHistory ,IndexRoute, IndexRedirect, Redirect } from 'react-router'; //引入router
 
-//import Footer from './Footer.js';
+import { store } from '../redux/store.js';
+import { Provider } from 'react-redux';
 
 import Home from './Home.js';
 import Room from './Room.js';
 import FullRoom from './FullRoom.js';
 
-
 import Shop from './Shop.js';
 import User from './User.js';
 
 import Footer from './Footer.js';
-
 
 class App extends React.Component{
   render(){
@@ -32,21 +31,27 @@ class App extends React.Component{
       </div>
     )
   }
+
+  componentDidMount(){
+  }
 }
 
+{/* Provider组件接受redux的store作为props 通过context往下传 */}
 ReactDOM.render((
+  <Provider store={store}>
   <Router history={hashHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={Home} />
+      <IndexRedirect to="home/room" />
+      <Redirect from="home" to="home/room" />
       <Route path='home' component={Home}>
-        <IndexRoute component={Room} />
-        <Route path='room' component={Room} />
-        <Route path='fullroom' component={FullRoom} />
+        <Route path='room' titleName='房间' component={Room} />
+        <Route path='fullroom' titleName='全屋' component={FullRoom} />
       </Route>
       <Route path='shop' component={Shop} />
       <Route path='user' component={User} />
     </Route>
-  </Router>), document.getElementById('root'));
+  </Router>
+  </Provider>), document.getElementById('root'));
 
 
 

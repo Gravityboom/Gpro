@@ -20,7 +20,7 @@ class Room extends React.Component{
 
   componentDidMount () {
 
-    fetch('http://localhost:18080/data?x=1')
+    fetch('/api/v2/h5/index/space?is_json=1&page='+ 1 +'&space=&style=')
 
     .then(function(response){
       return response.json();})
@@ -39,17 +39,17 @@ class Room extends React.Component{
           </dt>
           <dd>
             <ul>
-              <li>{item['app_title']}</li>
-              <li>￥{item['default_money']}/{item['space_name']}</li>
+              <li className="good_list_name">{item['app_title']}</li>
+              <li className="good_price">￥{item['default_money']}/{item['space_name']}</li>
             </ul>
-            <div>
-              <button>商品清单</button>
+            <div className="good_list_button">
+              <button className="yo-btn yo-btn-goodbtn">商品清单</button>
+            </div>
+            <div className="good_list_type">
+              <button className='yo-btn yo-btn-typebtn'>{item['space_name']}</button>
+              <button className='yo-btn yo-btn-typebtn'>{item['style_name']}</button>
             </div>
           </dd>
-          <div>
-            <span>{item['space_name']}</span>
-            <span>{item['style_name']}</span>
-          </div>
         </dl>
       )
       })
@@ -57,7 +57,6 @@ class Room extends React.Component{
         good_list:tempArr
       })
     }.bind(this))
-
     .catch(function(err){
       console.log(err);
     })
