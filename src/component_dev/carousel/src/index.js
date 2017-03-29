@@ -29,9 +29,6 @@ import React, { Component, PropTypes } from 'react';
 import aniScrollX from './aniScrollx.js';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CarouselItem from './carouselItem';
-
-<<<<<<< HEAD
-=======
 const Dots = props => {
     let liNodes = [];
     for (let i = 0; i < props.num; i++) {
@@ -47,7 +44,6 @@ Dots.propTypes = {
     num: PropTypes.number,
     page: PropTypes.number
 };
->>>>>>> master
 
 const DEFAULTANI = aniScrollX();
 
@@ -457,11 +453,8 @@ class Carousel extends Component {
                 <ul className={'cont'}>
                     {children}
                 </ul>
-<<<<<<< HEAD
-               
-=======
+
                 {this.props.dots ? <Dots num={this.aniObj.pagesNum} page={this.state.page} /> : ''}
->>>>>>> master
             </div>
         );
     }

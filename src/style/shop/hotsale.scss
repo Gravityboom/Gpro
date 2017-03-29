@@ -1,9 +1,31 @@
 li{
 	list-style:none;
 }
-.shop-scroller{
+.hot-sale{
+	border-top:1px solid #ccc;
+	.hot-title{
+		height: .6rem;
+		line-height: .7rem;
+		background: #fff;
+		border-top:1px solid #ccc;
+	}
+	.shop-content1{
+		width:800%;
+	}
+	.shop-content2{
+		width:1100%;
+	}
+	.shop-content3{
+		width:1300%;
+	}
+	.shop-content4{
+		width:1600%;
+	}
+	.shop-content5{
+		width:500%;
+	}
 	.scroller{
-			width:125%;
+			
 			background: #fff;
 			@include flexbox;
 			@include flex-direction;

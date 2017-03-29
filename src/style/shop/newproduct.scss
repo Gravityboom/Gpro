@@ -1,0 +1,28 @@
+.shop-news{
+	background: #fff;
+	margin-top: .1rem;
+	.subtitle{
+		height: .5rem;
+		line-height: .5rem;
+		text-align: center;
+	}
+	.item{
+		border-top: 1px solid #ccc;
+		height: 1rem;
+		img{
+			float:left;
+			width:.8rem;
+			height: .8rem;
+			margin:.1rem;
+		}
+		p{
+			&:first-child{
+				margin-top:.2rem;
+			};
+			float:left;
+			width:2rem;
+			height: .4rem;
+			line-height: .4rem;
+		}
+	}
+}

@@ -11,7 +11,7 @@ class Match extends React.Component {
 	render(){
 		return (
 				<div className="shop-match">
-					<div className="yo-header yo-header-recommend">
+					<div className="yo-header yo-header-match">
 						<h2 className="title">微搭配</h2>
 					
 					</div>

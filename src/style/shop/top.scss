@@ -38,19 +38,16 @@
 				}	
 			}
 		}
+		.more{
+			height: .6rem;
 		
-	}
-}
-@include yo-header($name:top,$bgcolor:red){
-
-	.title{
-		color: #027847;
-	}
-
-}
-@include yo-carousel(){
-	height: auto;
-	img{
-		width:100%;
+			margin:0 auto;
+			text-align: center;
+			background: #fff;
+			line-height: .6rem;
+			border-top: 2px solid #ccc;
+			font-size:.2rem;
+		}
+		
 	}
 }

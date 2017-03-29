@@ -20,7 +20,7 @@ class Mycarousel extends React.Component {
 		this.props.list.map(function(item){
 			_list.push(<li className="item"><img src={item} className=""/></li>)
 		})
-		console.log(_list);
+		
 		this.setState({
 			list:_list
 		})
