@@ -1,6 +1,7 @@
 @import "../fragment/yo-header.scss";
 @import "../fragment/yo-tab.scss";
 @import "../component/scroller.scss";
+@import "../element/yo-btn.scss";
 
 @font-face {
   font-family: yofont;
@@ -12,15 +13,20 @@
   .Home_container{
     height:100%;
     @include yo-tab(
-      $height:30px,
+      $height:0.305rem,
       $bgcolor:#fff,
       $border-width:0
     ){
       &{
-
         line-height:normal;
       }
       li{
+        &:first-child{
+          margin-right:-0.45rem;
+        }
+        &:nth-child(2){
+          margin-left:-0.45rem;
+        }
         >a{
           color:#333;
           display:inline-block;
@@ -30,7 +36,7 @@
           font-size:0.15rem;
         }
         >a.onsele{
-          border-bottom:2px solid #007846;
+          border-bottom:0.02rem solid #007846;
         }
       }
     }
@@ -51,7 +57,7 @@
     @include flex-direction(column);
     @include yo-header(
       $name:homeheader,
-      $height:0.46rem,
+      $height:0.47rem,
       $bgcolor: #fff,
       $border-width: 0,
       $font-size: 0,
@@ -81,33 +87,170 @@
       .yo-scroller{
         touch-action: none;
       }
+
+      /* 商品列表样式 */
+      .good_list{
+        font-family:"冬青黑体","Microsoft YaHei","微软雅黑","MicrosoftJhengHei","华文细黑","Helvetica", "Arial", sans-serif;
+        border-bottom:0.1118rem solid #f5f5f5;
+        dd{
+          margin:0 0.117rem;
+          margin-top:0.056rem;
+          ul{
+            height:0.71rem;
+            width:1.92rem;
+            margin-top:0.11rem;
+            display:inline-block;
+            .good_list_name{
+              letter-spacing:0.5px;
+              font-size:0.14rem;
+              width:1.92rem;
+              text-overflow:ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+            .good_price{
+              margin-top:0.1171rem;
+              margin-bottom:0.2343rem;
+              color:#e43939;
+              letter-spacing:0.8px;
+            }
+          }
+          .good_list_button{
+            display:inline-block;
+            float:right;
+            margin-top:0.2237rem;
+
+            @include yo-btn(
+              $name:goodbtn,
+              $border-width:0,
+              $bgcolor:#007846,
+              $color:#fff,
+              $font-size:0.164rem,
+              $touch-bgcolor:#007846,
+              $touch-color:#fff,
+              $width:1.08rem,
+              $height:0.379rem,
+              $padding:0,
+              $radius:6px
+            )
+          }
+          .good_list_type{
+            padding-top:0.05rem;
+            @include yo-btn(
+              $name:typebtn,
+              $border-width:2px,
+              $border-color:#888,
+              $bgcolor:#fff,
+              $color:#666,
+              $font-size:0.14rem,
+              $touch-bgcolor:#fff,
+              $touch-color:#666,
+              $width:0.7935rem,
+              $height:0.2537rem,
+              $padding:0,
+              $radius:4px
+            ){
+              margin:0 0.1118rem 0.1118rem 0;
+            }
+          }
+        }
+      }
+
+    }
+
+    /*遮罩层样式*/
+    .shadow_wrap_none{
+      display:none;
+    }
+    .home_shadow_wrap{
+      position:absolute;
+      top:0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color:rgba(0, 0, 0, 0.5);
+      z-index:10;
     }
 
     /* Home定位弹框样式 */
-    .localtion_container{
+    .location_container{
+      font-family:"冬青黑体","Microsoft YaHei","微软雅黑","MicrosoftJhengHei","华文细黑","Helvetica", "Arial", "sans-serif";
+      letter-spacing:0.8px;
       position:absolute;
       top:0;
       bottom: 0;
       left: 0;
       right: 0.71rem;
+      z-index:15;
       background:#fff;
       >ul.location_in{
         height:100%;
-        background-color: #eee;
         margin:0 0.3515rem;
 
         .location_top{
-          padding-bottom:0.1171rem;
+          padding-bottom:0.0971rem;
           padding-top:0.3515rem;
+          border-color:#ccc;
+          border-bottom:1px solid #ccc;
           .okay{
             float:right;
+            height:0.1171rem;
+            width:0.14063rem;
+            background:url('/home_img/here.png') no-repeat center center;
+            background-size: cover;
           }
         }
         .location_main{
+          padding-top:0.11rem;
+          @include flexbox();
+          @include flex-direction(row);
           height:5.17rem;
-          background:yellow;
+          .location_one,.location_two{
+            .location_name_active{
+              color:#007846;
+            }
+            touch-action:none;
+            border-right:1px solid #ccc;
+            height:100%;
+            flex:1;
+            .scroller{
+              button{
+                font-family:"Microsoft YaHei",sans-serif;
+                display:block;
+                border:none;
+                background:#fff;
+                margin-bottom:0.11rem;
+                height:0.19rem
+              }
+            }
+            &.location_two{
+              border:none;
+              .scroller{
+                padding-left:0.31rem;
+                button{
+                  font-family:"冬青黑体","Microsoft YaHei","微软雅黑","MicrosoftJhengHei","华文细黑","Helvetica", "Arial", "sans-serif";
+                  font-size:0.1289rem;
+                  margin-bottom:0.164rem;
+                }
+              }
+            }
+          }
         }
       }
+    }
+    .location_active{
+      transform:translateX(0);
+      transition-property:all;
+      transition-duration	:0.2s;
+      transition-timing-function:linear;
+      transition-delay:0s;
+    }
+    .location_leave{
+      transform:translateX(-100%);
+      transition-property:all;
+      transition-duration	:0.2s;
+      transition-timing-function:linear;
+      transition-delay:0s;
     }
   }
 }
