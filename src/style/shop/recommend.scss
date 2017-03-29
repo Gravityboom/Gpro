@@ -1,0 +1,15 @@
+@import "../lib/fragment/yo-carousel";
+.shop-recommend{
+	margin-top:.2rem;
+	background: #fff;
+	padding-bottom: .2rem;
+	.item{
+		width: 90% !important;
+		margin-right: 5%;
+		height: 2.5rem;
+
+		img{
+			height: 100%;
+		}
+	}
+}

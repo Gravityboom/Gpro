@@ -1,0 +1,38 @@
+li{
+	list-style:none;
+}
+.shop-scroller{
+	.scroller{
+			width:125%;
+			background: #fff;
+			@include flexbox;
+			@include flex-direction;
+			.item{
+				@include flex;
+				height: 1.65rem;
+				margin-right: .1rem;
+				&:last-child{
+					margin-right:0;
+				};
+				img{
+					width:1rem;
+					height: 1rem;
+					
+				}
+				.match_name{	
+					width:.8rem;
+				text-align:center;
+					text-overflow: ellipsis;
+					white-space:nowrap;
+					overflow: hidden;
+					margin: .1rem 0;
+				}
+				.match_price{
+					color:red;
+				text-indent: 1em;
+
+				}
+			}
+		
+	}
+}

@@ -1,0 +1,23 @@
+@import "../lib/fragment/yo-carousel";
+.shop-design{
+	margin-top:.2rem;
+	background: #fff;
+	padding-bottom: .2rem;
+	.item{
+		width: 90% !important;
+		margin-right: 5%;
+		height: 2.5rem;
+		background-color: #fff;
+
+		img{
+			height:2rem;
+			border:1px solid #ccc;
+		}
+		.subtitle{
+			height: .5rem;
+			line-height: .5rem;
+			background: #fff;
+			font-size: .16rem;
+		}
+	}
+}

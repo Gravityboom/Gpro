@@ -1,0 +1,53 @@
+@include yo-header($name:design,
+	$color:#000,
+	$bgcolor:#fff,
+	$border-width: 0,$height:.7rem){
+
+	.affirm{
+		color:#000;
+	}
+
+}
+@include yo-header($name:recommend,
+	$color:#000,
+	$bgcolor:#fff,
+	$border-width: 0,$height:.7rem){
+	.title{
+		color:#000;
+	}
+	.affirm{
+		color:#000;
+	}
+
+}
+@include yo-header($name:top,$bgcolor:#fff,$color:#000){
+
+	.title{
+		color: #027847;
+	}
+
+}
+@include yo-carousel(){
+	height: auto;
+	img{
+		width:100%;
+	}
+}
+@include yo-header($name:match,$color:#000,$bgcolor:#fff,$border-width: 0,$height:.7rem){
+	.title{
+		color:#000;
+	}
+	.affirm{
+		color:#000;
+	}
+
+}
+@include yo-header($name:hotsale,$color:#000,$bgcolor:#fff,$border-width: 0,$height:.7rem){
+	.title{
+		color:#000;
+	}
+	.affirm{
+		color:#000;
+	}
+
+}
