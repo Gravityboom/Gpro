@@ -1972,7 +1972,9 @@ a {
             #header_and_content .Home_container .scroller_container .good_list dd .good_list_button .yo-btn-goodbtn.yo-btn-disabled {
               background-color: #00c573; }
         #header_and_content .Home_container .scroller_container .good_list dd .good_list_type {
-          padding-top: 0.05rem; }
+          padding-top: 0.05rem;
+          position: relative;
+          z-index: 1; }
           #header_and_content .Home_container .scroller_container .good_list dd .good_list_type .yo-btn-typebtn {
             width: 0.7935rem;
             height: 0.2537rem;
@@ -2086,34 +2088,150 @@ a {
 .fullhome_detail_img_div {
   margin-left: 0.11719rem;
   margin-top: 0.05859rem; }
-  .fullhome_detail_img_div .sonC {
-    width: 600px;
-    height: 100%;
-    white-space: nowrap; }
-    .fullhome_detail_img_div .sonC li.fullhome_detail_img_into {
-      display: inline-block;
-      width: 1.0547rem;
-      height: 1.0547rem;
-      margin-right: 0.15rem; }
-      .fullhome_detail_img_div .sonC li.fullhome_detail_img_into img {
-        border-radius: 4px; }
+  .fullhome_detail_img_div .scroller {
+    position: absolute; }
+    .fullhome_detail_img_div .scroller .sonC {
+      height: 100%; }
+      .fullhome_detail_img_div .scroller .sonC li.fullhome_detail_img_into {
+        width: 1.0547rem;
+        height: 1.0547rem;
+        margin-right: 0.15rem;
+        float: left; }
+        .fullhome_detail_img_div .scroller .sonC li.fullhome_detail_img_into img {
+          border-radius: 4px; }
+
+html, body {
+  overflow: auto !important; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
 
 .hd_container {
-  height: 100%;
-  width: 100%;
-  touch-action: none;
-  background: lightseagreen; }
+  touch-action: none; }
   .hd_container .goback {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0.1289rem;
+    left: 0.12rem;
     z-index: 10;
     width: 0.25781rem;
     height: 0.28125rem;
-    background: url("/build/home_img/goback.png");
-    background-size: cover; }
+    background: url("/home_img/goback.png") no-repeat;
+    background-size: contain; }
   .hd_container .home_detail_banner {
     width: 100%; }
+  .hd_container .gapbar {
+    height: 0.1172rem;
+    background: #eee; }
+  .hd_container .art_author {
+    border-bottom: 0.01rem solid #ccc;
+    height: 1.07469rem;
+    padding-left: 0.1171rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex; }
+    .hd_container .art_author .author_img {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      width: .1px; }
+      .hd_container .art_author .author_img img {
+        width: 0.8231rem;
+        height: 0.8231rem;
+        margin: 0.11719rem 0.11719rem 0.11719rem 0; }
+    .hd_container .art_author .author_name {
+      -webkit-box-flex: 3;
+      -webkit-flex: 3;
+      flex: 3;
+      width: .1px;
+      padding-left: 0.04rem;
+      padding-top: 0.14063rem; }
+  .hd_container .gtip {
+    padding: 0 0.11719rem;
+    overflow: hidden; }
+    .hd_container .gtip header {
+      height: 0.19rem;
+      margin: 0.1rem 0; }
+    .hd_container .gtip .gtype {
+      height: 0.19rem;
+      margin-bottom: 0.13438rem; }
+      .hd_container .gtip .gtype .fr {
+        color: #c70909; }
+    .hd_container .gtip p {
+      margin-bottom: 0.11719rem;
+      letter-spacing: 0.8px;
+      font-size: 14px;
+      color: #333;
+      font-family: "\51AC\9752\9ED1\4F53","Microsoft YaHei","\5FAE\8F6F\96C5\9ED1","MicrosoftJhengHei","\534E\6587\7EC6\9ED1","Helvetica", "Arial", "sans-serif"; }
+  .hd_container .trans_gap {
+    height: 0.58594rem;
+    background: #f5f5f5;
+    line-height: 0.703125rem;
+    text-align: center;
+    font-size: 0.164rem; }
+  .hd_container .hdgc {
+    background: #fff; }
+    .hd_container .hdgc li.goods {
+      border-bottom: 1px solid #ccc;
+      width: 3.51563rem;
+      margin: 0 auto;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      flex-direction: column; }
+      .hd_container .hdgc li.goods .detail_list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row; }
+        .hd_container .hdgc li.goods .detail_list a {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+          flex: 1;
+          width: .1px;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          height: 100%; }
+          .hd_container .hdgc li.goods .detail_list a .div123 {
+            padding: 0.23438rem 0.11719rem 0 0.11719rem; }
+            .hd_container .hdgc li.goods .detail_list a .div123 img {
+              width: 0.98438rem;
+              height: 0.98438rem; }
+          .hd_container .hdgc li.goods .detail_list a .div456 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+            width: .1px; }
+            .hd_container .hdgc li.goods .detail_list a .div456 .dgoodname {
+              height: 0.21rem;
+              margin: 0.11719rem 0;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              color: #333;
+              font-size: 0.164rem; }
+            .hd_container .hdgc li.goods .detail_list a .div456 .goodattr {
+              height: 0.38rem;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              color: #999; }
+            .hd_container .hdgc li.goods .detail_list a .div456 .dgood_price {
+              width: 100%;
+              height: 0.19rem;
+              margin-top: 0.23438rem;
+              letter-spacing: 0.8px;
+              font-size: 14px;
+              color: #333; }
 
 section {
   background: #fff; }
@@ -2125,6 +2243,12 @@ section {
       width: 100%;
       height: .1rem;
       background-color: #f5f5f5; }
+    section #user .dis {
+      display: none; }
+    section #user .clearfix:after {
+      display: block;
+      content: '';
+      clear: both; }
     section #user .user-head {
       height: 2.24844rem;
       overflow: hidden; }
@@ -2143,8 +2267,11 @@ section {
         section #user .user-head .user-header .login_a {
           height: .3rem;
           background: none;
-          margin-top: .3rem; }
-          section #user .user-head .user-header .login_a div {
+          margin-top: .3rem;
+          text-align: center;
+          color: #fff; }
+          section #user .user-head .user-header .login_a a {
+            display: block;
             width: .98rem;
             height: .3rem;
             background: none;
@@ -2160,7 +2287,8 @@ section {
       border-bottom: 1px solid #CCC;
       background-color: #fff;
       display: flex;
-      flex-direction: row; }
+      flex-direction: row;
+      color: #000; }
       section #user .my_order p {
         flex: 2;
         padding-left: .1rem; }
@@ -2207,49 +2335,227 @@ section {
         width: .28rem;
         height: .23rem;
         background-size: 100% auto;
-        margin-top: .046rem; }
-      section #user .my_bar .my_coupon {
+        margin-top: .046rem;
+        margin-right: .07rem; }
+      section #user .my_bar .my_icon {
+        width: .28125rem;
+        height: .28125rem;
+        line-height: .28125rem;
+        margin-top: .023475rem;
+        margin-right: .046875rem;
+        float: left; }
+      section #user .my_bar .my_coupon, section #user .my_bar .my_car, section #user .my_bar .my_adress {
         height: .361563rem;
         line-height: .361563rem;
         border-bottom: 1px solid #ccc;
-        padding-left: .1rem; }
-        section #user .my_bar .my_coupon .my_icon {
-          width: .28125rem;
-          height: .28125rem;
-          line-height: .28125rem;
-          margin-top: .023475rem;
-          margin-right: .046875rem;
+        color: #3b3b3b; }
+      section #user .my_bar .my_coupon .my_icon {
+        background: url("http://m.haozaishop.com/js_web/images/coupon.png") no-repeat;
+        background-size: 100% auto; }
+      section #user .my_bar .my_car .my_icon {
+        background: url("http://m.haozaishop.com/js_web/images/buycar1.png") no-repeat;
+        background-size: 100% auto; }
+      section #user .my_bar .my_adress .my_icon {
+        background: url("http://m.haozaishop.com/js_web/images/address.png") no-repeat;
+        background-size: 100% auto; }
+    section #user #user_orderlist {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      color: #000;
+      z-index: 999;
+      width: 100%; }
+      section #user #user_orderlist .orserlist_head {
+        height: .5859rem;
+        background: #fff;
+        position: relative; }
+        section #user #user_orderlist .orserlist_head .go_back {
+          position: absolute;
+          left: .21rem;
+          bottom: .12rem;
+          width: .11rem;
+          height: .2578rem;
+          background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAoCAYAAAD6xArmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVEhL7dW7DYMwFIXhuwuzpKFAipKSMSjSJwOk9GMKRmILRCIlB+k4lTtfpeH8koW4xWeLAptnOecxpXTmq08AHzHGTwhh4ai9gmK9sC4ctwXoXlBscOW4LaFChQo9IIrr5Laj+PO/3dA9oBPhDZv0HPuEkz75KVbhv4RXE15NeDXh1f6Jnzj2qeB4zhz5BXjAFdeZmX0BtVyADGPYPGQAAAAASUVORK5CYII=");
+          background-size: 100%;
+          background-repeat: no-repeat; }
+        section #user #user_orderlist .orserlist_head .logo {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: .5859rem;
+          height: .2929rem;
+          margin-left: -.29rem;
+          margin-top: -.1464rem;
+          background-repeat: no-repeat;
+          background-size: 100%; }
+      section #user #user_orderlist .orserlist_content {
+        flex: 1;
+        background: #f5f5f5; }
+
+#login_register {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0; }
+  #login_register .fr {
+    width: 100%;
+    height: .1rem;
+    background-color: #f5f5f5; }
+  #login_register .clearfix:after {
+    display: block;
+    content: '';
+    clear: both; }
+  #login_register .login_head {
+    height: .5859rem; }
+    #login_register .login_head .close {
+      background: url("http://m.haozaishop.com/js_web/images/close.png") no-repeat;
+      background-size: 100%;
+      float: right;
+      width: .41rem;
+      height: .41rem;
+      margin-bottom: .175rem; }
+  #login_register .login_footer {
+    height: .445rem; }
+  #login_register input {
+    margin-top: .4218rem;
+    margin-left: .6562rem;
+    height: .3615rem;
+    width: 2.5781rem;
+    border: none;
+    border-bottom: 1px solid #eee;
+    background-color: transparent;
+    font-size: .14rem; }
+  #login_register input::-webkit-input-placeholder {
+    color: #000; }
+  #login_register .box_box {
+    background-color: #808a87;
+    text-align: center;
+    color: #fff;
+    border-radius: 8px;
+    width: 70%;
+    height: .5rem;
+    line-height: .5rem;
+    z-index: 99999;
+    position: fixed;
+    top: 47%;
+    left: 15%;
+    margin: 0 auto; }
+  #login_register #login {
+    background: #fff;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    position: relative; }
+    #login_register #login .center {
+      flex: 1;
+      background: url("http://m.haozaishop.com/js_web/images/bg.png") no-repeat;
+      background-size: 100%; }
+      #login_register #login .center .log {
+        text-align: center; }
+        #login_register #login .center .log img {
+          height: .328rem;
+          width: auto;
+          vertical-align: middle; }
+      #login_register #login .center .reset {
+        float: right;
+        margin-top: .117rem;
+        margin-right: .5859rem;
+        color: #5aa85a; }
+      #login_register #login .center .login {
+        background-color: #389c38;
+        text-align: center;
+        color: #fff;
+        margin: 0 auto;
+        border-radius: 5px;
+        width: 2.46rem;
+        height: .46875rem;
+        line-height: .46875rem;
+        margin-bottom: .29297rem;
+        margin-top: .26367rem; }
+      #login_register #login .center .enroll {
+        text-align: center;
+        color: #389c38; }
+      #login_register #login .center .or {
+        background: url("http://m.haozaishop.com/js_web/images/or.png") center no-repeat;
+        background-size: 100%;
+        width: 2.5781rem;
+        height: .88rem;
+        padding: .35rem 0 .2919rem .6093rem;
+        display: block;
+        margin: 0 auto; }
+      #login_register #login .center .wx_login {
+        background-color: rgba(190, 190, 190, 0.7);
+        border-radius: 5px;
+        width: 2.46rem;
+        height: .41rem;
+        margin-left: .6679rem;
+        margin: 0 auto; }
+        #login_register #login .center .wx_login .wx_ico {
+          background: url("http://m.haozaishop.com/js_web/images/wx.png") no-repeat;
+          background-size: 100%;
           float: left;
-          background: url("http://m.haozaishop.com/js_web/images/coupon.png") no-repeat;
-          background-size: 100% auto; }
-      section #user .my_bar .my_car {
-        height: .361563rem;
-        line-height: .361563rem;
-        border-bottom: 1px solid #ccc;
-        padding-left: .1rem; }
-        section #user .my_bar .my_car .my_icon {
-          width: .28125rem;
-          height: .28125rem;
-          line-height: .28125rem;
-          margin-top: .023475rem;
-          margin-right: .046875rem;
+          width: .41rem;
+          height: .41rem;
+          margin: .02rem .49rem 0 .087rem; }
+        #login_register #login .center .wx_login span {
+          color: #fff;
           float: left;
-          background: url("http://m.haozaishop.com/js_web/images/buycar1.png") no-repeat;
-          background-size: 100% auto; }
-      section #user .my_bar .my_adress {
-        height: .361563rem;
-        line-height: .361563rem;
-        border-bottom: 1px solid #ccc;
-        padding-left: .1rem; }
-        section #user .my_bar .my_adress .my_icon {
-          width: .28125rem;
-          height: .28125rem;
-          line-height: .28125rem;
-          margin-top: .023475rem;
-          margin-right: .046875rem;
-          float: left;
-          background: url("http://m.haozaishop.com/js_web/images/address.png") no-repeat;
-          background-size: 100% auto; }
+          line-height: .41rem; }
+  #login_register #register {
+    background: #fff;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    position: relative; }
+    #login_register #register .center {
+      flex: 1;
+      background: url("http://m.haozaishop.com/js_web/images/bg.png") no-repeat;
+      background-size: 100%; }
+      #login_register #register .center .code {
+        float: left;
+        width: 1.87rem; }
+      #login_register #register .center #send_code {
+        color: #fff;
+        background-color: #3fb93f;
+        border-radius: 5px;
+        float: left;
+        text-align: center;
+        width: 1.0546rem;
+        height: .2812rem;
+        margin-left: .10rem;
+        line-height: .2812rem;
+        margin-top: .46rem; }
+      #login_register #register .center .reg {
+        text-align: center;
+        color: #fff;
+        background-color: #3fb93f;
+        border-radius: 5px;
+        width: 2.578rem;
+        height: .4687rem;
+        line-height: .4687rem;
+        margin: .82rem 0 .3632rem .6738rem; }
 
 /**
  * @module fragment
@@ -4704,1015 +5010,3 @@ a {
 .yo-carousel .transition {
   -webkit-transition: -webkit-transform 0.5s ease-in;
   transition: transform 0.5s ease-in; }
-@charset "UTF-8";
-/**
- * Yo框架全局base定义
- * 本文件与variables不同地方在于，这里所定义的map可以使用在variables和任何地方
- * lib中map使用“_”开头，本文件中不使用"_"
- * base ⇌ extra
- */
-/**
- * Yo框架全局base定义
- * 本文件与variables不同地方在于，这里所定义的map可以使用在variables和任何地方
- * 本文件中map使用"_"开头，extra中不使用"_"
- * base ⇌ extra
- */
-/**
- * 合并base和extra中的同类base map
- * 用以解决业务方升级Yo时需比base和extra的一致性
- * 当extra为空时，base map将以base文件里的定义作为默认值
- * 当extra不为空时，base map使用extra文件里的定义
- */
-/**
- * Yo框架全局Variables
- * Yo基础变量map，如果不想定义某属性，将其value设置为null；
- * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
- * variables中map使用“_”开头，本文件中不使用"_"
- * variables ⇌ config
- */
-/**
- * Yo框架全局Variables
- * Yo基础变量map，如果不想定义某属性，将其value设置为null
- * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
- * 本文件中map使用"_"开头，config中不使用"_"
- * variables ⇌ config
- */
-/**
- * 合并variables和config中的同类map
- * 用以解决业务方升级Yo时需比config和variables的一致性
- * 当config为空时，使用variables中的map作为默认值
- * 当config不为空时，使用config中的定义
- */
-/**
- * Yo框架自定义全局函数
- * 扩充Sass默认函数库，用以增强语法
- */
-/**
- * @module List扩展函数
- * @description 返回SassList中的第一项
- * @function first
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- */
-/**
- * @module List扩展函数
- * @description 返回SassList中的最后一项
- * @function last
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- */
-/**
- * @module List扩展函数
- * @description 返回SassList中的倒数第几项
- * @function nth-last
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- * @param {Integer} $index 指定需要返回的值在list中的倒数位置 <2.1.0>
- */
-/**
- * @module List扩展函数
- * @description 移除SassList中的某个项目并返回新的List
- * @function remove
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- * @param {String} $value 指定需要被删除的值 <2.1.0>
- */
-/**
- * @module List扩展函数
- * @description 截取SassList中的某个部分并返回新的List
- * @function slice
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- * @param {Integer} $start 指定需要截取的开始下标 <2.1.0>
- * @param {Integer} $end 指定需要截取的结束下标（不包括end），当该值缺省时默认为末尾下标 <2.1.0>
- */
-/**
- * @module List扩展函数
- * @description 从SassList中添加/删除项目，然后返回新的List。
- * @function splice
- * @version 2.1.0
- * @param {String} $list 指定一个Sass List <2.1.0>
- * @param {Integer} $index 指定需要移除的开始下标 <2.1.0>
- * @param {Integer} $count 指定需要移除的数量，不可以为负值，0表示不移除 <2.1.0>
- * @param {String} $values 指定需要添加的新值（可以是多个），如果该值缺省，则表示只移除不添加新值 <2.1.0>
- */
-/**
- * Yo框架全局基础方法
- * 包括响应式方案，CSS3兼容性方案，厂商前缀方案，iconfont方案，flex布局等全局方法
- */
-/**
- * @module 常用方法
- * @description 给需要的属性加厂家前缀
- * @method prefix
- * @version 1.0.0
- * @param {String} $property 指定属性 <1.0.0>
- * @param {String} $value 指定属性值 <1.0.0>
- * @skip
- */
-/**
- * @module 常用方法
- * @description 定义字体图标
- * @method _iconfont
- * @version 1.0.0
- * @skip
- */
-/**
- * @module 常用方法
- * @description 四则运算(系统要求：iOS6.0+,Android4.4+)
- * @method calc
- * @version 1.7.0
- * @param {String} $property 指定需要进行计算的CSS属性 <1.7.0>
- * @param {String} $value 与原生CSS语法一致，区别在于需要使用引号包裹表达式 <1.7.0>
- * @example
- * .calc {
- *     @include calc(width, "100% - 100px");
- * }
- *
- * <div class="calc">四则运算</div>
- */
-/**
- * @module 常用方法
- * @description 定义响应式方案
- * @method responsive
- * @version 1.0.0
- * @param {String} $media 指定媒体查询条件，取值为`config`文件map `media-types`中的值 <1.0.0>
- */
-/**
- * @module 常用方法
- * @description 清除浮动方案
- * @method clearfix
- * @version 1.0.0
- * @param {String} $type 指定清除浮动的方式，包括：pseudo-element | bfc，默认值：pseudo-element <1.8.5>
- */
-/**
- * @module 常用方法
- * @description 清除行内级元素间间隙方案
- * @method clearspace
- * @version 3.0.3
- * @param {Length} $font-size 指定子元素字号，默认值：.14rem <3.0.3>
- * @example
- * .demo {
- *     @include clearspace;
- * }
- *
- * <div class="demo">
- *      <span class="item">1</span>
- *      <span class="item">2</span>
- *      <span class="item">3</span>
- * </div>
- */
-/**
- * @module 常用方法
- * @description 描述元素内容在横、纵方向上的对齐方式，默认为水平垂直居中对齐
- * @method align
- * @version 2.0.0
- * @param {String} $flexbox 元素布局方式，可选值：flex | inline-flex，默认值：flex <2.0.0>
- * @param {Keyword} $justify-content 元素内容的水平对齐方式，取值与`justify-content`属性一致，默认值：center <2.0.0>
- * @param {Keyword} $align-items 元素内容的垂直对齐方式，取值与`align-items`属性一致，默认值：center <2.0.0>
- * @example
- * .demo {
- *     @include align;
- * }
- *
- * <div class="demo">
- *      <img alt="未知尺寸图片居中" />
- * </div>
- */
-/**
- * @module 常用方法
- * @description 定义是否有滚动条
- * @method overflow
- * @version 1.0.0
- * @param {String} $overflow 取值与最新原生语法一致，默认值：auto <1.0.0>
- */
-/**
- * @module 常用方法
- * @description 生成全屏方法
- * @method fullscreen
- * @version 1.7.0
- * @param {Integer} $z-index 指定层叠级别 <1.7.0>
- * @param {Keywords} $position 指定定位方式，取除`static | relative`之外的值，默认值：absolute <1.8.5>
- */
-/**
- * @module 用户界面
- * @description 定义使用何种滤镜
- * @method filter
- * @version 1.7.0
- * @param {String} $filter 取值与`filter`属性一致 <1.7.0>
- */
-/**
- * @module 用户界面
- * @description 定义UA默认外观
- * @method appearance
- * @version 1.0.0
- * @param {String} $appearance 取值与`appearance`属性一致，默认值：none <1.0.0>
- */
-/**
- * @module 用户界面
- * @description 定义如何选中内容
- * @method user-select
- * @version 1.0.0
- * @param {String} $user-select 取值与`user-select`属性一致，默认值：none <1.0.0>
- */
-/**
- * @module 用户界面
- * @description 定义盒模型
- * @method box-sizing
- * @version 1.0.0
- * @param {String} $box-sizing 指定盒模型类型，取值与`box-sizing`属性一致，默认值：border-box <1.0.0>
- */
-/**
- * @module 背景与边框
- * @description 定义渐变色值
- * @method gradient
- * @version 1.0.0
- * @param {String} $type 指定渐变的4种类型：linear, repeating-linear, radial, repeating-radial <1.0.0>
- * @param {String} $dir 指定渐变方向，可选值：[left | right] || [top | bottom] | angle <2.0.0>
- * @param {String} $gradient 指定渐变取值，与w3c最新原生语法一致 <1.0.0>
- */
-/**
- * @module 背景与边框
- * @description 定义背景图像缩放（AndroidBrowser2.3.*还需要厂商前缀）
- * @method background-size
- * @version 1.4.0
- * @param {Keywords | Length} $background-size 指定背景图缩放值，取值与`background-size`属性一致 <1.4.0>
- */
-/**
- * @module 背景与边框
- * @description 定义背景裁减（AndroidBrowser2.3.*还需要厂商前缀）
- * @method background-clip
- * @version 1.6.0
- * @param {Keywords} $background-clip 指定背景图缩放值，取值与`background-clip`属性一致 <1.6.0>
- */
-/**
- * @module 背景与边框
- * @description 定义背景显示区域（AndroidBrowser2.3.*还需要厂商前缀）
- * @method background-origin
- * @version 1.6.0
- * @param {Keywords} $background-origin 指定背景图`background-position`属性计算相对的参考点，取值与`background-origin`属性一致 <1.6.0>
- */
-/**
- * @module 背景与边框
- * @description 为元素添加边框（包括1px边框）
- * @method border
- * @version 2.0.0
- * @param {String} $border-width 指定边框厚度（单位为px），默认值：1px，取值与`border-width`属性一致，不同方向代表边框位置 <2.0.0>
- * @param {String} $border-color 指定边框颜色 <2.0.0>
- * @param {String} $border-style 指定边框样式 <2.0.0>
- * @param {String} $radius 指定边框圆角半径，默认值：null <2.0.0>
- */
-/**
- * @module 背景与边框
- * @description 定义圆角，用于修复某些安卓机型上“圆角+边框+背景”，背景溢出的情况
- * @method border-radius
- * @version 1.6.0
- * @param {Length} $border-radius 指定元素的圆角半径，取值与`border-radius`属性一致 <1.6.0>
- */
-/**
- * @module Transform
- * @description 定义简单变换
- * @method transform
- * @version 1.0.0
- * @param {String} $transform 取值范围与`transform`属性一致 <1.0.0>
- */
-/**
- * @module Transform
- * @description 定义变换原点
- * @method transform-origin
- * @version 1.0.0
- * @param {Length | Percentage | Keywords} $transform-origin 取值范围与`transform-origin`属性一致 <1.0.0>
- */
-/**
- * @module Transform
- * @description 指定某元素的子元素是（看起来）位于三维空间内，还是在该元素所在的平面内被扁平化
- * @method transform-style
- * @version 2.0.0
- * @param {String} $transform-style 取值范围与`transform-style`属性一致 <2.0.0>
- */
-/**
- * @module Transform
- * @description 指定观察者与「z=0」平面的距离，使具有三维位置变换的元素产生透视效果。「z>0」的三维元素比正常大，而「z<0」时则比正常小，大小程度由该属性的值决定。
- * @method perspective
- * @version 2.0.0
- * @param {none | Length} $perspective 取值范围与`perspective`属性一致 <2.0.0>
- */
-/**
- * @module Transform
- * @description 指定透视点的位置
- * @method perspective-origin
- * @version 2.0.0
- * @param {Length | Percentage | Keywords} $perspective-origin 取值范围与`perspective-origin`属性一致 <2.0.0>
- */
-/**
- * @module Transform
- * @description 指定元素背面面向用户时是否可见
- * @method backface-visibility
- * @version 2.0.0
- * @param {Keywords} $backface-visibility 取值范围与`backface-visibility`属性一致 <2.0.0>
- */
-/**
- * @module Animation
- * @description 定义动画
- * @method animation
- * @version 1.0.0
- * @param {String} $animation 取值与原生语法一致 <1.0.0>
- */
-/**
- * @module Animation
- * @description 指定需要引用的动画名称
- * @method animation-name
- * @version 3.0.0
- * @param {String} $animation-name 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画运行一次所持续的时长
- * @method animation-duration
- * @version 3.0.0
- * @param {String} $animation-duration 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画运行方式
- * @method animation-timing-function
- * @version 3.0.0
- * @param {String} $animation-timing-function 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画延迟多久之后再开始
- * @method animation-delay
- * @version 3.0.0
- * @param {String} $animation-delay 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画循环几次
- * @method animation-iteration-count
- * @version 3.0.0
- * @param {String} $animation-iteration-count 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画的运动方向
- * @method animation-direction
- * @version 3.0.0
- * @param {String} $animation-direction 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画的运动状态
- * @method animation-play-state
- * @version 3.0.0
- * @param {String} $animation-play-state 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Animation
- * @description 指定动画时间之外的状态
- * @method animation-fill-mode
- * @version 3.0.0
- * @param {String} $animation-fill-mode 取值与原生语法一致 <3.0.0>
- */
-/**
- * @module Transition
- * @description 定义补间
- * @method transition
- * @version 1.0.0
- * @param {String} $transition 取值与原生语法一致 <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义显示类型为伸缩盒
- * @method flexbox
- * @version 1.0.0
- * @param {String} $flexbox 默认值：flex，可选值：flex | inline-flex <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义伸缩盒子元素如何分配空间
- * @method flex
- * @version 1.0.0
- * @param {Number} $flex 取值与`flex`属性一致，默认值：1 <1.0.0>
- * @param {String} $direction 默认值: row，可选值：row | column <1.5.0>
- */
-/**
- * @module Flexbox
- * @description 定义伸缩盒子元素的排版顺序
- * @method order
- * @version 1.0.0
- * @param {Integer} $order 取值与`order`属性一致，默认值：1 <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义弹性盒子元素流动方向及遇见边界时是否换行(要求系统：iOS7.0+, Android4.4+)
- * @method flex-flow
- * @version 2.0.0
- * @param {String} $flex-flow 取值与`flex-flow`属性一致，默认值：row nowrap <2.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义伸缩盒子元素的流动方向
- * @method flex-direction
- * @version 1.0.0
- * @param {String} $flex-direction 取值与`flex-direction`属性一致，默认值：row <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义弹性盒子元素溢出后排版(要求系统：iOS7.0+, Android4.4+)
- * @method flex-wrap
- * @version 1.0.0
- * @param {String} $flex-wrap 取值与`flex-wrap`属性一致，默认值：nowrap <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义弹性容器主轴对齐方式(其中`space-around`值需要iOS7.0+,Android4.4+)
- * @method justify-content
- * @version 1.0.0
- * @param {String} $justify-content 取值与`justify-content`属性一致，默认值：center <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义多行弹性容器侧轴对齐方式(要求系统：iOS7.0+,Android4.4+)
- * @method align-content
- * @version 1.8.5
- * @param {String} $align-content 取值与`align-content`属性一致，默认值：center <1.8.5>
- */
-/**
- * @module Flexbox
- * @description 定义单行弹性容器侧轴对齐方式
- * @method align-items
- * @version 1.0.0
- * @param {String} $align-items 取值与`align-items`属性一致，默认值：center <1.0.0>
- */
-/**
- * @module Flexbox
- * @description 定义弹性容器中子元素自身的在侧轴对齐方式(要求系统：iOS7.0+,Android4.4+)
- * @method align-self
- * @version 1.0.0
- * @param {String} $align-self 取值与`align-self`属性一致，默认值：center <1.0.0>
- */
-/**
- * @module 形状
- * @description 生成矩形方法
- * @method rect
- * @version 1.0.0
- * @param {Length} $width 定义矩形的长度 <1.0.0>
- * @param {Length} $height 定义矩形的高度 <1.0.0>
- */
-/**
- * @module 形状
- * @description 生成正方形方法
- * @method square
- * @version 1.0.0
- * @param {Length} $size 定义正方形的边长 <1.0.0>
- */
-/**
- * @module 形状
- * @description 生成圆形方法
- * @method circle
- * @version 1.0.0
- * @param {Length} $size 定义圆的半径长度 <1.0.0>
- * @param {Length} $radius 定义圆的圆角半径长度 <1.0.0>
- */
-/**
- * @module 文本
- * @description 链接处理方法
- * @method link
- * @version 1.0.0
- * @param {Color} $color 定义链接颜色 <1.0.0>
- */
-/**
- * @module 文本
- * @description 文本碰到边界是否换行
- * @method wrap
- * @version 1.0.0
- * @param {Boolean} $is-wrap 定义文本是否换行，默认值：true <2.0.0>
- */
-/**
- * @module 文本
- * @description 单行文本溢出时显示省略号
- * @method ellipsis
- * @version 1.0.0
- * @param {Length} $width 定义容器的宽度，默认值：null <2.0.0>
- * @param {Integer} $line-clamp 定义需要显示的行数，默认值：1（即使用单行溢出的处理方案），需要注意的是本参数只支持webkit内核 <2.1.2>
- */
-/**
- * @module 文本
- * @description 文字隐藏方案
- * @method texthide
- * @version 1.0.0
- * @param {Length} $width 定义容器的宽度，默认值：null <2.0.0>
- */
-/**
- * Yo框架全局Reset
- * Yo重置Mobile及高级浏览器上常见的差异
- */
-*,
-::before,
-::after {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent; }
-
-html,
-body {
-  overflow: hidden;
-  height: 100%; }
-
-::-webkit-scrollbar {
-  display: none; }
-
-html {
-  background-color: #eee;
-  color: #212121;
-  font-size: 26.66667vw;
-  -webkit-user-select: none;
-  user-select: none; }
-
-body {
-  margin: 0;
-  font-size: 0.14em;
-  line-height: 1.5;
-  font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif; }
-
-ul,
-ol,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-figure,
-form,
-fieldset,
-legend,
-input,
-textarea,
-button,
-p,
-blockquote,
-th,
-td,
-pre,
-xmp {
-  margin: 0;
-  padding: 0; }
-
-input,
-textarea,
-button,
-select,
-pre,
-xmp,
-tt,
-code,
-kbd,
-samp {
-  line-height: inherit;
-  font-family: inherit; }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-small,
-big,
-input,
-textarea,
-button,
-select {
-  font-size: inherit; }
-
-address,
-cite,
-dfn,
-em,
-i,
-optgroup,
-var {
-  font-style: normal; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  table-layout: fixed;
-  text-align: left; }
-
-ul,
-ol,
-menu {
-  list-style: none; }
-
-fieldset,
-img {
-  border: 0;
-  vertical-align: middle; }
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section,
-summary {
-  display: block; }
-
-audio,
-canvas,
-video {
-  display: inline-block; }
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: " "; }
-
-textarea,
-pre,
-xmp {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch; }
-
-textarea {
-  resize: vertical; }
-
-input,
-textarea,
-button,
-select
-a {
-  outline: 0 none; }
-
-input,
-textarea,
-button,
-select {
-  color: inherit; }
-  input:disabled,
-  textarea:disabled,
-  button:disabled,
-  select:disabled {
-    opacity: 1; }
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  padding: 0;
-  border: 0; }
-
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-input[type="file"]::-webkit-file-upload-button,
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none; }
-
-mark {
-  background-color: transparent; }
-
-a,
-ins,
-s,
-u,
-del {
-  text-decoration: none; }
-
-a,
-img {
-  -webkit-touch-callout: none; }
-
-a {
-  color: #00afc7; }
-
-.g-clear::after,
-.g-mod::after {
-  display: block;
-  overflow: hidden;
-  clear: both;
-  height: 0;
-  content: " "; }
-
-@font-face {
-  font-family: yofont;
-  src: url(//ss.qunarzz.com/yo/font/1.0.3/yofont.woff) format("woff"), url(//ss.qunarzz.com/yo/font/1.0.3/yofont.ttf) format("truetype"); }
-
-.yo-ico {
-  font-family: yofont !important;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  vertical-align: middle; }
-
-/**
- * Yo框架动画解决方案
- * Yo内置了超过60种动画形态，不同的动画可以任意组合
- */
-.ani {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both; }
-
-.ani.infinite {
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite; }
-
-/**
- * @module rotate
- * @description 定义旋转动画
- * @method rotate
- */
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotatez(0); }
-  to {
-    -webkit-transform: rotatez(360deg); } }
-
-@keyframes rotate {
-  from {
-    transform: rotatez(0); }
-  to {
-    transform: rotatez(360deg); } }
-
-.ani.rotate {
-  -webkit-animation-name: rotate;
-  animation-name: rotate; }
-
-/**
- * @module element
- * @method yo-loadtip
- * @version 3.0.0
- * @description 构造加载提示的自定义使用方法
- * @demo http://ued.qunar.com/hy2/yo/demo/src/html/element/yo-loadtip.html
- * @param {String} $name 定义扩展名称 <3.0.0>
- * @param {Color} $color 文本色 <3.0.0>
- * @param {Length} $font-size 字号大小 <3.0.0>
- * @param {Color} $ico-color ico颜色 <3.0.0>
- */
-.yo-loadtip {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  color: #666; }
-  .yo-loadtip > .yo-ico {
-    display: block;
-    color: #00afc7;
-    -webkit-transition: -webkit-transform .3s;
-    transition: transform .3s;
-    -webkit-transform: rotatez(0deg);
-    transform: rotatez(0deg); }
-    .yo-loadtip > .yo-ico-flip {
-      -webkit-transform: rotatez(180deg);
-      transform: rotatez(180deg); }
-  .yo-loadtip > .yo-ico-loading {
-    position: relative;
-    z-index: 1000;
-    -webkit-animation: rotate 1s infinite linear;
-    animation: rotate 1s infinite linear; }
-  .yo-loadtip > .text {
-    margin-left: .1rem; }
-    .yo-loadtip > .text > .time {
-      display: block;
-      font-size: .12rem; }
-
-.yo-load {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  position: absolute;
-  width: 100%; }
-
-.yo-scroller-fullscreen {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; }
-
-/**
- * @module fragment
- * @method yo-list
- * @version 3.0.0
- * @description 构造列表的自定义使用方法
- * @demo http://ued.qunar.com/hy2/yo/demo/src/html/fragment/yo-list.html
- * @param {String} $name 定义扩展名称 <3.0.0>
- * @param {Length} $margin 外边距 <3.0.0>
- * @param {Length} $radius 圆角半径长度 <3.0.0>
- * @param {Length} $border-width 外边框厚度 <3.0.0>
- * @param {Color} $border-color 边框色 <3.0.0>
- * @param {Length} $item-padding 子项的内补白 <3.0.0>
- * @param {Length} $label-padding 列表组头内补白 <3.0.0>
- * @param {Color} $label-bgcolor 列表组头背景色 <3.0.0>
- * @param {Color} $touch-bgcolor 子项点击反馈背景色 <3.0.0>
- * @param {Color} $on-bgcolor 子项选中背景色 <3.0.0>
- * @param {Color} $on-color 子项选中文本色 <3.0.0>
- * @param {Color} $item-border-color 子项边框色 <3.0.0>
- * @param {Color} $label-border-color 列表组头边框色 <3.0.0>
- * @param {Length} $item-font-size 子项字号 <3.0.0>
- * @param {Length} $label-font-size 列表组头字号 <3.0.0>
- * @param {Length} $item-border-space 子项边线左侧偏移量 <3.0.0>
- * @param {Length} $more-font-size 更多区域字号 <3.0.0>
- * @param {Color} $more-color 更多区域文本色 <3.0.0>
- */
-.yo-list {
-  position: relative;
-  z-index: 0; }
-  .yo-list::after {
-    pointer-events: none;
-    position: absolute;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    content: " ";
-    border-color: #ccc;
-    border-style: solid;
-    border-width: 0 0 1px;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0; }
-    @media (max--moz-device-pixel-ratio: 1.49), (-webkit-max-device-pixel-ratio: 1.49), (max-device-pixel-ratio: 1.49), (max-resolution: 143dpi), (max-resolution: 1.49dppx) {
-      .yo-list::after {
-        width: 100%;
-        height: 100%; } }
-    @media (min--moz-device-pixel-ratio: 1.5) and (max--moz-device-pixel-ratio: 2.49), (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49), (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49), (min-resolution: 144dpi) and (max-resolution: 239dpi), (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
-      .yo-list::after {
-        width: 200%;
-        height: 200%;
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5); } }
-    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-      .yo-list::after {
-        width: 300%;
-        height: 300%;
-        -webkit-transform: scale(0.33333);
-        transform: scale(0.33333); } }
-  .yo-list > .label,
-  .yo-list > .item,
-  .yo-list .front {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center; }
-    .yo-list > .label > .flex,
-    .yo-list > .item > .flex,
-    .yo-list .front > .flex {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      flex: 1;
-      width: .1px;
-      margin: 0 .1rem; }
-      .yo-list > .label > .flex:first-child,
-      .yo-list > .item > .flex:first-child,
-      .yo-list .front > .flex:first-child {
-        margin-left: 0; }
-      .yo-list > .label > .flex:last-child,
-      .yo-list > .item > .flex:last-child,
-      .yo-list .front > .flex:last-child {
-        margin-right: 0; }
-    .yo-list > .label > .yo-ico,
-    .yo-list > .item > .yo-ico,
-    .yo-list .front > .yo-ico {
-      display: block; }
-      .yo-list > .label > .yo-ico:last-child,
-      .yo-list > .item > .yo-ico:last-child,
-      .yo-list .front > .yo-ico:last-child {
-        color: #aaa;
-        font-size: 0.12rem; }
-    .yo-list > .label.tr,
-    .yo-list > .item.tr,
-    .yo-list .front.tr {
-      padding: 0; }
-  .yo-list > .label {
-    padding: 0.03rem 0.1rem;
-    position: relative;
-    background-color: #eee;
-    color: #666;
-    font-size: 0.13rem;
-    font-weight: normal; }
-    .yo-list > .label::after {
-      pointer-events: none;
-      position: absolute;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      content: " ";
-      border-color: #eee;
-      border-style: solid;
-      border-width: 1px 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0; }
-      @media (max--moz-device-pixel-ratio: 1.49), (-webkit-max-device-pixel-ratio: 1.49), (max-device-pixel-ratio: 1.49), (max-resolution: 143dpi), (max-resolution: 1.49dppx) {
-        .yo-list > .label::after {
-          width: 100%;
-          height: 100%; } }
-      @media (min--moz-device-pixel-ratio: 1.5) and (max--moz-device-pixel-ratio: 2.49), (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49), (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49), (min-resolution: 144dpi) and (max-resolution: 239dpi), (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
-        .yo-list > .label::after {
-          width: 200%;
-          height: 200%;
-          -webkit-transform: scale(0.5);
-          transform: scale(0.5); } }
-      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-        .yo-list > .label::after {
-          width: 300%;
-          height: 300%;
-          -webkit-transform: scale(0.33333);
-          transform: scale(0.33333); } }
-    .yo-list > .label:first-child::after {
-      border-width: 0 0 1px; }
-    .yo-list > .label + .item::after {
-      border-width: 0; }
-    .yo-list > .label > .col {
-      padding: 0.03rem 0.1rem; }
-  .yo-list > .item,
-  .yo-list .front {
-    padding: 0.11rem 0.1rem 0.12rem; }
-  .yo-list > .item {
-    overflow: hidden;
-    background-color: #fff;
-    color: #212121;
-    position: relative; }
-    .yo-list > .item::after {
-      pointer-events: none;
-      position: absolute;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      content: " ";
-      border-color: #ddd;
-      border-style: solid;
-      border-width: 1px 0 0;
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0; }
-      @media (max--moz-device-pixel-ratio: 1.49), (-webkit-max-device-pixel-ratio: 1.49), (max-device-pixel-ratio: 1.49), (max-resolution: 143dpi), (max-resolution: 1.49dppx) {
-        .yo-list > .item::after {
-          width: 100%;
-          height: 100%; } }
-      @media (min--moz-device-pixel-ratio: 1.5) and (max--moz-device-pixel-ratio: 2.49), (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 2.49), (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49), (min-resolution: 144dpi) and (max-resolution: 239dpi), (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
-        .yo-list > .item::after {
-          width: 200%;
-          height: 200%;
-          -webkit-transform: scale(0.5);
-          transform: scale(0.5); } }
-      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-        .yo-list > .item::after {
-          width: 300%;
-          height: 300%;
-          -webkit-transform: scale(0.33333);
-          transform: scale(0.33333); } }
-    .yo-list > .item::after {
-      left: 0.1rem; }
-    .yo-list > .item:first-child::after {
-      border-width: 0; }
-    .yo-list > .item-input > .input {
-      -webkit-appearance: none;
-      appearance: none;
-      display: block;
-      width: 100%;
-      min-height: .21rem;
-      border: 0; }
-      .yo-list > .item-input > .input::-webkit-input-placeholder {
-        color: #bbb; }
-    .yo-list > .item-stacked {
-      display: block; }
-      .yo-list > .item-stacked > .mark {
-        padding-bottom: .05rem; }
-    .yo-list > .item.item-active:active,
-    .yo-list > .item.item-active:active .front, .yo-list > .item.item-touch,
-    .yo-list > .item.item-touch .front {
-      background-color: #f8f8f8; }
-    .yo-list > .item > .col {
-      padding: 0.11rem 0.1rem 0.12rem; }
-  .yo-list-infinite::after {
-    border-width: 0; }
-  .yo-list-infinite > .label,
-  .yo-list-infinite > .item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; }
-  .yo-list-infinite > .item:last-child::after {
-    border-width: 1px 0; }
