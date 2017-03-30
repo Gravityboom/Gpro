@@ -1,0 +1,139 @@
+html,body{overflow:auto !important;}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.hd_container{
+    touch-action:none;
+    .goback{
+        position: absolute;
+        top:0.1289rem;
+        left:0.12rem;
+        z-index:10;
+        width:0.25781rem;
+        height:0.28125rem;
+        background:url("/home_img/goback.png") no-repeat;
+        background-size: contain;
+    }
+    .home_detail_banner{
+        width:100%;
+    }
+    .gapbar{
+        height:0.1172rem;
+        background:#eee;
+    }
+    .art_author{
+        border-bottom: 0.01rem solid #ccc;
+        height:1.07469rem;
+        padding-left:0.1171rem;
+        @include flexbox();
+        .author_img{
+            @include flex(1);
+            img{
+                width:0.8231rem;
+                height:0.8231rem;
+                margin:0.11719rem 0.11719rem 0.11719rem 0;
+            }
+        }
+        .author_name{
+            @include flex(3);
+            padding-left:0.04rem;
+            padding-top:0.14063rem;
+        }
+    }
+    .gtip{
+        padding:0 0.11719rem;
+        overflow: hidden;
+        header{
+            height:0.19rem;
+            margin:0.1rem 0;
+        }
+        .gtype{
+            height:0.19rem;
+            margin-bottom: 0.13438rem;
+            .fr{
+                color: #c70909;
+            }
+        }
+        p{
+            margin-bottom: 0.11719rem;
+            letter-spacing: 0.8px;
+            font-size: 14px;
+            color: #333;
+            font-family: "冬青黑体","Microsoft YaHei","微软雅黑","MicrosoftJhengHei","华文细黑","Helvetica", "Arial", "sans-serif";
+        }
+    }
+
+    .trans_gap{
+        height:0.58594rem;
+        background: #f5f5f5;
+        line-height: 0.703125rem;
+        text-align: center;
+        font-size: 0.164rem;
+
+    }
+
+    .hdgc{
+        background:#fff;
+        li.goods{
+            border-bottom: 1px solid #ccc;
+            width:3.51563rem;
+            margin: 0 auto;
+            @include flexbox();
+            @include flex-direction(column);
+            .detail_list{
+                @include flexbox();
+                @include flex-direction(row);
+                a{
+                    @include flex(1);
+                    @include flexbox();
+                    height:100%;
+                    .div123{
+                        img{
+                            width:0.98438rem;
+                            height:0.98438rem;
+                        }
+                        padding:0.23438rem 0.11719rem 0 0.11719rem;
+
+
+                    }
+                    .div456{
+                        @include flex(1);
+                        .dgoodname{
+                            height:0.21rem;
+                            margin:0.11719rem 0;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            color:#333;
+                            font-size: 0.164rem;
+
+                        }
+                        .goodattr{
+                            height:0.38rem;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            color: #999;
+                        }
+                        .dgood_price{
+                            width:100%;
+                            height:0.19rem;
+                            margin-top:0.23438rem;
+                            letter-spacing: 0.8px;
+                            font-size: 14px;
+                            color: #333;
+
+                        }
+                    }
+                }
+
+            }
+
+            section.changed{
+            }
+        }
+    }
+}

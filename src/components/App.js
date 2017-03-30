@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory ,IndexRoute, IndexRedirect, Redirect } from 'react-router'; //引入router
+import { Router, Route, hashHistory, IndexRoute, IndexRedirect, Redirect } from 'react-router'; //引入router
 
 import { store } from '../redux/store.js';
 import { Provider } from 'react-redux';
@@ -16,13 +16,19 @@ import User from './User.js';
 
 import User_orderList from './User_orderList.js';
 
-import Footer from './Footer.js';
-import Login from './login.js';
-class App extends React.Component{
+import HomeDetail from './HomeDetail.js';
 
-  render(){
-    return(
-      <div id='main_container'>
+import Footer from './Footer.js';
+
+import Login from './login.js';
+
+
+
+class App extends React.Component {
+	render() {
+		return(
+		<div id='main_container'>
+
 
         {/* 主体部分 */}
         <section id='header_and_content'>
@@ -34,62 +40,32 @@ class App extends React.Component{
         <Footer/>
 
       </div>
+
     )
-  }
-  componentDidMount(){
-  	
   }
 }
 
-{/* Provider组件接受redux的store作为props 通过context往下传 */}
+{ /* Provider组件接受redux的store作为props 通过context往下传 */ }
 ReactDOM.render((
-  <Provider store={store}>
-  <Router history={hashHistory}>
-    <Route path='/' component={App}>
-      <IndexRedirect to="home/room" />
-      <Redirect from="home" to="home/room" />
-      <Route path='home' component={Home}>
-        <Route path='room' titleName='房间' component={Room} />
-        <Route path='fullroom' titleName='全屋' component={FullRoom} />
+	<Provider store = {store}>
+  <Router history = {hashHistory}>
+    <Route path = '/' component = {App}>
+      <IndexRedirect to = "home/room" />
+      <Redirect from = "home" to = "home/room" />
+      <Route path = 'home' component = {Home}>
+        <Route path = 'room' titleName = '房间' component = {Room} />
+        <Route path = 'fullroom' titleName = '全屋' component = {FullRoom} />
       </Route>
+
       <Route path='shop' component={Shop} />
       <Route path='user' component={User} >
-	      <Route path='login' component={Login} />
 	      <Route path='user_orderlist' component={User_orderList} />
       </Route>
-      
+      <Route path='login' component={Login} />
     </Route>
-    <Route path='login' component={Login} />
+    <Route path = 'homedetail/:homegoodid' component = {HomeDetail} />
   </Router>
   </Provider>), document.getElementById('root'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // class Index extends React.Component {
 //   constructor (props) {

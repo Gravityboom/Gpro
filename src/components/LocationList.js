@@ -12,13 +12,13 @@ class LocationList extends React.Component{
         location_provinceArr:[],
         location_cityArr:[],
         location_state:'location_leave',
-        currentSelectLocation:'10'
+        currentSelectLocation:0
     }
   }
 
   componentDidMount(){
-    var self = this;
-    var tmpArr = [];
+    let self = this;
+    let tmpArr = [];
     window.fetch(self.state.regionUrl+1)
     .then(function(response){
       return response.json();
@@ -27,11 +27,11 @@ class LocationList extends React.Component{
       let Data = result['data']['region_list'];
       Data.map((item,index) => {
         tmpArr.push(
-          <button className = {'location_name_' + (self.state.currentSelectLocation == index ? 'active' : 'none')}
-          data-index={index} onClick={self.selectProvince}>{item['region_name']}
+          <button data-index = {index} className = {'location_name_' + (self.state.currentSelectLocation == index ? 'active' : 'none')}
+           onClick={self.selectProvince.bind(self,index)}>{item['region_name']}
           </button>
         );
-      })
+      });
       self.setState({
         location_provinceArr:tmpArr
       })
@@ -41,22 +41,24 @@ class LocationList extends React.Component{
   changeCity(event){
     this.setState({
       location_name:event.target.innerHTML
-    })
+    });
     this.props.callbackHome(event.target.innerHTML);
     this.props.closeLocation();
   }
 
-  selectProvince (event) {
+  selectProvince (index) {
     let self = this;
     let tmpCityArr = [];
-
     let regionNum = Number(event.target.getAttribute('data-index'))+2;
 
-    let id = event.target.getAttribute('data-index');
-    this.setState(
-      Object.assign({}, { currentSelectLocation:id }),
-      () => console.log(this.state.currentSelectLocation)
-    )
+    // let id = event.target.getAttribute('data-index');
+    this.setState({
+        currentSelectLocation:index
+    });
+    // this.setState(
+    //     Object.assign({}, { currentSelectLocation:index}),
+    //     () => console.log(this.state.currentSelectLocation)
+    // );
 
     window.fetch(self.state.regionUrl+regionNum)
     .then(response => {
@@ -69,7 +71,7 @@ class LocationList extends React.Component{
         tmpCityArr.push(
           <button data-index={item['region_id']} onClick={self.changeCity}>{item['region_name']}</button>
         )
-      })
+      });
       self.setState({
         location_cityArr:tmpCityArr
       })
@@ -79,7 +81,7 @@ class LocationList extends React.Component{
   render(){
     {/*console.log(this.state.isshowL)*/}
 
-    var isShowL = this.props.locationIsShow;
+    let isShowL = this.props.locationIsShow;
     return (
       <div className = {"location_container "+isShowL}>
         <ul className = "location_in">

@@ -1,7 +1,7 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');//引入生成html的插件
-var ExtractTextPlugin = require('extract-text-webpack-plugin');//引入抽离插件
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');//引入打开浏览器插件
+let webpack = require('webpack');
+let HtmlWebpackPlugin = require('html-webpack-plugin');//引入生成html的插件
+let ExtractTextPlugin = require('extract-text-webpack-plugin');//引入抽离插件
+let OpenBrowserPlugin = require('open-browser-webpack-plugin');//引入打开浏览器插件
 module.exports = {
   //入口文件
   entry:'./src/entry.js',
@@ -93,7 +93,6 @@ module.exports = {
   externals: {
     'react': 'window.React',//类jquery思想 window.$ = jquery
     'react-dom': 'window.ReactDOM',
-    'react-addons-css-transition-group':'window.ReactCSSTransitionGroup',
     'react-router':'window.ReactRouter'//抽离ReactRouter
   }
 

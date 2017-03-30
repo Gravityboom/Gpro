@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 function reducer(state={title:'defaultTitle'},action){
   switch (action.type) {
     case 'SETHEADERNAME':
-      return {title:action.title}
+      return {title:action.title};
       break;
     default:
       return state
