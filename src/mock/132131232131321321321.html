@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>空间详情</title>
+		<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="http://static.haozaishop.cn/static/h5/css/base.css">
+		<link rel="stylesheet" href="http://static.haozaishop.cn/static/h5/css/house_info.css">
+		<link rel="stylesheet" href="http://static.haozaishop.cn/static/h5/css/swiper.min.css">
+	</head>
+
+	<body>
+		<script>
+			var go_url = 'http://m.haozaishop.com';
+			var aes_id = '330'; /* 美学ID */
+			var select_json = {}; /* 初始化已选中商品对象 */
+			var no_select_json = {}; /* 初始化未选中商品对象 */
+			var interim_json = {}; /* 初始化过度商品对象 */
+			var new_attr = null; /* 初始化操作属性 */
+			var aes_id_list = [];
+		</script>
+		</script>
+		<form action="http://m.haozaishop.com/v2/h5/order/checkedOrderSpace?aes_id=330" method="post" id="form">
+			<input type="hidden" name="json">
+			<section class="go_back_info" onclick="window.history.go(-1)"></section>
+			<section class="swiper-container">
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide">
+						<img src="http://img2.haozaishop.com/images/aesthetic/b_img/2016-08/2016082317280851255.jpg">
+					</li>
+				</ul>
+				<section class="swiper-pagination"></section>
+			</section>
+			<script>
+				select_json = [];
+				no_select_json = [];
+				interim_json = [];
+			</script>
+			<section class="bar"></section>
+			<section class="designer clearfix">
+				<img src="http://img1.haozaishop.com/images/userup/2017-01/2017011016090151956.jpg" class="designer_img fl">
+				<section class="fl">
+					<p class="name">李菲</p>
+					<p class="job gray">设计师</p>
+					<p class="gray"></p>
+				</section>
+			</section>
+
+			<section class="design_msg">
+				<section class="house_title">粉嫩少女心工作室</section>
+				<section class="clearfix price">
+					<section class="fl">书房 现代</section>
+					<section class="fr red">￥23843.12/书房</section>
+				</section>
+				<p>粉色墙面，搭配木色家具，完美诠释了国际家居流行色趋势搭配。收纳与展示一体的书柜，手绘画一样的地毯，组合在一起就是一个实战性的空间搭配指南，演绎了一个少女心工作室的经典改造案例，既清新美丽又舒适惬意。</p>
+			</section>
+			<section class="space_list_info">书房商品清单</section>
+			<ul aes_id="330">
+				<li class="goods" rec_id="4159">
+					<section class="clearfix">
+						<i class="fl 					 select_one					 active					"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4017">
+							<img src="http://img5.haozaishop.com/images/201608/thumb_img/4017_thumb_P_1471503920514.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">卡通猴子波普 棉麻抱枕</p>
+								<section class="goods_attr">花色/图案:D款 <br>规格:其他规格 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥58.50</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr change_attr" product_id="11404" onclick="showAttr(this,'4159','4017')">
+							修改规格
+						</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+					select_json.push({ "rec_id": "4159", "num": "1", "product_id": "11404", "goods_id": "4017", "is_must": "0" });
+				</script>
+				<li class="goods" rec_id="4163">
+					<section class="clearfix">
+						<i class="fl 					 select_one					 active					"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=2998">
+							<img src="http://img2.haozaishop.com/images/201607/thumb_img/2998_thumb_P_1468225799031.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">橡胶木双耳长方茶盘P1740</p>
+								<section class="goods_attr">尺寸:26x19x3.5cm <br>花色/图案:绿边 小号 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥137.00</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr change_attr" product_id="7383" onclick="showAttr(this,'4163','2998')">
+							修改规格
+						</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+					select_json.push({ "rec_id": "4163", "num": "1", "product_id": "7383", "goods_id": "2998", "is_must": "0" });
+				</script>
+				<li class="goods" rec_id="4168">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3468">
+							<img src="http://img4.haozaishop.com/images/201608/thumb_img/3468_thumb_P_1470034806175.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">手工玻璃花瓶5548</p>
+								<section class="goods_attr">规格:H18*17 <br>花色/图案:透明 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥88.92</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4167">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3465">
+							<img src="http://img5.haozaishop.com/images/201608/thumb_img/3465_thumb_P_1470034195485.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">手工玻璃玻璃罩</p>
+								<section class="goods_attr">花色/图案:透明 <br>规格:H35*21 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥491.40</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4160">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3473">
+							<img src="http://img1.haozaishop.com/images/201608/thumb_img/3473_thumb_P_1470036104640.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">手工玻璃骷髅头摆饰</p>
+								<section class="goods_attr">花色/图案:镍色 <br>规格:H27*20 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥386.10</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4155">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3474">
+							<img src="http://img4.haozaishop.com/images/201608/thumb_img/3474_thumb_P_1470036560307.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">手工玻璃瓶5869</p>
+								<section class="goods_attr">规格:H21*7.5 <br>花色/图案:透明 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥69.03</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4352">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3529">
+							<img src="http://img2.haozaishop.com/images/201608/thumb_img/3529_thumb_P_1471579253173.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">简约陶瓷花器AAR2701</p>
+								<section class="goods_attr">规格:直径20.5cm*高23.5cm <br>花色/图案:TP </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥371.66</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4166">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3481">
+							<img src="http://img5.haozaishop.com/images/201608/thumb_img/3481_thumb_P_1470115434940.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">复古横纹花器B107/B108</p>
+								<section class="goods_attr">花色/图案:水泥色 <br>规格:B107-2 直径23cm*高11cm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥266.68</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4161">
+					<section class="clearfix">
+						<i class="fl 					 select_one					 active					"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=1614">
+							<img src="http://img5.haozaishop.com/images/201612/thumb_img/1614_thumb_P_1482998657330.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">lugano系列 甜品盘/餐盘</p>
+								<section class="goods_attr">花色/图案:甜品盘 <br>尺寸:直径21cm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥47.97</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr change_attr" product_id="3181" onclick="showAttr(this,'4161','1614')">
+							修改规格
+						</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+					select_json.push({ "rec_id": "4161", "num": "1", "product_id": "3181", "goods_id": "1614", "is_must": "0" });
+				</script>
+				<li class="goods" rec_id="4150">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4085">
+							<img src="http://img2.haozaishop.com/images/201608/thumb_img/4085_thumb_P_1471514504333.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木书架</p>
+								<section class="goods_attr">花色/图案:木本色 <br>规格:650*300*1520mm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥2182.05</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4149">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4086">
+							<img src="http://img2.haozaishop.com/images/201608/thumb_img/4086_thumb_P_1471514600214.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木书架_copy</p>
+								<section class="goods_attr">花色/图案:木本色 <br>规格:650*300*840mm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥1714.05</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4148">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4090">
+							<img src="http://img4.haozaishop.com/images/201608/thumb_img/4090_thumb_P_1471515719303.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木电脑桌</p>
+								<section class="goods_attr">尺寸:1400*700*750mm <br>花色/ 图案:木本色 </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥3346.20</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4147">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4089">
+							<img src="http://img2.haozaishop.com/images/201608/thumb_img/4089_thumb_P_1471515585943.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木电脑椅</p>
+								<section class="goods_attr">花色/图案:木本色 <br>规格:400*510*850mm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥933.66</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4146">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4087">
+							<img src="http://img4.haozaishop.com/images/201608/thumb_img/4087_thumb_P_1471515037420.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木双门书柜_copy_copy</p>
+								<section class="goods_attr">花色/图案:木本色 <br>规格:双门810*360*2025mm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥4890.60</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4145">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=4087">
+							<img src="http://img4.haozaishop.com/images/201608/thumb_img/4087_thumb_P_1471515037420.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">松木双门书柜_copy_copy</p>
+								<section class="goods_attr">花色/图案:木本色 <br>规格:三门1210*360*2025mm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥7464.60</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">商品售罄</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+				<li class="goods" rec_id="4154">
+					<section class="clearfix">
+						<i class="fl 					 select_one					 active					"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=1188">
+							<img src="http://img2.haozaishop.com/images/201605/thumb_img/1188_thumb_P_1464057791363.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">盛装2-摆件</p>
+								<section class="goods_attr">花色/图案:蓝色 <br>规格:10x37x7cm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥936.00</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr change_attr" product_id="2464" onclick="showAttr(this,'4154','1188')">
+							修改规格
+						</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+					select_json.push({ "rec_id": "4154", "num": "1", "product_id": "2464", "goods_id": "1188", "is_must": "0" });
+				</script>
+				<li class="goods" rec_id="4164">
+					<section class="clearfix">
+						<i class="fl  error"></i>
+						<a href="http://m.haozaishop.com/v2/h5/goods/index?goods_id=3202">
+							<img src="http://img3.haozaishop.com/images/201607/thumb_img/3202_thumb_P_1469080334140.jpg" class="fl">
+							<section class="fl goods_msg">
+								<p class="goods_name">火星 陶瓷盘子</p>
+								<section class="goods_attr">花色/图案:火星 <br>尺寸:23.5*3.5cm </section>
+								<section class="goods_price clearfix">
+									<p class="fl">￥458.70</p>
+									<p class="fr">X<span class="goods_number">1</span></p>
+								</section>
+							</section>
+						</a>
+					</section>
+					<section class="clearfix change">
+						<section class="fr err_msg">已下架</section>
+					</section>
+				</li>
+				<script>
+					/* 填充选中或未选中商品对象 */
+				</script>
+			</ul>
+			<section class="bar"></section>
+			<section class="buy_sale" style="margin-bottom:5rem;">
+				<p class="buy_title">购买优惠</p>
+				<ul>
+					<li class="buy_num"><span></span>.场景购买的商品将享受包邮服务，客服与您沟通后再确认安装服务</li>
+				</ul>
+			</section>
+			<section class="bar"></section>
+			<section class="clearfix total_fin">
+				<section class="fl total_sale">节省：<span class="red">￥0.00</span></section>
+				<section class="fr total_price">价格:<span class="red">￥1179.47</span></section>
+			</section>
+			<section class="bottom clearfix">
+				<section class="fl all_choose">
+					<section class="fl choose_icon active"></section>
+					<section class="fl">全选</section>
+				</section>
+				<section class="fr go_buy" onclick="submit_order()">一键下单(<span>4</span>)</section>
+				<section class="fr service">
+					<i class="fl" onclick="window.location.href='http://chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=576418&configID=94493&jid=1424684532'"></i>
+					<span class="fl">客服</span>
+				</section>
+			</section>
+
+			<section id="choose_list" rec_id="" goods_id="">
+				<section class="shadow"></section>
+				<section class="choose_list">
+					<section class="attr_container">
+						<section class="attr_warp">
+							<img src="">
+							<section class="choose_msg">
+								<p class="choose_goods_name"></p>
+								<p class="red"><span></span></p>
+							</section>
+						</section>
+						<section class="attr">
+							<ul id="warper">
+								<li class="warper"></li>
+								<li class="warper_title">数量</li>
+								<li class="count_val clearfix">
+									<div class="subtract fl" onclick="change_num('-1');">-</div>
+									<div class="fl choose_num">1</div>
+									<div class="add fl" onclick="change_num('1');">+</div>
+								</li>
+							</ul>
+						</section>
+					</section>
+					<section class="attr_bottom">确定</section>
+				</section>
+			</section>
+		</form>
+	</body>
+
+</html>
+<script src="http://static.haozaishop.cn/static/h5/js/main.js"></script>
+<script src="http://static.haozaishop.cn/static/h5/js/jquery-1.8.2.min.js"></script>
+<script src="http://static.haozaishop.cn/static/h5/js/swiper.min.js"></script>
+<script src="http://static.haozaishop.cn/static/h5/js/iscroll.js"></script>
+<script src="http://static.haozaishop.cn/static/h5/js/space_info.js"></script>

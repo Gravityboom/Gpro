@@ -1,0 +1,14 @@
+
+@import "../lib/fragment/yo-carousel";
+.shop-match{
+	margin-top:.2rem;
+	background: #fff;
+	padding-bottom: .2rem;
+	.item{
+		height: 2rem;
+
+		img{
+			height: 100%;
+		}
+	}
+}
