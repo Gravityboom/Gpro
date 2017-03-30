@@ -11,12 +11,12 @@ import { mapStateToprops, mapDispatchToprops } from '../redux/store';
 
 class Home extends React.Component{
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       locationFixed:'北京',
       locationIsShow:'location_leave',
       shadowClassName:'shadow_wrap_none'
-    }
+    };
     this.locationFnOff.bind(this);
     this.locationFn.bind(this);
     this.toGetLocatiton.bind(this);
@@ -60,7 +60,7 @@ class Home extends React.Component{
           <li className="item item-on"><Link to='home/room' activeClassName='onsele' activeStyle={{color: '#007846'}}>房间</Link></li>
           <li className="item"><Link to='home/fullroom' activeClassName='onsele'  activeStyle={{color: '#007846'}}>全屋</Link></li>
         </ul>
-
+				
         <div className="scroller_container">
           {/* Home二级路由视口 */}
           {this.props.children}
@@ -75,12 +75,13 @@ class Home extends React.Component{
     )
   }
   componentDidMount(){
+
     //react-redux部分
     let tabname = this.props['routes'][2]['titleName'];
     this.props.onChange({
       type:'SETHEADERNAME',
       title:tabname
-    })
+    });
     //react-redux部分
   }
 

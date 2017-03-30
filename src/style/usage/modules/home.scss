@@ -85,7 +85,7 @@
       position: relative;
       flex:1;
       .yo-scroller{
-        touch-action: none;
+
       }
 
       /* 商品列表样式 */
@@ -136,6 +136,8 @@
           }
           .good_list_type{
             padding-top:0.05rem;
+            position: relative;
+            z-index:1;
             @include yo-btn(
               $name:typebtn,
               $border-width:2px,
@@ -251,6 +253,29 @@
       transition-duration	:0.2s;
       transition-timing-function:linear;
       transition-delay:0s;
+    }
+  }
+}
+
+/* 全屋样式（基本与房间相同） */
+
+.fullhome_detail_img_div{
+      margin-left:0.11719rem;
+      margin-top:0.05859rem;
+  .scroller{
+    position: absolute;
+    .sonC{
+        height:100%;
+
+      li.fullhome_detail_img_into{
+        width:1.0547rem;
+        height:1.0547rem;
+        margin-right:0.15rem;
+        float: left;
+        img{
+          border-radius:4px;
+        }
+      }
     }
   }
 }
