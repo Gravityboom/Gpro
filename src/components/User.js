@@ -8,8 +8,12 @@ import User_head from './User_head';
 import User_order from './User_order';
 import User_list from './User_list';
 import User_bar from './User_bar';
+import Login from './login';
+
 class User extends React.Component{
+
   render(){
+  	
     return(
     	<div id='user'>
     		<User_head/>

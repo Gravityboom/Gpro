@@ -13,12 +13,13 @@ import Shop from './Shop.js';
 
 
 import User from './User.js';
-import Login from './Login.js';
 
+import User_orderList from './User_orderList.js';
 
 import Footer from './Footer.js';
-
+import Login from './login.js';
 class App extends React.Component{
+
   render(){
     return(
       <div id='main_container'>
@@ -35,8 +36,8 @@ class App extends React.Component{
       </div>
     )
   }
-
   componentDidMount(){
+  	
   }
 }
 
@@ -54,9 +55,11 @@ ReactDOM.render((
       <Route path='shop' component={Shop} />
       <Route path='user' component={User} >
 	      <Route path='login' component={Login} />
+	      <Route path='user_orderlist' component={User_orderList} />
       </Route>
       
     </Route>
+    <Route path='login' component={Login} />
   </Router>
   </Provider>), document.getElementById('root'));
 

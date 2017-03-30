@@ -1,13 +1,16 @@
 section{
     background: #fff;
     #user{
-    font-size: .14rem;
-    height:100%; 
-    font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+        font-size: .14rem;
+        height:100%; 
+        font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
     .fr{
         width: 100%;
         height: .1rem;
         background-color: #f5f5f5; 
+    }
+    .dis{
+        display: none;
     }
     .clearfix:after {
         display: block;
@@ -35,6 +38,8 @@ section{
                     height:.3rem;
                     background: none;
                     margin-top:.3rem;
+                    text-align: center;
+                    color:#fff;
                     a{
                         display:block;
                         width:.98rem;
@@ -57,6 +62,7 @@ section{
             background-color: #fff;
             display:flex;
             flex-direction: row;
+            color:#000;
             p{
                 flex:2;
                 padding-left:.1rem;
@@ -118,158 +124,87 @@ section{
                 height:.23rem;
                 background-size: 100% auto;
                 margin-top: .046rem; 
+                margin-right:.07rem;
             }
-            .my_coupon{
+            .my_icon {
+                width: .28125rem;
+                height: .28125rem;
+                line-height: .28125rem;
+                margin-top:.023475rem;
+                margin-right:.046875rem;
+                float: left;
+            }
+            .my_coupon,.my_car,.my_adress{
                 height:.361563rem;
                 line-height: .361563rem;
                 border-bottom: 1px solid #ccc;
-                padding-left: .1rem;
+                color:#3b3b3b;
+            }
+            .my_coupon{
+                
                 .my_icon {
-                    width: .28125rem;
-                    height: .28125rem;
-                    line-height: .28125rem;
-                    margin-top:.023475rem;
-                    margin-right:.046875rem;
-                    float: left;
-                    background: url('http://m.haozaishop.com/js_web/images/coupon.png') no-repeat;   
+                    background: url('http://m.haozaishop.com/js_web/images/coupon.png') no-repeat;
                     background-size: 100% auto;
                 }
-                
             }
             
             .my_car{
-                height:.361563rem;
-                line-height: .361563rem;
-                border-bottom: 1px solid #ccc;
-                padding-left: .1rem;
                 .my_icon {
-                    width: .28125rem;
-                    height: .28125rem;
-                    line-height: .28125rem;
-                    margin-top:.023475rem;
-                    margin-right:.046875rem;
-                    float: left;
                     background: url('http://m.haozaishop.com/js_web/images/buycar1.png') no-repeat;   
                     background-size: 100% auto;
                 }
-                
             }
             .my_adress{
-                height:.361563rem;
-                line-height: .361563rem;
-                border-bottom: 1px solid #ccc;
-                padding-left: .1rem;
                 .my_icon {
-                    width: .28125rem;
-                    height: .28125rem;
-                    line-height: .28125rem;
-                    margin-top:.023475rem;
-                    margin-right:.046875rem;
-                    float: left;
-                    background: url('http://m.haozaishop.com/js_web/images/address.png') no-repeat;   
+                    background: url('http://m.haozaishop.com/js_web/images/address.png') no-repeat; 
                     background-size: 100% auto;
                 }
-                
             }  
         } 
-        #login{
-            height: 100%;
-            width:100%;
-            background-color:#fff ;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 999;
+         
+        #user_orderlist{
             @include flexbox();
             @include flex-direction(column);
-            .login_head{
+            height:100%;
+            position: absolute;
+            top:0;
+            left:0;
+            background: #fff;
+            color:#000;
+            z-index: 999;
+            width: 100%;
+            .orserlist_head{
                 height:.5859rem;
-                .close{
-                    background: url('http://m.haozaishop.com/js_web/images/close.png') no-repeat;
+                background: #fff;
+                position:relative;
+                .go_back{
+                    position: absolute;
+                    left: .21rem;
+                    bottom: .12rem;
+                    width: .11rem;
+                    height: .2578rem;
+                    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAoCAYAAAD6xArmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVEhL7dW7DYMwFIXhuwuzpKFAipKSMSjSJwOk9GMKRmILRCIlB+k4lTtfpeH8koW4xWeLAptnOecxpXTmq08AHzHGTwhh4ai9gmK9sC4ctwXoXlBscOW4LaFChQo9IIrr5Laj+PO/3dA9oBPhDZv0HPuEkz75KVbhv4RXE15NeDXh1f6Jnzj2qeB4zhz5BXjAFdeZmX0BtVyADGPYPGQAAAAASUVORK5CYII=");
                     background-size: 100%;
-                    float: right;
-                    width: .41rem;
-                    height: .41rem;
-                    margin-bottom: .175rem;
+                    background-repeat: no-repeat;
                 }
-            }
-            .center{
-                flex: 1;
-                background: url('http://m.haozaishop.com/js_web/images/bg.png') no-repeat;
-                background-size: 100%;
-                .log{
-                    text-align: center;
-                    img{
-                        height: .328rem;
-                        width:auto;
-                        vertical-align: middle;
-                    }
-                }
-                input{
-                    margin-top: .4218rem;
-                    margin-left: .6562rem;
-                    height:.3615rem;
-                    width:2.5781rem;
-                    border: none;
-                    border-bottom: 1px solid #eee;
-                    background-color: rgba(0,0,0,0);
-                }
-                .reset{
-                    float: right;
-                    margin-top: .117rem;
-                    margin-right: .5859rem;
-                    color: #5aa85a;
-                }
-                .login{
-                    background-color: #389c38;
-                    text-align: center;
-                    color: #fff;
-                    margin: 0 auto;
-                    border-radius: 5px;
-                    width: 2.46rem;
-                    height: .46875rem;
-                    line-height: .46875rem;
-                    margin-bottom: .29297rem;
-                    margin-top:.26367rem;
-                }
-                .enroll{
-                    text-align: center;
-                    color: #389c38;
-                }
-                .or{
-                    background: url('http://m.haozaishop.com/js_web/images/or.png') no-repeat;
+                .logo{
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: .5859rem;
+                    height: .2929rem;
+                    margin-left: -.29rem;
+                    margin-top: -.1464rem;
+                    background-repeat: no-repeat;
                     background-size: 100%;
-                    width: 2.5781rem;
-                    height: .2343rem;
-                    margin: .35rem 0 .2919rem .6093rem;
-                }
-                .wx_login{
-                    background-color: rgba(190,190,190,.7);
-                    border-radius: 5px;
-                    width: 2.46rem;
-                    height: .41rem;
-                    margin-left: .6679rem;
-                    .wx_ico{
-                        background: url('http://m.haozaishop.com/js_web/images/wx.png') no-repeat;
-                        background-size: 100%;
-                        float: left;
-                        width: .41rem;
-                        height: .41rem;
-                        margin: .02rem .49rem 0 .087rem;
-                    }
-                    span{
-                        color: #fff;
-                        float: left;
-                        line-height: .41rem;
-                    }
                     
                 }
-                 
             }
-            .login_footer{
-                height:.445rem;
+            .orserlist_content{
+                flex: 1;
+                background: #f5f5f5;
             }
-        }     
+        }    
     } 
 }
 
