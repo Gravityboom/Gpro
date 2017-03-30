@@ -7,6 +7,7 @@ html,body{overflow:auto !important;}
 }
 .hd_container{
     touch-action:none;
+
     .goback{
         position: absolute;
         top:0.1289rem;
@@ -96,8 +97,6 @@ html,body{overflow:auto !important;}
                             height:0.98438rem;
                         }
                         padding:0.23438rem 0.11719rem 0 0.11719rem;
-
-
                     }
                     .div456{
                         @include flex(1);
@@ -125,14 +124,26 @@ html,body{overflow:auto !important;}
                             letter-spacing: 0.8px;
                             font-size: 14px;
                             color: #333;
-
                         }
                     }
                 }
-
             }
-
-            section.changed{
+            .changed{
+                margin-top: 0.17578rem;
+                @include yo-btn (
+                    $name:changeAbtn,
+                    $border-width:1px,
+                    $border-color:#aaa,
+                    $bgcolor:#fff,
+                    $color:#333,
+                    $padding:0,
+                    $width:1.17188rem,
+                    $height:0.35156rem,
+                    $font-size:0.164rem,
+                    $radius:0.04rem
+                ){
+                    margin-bottom: 0.11719rem;
+                }
             }
         }
     }
