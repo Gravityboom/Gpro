@@ -69,10 +69,11 @@ ReactDOM.render((
     </Route>
     <Route path='cartshop/:id' component={Cartshop}>
     </Route>
-    <Route path='search' component={Search}/>
+     <Route path='search' component={Search}/>
      <Route path='login' component={Login}/>
      <Route path='goodslist/:cid' component={Goodslists}/>
      <Route path="exchange" component={Exchange}/>
+     <Route path = 'homedetail/:homegoodid' component = {HomeDetail} />
   </Router>
   </Provider>), document.getElementById('root'));
 
