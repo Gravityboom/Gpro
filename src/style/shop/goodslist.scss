@@ -1,0 +1,48 @@
+.shop-goodslist{
+	height: 100%;
+	.shop-subtitle{
+		height: .60rem;
+		text-align: center;
+		line-height: .60rem;
+	}
+	.yo-scroller{
+		height: 100%;
+	}
+
+	.yo-list{
+		width:100%;
+		overflow-y:auto;
+		
+	}
+	.yo-list>.item{
+		float:left;
+		width:50%;
+		height: 2.2rem;
+		border:1px solid #ccc;
+
+	}
+	.goodsbox{
+		overflow: hidden;
+	}
+	.list-box{
+		padding:.1rem;
+		height: 2.2rem;
+		float:left;
+		pading:.2rem;
+		img{
+			width:100%;
+			min-height: 1.45rem;
+		}
+		.shop-goodsname{
+			    width: .8rem;
+	    text-align: center;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    margin: .1rem 0;
+		}
+		.shop-goodsprice{
+			color:red;
+		}
+	}
+}

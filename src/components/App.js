@@ -20,9 +20,16 @@ import HomeDetail from './HomeDetail.js';
 
 import Footer from './Footer.js';
 
-import Login from './login.js';
 
 
+
+
+import Cartshop from './shop/cartshop'
+
+import Search from './shop/search'
+import Login from './shop/login'
+import Goodslists from './shop/goodslists'
+import Exchange from "./shop/exchange"
 
 class App extends React.Component {
 	render() {
@@ -58,12 +65,14 @@ ReactDOM.render((
       </Route>
 
       <Route path='shop' component={Shop} />
-      <Route path='user' component={User} >
-	      <Route path='user_orderlist' component={User_orderList} />
-      </Route>
-      <Route path='login' component={Login} />
+      <Route path='user' component={User} />
     </Route>
-    <Route path = 'homedetail/:homegoodid' component = {HomeDetail} />
+    <Route path='cartshop/:id' component={Cartshop}>
+    </Route>
+    <Route path='search' component={Search}/>
+     <Route path='login' component={Login}/>
+     <Route path='goodslist/:cid' component={Goodslists}/>
+     <Route path="exchange" component={Exchange}/>
   </Router>
   </Provider>), document.getElementById('root'));
 

@@ -1,0 +1,85 @@
+.shop-exchange{
+	background: #eff5fb;
+	height: 100%;
+	.head-content{
+		background: #8cb7ea;
+		height: .9rem;
+		color:#fff;
+	font-weight: normal;
+    font-size: 18px;
+    padding-top: .1rem;
+    text-indent: 2em;
+    line-height: .25rem;
+	}
+	.exchange-box{
+		width:100%;
+		padding:.3rem;
+		.your-name, .your-number, .your-mail, .your-title{
+			@include flexbox();
+			@include flex-direction();
+			line-height: .4rem;
+			height: .5rem;
+			span{
+				width:.9rem;
+			}
+			input {
+				@include flex();
+			}
+			
+		}
+		span{
+			display:inline-block;
+			
+		}
+		.your-content {
+			height: 1.6rem;
+
+			span{
+				width:100%;
+				margin-bottom: .2rem;
+
+			}
+			textarea{
+				resize:none;
+				width:100%;
+				height: 1rem;
+				
+			}
+			
+		}
+		input{
+			float:right;
+			
+			height: .3rem;
+		margin:.05rem;
+		}
+		.ok-quit{
+			span{
+				display: block;
+			width:.6rem;
+			height: .3rem;
+			text-align: center;
+			line-height: .3rem;
+			}
+			
+			.ok{
+				float: left;
+				margin-left: .7rem;
+				background: rgb(137,181,233);
+				border-radius: 7px;
+				box-shadow:0 1px 2px rgb(100,100,100);
+				color:#fff;
+			}
+			.quit{
+				float: right;
+				margin-right: .7rem;
+				background:#fff;
+				color:rgb(137,181,233);
+				border:1px solid rgb(137,181,233);
+				border-radius: 7px;
+				box-shadow:0 1px 2px rgb(100,100,100);
+			}
+
+		}
+	}
+}

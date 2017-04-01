@@ -16,6 +16,7 @@ class Mycarousel extends React.Component {
 			)
 	}
 	componentWillMount(){
+	
 		var _list=[];
 		this.props.list.map(function(item){
 			_list.push(<li className="item"><img src={item} className=""/></li>)

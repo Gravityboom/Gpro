@@ -1,0 +1,135 @@
+.modal{
+	width:100%;
+	position: absolute;
+  height:100%;
+	background-color: red;
+	.btn{
+    width:100%;
+    height: 3.3rem;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+		img{
+
+       position:absolute ;
+       width:1.07rem;
+       height:1.07rem;
+       left:.2rem;
+       
+       background: #fff;
+       }
+       div.imgb{
+           width:3.4rem;
+           height:1.07rem;
+           margin-top:.2rem;
+           overflow: hidden;
+           div.dmsgn{
+               width:2.34rem;
+               font-size: .16rem;
+               margin-left: 1.5rem; 
+           }
+            div.dmsgp{
+               width:2.34rem;
+               font-size: .2rem;
+               margin-left: 1.5rem;
+               color:red;
+           }
+       }
+       div.v{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .2rem;
+                   text-align: left;
+               }
+               i{
+                   display: block;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   em{
+                       width:.79rem;
+                       height: .3rem;
+                       margin-left: .2rem;
+                   }
+               }
+           }
+       }
+       div.color{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .2rem;
+                   text-align: left;
+               }
+               i{
+                   display: block;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   em{
+                       width:.4rem;
+                       height: .2rem;
+                       margin-left: .2rem;
+                       border: .01rem solid #666666;
+                       border-radius: .03rem;
+                   }
+               }
+           }
+       }
+       div.num{
+           width:100%;
+           margin:.1rem 0 .1rem 0;
+           span{
+               display: block;
+               width:3.4rem;
+               margin:0 auto;
+               p{
+                   line-height: .16rem;
+                   text-align: left;
+               }
+               i{
+                   display: block;
+                   margin-top:.1rem;
+                   @include flexbox();
+                   @include flex-direction();
+                   @include flex-wrap(warp);
+                   div.yo-number{
+                       width:1.2rem;
+                       height: .25rem;
+                   }
+                   span{
+                       display: block;
+                        width:.4rem;
+                       height: .25rem;
+                       text-align: center;
+                       line-height: .25rem;
+                   }
+                   input{
+                       width:.4rem;
+                       height: .25rem;
+                        text-align: center;
+                       line-height: .25rem;
+                   }
+               }
+           }
+       }
+       div.foot{
+           width:100%;
+           height: .53rem;
+           line-height: .53rem;
+           text-align: center;
+           color: #fff;
+           background: #009999;
+           
+       }
+	}
+}
