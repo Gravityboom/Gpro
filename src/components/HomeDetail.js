@@ -120,7 +120,6 @@ class HomeDetail extends React.Component{
 						this.state.isSelected.push(true);
 					}
                 }
-				console.log(this.state.isSelected);
 
                 homeDetailList = Json.map((item,index) => {
                     this.state.goodPriceArr.push(Number(item['goods_price']));

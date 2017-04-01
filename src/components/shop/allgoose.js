@@ -15,19 +15,22 @@ class Allgoose extends React.Component {
 		var that=this;
 		var num=1;
 		var _list=[];
-		fetch('/api/v2/api/shop/listGoods?').then(res => res.json())
+		fetch('/api/v2/api/shop/listGoods?')
+		.then(res => res.json())
 		.then(function(res){
 			var _len=res.data.data.length;
 			var res=res.data.data;
 			console.log(res);
 			for(var i=0;i<_len;i++){
-			_list.push({content:<li className="listitem">
-				<Link to={{pathname:"cartshop/"+res[i].goods_id}}>
-			<img src={res[i].goods_img}/>
-			<p className="goodsname">{res[i].goods_name}</p>
-			<p className="goodsprice">￥{res[i].shop_price}</p>
-			</Link>
-			</li>,key:++guid});
+				_list.push({
+					content:<li className="listitem">
+							<Link to={{pathname:"cartshop/"+res[i].goods_id}}>
+								<img src={res[i].goods_img}/>
+								<p className="goodsname">{res[i].goods_name}</p>
+								<p className="goodsprice">￥{res[i].shop_price}</p>
+							</Link>
+							</li>,key:++guid
+				});
 			}
 			
 			that.setState({
@@ -44,14 +47,14 @@ class Allgoose extends React.Component {
 					ref="list"
 					 extraClass = {'goosebox'}
 				    dataSource={this.state.listitem}
-				      useLoadMore={true}
+				    useLoadMore={true}
                     onLoad={() => {
                         setTimeout(() => {
                          	this.refetch();
                             this.refs.list.stopLoading(true);
                         }, 500);
                     }}
-				    renderItem={(item,i)=>{
+				    renderItem = {(item,i)=>{
 				        return (
 
 				        	<div>
@@ -75,9 +78,9 @@ class Allgoose extends React.Component {
 			for(var i=0;i<_len;i++){
 			_list.push({content:<li className="listitem">
 			<Link to={{pathname:"cartshop/"+res[i].goods_id}}>
-			<img src={res[i].goods_img}/>
-			<p className="goodsname">{res[i].goods_name}</p>
-			<p className="goodsprice">￥{res[i].shop_price}</p>
+				<img src={res[i].goods_img}/>
+				<p className="goodsname">{res[i].goods_name}</p>
+				<p className="goodsprice">￥{res[i].shop_price}</p>
 			</Link>
 			</li>,key:++guid});
 			}
