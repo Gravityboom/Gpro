@@ -1,42 +1,147 @@
 import React from 'react';
 import Carousel from '../component_dev/carousel/src/index.js';
-import Scroller from '../component_dev/scroller/src/index.js';
+
 class HomeDetail extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
             app_title:'',
-            tag:'',
-            space:'',
             space_name:'',
             style:'',
             style_name:'',
             img:'',
             default_money:'',
-            discount:'',
-			totlal:0,
-            homeDetailList:[]
-		}
+            homeDetailList:[],
+            stallPrice:0,
+			allprice:0,
+			isSelected:[],
+			checkall:true,
+			goodPriceArr:[],
+			isAll:true,
+			ordernum:0,
+			stallnum:0
+		};
+		this.checkall = this.checkall.bind(this);
+		this.selectGoods = this.selectGoods.bind(this);
+        this.loadList = this.loadList.bind(this);
 	}
 
-	componentWillMount(){
+    checkall(len){
+        var arr = [];
+		if(this.state.isAll){
+
+            for( let i = 0;i<len;i++){
+                arr[i] = false;
+            }
+
+			this.setState({
+                allprice:'0.00',
+                ordernum:'0'
+			})
+
+		}else{
+
+			for( let i = 0;i<len;i++){
+				arr[i] = true;
+			}
+			this.setState({
+				allprice:this.state.stallPrice,
+                ordernum:this.state.stallnum
+			});
+        }
+
+        this.setState({
+			isAll:!this.state.isAll,
+			isSelected:arr
+        });
+		this.loadList();
+    }
+
+    goback(){
+        history.back(-1);
+    }
+
+    selectGoods(something,e){
+    	let domName = e.target.className;
+		if(domName==='undisplay_icon'){
+			return false;
+		}
+		let num = something.index;
+		let ordernum = this.state.ordernum;
+		let arr = this.state.isSelected;
+		let cal_price = Number(something.price);
+		let tol_price = Number(this.state.allprice);
+		let new_price;
+		let isAll;
+        if(this.state.isSelected[num]===true){
+            new_price = tol_price - cal_price;
+            ordernum --;
+        }else if(this.state.isSelected[num]===false){
+            new_price = tol_price + cal_price;
+            isAll = false;
+            ordernum ++;
+        }
+
+
+        arr[num] = !arr[num];
+        new_price = new_price.toFixed(2);
+		this.setState({
+			allprice:new_price,
+			isSelected:arr,
+            ordernum:ordernum,
+            isAll:isAll
+		});
+		this.loadList();
+	}
+
+	loadList(){
+        let self = this;
+        let homeDetailList = [];
+        let tolPrice;
+        let ordernum;
+        let stallnum;
+        let stallPrice=0;
+        if(!this.state.allprice){
+			tolPrice = 0;
+			ordernum = 0;
+            stallnum = 0;
+        }
         window.fetch('/json/detail.json')
-            .then(response => {
+            .then( response => {
                 return response.json();
             })
             .then(json=>{
                 let Json = json.data.goods_list;
-                let tempArr = [];
+                let len = Json.length;
+                if(!this.state.isSelected.length){
 
-                Json.map(item => {
+					for(let i = 0 ;i<len;i++){
 
-                    tempArr.push(
+						this.state.isSelected.push(true);
+					}
+                }
+				console.log(this.state.isSelected);
 
-						<ul className="hdgc">
+                homeDetailList = Json.map((item,index) => {
+                    this.state.goodPriceArr.push(Number(item['goods_price']));
+                    if(this.state.allprice===0 && item['msg'] ==='') {
+                        tolPrice += Number(item['goods_price']);
+                        stallPrice += Number(item['goods_price']);
+                        stallnum += 1;
+                        ordernum += 1;
+                    }
+                    return (
+						<ul key={index} className="hdgc">
 							<li className="goods">
 								<section className="detail_list">
-									<div><button></button></div>
+									<div>
+
+								<span className = { item['msg']==''? (this.state.isSelected[index]? 'choose_icon':'unchoose_icon'):'undisplay_icon' }
+									  onClick={self.selectGoods.bind(self,({price:item['goods_price'],index:index}))}>
+								</span>
+									</div>
 									<a href="javascript:void(0)">
+										<div></div>
 										<div className="div123"><img src = {item['goods_thumb']} alt=""/></div>
 										<div className="div456">
 											<p className="dgoodname">{item['goods_name']}</p>
@@ -45,7 +150,7 @@ class HomeDetail extends React.Component{
 												<br />
 												<span>规格:804*545*1700</span>
 											</section>
-											<div className="fl dgood_price">￥<span>{item['shop_price']}</span><span className="fr">X1</span></div>
+											<div className="fl dgood_price">￥<span>{item['goods_price']}</span><span className="fr">X1</span></div>
 										</div>
 									</a>
 								</section>
@@ -56,69 +161,105 @@ class HomeDetail extends React.Component{
 								</section>
 							</li>
 						</ul>
+                    )
+                });
+                //console.log(tolPrice);
 
-                    );
+                if(tolPrice){
+                    tolPrice = tolPrice.toFixed(2);
+                    stallPrice = stallPrice.toFixed(2);
+                }
+
+                if(!this.state.allprice){
+                    self.setState({
+                        allprice:tolPrice,
+                        stallPrice:stallPrice,
+                        ordernum:ordernum,
+                        stallnum:stallnum
+                    })
+                }
+
+                homeDetailList.push(
+				<div>
+					<section className="price_tip">
+						<header>购买优惠</header>
+						<p>1.场景购买的商品将享受包邮服务，客服与您沟通后再确认安装服务</p>
+					</section>
+
+
+					<section className="logicOrder">
+						<section className="pt">
+							<p><span className="fl">节省： <b>￥0.00</b></span> <span className="fr">价格：<b>￥{this.state.allprice}</b></span></p>
+						</section>
+						<section className="pb" >
+							<div className="checkall">
+								<span className={ this.state.isAll? 'choose_icon':'unchoose_icon' }
+									  onClick={self.checkall.bind(self,len)}>
+								</span>全选</div>
+							<div className="oserver"><span className="server_icon"></span>客服</div>
+							<div className="order_it">一键下单({this.state.ordernum})</div>
+						</section>
+					</section>
+				</div>
+				);
+
+
+
+                self.setState({
+                    homeDetailList:homeDetailList
 
                 });
 
-                this.setState({
-                    homeDetailList:tempArr
-                });
 
-                console.log(this.state.homeDetailList)
 
             })
 	}
 
-	componentDidMount(){
-		console.log('Mounted');
-		let homeGoodId = this.props.params['homegoodid'];
-        let self = this;
 
+	componentWillMount(){
 
-		window.fetch('/api/v2/h5/index/space?is_json=1&page='+ 1 +'&space=&style=')
-		.then(response =>{
-			return response.json();
-		})
-		.then(result => {
-
-
-			let Data = result.data;
-			for(let i = 0 , len = Data.length; i < len ; i++){
-                if(Data[i]['id'] == homeGoodId){
-                    console.log(Data[i]);
-                    self.setState({
-                        app_title:Data[i]['app_title'],
-                        tag:Data[i]['tag'],
-                        space:Data[i]['space'],
-                        space_name:Data[i]['space_name'],
-                        style:Data[i]['style'],
-                        style_name:Data[i]['style_name'],
-                        img:Data[i]['img'],
-                        default_money:Data[i]['default_money'],
-                        discount:Data[i]['discount']
-					});
-                    break;
-                }
-			}
-		});
 	}
 
-	goback(){
-        history.back(-1);
+	componentDidMount(){
+        let homeGoodId = this.props.params['homegoodid'];
+        let self = this;
+
+        this.loadList();
+
+        /* 通过父路由传值得到参数 然后请求数据 */
+        window.fetch('/api/v2/h5/index/space?is_json=1&page='+ 1 +'&space=&style=')
+            .then(response =>{
+                return response.json();
+            })
+            .then(result => {
+                let Data = result.data;
+                for(let i = 0 , len = Data.length; i < len ; i++){
+                    if(Data[i]['id'] == homeGoodId){
+                        self.setState({
+                            app_title:Data[i]['app_title'],
+                            space_name:Data[i]['space_name'],
+                            style:Data[i]['style'],
+                            style_name:Data[i]['style_name'],
+                            img:Data[i]['img'],
+                            default_money:Data[i]['default_money'],
+                        });
+                        break;
+                    }
+                }
+            });
 	}
 
 	render(){
-		return (
+		return(
 			<div className = 'hd_container'>
+				<div className="head_banner_container">
+					<span className="goback" onClick={this.goback}></span>
+					<Carousel loop = {true}>
 
-				<Scroller style={{height:'100%'}}>
-				<span className="goback" onClick={this.goback}></span>
-				<Carousel loop = {true}>
-					<img className = "home_detail_banner" src={this.state.img} alt=""/>
-					<img className = "home_detail_banner" src={this.state.img} alt=""/>
-				</Carousel>
-
+						<img className = "home_detail_banner" src={this.state.img} alt=""/>
+						<img className = "home_detail_banner" src={this.state.img} alt=""/>
+					</Carousel>
+				</div>
 				<section className="gapbar"></section>
 				<section className="art_author">
 					<div className="author_img"><img src="/home_img/author.png" alt=""/></div>
@@ -138,14 +279,11 @@ class HomeDetail extends React.Component{
 
 				{ this.state.homeDetailList }
 
-				<section>
-					<header>购买优惠</header>
 
-				</section>
-				</Scroller>
 			</div>
 		)
 	}
+
 }
 
 export default HomeDetail

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 62);
+/******/ 	return __webpack_require__(__webpack_require__.s = 80);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -266,6 +266,12 @@ module.exports = window.ReactRouter;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+module.exports = window.ReactDOM;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -327,341 +333,10 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = window.ReactDOM;
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(4);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouter = __webpack_require__(2);
-
-var _User = __webpack_require__(16);
-
-var _User2 = _interopRequireDefault(_User);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Login = function (_React$Component) {
-	_inherits(Login, _React$Component);
-
-	function Login(props) {
-		_classCallCheck(this, Login);
-
-		var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-
-		_this.state = {
-			isshow: 'auto',
-			ishide: 'none',
-			tip: ['该账户尚未注册', '密码与用户名不匹配', '请填写手机号', '用户名已存在', '请填写密码', '两次密码不一致', '手机号格式错误', '验证码获取失败'],
-			tipinnerHTML: ''
-		};
-		_this.toRegister = _this.toRegister.bind(_this);
-		_this.toAttain = _this.toAttain.bind(_this);
-		_this.toLogin = _this.toLogin.bind(_this);
-		_this.Register = _this.Register.bind(_this);
-		return _this;
-	}
-
-	_createClass(Login, [{
-		key: 'toRegister',
-		value: function toRegister() {
-			this.setState({
-				isshow: 'none'
-			});
-		}
-	}, {
-		key: 'toAttain',
-		value: function toAttain() {
-			var _this2 = this;
-
-			this.setState({ tipinnerHTML: this.state.tip[7], ishide: 'block' });
-			setTimeout(function () {
-				_this2.setState({ ishide: 'none' });
-			}, 1000);
-		}
-
-		//登录
-
-	}, {
-		key: 'toLogin',
-		value: function toLogin() {
-			var userID = this.refs.userID.value;
-			var password = this.refs.password.value;
-			var that = this;
-			if (userID == '' || password == '') {
-				that.setState({ tipinnerHTML: that.state.tip[2], ishide: 'block' });
-				setTimeout(function () {
-					that.setState({ ishide: 'none' });
-				}, 1000);
-			} else {
-				var url = "http://datainfo.duapp.com/shopdata/userinfo.php?status=login&userID=" + userID + "&password=" + password;
-				fetch(url).then(function (response) {
-					return response.json();
-				}).then(function (response) {
-					if (response == 0) {
-						that.setState({ tipinnerHTML: that.state.tip[0], ishide: 'block' });
-						setTimeout(function () {
-							that.setState({ ishide: 'none' });
-						}, 1000);
-					} else if (response == 2) {
-						that.setState({ tipinnerHTML: that.state.tip[1], ishide: 'block' });
-						setTimeout(function () {
-							that.setState({ ishide: 'none' });
-						}, 1000);
-					} else if (response) {
-
-						userID = response.userID;
-						localStorage.setItem("userID", userID);
-						localStorage.setItem("isLogin", 1);
-						window.location.href = "/#/user";
-					}
-				});
-			}
-		}
-		//注册
-
-	}, {
-		key: 'Register',
-		value: function Register() {
-			var reg_mobile = this.refs.reg_mobile.value;
-			var reg_pass = this.refs.reg_pass.value;
-			var reg_re_pass = this.refs.reg_re_pass.value;
-			var that = this;
-
-			if (reg_mobile == '' || reg_pass == '' || reg_re_pass == '') {
-				that.setState({ tipinnerHTML: that.state.tip[2], ishide: 'block' });
-				setTimeout(function () {
-					that.setState({ ishide: 'none' });
-				}, 1000);
-			} else if (!/^1[34578]\d{9}$/.test(reg_mobile)) {
-				that.setState({ tipinnerHTML: that.state.tip[6], ishide: 'block' });
-				setTimeout(function () {
-					that.setState({ ishide: 'none' });
-				}, 1000);
-			} else if (reg_re_pass !== reg_mobile) {
-				that.setState({ tipinnerHTML: that.state.tip[5], ishide: 'block' });
-				setTimeout(function () {
-					that.setState({ ishide: 'none' });
-				}, 1000);
-			} else {
-				var url = "http://datainfo.duapp.com/shopdata/userinfo.php?status=register&userID=" + reg_mobile + "&password=" + reg_pass;
-				fetch(url).then(function (response) {
-					return response.json();
-				}).then(function (response) {
-					if (response == 1) {
-						window.location.href = "http://localhost:9000/#/user";
-					} else if (response == 0) {
-						that.setState({ tipinnerHTML: that.state.tip[3], ishide: 'block' });
-						setTimeout(function () {
-							that.setState({ ishide: 'none' });
-						}, 1000);
-					}
-				});
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-
-			return _react2.default.createElement(
-				'div',
-				{ id: 'login_register' },
-				_react2.default.createElement(
-					'div',
-					{ id: 'login', style: { display: this.state.isshow } },
-					_react2.default.createElement(
-						'div',
-						{ className: 'box_box', style: { display: this.state.ishide } },
-						this.state.tipinnerHTML
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'login_head' },
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: 'user' },
-							_react2.default.createElement('div', { className: 'close' })
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'center', id: 'center' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'log' },
-							_react2.default.createElement('img', { src: 'http://m.haozaishop.com/js_web/images/logo.png' })
-						),
-						_react2.default.createElement('input', { type: 'text', ref: 'userID', name: 'userID', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7' }),
-						_react2.default.createElement('input', { type: 'password', ref: 'password', name: 'password', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
-						_react2.default.createElement(
-							'div',
-							{ className: 'clearfix' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'reset' },
-								_react2.default.createElement(
-									'div',
-									null,
-									'\u91CD\u7F6E\u5BC6\u7801'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'login', ref: 'login', onClick: this.toLogin },
-							'\u767B\u5F55'
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'enroll', ref: 'register', onClick: this.toRegister },
-							'\u6CE8\u518C'
-						),
-						_react2.default.createElement('div', { className: 'or' }),
-						_react2.default.createElement(
-							'div',
-							{ className: 'wx_login clearfix' },
-							_react2.default.createElement('div', { className: 'wx_ico' }),
-							_react2.default.createElement(
-								'span',
-								null,
-								'\u5FAE\u4FE1\u8D26\u53F7\u767B\u5F55'
-							)
-						)
-					),
-					_react2.default.createElement('div', { className: 'login_footer' })
-				),
-				_react2.default.createElement(
-					'div',
-					{ id: 'register' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'box_box', style: { display: this.state.ishide } },
-						this.state.tipinnerHTML
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'login_head' },
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: 'user' },
-							_react2.default.createElement('div', { className: 'close' })
-						)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'center' },
-						_react2.default.createElement('input', { type: 'text', ref: 'reg_mobile', name: 'reg_mobile', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7' }),
-						_react2.default.createElement(
-							'div',
-							{ className: 'clearfix' },
-							_react2.default.createElement(
-								'div',
-								{ className: '' },
-								_react2.default.createElement('input', { className: 'code', ref: 'reg_code', type: 'text', name: 'reg_code', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' }),
-								_react2.default.createElement(
-									'div',
-									{ id: 'send_code', onClick: this.toAttain },
-									'\u53D1\u9001\u9A8C\u8BC1\u7801'
-								)
-							)
-						),
-						_react2.default.createElement('input', { type: 'password', ref: 'reg_pass', name: 'reg_pass', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
-						_react2.default.createElement('input', { type: 'password', ref: 'reg_re_pass', name: 'reg_re_pass', placeholder: '\u8BF7\u786E\u8BA4\u5BC6\u7801' }),
-						_react2.default.createElement(
-							'div',
-							{ className: 'reg', id: 'reg', ref: 'register', onClick: this.Register },
-							'\u6CE8\u518C'
-						)
-					),
-					_react2.default.createElement('div', { className: 'login_footer' })
-				)
-			);
-		}
-	}]);
-
-	return Login;
-}(_react2.default.Component);
-
-exports.default = Login;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "login.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-/**
- * WARNING: DO NOT manually require this module.
- * This is a replacement for `invariant(...)` used by the error code system
- * and will _only_ be required by the corresponding babel pass.
- * It always throws.
- */
-
-function reactProdInvariant(code) {
-  var argCount = arguments.length - 1;
-
-  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
-
-  for (var argIdx = 0; argIdx < argCount; argIdx++) {
-    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
-  }
-
-  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
-
-  var error = new Error(message);
-  error.name = 'Invariant Violation';
-  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
-
-  throw error;
-}
-
-module.exports = reactProdInvariant;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -675,29 +350,29 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(3);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _utils = __webpack_require__(51);
+var _utils = __webpack_require__(58);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(6);
 
-var _classnames = __webpack_require__(24);
+var _classnames = __webpack_require__(9);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _lazyimage = __webpack_require__(50);
+var _lazyimage = __webpack_require__(18);
 
 var _lazyimage2 = _interopRequireDefault(_lazyimage);
 
-var _sticky = __webpack_require__(52);
+var _sticky = __webpack_require__(59);
 
 var _sticky2 = _interopRequireDefault(_sticky);
 
-__webpack_require__(79);
+__webpack_require__(98);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2402,86 +2077,13 @@ Scroller.propTypes = propTypes;
 Scroller.Sticky = _sticky2.default;
 Scroller.LazyImage = _lazyimage2.default;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var emptyFunction = __webpack_require__(13);
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var warning = emptyFunction;
-
-if (process.env.NODE_ENV !== 'production') {
-  (function () {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  })();
-}
-
-module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -2560,347 +2162,294 @@ function inheritProps(props, attrs) {
     }, {});
 }
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "util.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "util.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 10 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(3);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouter = __webpack_require__(2);
+
+var _User = __webpack_require__(21);
+
+var _User2 = _interopRequireDefault(_User);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Login = function (_React$Component) {
+	_inherits(Login, _React$Component);
+
+	function Login(props) {
+		_classCallCheck(this, Login);
+
+		var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+		_this.state = {
+			isshow: 'auto',
+			ishide: 'none',
+			tip: ['该账户尚未注册', '密码与用户名不匹配', '请填写手机号', '用户名已存在', '请填写密码', '两次密码不一致', '手机号格式错误', '验证码获取失败'],
+			tipinnerHTML: ''
+		};
+		_this.toRegister = _this.toRegister.bind(_this);
+		_this.toAttain = _this.toAttain.bind(_this);
+		_this.toLogin = _this.toLogin.bind(_this);
+		_this.Register = _this.Register.bind(_this);
+		return _this;
+	}
+
+	_createClass(Login, [{
+		key: 'toRegister',
+		value: function toRegister() {
+			this.setState({
+				isshow: 'none'
+			});
+		}
+	}, {
+		key: 'toAttain',
+		value: function toAttain() {
+			var _this2 = this;
+
+			this.setState({ tipinnerHTML: this.state.tip[7], ishide: 'block' });
+			setTimeout(function () {
+				_this2.setState({ ishide: 'none' });
+			}, 1000);
+		}
+
+		//登录
+
+	}, {
+		key: 'toLogin',
+		value: function toLogin() {
+			var userID = this.refs.userID.value;
+			var password = this.refs.password.value;
+			var that = this;
+			if (userID == '' || password == '') {
+				that.setState({ tipinnerHTML: that.state.tip[2], ishide: 'block' });
+				setTimeout(function () {
+					that.setState({ ishide: 'none' });
+				}, 1000);
+			} else {
+				var url = "http://datainfo.duapp.com/shopdata/userinfo.php?status=login&userID=" + userID + "&password=" + password;
+				fetch(url).then(function (response) {
+					return response.json();
+				}).then(function (response) {
+					if (response == 0) {
+						that.setState({ tipinnerHTML: that.state.tip[0], ishide: 'block' });
+						setTimeout(function () {
+							that.setState({ ishide: 'none' });
+						}, 1000);
+					} else if (response == 2) {
+						that.setState({ tipinnerHTML: that.state.tip[1], ishide: 'block' });
+						setTimeout(function () {
+							that.setState({ ishide: 'none' });
+						}, 1000);
+					} else if (response) {
+
+						userID = response.userID;
+						localStorage.setItem("userID", userID);
+						localStorage.setItem("isLogin", 1);
+						window.location.href = "/#/user";
+					}
+				});
+			}
+		}
+		//注册
+
+	}, {
+		key: 'Register',
+		value: function Register() {
+			var reg_mobile = this.refs.reg_mobile.value;
+			var reg_pass = this.refs.reg_pass.value;
+			var reg_re_pass = this.refs.reg_re_pass.value;
+			var that = this;
+
+			if (reg_mobile == '' || reg_pass == '' || reg_re_pass == '') {
+				that.setState({ tipinnerHTML: that.state.tip[2], ishide: 'block' });
+				setTimeout(function () {
+					that.setState({ ishide: 'none' });
+				}, 1000);
+			} else if (!/^1[34578]\d{9}$/.test(reg_mobile)) {
+				that.setState({ tipinnerHTML: that.state.tip[6], ishide: 'block' });
+				setTimeout(function () {
+					that.setState({ ishide: 'none' });
+				}, 1000);
+			} else if (reg_re_pass !== reg_mobile) {
+				that.setState({ tipinnerHTML: that.state.tip[5], ishide: 'block' });
+				setTimeout(function () {
+					that.setState({ ishide: 'none' });
+				}, 1000);
+			} else {
+				var url = "http://datainfo.duapp.com/shopdata/userinfo.php?status=register&userID=" + reg_mobile + "&password=" + reg_pass;
+				fetch(url).then(function (response) {
+					return response.json();
+				}).then(function (response) {
+					if (response == 1) {
+						window.location.href = "http://localhost:9000/#/user";
+					} else if (response == 0) {
+						that.setState({ tipinnerHTML: that.state.tip[3], ishide: 'block' });
+						setTimeout(function () {
+							that.setState({ ishide: 'none' });
+						}, 1000);
+					}
+				});
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+
+			return _react2.default.createElement(
+				'div',
+				{ id: 'login_register' },
+				_react2.default.createElement(
+					'div',
+					{ id: 'login', style: { display: this.state.isshow } },
+					_react2.default.createElement(
+						'div',
+						{ className: 'box_box', style: { display: this.state.ishide } },
+						this.state.tipinnerHTML
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'login_head' },
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: 'user' },
+							_react2.default.createElement('div', { className: 'close' })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'center', id: 'center' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'log' },
+							_react2.default.createElement('img', { src: 'http://m.haozaishop.com/js_web/images/logo.png' })
+						),
+						_react2.default.createElement('input', { type: 'text', ref: 'userID', name: 'userID', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7' }),
+						_react2.default.createElement('input', { type: 'password', ref: 'password', name: 'password', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
+						_react2.default.createElement(
+							'div',
+							{ className: 'clearfix' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'reset' },
+								_react2.default.createElement(
+									'div',
+									null,
+									'\u91CD\u7F6E\u5BC6\u7801'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'login', ref: 'login', onClick: this.toLogin },
+							'\u767B\u5F55'
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'enroll', ref: 'register', onClick: this.toRegister },
+							'\u6CE8\u518C'
+						),
+						_react2.default.createElement('div', { className: 'or' }),
+						_react2.default.createElement(
+							'div',
+							{ className: 'wx_login clearfix' },
+							_react2.default.createElement('div', { className: 'wx_ico' }),
+							_react2.default.createElement(
+								'span',
+								null,
+								'\u5FAE\u4FE1\u8D26\u53F7\u767B\u5F55'
+							)
+						)
+					),
+					_react2.default.createElement('div', { className: 'login_footer' })
+				),
+				_react2.default.createElement(
+					'div',
+					{ id: 'register' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'box_box', style: { display: this.state.ishide } },
+						this.state.tipinnerHTML
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'login_head' },
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: 'user' },
+							_react2.default.createElement('div', { className: 'close' })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'center' },
+						_react2.default.createElement('input', { type: 'text', ref: 'reg_mobile', name: 'reg_mobile', placeholder: '\u8BF7\u8F93\u5165\u624B\u673A\u53F7' }),
+						_react2.default.createElement(
+							'div',
+							{ className: 'clearfix' },
+							_react2.default.createElement(
+								'div',
+								{ className: '' },
+								_react2.default.createElement('input', { className: 'code', ref: 'reg_code', type: 'text', name: 'reg_code', placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801' }),
+								_react2.default.createElement(
+									'div',
+									{ id: 'send_code', onClick: this.toAttain },
+									'\u53D1\u9001\u9A8C\u8BC1\u7801'
+								)
+							)
+						),
+						_react2.default.createElement('input', { type: 'password', ref: 'reg_pass', name: 'reg_pass', placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801' }),
+						_react2.default.createElement('input', { type: 'password', ref: 'reg_re_pass', name: 'reg_re_pass', placeholder: '\u8BF7\u786E\u8BA4\u5BC6\u7801' }),
+						_react2.default.createElement(
+							'div',
+							{ className: 'reg', id: 'reg', ref: 'register', onClick: this.Register },
+							'\u6CE8\u518C'
+						)
+					),
+					_react2.default.createElement('div', { className: 'login_footer' })
+				)
+			);
+		}
+	}]);
+
+	return Login;
+}(_react2.default.Component);
+
+exports.default = Login;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "login.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(6);
-
-var ReactErrorUtils = __webpack_require__(20);
-
-var invariant = __webpack_require__(3);
-var warning = __webpack_require__(8);
-
-/**
- * Injected dependencies:
- */
-
-/**
- * - `ComponentTree`: [required] Module that can convert between React instances
- *   and actual node references.
- */
-var ComponentTree;
-var TreeTraversal;
-var injection = {
-  injectComponentTree: function (Injected) {
-    ComponentTree = Injected;
-    if (process.env.NODE_ENV !== 'production') {
-      process.env.NODE_ENV !== 'production' ? warning(Injected && Injected.getNodeFromInstance && Injected.getInstanceFromNode, 'EventPluginUtils.injection.injectComponentTree(...): Injected ' + 'module is missing getNodeFromInstance or getInstanceFromNode.') : void 0;
-    }
-  },
-  injectTreeTraversal: function (Injected) {
-    TreeTraversal = Injected;
-    if (process.env.NODE_ENV !== 'production') {
-      process.env.NODE_ENV !== 'production' ? warning(Injected && Injected.isAncestor && Injected.getLowestCommonAncestor, 'EventPluginUtils.injection.injectTreeTraversal(...): Injected ' + 'module is missing isAncestor or getLowestCommonAncestor.') : void 0;
-    }
-  }
-};
-
-function isEndish(topLevelType) {
-  return topLevelType === 'topMouseUp' || topLevelType === 'topTouchEnd' || topLevelType === 'topTouchCancel';
-}
-
-function isMoveish(topLevelType) {
-  return topLevelType === 'topMouseMove' || topLevelType === 'topTouchMove';
-}
-function isStartish(topLevelType) {
-  return topLevelType === 'topMouseDown' || topLevelType === 'topTouchStart';
-}
-
-var validateEventDispatches;
-if (process.env.NODE_ENV !== 'production') {
-  validateEventDispatches = function (event) {
-    var dispatchListeners = event._dispatchListeners;
-    var dispatchInstances = event._dispatchInstances;
-
-    var listenersIsArr = Array.isArray(dispatchListeners);
-    var listenersLen = listenersIsArr ? dispatchListeners.length : dispatchListeners ? 1 : 0;
-
-    var instancesIsArr = Array.isArray(dispatchInstances);
-    var instancesLen = instancesIsArr ? dispatchInstances.length : dispatchInstances ? 1 : 0;
-
-    process.env.NODE_ENV !== 'production' ? warning(instancesIsArr === listenersIsArr && instancesLen === listenersLen, 'EventPluginUtils: Invalid `event`.') : void 0;
-  };
-}
-
-/**
- * Dispatch the event to the listener.
- * @param {SyntheticEvent} event SyntheticEvent to handle
- * @param {boolean} simulated If the event is simulated (changes exn behavior)
- * @param {function} listener Application-level callback
- * @param {*} inst Internal component instance
- */
-function executeDispatch(event, simulated, listener, inst) {
-  var type = event.type || 'unknown-event';
-  event.currentTarget = EventPluginUtils.getNodeFromInstance(inst);
-  if (simulated) {
-    ReactErrorUtils.invokeGuardedCallbackWithCatch(type, listener, event);
-  } else {
-    ReactErrorUtils.invokeGuardedCallback(type, listener, event);
-  }
-  event.currentTarget = null;
-}
-
-/**
- * Standard/simple iteration through an event's collected dispatches.
- */
-function executeDispatchesInOrder(event, simulated) {
-  var dispatchListeners = event._dispatchListeners;
-  var dispatchInstances = event._dispatchInstances;
-  if (process.env.NODE_ENV !== 'production') {
-    validateEventDispatches(event);
-  }
-  if (Array.isArray(dispatchListeners)) {
-    for (var i = 0; i < dispatchListeners.length; i++) {
-      if (event.isPropagationStopped()) {
-        break;
-      }
-      // Listeners and Instances are two parallel arrays that are always in sync.
-      executeDispatch(event, simulated, dispatchListeners[i], dispatchInstances[i]);
-    }
-  } else if (dispatchListeners) {
-    executeDispatch(event, simulated, dispatchListeners, dispatchInstances);
-  }
-  event._dispatchListeners = null;
-  event._dispatchInstances = null;
-}
-
-/**
- * Standard/simple iteration through an event's collected dispatches, but stops
- * at the first dispatch execution returning true, and returns that id.
- *
- * @return {?string} id of the first dispatch execution who's listener returns
- * true, or null if no listener returned true.
- */
-function executeDispatchesInOrderStopAtTrueImpl(event) {
-  var dispatchListeners = event._dispatchListeners;
-  var dispatchInstances = event._dispatchInstances;
-  if (process.env.NODE_ENV !== 'production') {
-    validateEventDispatches(event);
-  }
-  if (Array.isArray(dispatchListeners)) {
-    for (var i = 0; i < dispatchListeners.length; i++) {
-      if (event.isPropagationStopped()) {
-        break;
-      }
-      // Listeners and Instances are two parallel arrays that are always in sync.
-      if (dispatchListeners[i](event, dispatchInstances[i])) {
-        return dispatchInstances[i];
-      }
-    }
-  } else if (dispatchListeners) {
-    if (dispatchListeners(event, dispatchInstances)) {
-      return dispatchInstances;
-    }
-  }
-  return null;
-}
-
-/**
- * @see executeDispatchesInOrderStopAtTrueImpl
- */
-function executeDispatchesInOrderStopAtTrue(event) {
-  var ret = executeDispatchesInOrderStopAtTrueImpl(event);
-  event._dispatchInstances = null;
-  event._dispatchListeners = null;
-  return ret;
-}
-
-/**
- * Execution of a "direct" dispatch - there must be at most one dispatch
- * accumulated on the event or it is considered an error. It doesn't really make
- * sense for an event with multiple dispatches (bubbled) to keep track of the
- * return values at each dispatch execution, but it does tend to make sense when
- * dealing with "direct" dispatches.
- *
- * @return {*} The return value of executing the single dispatch.
- */
-function executeDirectDispatch(event) {
-  if (process.env.NODE_ENV !== 'production') {
-    validateEventDispatches(event);
-  }
-  var dispatchListener = event._dispatchListeners;
-  var dispatchInstance = event._dispatchInstances;
-  !!Array.isArray(dispatchListener) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'executeDirectDispatch(...): Invalid `event`.') : _prodInvariant('103') : void 0;
-  event.currentTarget = dispatchListener ? EventPluginUtils.getNodeFromInstance(dispatchInstance) : null;
-  var res = dispatchListener ? dispatchListener(event) : null;
-  event.currentTarget = null;
-  event._dispatchListeners = null;
-  event._dispatchInstances = null;
-  return res;
-}
-
-/**
- * @param {SyntheticEvent} event
- * @return {boolean} True iff number of dispatches accumulated is greater than 0.
- */
-function hasDispatches(event) {
-  return !!event._dispatchListeners;
-}
-
-/**
- * General utilities that are useful in creating custom Event Plugins.
- */
-var EventPluginUtils = {
-  isEndish: isEndish,
-  isMoveish: isMoveish,
-  isStartish: isStartish,
-
-  executeDirectDispatch: executeDirectDispatch,
-  executeDispatchesInOrder: executeDispatchesInOrder,
-  executeDispatchesInOrderStopAtTrue: executeDispatchesInOrderStopAtTrue,
-  hasDispatches: hasDispatches,
-
-  getInstanceFromNode: function (node) {
-    return ComponentTree.getInstanceFromNode(node);
-  },
-  getNodeFromInstance: function (node) {
-    return ComponentTree.getNodeFromInstance(node);
-  },
-  isAncestor: function (a, b) {
-    return TreeTraversal.isAncestor(a, b);
-  },
-  getLowestCommonAncestor: function (a, b) {
-    return TreeTraversal.getLowestCommonAncestor(a, b);
-  },
-  getParentInstance: function (inst) {
-    return TreeTraversal.getParentInstance(inst);
-  },
-  traverseTwoPhase: function (target, fn, arg) {
-    return TreeTraversal.traverseTwoPhase(target, fn, arg);
-  },
-  traverseEnterLeave: function (from, to, fn, argFrom, argTo) {
-    return TreeTraversal.traverseEnterLeave(from, to, fn, argFrom, argTo);
-  },
-
-  injection: injection
-};
-
-module.exports = EventPluginUtils;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(93);
-
-
-
-
-/** `Object#toString` result references. */
-var objectTag = '[object Object]';
-
-/** Used for built-in method references. */
-var funcProto = Function.prototype,
-    objectProto = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/** Used to infer the `Object` constructor. */
-var objectCtorString = funcToString.call(Object);
-
-/**
- * Checks if `value` is a plain object, that is, an object created by the
- * `Object` constructor or one with a `[[Prototype]]` of `null`.
- *
- * @static
- * @memberOf _
- * @since 0.8.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- * }
- *
- * _.isPlainObject(new Foo);
- * // => false
- *
- * _.isPlainObject([1, 2, 3]);
- * // => false
- *
- * _.isPlainObject({ 'x': 0, 'y': 0 });
- * // => true
- *
- * _.isPlainObject(Object.create(null));
- * // => true
- */
-function isPlainObject(value) {
-  if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__["a" /* default */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__["a" /* default */])(value) != objectTag) {
-    return false;
-  }
-  var proto = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__getPrototype_js__["a" /* default */])(value);
-  if (proto === null) {
-    return true;
-  }
-  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
-  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
-    funcToString.call(Ctor) == objectCtorString;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (isPlainObject);
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = warning;
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */
-function warning(message) {
-  /* eslint-disable no-console */
-  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    console.error(message);
-  }
-  /* eslint-enable no-console */
-  try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
-    throw new Error(message);
-    /* eslint-disable no-empty */
-  } catch (e) {}
-  /* eslint-enable no-empty */
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2912,1104 +2461,36 @@ function warning(message) {
  * 
  */
 
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
 
 /**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ * WARNING: DO NOT manually require this module.
+ * This is a replacement for `invariant(...)` used by the error code system
+ * and will _only_ be required by the corresponding babel pass.
+ * It always throws.
  */
-var emptyFunction = function emptyFunction() {};
 
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
+function reactProdInvariant(code) {
+  var argCount = arguments.length - 1;
 
-module.exports = emptyFunction;
+  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
 
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _index = __webpack_require__(7);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _reactRouter = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FullRoom = function (_React$Component) {
-	_inherits(FullRoom, _React$Component);
-
-	function FullRoom(props) {
-		_classCallCheck(this, FullRoom);
-
-		var _this = _possibleConstructorReturn(this, (FullRoom.__proto__ || Object.getPrototypeOf(FullRoom)).call(this, props));
-
-		_this.state = {
-			fullHouseUrl: '/api/v2/h5/index/home?&is_json=',
-			jsonIndex: 1,
-			pageNum: 1,
-			fullHouseList: [],
-			sonHouseList: []
-		};
-		return _this;
-	}
-
-	_createClass(FullRoom, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-
-			var self = this;
-			var url = this.state.fullHouseUrl + self.state.jsonIndex + '&page=' + self.state.pageNum + '&type=&style=';
-
-			window.fetch(url).then(function (response) {
-				return response.json();
-			}).then(function (result) {
-				var Data = result.data;
-				var tmpArr = [];
-
-				Data.map(function (item, index) {
-					var len = item['aes_list'].length;
-					var sonImg = [];
-					var width = void 0;
-					for (var i = 0; i < len; i++) {
-						sonImg.push(_react2.default.createElement(
-							'li',
-							{ className: 'fullhome_detail_img_into' },
-							_react2.default.createElement('img', { style: { width: '100%' }, src: item['aes_list'][i]['img'] })
-						));
-					}
-					console.log(sonImg);
-
-					tmpArr.push(_react2.default.createElement(
-						'dl',
-						{ className: 'good_list' },
-						_react2.default.createElement(
-							'dt',
-							{ className: 'fullhouse_img' },
-							_react2.default.createElement(
-								'a',
-								{ href: '#' },
-								_react2.default.createElement('img', { style: { height: '3.75rem' }, src: item['img'] })
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'fullhome_detail_img_div', style: { height: '1.05469rem' } },
-							_react2.default.createElement(
-								_index2.default,
-								{ scrollX: true, scrollY: false, style: { height: '100%' } },
-								_react2.default.createElement(
-									'div',
-									null,
-									_react2.default.createElement(
-										'ul',
-										{ className: 'sonC', style: { width: len * 1.2048 + 'rem' } },
-										sonImg
-									)
-								)
-							)
-						),
-						_react2.default.createElement(
-							'dd',
-							null,
-							_react2.default.createElement(
-								'ul',
-								null,
-								_react2.default.createElement(
-									'li',
-									{ className: 'good_list_name' },
-									item['app_name']
-								),
-								_react2.default.createElement(
-									'li',
-									{ className: 'good_price' },
-									'\uFFE5',
-									item['default_money'],
-									'/',
-									item['type_name']
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'good_list_button' },
-								_react2.default.createElement(
-									'button',
-									{ className: 'yo-btn yo-btn-goodbtn' },
-									'\u5546\u54C1\u6E05\u5355'
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'good_list_type' },
-								_react2.default.createElement(
-									'button',
-									{ className: 'yo-btn yo-btn-typebtn' },
-									item['type_name']
-								),
-								_react2.default.createElement(
-									'button',
-									{ className: 'yo-btn yo-btn-typebtn' },
-									item['style_name']
-								)
-							)
-						)
-					));
-				});
-
-				self.setState(Object.assign({}, { fullHouseList: tmpArr }));
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				_index2.default,
-				{ style: { height: '100%' } },
-				this.state.fullHouseList
-			);
-		}
-	}]);
-
-	return FullRoom;
-}(_react2.default.Component);
-
-//var FullRoom = React.createClass({
-//getInitialState: function () {
-//  return {
-//    checked: false
-//  };
-//},
-//onChildChanged: function (newState) {
-//  this.setState({
-//    checked: newState
-//  });
-//},
-//render: function() {
-//  var isChecked = this.state.checked ? 'yes' : 'no';
-//  return (
-//    <div>
-//      <div>Are you checked: {isChecked}</div>
-//      <ToggleButton text="Toggle me"
-//        initialChecked={this.state.checked}
-//        callbackParent={this.onChildChanged}
-//        />
-//    </div>
-//  );
-//}
-//});
-
-// 子组件
-//var ToggleButton = React.createClass({
-//getInitialState: function () {
-//  return {
-//    checked: this.props.initialChecked
-//  };
-//},
-//onTextChange: function () {
-//  var newState = !this.state.checked;
-//  this.setState({
-//    checked: newState
-//  });
-//  // 这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
-//  this.props.callbackParent(newState);
-//},
-//render: function () {
-//  // 从【父组件】获取的值
-//  var text = this.props.text;
-//  // 组件自身的状态数据
-//  var checked = this.state.checked;
-//
-//  return (
-//      <label>{text}: <input type="checkbox" checked={checked} onChange={this.onTextChange} /></label>
-//  );
-//}
-//});
-
-
-exports.default = FullRoom;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FullRoom.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _index = __webpack_require__(7);
-
-var _index2 = _interopRequireDefault(_index);
-
-var _reactRouter = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Room = function (_React$Component) {
-  _inherits(Room, _React$Component);
-
-  function Room(props) {
-    _classCallCheck(this, Room);
-
-    var _this = _possibleConstructorReturn(this, (Room.__proto__ || Object.getPrototypeOf(Room)).call(this, props));
-
-    _this.state = {
-      good_list: []
-    };
-    return _this;
+  for (var argIdx = 0; argIdx < argCount; argIdx++) {
+    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
   }
 
-  _createClass(Room, [{
-    key: 'toHomedetail',
-    value: function toHomedetail() {
-      console.log(1);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { className: 'scrol' },
-        this.state.good_list
-      );
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      fetch('/api/v2/h5/index/space?is_json=1&page=' + 1 + '&space=&style=').then(function (response) {
-        return response.json();
-      }).then(function (result) {
-        var tempArr = [];{/* 定义空数组保存dom元素集合 */}
-        var _data = result.data;
-        _data.map(function (item) {
+  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
 
-          tempArr.push(_react2.default.createElement(
-            'dl',
-            { className: 'good_list' },
-            _react2.default.createElement(
-              'dt',
-              null,
-              _react2.default.createElement(
-                _reactRouter.Link,
-                { to: 'homedetail/' + item['id'] },
-                _react2.default.createElement('img', { style: { width: '100%' }, src: item['img'] })
-              )
-            ),
-            _react2.default.createElement(
-              'dd',
-              null,
-              _react2.default.createElement(
-                'ul',
-                null,
-                _react2.default.createElement(
-                  'li',
-                  { className: 'good_list_name' },
-                  item['app_title']
-                ),
-                _react2.default.createElement(
-                  'li',
-                  { className: 'good_price' },
-                  '\uFFE5',
-                  item['default_money'],
-                  '/',
-                  item['space_name']
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'good_list_button' },
-                _react2.default.createElement(
-                  'button',
-                  { className: 'yo-btn yo-btn-goodbtn' },
-                  '\u5546\u54C1\u6E05\u5355'
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'good_list_type' },
-                _react2.default.createElement(
-                  'button',
-                  { className: 'yo-btn yo-btn-typebtn' },
-                  item['space_name']
-                ),
-                _react2.default.createElement(
-                  'button',
-                  { className: 'yo-btn yo-btn-typebtn' },
-                  item['style_name']
-                )
-              )
-            )
-          ));
-        });
-        this.setState({
-          good_list: tempArr
-        });
-      }.bind(this)).catch(function (err) {
-        console.log(err);
-      });
-    }
-  }]);
+  var error = new Error(message);
+  error.name = 'Invariant Violation';
+  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
 
-  return Room;
-}(_react2.default.Component);
-
-exports.default = Room;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Room.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(4);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouter = __webpack_require__(2);
-
-var _User_head = __webpack_require__(59);
-
-var _User_head2 = _interopRequireDefault(_User_head);
-
-var _User_order = __webpack_require__(61);
-
-var _User_order2 = _interopRequireDefault(_User_order);
-
-var _User_list = __webpack_require__(60);
-
-var _User_list2 = _interopRequireDefault(_User_list);
-
-var _User_bar = __webpack_require__(58);
-
-var _User_bar2 = _interopRequireDefault(_User_bar);
-
-var _login = __webpack_require__(5);
-
-var _login2 = _interopRequireDefault(_login);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var User = function (_React$Component) {
-  _inherits(User, _React$Component);
-
-  function User() {
-    _classCallCheck(this, User);
-
-    return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
-  }
-
-  _createClass(User, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'user' },
-        _react2.default.createElement(_User_head2.default, null),
-        _react2.default.createElement(_User_order2.default, null),
-        _react2.default.createElement(_User_list2.default, null),
-        _react2.default.createElement(_User_bar2.default, null),
-        this.props.children
-      );
-    }
-  }]);
-
-  return User;
-}(_react2.default.Component);
-
-exports.default = User;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var User_orderList = function (_React$Component) {
-	_inherits(User_orderList, _React$Component);
-
-	function User_orderList(props) {
-		_classCallCheck(this, User_orderList);
-
-		var _this = _possibleConstructorReturn(this, (User_orderList.__proto__ || Object.getPrototypeOf(User_orderList)).call(this, props));
-
-		_this.state = {};
-		return _this;
-	}
-
-	_createClass(User_orderList, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'user_orderlist' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'orserlist_head' },
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/user' },
-						_react2.default.createElement('section', { className: 'go_back' })
-					),
-					_react2.default.createElement('section', { className: 'logo' })
-				),
-				_react2.default.createElement('div', { className: 'orserlist_content' })
-			);
-		}
-	}]);
-
-	return User_orderList;
-}(_react2.default.Component);
-
-exports.default = User_orderList;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_orderList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.store = exports.mapDispatchToprops = exports.mapStateToprops = undefined;
-
-var _redux = __webpack_require__(29);
-
-function reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { title: 'defaultTitle' };
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SETHEADERNAME':
-      return { title: action.title };
-      break;
-    default:
-      return state;
-  }
+  throw error;
 }
 
-function mapStateToprops(state) {
-  return {
-    value: state.title
-  };
-}
-
-function mapDispatchToprops(dispatch) {
-  return {
-    //返回一个方法
-    onChange: function onChange(action) {
-      return dispatch(action);
-    }
-  };
-}
-
-var store = (0, _redux.createStore)(reducer); //将reducer纯函数作为参数输入 生成新的store
-
-exports.mapStateToprops = mapStateToprops;
-exports.mapDispatchToprops = mapDispatchToprops;
-exports.store = store;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "store.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+module.exports = reactProdInvariant;
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(6);
-
-var EventPluginRegistry = __webpack_require__(66);
-var EventPluginUtils = __webpack_require__(10);
-var ReactErrorUtils = __webpack_require__(20);
-
-var accumulateInto = __webpack_require__(21);
-var forEachAccumulated = __webpack_require__(22);
-var invariant = __webpack_require__(3);
-
-/**
- * Internal store for event listeners
- */
-var listenerBank = {};
-
-/**
- * Internal queue of events that have accumulated their dispatches and are
- * waiting to have their dispatches executed.
- */
-var eventQueue = null;
-
-/**
- * Dispatches an event and releases it back into the pool, unless persistent.
- *
- * @param {?object} event Synthetic event to be dispatched.
- * @param {boolean} simulated If the event is simulated (changes exn behavior)
- * @private
- */
-var executeDispatchesAndRelease = function (event, simulated) {
-  if (event) {
-    EventPluginUtils.executeDispatchesInOrder(event, simulated);
-
-    if (!event.isPersistent()) {
-      event.constructor.release(event);
-    }
-  }
-};
-var executeDispatchesAndReleaseSimulated = function (e) {
-  return executeDispatchesAndRelease(e, true);
-};
-var executeDispatchesAndReleaseTopLevel = function (e) {
-  return executeDispatchesAndRelease(e, false);
-};
-
-var getDictionaryKey = function (inst) {
-  // Prevents V8 performance issue:
-  // https://github.com/facebook/react/pull/7232
-  return '.' + inst._rootNodeID;
-};
-
-function isInteractive(tag) {
-  return tag === 'button' || tag === 'input' || tag === 'select' || tag === 'textarea';
-}
-
-function shouldPreventMouseEvent(name, type, props) {
-  switch (name) {
-    case 'onClick':
-    case 'onClickCapture':
-    case 'onDoubleClick':
-    case 'onDoubleClickCapture':
-    case 'onMouseDown':
-    case 'onMouseDownCapture':
-    case 'onMouseMove':
-    case 'onMouseMoveCapture':
-    case 'onMouseUp':
-    case 'onMouseUpCapture':
-      return !!(props.disabled && isInteractive(type));
-    default:
-      return false;
-  }
-}
-
-/**
- * This is a unified interface for event plugins to be installed and configured.
- *
- * Event plugins can implement the following properties:
- *
- *   `extractEvents` {function(string, DOMEventTarget, string, object): *}
- *     Required. When a top-level event is fired, this method is expected to
- *     extract synthetic events that will in turn be queued and dispatched.
- *
- *   `eventTypes` {object}
- *     Optional, plugins that fire events must publish a mapping of registration
- *     names that are used to register listeners. Values of this mapping must
- *     be objects that contain `registrationName` or `phasedRegistrationNames`.
- *
- *   `executeDispatch` {function(object, function, string)}
- *     Optional, allows plugins to override how an event gets dispatched. By
- *     default, the listener is simply invoked.
- *
- * Each plugin that is injected into `EventsPluginHub` is immediately operable.
- *
- * @public
- */
-var EventPluginHub = {
-
-  /**
-   * Methods for injecting dependencies.
-   */
-  injection: {
-
-    /**
-     * @param {array} InjectedEventPluginOrder
-     * @public
-     */
-    injectEventPluginOrder: EventPluginRegistry.injectEventPluginOrder,
-
-    /**
-     * @param {object} injectedNamesToPlugins Map from names to plugin modules.
-     */
-    injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
-
-  },
-
-  /**
-   * Stores `listener` at `listenerBank[registrationName][key]`. Is idempotent.
-   *
-   * @param {object} inst The instance, which is the source of events.
-   * @param {string} registrationName Name of listener (e.g. `onClick`).
-   * @param {function} listener The callback to store.
-   */
-  putListener: function (inst, registrationName, listener) {
-    !(typeof listener === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s listener to be a function, instead got type %s', registrationName, typeof listener) : _prodInvariant('94', registrationName, typeof listener) : void 0;
-
-    var key = getDictionaryKey(inst);
-    var bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
-    bankForRegistrationName[key] = listener;
-
-    var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
-    if (PluginModule && PluginModule.didPutListener) {
-      PluginModule.didPutListener(inst, registrationName, listener);
-    }
-  },
-
-  /**
-   * @param {object} inst The instance, which is the source of events.
-   * @param {string} registrationName Name of listener (e.g. `onClick`).
-   * @return {?function} The stored callback.
-   */
-  getListener: function (inst, registrationName) {
-    // TODO: shouldPreventMouseEvent is DOM-specific and definitely should not
-    // live here; needs to be moved to a better place soon
-    var bankForRegistrationName = listenerBank[registrationName];
-    if (shouldPreventMouseEvent(registrationName, inst._currentElement.type, inst._currentElement.props)) {
-      return null;
-    }
-    var key = getDictionaryKey(inst);
-    return bankForRegistrationName && bankForRegistrationName[key];
-  },
-
-  /**
-   * Deletes a listener from the registration bank.
-   *
-   * @param {object} inst The instance, which is the source of events.
-   * @param {string} registrationName Name of listener (e.g. `onClick`).
-   */
-  deleteListener: function (inst, registrationName) {
-    var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
-    if (PluginModule && PluginModule.willDeleteListener) {
-      PluginModule.willDeleteListener(inst, registrationName);
-    }
-
-    var bankForRegistrationName = listenerBank[registrationName];
-    // TODO: This should never be null -- when is it?
-    if (bankForRegistrationName) {
-      var key = getDictionaryKey(inst);
-      delete bankForRegistrationName[key];
-    }
-  },
-
-  /**
-   * Deletes all listeners for the DOM element with the supplied ID.
-   *
-   * @param {object} inst The instance, which is the source of events.
-   */
-  deleteAllListeners: function (inst) {
-    var key = getDictionaryKey(inst);
-    for (var registrationName in listenerBank) {
-      if (!listenerBank.hasOwnProperty(registrationName)) {
-        continue;
-      }
-
-      if (!listenerBank[registrationName][key]) {
-        continue;
-      }
-
-      var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
-      if (PluginModule && PluginModule.willDeleteListener) {
-        PluginModule.willDeleteListener(inst, registrationName);
-      }
-
-      delete listenerBank[registrationName][key];
-    }
-  },
-
-  /**
-   * Allows registered plugins an opportunity to extract events from top-level
-   * native browser events.
-   *
-   * @return {*} An accumulation of synthetic events.
-   * @internal
-   */
-  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
-    var events;
-    var plugins = EventPluginRegistry.plugins;
-    for (var i = 0; i < plugins.length; i++) {
-      // Not every plugin in the ordering may be loaded at runtime.
-      var possiblePlugin = plugins[i];
-      if (possiblePlugin) {
-        var extractedEvents = possiblePlugin.extractEvents(topLevelType, targetInst, nativeEvent, nativeEventTarget);
-        if (extractedEvents) {
-          events = accumulateInto(events, extractedEvents);
-        }
-      }
-    }
-    return events;
-  },
-
-  /**
-   * Enqueues a synthetic event that should be dispatched when
-   * `processEventQueue` is invoked.
-   *
-   * @param {*} events An accumulation of synthetic events.
-   * @internal
-   */
-  enqueueEvents: function (events) {
-    if (events) {
-      eventQueue = accumulateInto(eventQueue, events);
-    }
-  },
-
-  /**
-   * Dispatches all synthetic events on the event queue.
-   *
-   * @internal
-   */
-  processEventQueue: function (simulated) {
-    // Set `eventQueue` to null before processing it so that we can tell if more
-    // events get enqueued while processing.
-    var processingEventQueue = eventQueue;
-    eventQueue = null;
-    if (simulated) {
-      forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseSimulated);
-    } else {
-      forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseTopLevel);
-    }
-    !!eventQueue ? process.env.NODE_ENV !== 'production' ? invariant(false, 'processEventQueue(): Additional events were enqueued while processing an event queue. Support for this has not yet been implemented.') : _prodInvariant('95') : void 0;
-    // This would be a good time to rethrow if any of the event handlers threw.
-    ReactErrorUtils.rethrowCaughtError();
-  },
-
-  /**
-   * These are needed for tests only. Do not use!
-   */
-  __purge: function () {
-    listenerBank = {};
-  },
-
-  __getListenerBank: function () {
-    return listenerBank;
-  }
-
-};
-
-module.exports = EventPluginHub;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-var caughtError = null;
-
-/**
- * Call a function while guarding against errors that happens within it.
- *
- * @param {String} name of the guard to use for logging or debugging
- * @param {Function} func The function to invoke
- * @param {*} a First argument
- * @param {*} b Second argument
- */
-function invokeGuardedCallback(name, func, a) {
-  try {
-    func(a);
-  } catch (x) {
-    if (caughtError === null) {
-      caughtError = x;
-    }
-  }
-}
-
-var ReactErrorUtils = {
-  invokeGuardedCallback: invokeGuardedCallback,
-
-  /**
-   * Invoked by ReactTestUtils.Simulate so that any errors thrown by the event
-   * handler are sure to be rethrown by rethrowCaughtError.
-   */
-  invokeGuardedCallbackWithCatch: invokeGuardedCallback,
-
-  /**
-   * During execution of guarded functions we will capture the first error which
-   * we will rethrow to be handled by the top level error handler.
-   */
-  rethrowCaughtError: function () {
-    if (caughtError) {
-      var error = caughtError;
-      caughtError = null;
-      throw error;
-    }
-  }
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  /**
-   * To help development we can get better devtools integration by simulating a
-   * real browser event.
-   */
-  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
-    var fakeNode = document.createElement('react');
-    ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
-      var boundFunc = func.bind(null, a);
-      var evtType = 'react-' + name;
-      fakeNode.addEventListener(evtType, boundFunc, false);
-      var evt = document.createEvent('Event');
-      // $FlowFixMe https://github.com/facebook/flow/issues/2336
-      evt.initEvent(evtType, false, false);
-      fakeNode.dispatchEvent(evt);
-      fakeNode.removeEventListener(evtType, boundFunc, false);
-    };
-  }
-}
-
-module.exports = ReactErrorUtils;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2014-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-var _prodInvariant = __webpack_require__(6);
-
-var invariant = __webpack_require__(3);
-
-/**
- * Accumulates items that must not be null or undefined into the first one. This
- * is used to conserve memory by avoiding array allocations, and thus sacrifices
- * API cleanness. Since `current` can be null before being passed in and not
- * null after this function, make sure to assign it back to `current`:
- *
- * `a = accumulateInto(a, b);`
- *
- * This API should be sparingly used. Try `accumulate` for something cleaner.
- *
- * @return {*|array<*>} An accumulation of items.
- */
-
-function accumulateInto(current, next) {
-  !(next != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : _prodInvariant('30') : void 0;
-
-  if (current == null) {
-    return next;
-  }
-
-  // Both are not empty. Warning: Never call x.concat(y) when you are not
-  // certain that x is an Array (x could be a string with concat method).
-  if (Array.isArray(current)) {
-    if (Array.isArray(next)) {
-      current.push.apply(current, next);
-      return current;
-    }
-    current.push(next);
-    return current;
-  }
-
-  if (Array.isArray(next)) {
-    // A bit too dangerous to mutate `next`.
-    return [current].concat(next);
-  }
-
-  return [current, next];
-}
-
-module.exports = accumulateInto;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-/**
- * @param {array} arr an "accumulation" of items which is either an Array or
- * a single item. Useful when paired with the `accumulate` module. This is a
- * simple utility that allows us to reason about a collection of items, but
- * handling the case when there is exactly one item (and we do not need to
- * allocate an array).
- */
-
-function forEachAccumulated(arr, cb, scope) {
-  if (Array.isArray(arr)) {
-    arr.forEach(cb, scope);
-  } else if (arr) {
-    cb.call(scope, arr);
-  }
-}
-
-module.exports = forEachAccumulated;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var shallowEqual = __webpack_require__(40);
-
-/**
- * Does a shallow comparison for props and state.
- * See ReactComponentWithPureRenderMixin
- * See also https://facebook.github.io/react/docs/shallow-compare.html
- */
-function shallowCompare(instance, nextProps, nextState) {
-  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
-}
-
-module.exports = shallowCompare;
-
-/***/ }),
-/* 24 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -4064,1688 +2545,83 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
-module.exports = __webpack_amd_options__;
-
-/* WEBPACK VAR INJECTION */}.call(exports, {}))
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = compose;
-/**
- * Composes single-argument functions from right to left. The rightmost
- * function can take multiple arguments as it provides the signature for
- * the resulting composite function.
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
  *
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
  */
 
-function compose() {
-  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
-    funcs[_key] = arguments[_key];
-  }
-
-  if (funcs.length === 0) {
-    return function (arg) {
-      return arg;
-    };
-  }
-
-  if (funcs.length === 1) {
-    return funcs[0];
-  }
-
-  var last = funcs[funcs.length - 1];
-  var rest = funcs.slice(0, -1);
-  return function () {
-    return rest.reduceRight(function (composed, f) {
-      return f(composed);
-    }, last.apply(undefined, arguments));
-  };
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
-/* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
 
 
+var emptyFunction = __webpack_require__(16);
 
 /**
- * These are private action types reserved by Redux.
- * For any unknown actions, you must return the current state.
- * If the current state is undefined, you must return the initial state.
- * Do not reference these action types directly in your code.
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
  */
-var ActionTypes = {
-  INIT: '@@redux/INIT'
-};
 
-/**
- * Creates a Redux store that holds the state tree.
- * The only way to change the data in the store is to call `dispatch()` on it.
- *
- * There should only be a single store in your app. To specify how different
- * parts of the state tree respond to actions, you may combine several reducers
- * into a single reducer function by using `combineReducers`.
- *
- * @param {Function} reducer A function that returns the next state tree, given
- * the current state tree and the action to handle.
- *
- * @param {any} [preloadedState] The initial state. You may optionally specify it
- * to hydrate the state from the server in universal apps, or to restore a
- * previously serialized user session.
- * If you use `combineReducers` to produce the root reducer function, this must be
- * an object with the same shape as `combineReducers` keys.
- *
- * @param {Function} enhancer The store enhancer. You may optionally specify it
- * to enhance the store with third-party capabilities such as middleware,
- * time travel, persistence, etc. The only store enhancer that ships with Redux
- * is `applyMiddleware()`.
- *
- * @returns {Store} A Redux store that lets you read the state, dispatch actions
- * and subscribe to changes.
- */
-function createStore(reducer, preloadedState, enhancer) {
-  var _ref2;
+var warning = emptyFunction;
 
-  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
-    enhancer = preloadedState;
-    preloadedState = undefined;
-  }
-
-  if (typeof enhancer !== 'undefined') {
-    if (typeof enhancer !== 'function') {
-      throw new Error('Expected the enhancer to be a function.');
-    }
-
-    return enhancer(createStore)(reducer, preloadedState);
-  }
-
-  if (typeof reducer !== 'function') {
-    throw new Error('Expected the reducer to be a function.');
-  }
-
-  var currentReducer = reducer;
-  var currentState = preloadedState;
-  var currentListeners = [];
-  var nextListeners = currentListeners;
-  var isDispatching = false;
-
-  function ensureCanMutateNextListeners() {
-    if (nextListeners === currentListeners) {
-      nextListeners = currentListeners.slice();
-    }
-  }
-
-  /**
-   * Reads the state tree managed by the store.
-   *
-   * @returns {any} The current state tree of your application.
-   */
-  function getState() {
-    return currentState;
-  }
-
-  /**
-   * Adds a change listener. It will be called any time an action is dispatched,
-   * and some part of the state tree may potentially have changed. You may then
-   * call `getState()` to read the current state tree inside the callback.
-   *
-   * You may call `dispatch()` from a change listener, with the following
-   * caveats:
-   *
-   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
-   * If you subscribe or unsubscribe while the listeners are being invoked, this
-   * will not have any effect on the `dispatch()` that is currently in progress.
-   * However, the next `dispatch()` call, whether nested or not, will use a more
-   * recent snapshot of the subscription list.
-   *
-   * 2. The listener should not expect to see all state changes, as the state
-   * might have been updated multiple times during a nested `dispatch()` before
-   * the listener is called. It is, however, guaranteed that all subscribers
-   * registered before the `dispatch()` started will be called with the latest
-   * state by the time it exits.
-   *
-   * @param {Function} listener A callback to be invoked on every dispatch.
-   * @returns {Function} A function to remove this change listener.
-   */
-  function subscribe(listener) {
-    if (typeof listener !== 'function') {
-      throw new Error('Expected listener to be a function.');
-    }
-
-    var isSubscribed = true;
-
-    ensureCanMutateNextListeners();
-    nextListeners.push(listener);
-
-    return function unsubscribe() {
-      if (!isSubscribed) {
-        return;
+if (process.env.NODE_ENV !== 'production') {
+  (function () {
+    var printWarning = function printWarning(format) {
+      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
       }
 
-      isSubscribed = false;
-
-      ensureCanMutateNextListeners();
-      var index = nextListeners.indexOf(listener);
-      nextListeners.splice(index, 1);
-    };
-  }
-
-  /**
-   * Dispatches an action. It is the only way to trigger a state change.
-   *
-   * The `reducer` function, used to create the store, will be called with the
-   * current state tree and the given `action`. Its return value will
-   * be considered the **next** state of the tree, and the change listeners
-   * will be notified.
-   *
-   * The base implementation only supports plain object actions. If you want to
-   * dispatch a Promise, an Observable, a thunk, or something else, you need to
-   * wrap your store creating function into the corresponding middleware. For
-   * example, see the documentation for the `redux-thunk` package. Even the
-   * middleware will eventually dispatch plain object actions using this method.
-   *
-   * @param {Object} action A plain object representing “what changed”. It is
-   * a good idea to keep actions serializable so you can record and replay user
-   * sessions, or use the time travelling `redux-devtools`. An action must have
-   * a `type` property which may not be `undefined`. It is a good idea to use
-   * string constants for action types.
-   *
-   * @returns {Object} For convenience, the same action object you dispatched.
-   *
-   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
-   * return something else (for example, a Promise you can await).
-   */
-  function dispatch(action) {
-    if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__["a" /* default */])(action)) {
-      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
-    }
-
-    if (typeof action.type === 'undefined') {
-      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
-    }
-
-    if (isDispatching) {
-      throw new Error('Reducers may not dispatch actions.');
-    }
-
-    try {
-      isDispatching = true;
-      currentState = currentReducer(currentState, action);
-    } finally {
-      isDispatching = false;
-    }
-
-    var listeners = currentListeners = nextListeners;
-    for (var i = 0; i < listeners.length; i++) {
-      listeners[i]();
-    }
-
-    return action;
-  }
-
-  /**
-   * Replaces the reducer currently used by the store to calculate the state.
-   *
-   * You might need this if your app implements code splitting and you want to
-   * load some of the reducers dynamically. You might also need this if you
-   * implement a hot reloading mechanism for Redux.
-   *
-   * @param {Function} nextReducer The reducer for the store to use instead.
-   * @returns {void}
-   */
-  function replaceReducer(nextReducer) {
-    if (typeof nextReducer !== 'function') {
-      throw new Error('Expected the nextReducer to be a function.');
-    }
-
-    currentReducer = nextReducer;
-    dispatch({ type: ActionTypes.INIT });
-  }
-
-  /**
-   * Interoperability point for observable/reactive libraries.
-   * @returns {observable} A minimal observable of state changes.
-   * For more information, see the observable proposal:
-   * https://github.com/zenparsing/es-observable
-   */
-  function observable() {
-    var _ref;
-
-    var outerSubscribe = subscribe;
-    return _ref = {
-      /**
-       * The minimal observable subscription method.
-       * @param {Object} observer Any object that can be used as an observer.
-       * The observer object should have a `next` method.
-       * @returns {subscription} An object with an `unsubscribe` method that can
-       * be used to unsubscribe the observable from the store, and prevent further
-       * emission of values from the observable.
-       */
-      subscribe: function subscribe(observer) {
-        if (typeof observer !== 'object') {
-          throw new TypeError('Expected the observer to be an object.');
-        }
-
-        function observeState() {
-          if (observer.next) {
-            observer.next(getState());
-          }
-        }
-
-        observeState();
-        var unsubscribe = outerSubscribe(observeState);
-        return { unsubscribe: unsubscribe };
+      var argIndex = 0;
+      var message = 'Warning: ' + format.replace(/%s/g, function () {
+        return args[argIndex++];
+      });
+      if (typeof console !== 'undefined') {
+        console.error(message);
       }
-    }, _ref[__WEBPACK_IMPORTED_MODULE_1_symbol_observable___default.a] = function () {
-      return this;
-    }, _ref;
-  }
-
-  // When a store is created, an "INIT" action is dispatched so that every
-  // reducer returns their initial state. This effectively populates
-  // the initial state tree.
-  dispatch({ type: ActionTypes.INIT });
-
-  return _ref2 = {
-    dispatch: dispatch,
-    subscribe: subscribe,
-    getState: getState,
-    replaceReducer: replaceReducer
-  }, _ref2[__WEBPACK_IMPORTED_MODULE_1_symbol_observable___default.a] = observable, _ref2;
-}
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(30);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "applyMiddleware", function() { return __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "compose", function() { return __WEBPACK_IMPORTED_MODULE_4__compose__["a"]; });
-
-
-
-
-
-
-
-/*
-* This is a dummy function to check if the function name has been altered by minification.
-* If the function has been minified and NODE_ENV !== 'production', warn the user.
-*/
-function isCrushed() {}
-
-if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
-  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_warning__["a" /* default */])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
-}
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = warning;
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */
-function warning(message) {
-  /* eslint-disable no-console */
-  if (typeof console !== 'undefined' && typeof console.error === 'function') {
-    console.error(message);
-  }
-  /* eslint-enable no-console */
-  try {
-    // This error was thrown as a convenience so that if you enable
-    // "break on all exceptions" in your console,
-    // it would pause the execution at this line.
-    throw new Error(message);
-    /* eslint-disable no-empty */
-  } catch (e) {}
-  /* eslint-enable no-empty */
-}
-
-/***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(92);
-
-
-/** Built-in value references. */
-var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
-
-/* harmony default export */ __webpack_exports__["a"] = (Symbol);
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(35);
-/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-
-
-
-
-
-
-
-var hotReloadingVersion = 0;
-var dummyState = {};
-function noop() {}
-function makeSelectorStateful(sourceSelector, store) {
-  // wrap the selector in an object that tracks its results between runs.
-  var selector = {
-    run: function runComponentSelector(props) {
       try {
-        var nextProps = sourceSelector(store.getState(), props);
-        if (nextProps !== selector.props || selector.error) {
-          selector.shouldComponentUpdate = true;
-          selector.props = nextProps;
-          selector.error = null;
-        }
-      } catch (error) {
-        selector.shouldComponentUpdate = true;
-        selector.error = error;
-      }
-    }
-  };
-
-  return selector;
-}
-
-function connectAdvanced(
-/*
-  selectorFactory is a func that is responsible for returning the selector function used to
-  compute new props from state, props, and dispatch. For example:
-     export default connectAdvanced((dispatch, options) => (state, props) => ({
-      thing: state.things[props.thingId],
-      saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
-    }))(YourComponent)
-   Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
-  outside of their selector as an optimization. Options passed to connectAdvanced are passed to
-  the selectorFactory, along with displayName and WrappedComponent, as the second argument.
-   Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
-  props. Do not use connectAdvanced directly without memoizing results between calls to your
-  selector, otherwise the Connect component will re-render on every state or props change.
-*/
-selectorFactory) {
-  var _contextTypes, _childContextTypes;
-
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      _ref$getDisplayName = _ref.getDisplayName,
-      getDisplayName = _ref$getDisplayName === undefined ? function (name) {
-    return 'ConnectAdvanced(' + name + ')';
-  } : _ref$getDisplayName,
-      _ref$methodName = _ref.methodName,
-      methodName = _ref$methodName === undefined ? 'connectAdvanced' : _ref$methodName,
-      _ref$renderCountProp = _ref.renderCountProp,
-      renderCountProp = _ref$renderCountProp === undefined ? undefined : _ref$renderCountProp,
-      _ref$shouldHandleStat = _ref.shouldHandleStateChanges,
-      shouldHandleStateChanges = _ref$shouldHandleStat === undefined ? true : _ref$shouldHandleStat,
-      _ref$storeKey = _ref.storeKey,
-      storeKey = _ref$storeKey === undefined ? 'store' : _ref$storeKey,
-      _ref$withRef = _ref.withRef,
-      withRef = _ref$withRef === undefined ? false : _ref$withRef,
-      connectOptions = _objectWithoutProperties(_ref, ['getDisplayName', 'methodName', 'renderCountProp', 'shouldHandleStateChanges', 'storeKey', 'withRef']);
-
-  var subscriptionKey = storeKey + 'Subscription';
-  var version = hotReloadingVersion++;
-
-  var contextTypes = (_contextTypes = {}, _contextTypes[storeKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["a" /* storeShape */], _contextTypes[subscriptionKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["b" /* subscriptionShape */], _contextTypes);
-  var childContextTypes = (_childContextTypes = {}, _childContextTypes[subscriptionKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["b" /* subscriptionShape */], _childContextTypes);
-
-  return function wrapWithConnect(WrappedComponent) {
-    __WEBPACK_IMPORTED_MODULE_1_invariant___default()(typeof WrappedComponent == 'function', 'You must pass a component to the function returned by ' + ('connect. Instead received ' + JSON.stringify(WrappedComponent)));
-
-    var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
-
-    var displayName = getDisplayName(wrappedComponentName);
-
-    var selectorFactoryOptions = _extends({}, connectOptions, {
-      getDisplayName: getDisplayName,
-      methodName: methodName,
-      renderCountProp: renderCountProp,
-      shouldHandleStateChanges: shouldHandleStateChanges,
-      storeKey: storeKey,
-      withRef: withRef,
-      displayName: displayName,
-      wrappedComponentName: wrappedComponentName,
-      WrappedComponent: WrappedComponent
-    });
-
-    var Connect = function (_Component) {
-      _inherits(Connect, _Component);
-
-      function Connect(props, context) {
-        _classCallCheck(this, Connect);
-
-        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
-
-        _this.version = version;
-        _this.state = {};
-        _this.renderCount = 0;
-        _this.store = props[storeKey] || context[storeKey];
-        _this.propsMode = Boolean(props[storeKey]);
-        _this.setWrappedInstance = _this.setWrappedInstance.bind(_this);
-
-        __WEBPACK_IMPORTED_MODULE_1_invariant___default()(_this.store, 'Could not find "' + storeKey + '" in either the context or props of ' + ('"' + displayName + '". Either wrap the root component in a <Provider>, ') + ('or explicitly pass "' + storeKey + '" as a prop to "' + displayName + '".'));
-
-        _this.initSelector();
-        _this.initSubscription();
-        return _this;
-      }
-
-      Connect.prototype.getChildContext = function getChildContext() {
-        var _ref2;
-
-        // If this component received store from props, its subscription should be transparent
-        // to any descendants receiving store+subscription from context; it passes along
-        // subscription passed to it. Otherwise, it shadows the parent subscription, which allows
-        // Connect to control ordering of notifications to flow top-down.
-        var subscription = this.propsMode ? null : this.subscription;
-        return _ref2 = {}, _ref2[subscriptionKey] = subscription || this.context[subscriptionKey], _ref2;
-      };
-
-      Connect.prototype.componentDidMount = function componentDidMount() {
-        if (!shouldHandleStateChanges) return;
-
-        // componentWillMount fires during server side rendering, but componentDidMount and
-        // componentWillUnmount do not. Because of this, trySubscribe happens during ...didMount.
-        // Otherwise, unsubscription would never take place during SSR, causing a memory leak.
-        // To handle the case where a child component may have triggered a state change by
-        // dispatching an action in its componentWillMount, we have to re-run the select and maybe
-        // re-render.
-        this.subscription.trySubscribe();
-        this.selector.run(this.props);
-        if (this.selector.shouldComponentUpdate) this.forceUpdate();
-      };
-
-      Connect.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-        this.selector.run(nextProps);
-      };
-
-      Connect.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
-        return this.selector.shouldComponentUpdate;
-      };
-
-      Connect.prototype.componentWillUnmount = function componentWillUnmount() {
-        if (this.subscription) this.subscription.tryUnsubscribe();
-        this.subscription = null;
-        this.notifyNestedSubs = noop;
-        this.store = null;
-        this.selector.run = noop;
-        this.selector.shouldComponentUpdate = false;
-      };
-
-      Connect.prototype.getWrappedInstance = function getWrappedInstance() {
-        __WEBPACK_IMPORTED_MODULE_1_invariant___default()(withRef, 'To access the wrapped instance, you need to specify ' + ('{ withRef: true } in the options argument of the ' + methodName + '() call.'));
-        return this.wrappedInstance;
-      };
-
-      Connect.prototype.setWrappedInstance = function setWrappedInstance(ref) {
-        this.wrappedInstance = ref;
-      };
-
-      Connect.prototype.initSelector = function initSelector() {
-        var sourceSelector = selectorFactory(this.store.dispatch, selectorFactoryOptions);
-        this.selector = makeSelectorStateful(sourceSelector, this.store);
-        this.selector.run(this.props);
-      };
-
-      Connect.prototype.initSubscription = function initSubscription() {
-        if (!shouldHandleStateChanges) return;
-
-        // parentSub's source should match where store came from: props vs. context. A component
-        // connected to the store via props shouldn't use subscription from context, or vice versa.
-        var parentSub = (this.propsMode ? this.props : this.context)[subscriptionKey];
-        this.subscription = new __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__["a" /* default */](this.store, parentSub, this.onStateChange.bind(this));
-
-        // `notifyNestedSubs` is duplicated to handle the case where the component is  unmounted in
-        // the middle of the notification loop, where `this.subscription` will then be null. An
-        // extra null check every change can be avoided by copying the method onto `this` and then
-        // replacing it with a no-op on unmount. This can probably be avoided if Subscription's
-        // listeners logic is changed to not call listeners that have been unsubscribed in the
-        // middle of the notification loop.
-        this.notifyNestedSubs = this.subscription.notifyNestedSubs.bind(this.subscription);
-      };
-
-      Connect.prototype.onStateChange = function onStateChange() {
-        this.selector.run(this.props);
-
-        if (!this.selector.shouldComponentUpdate) {
-          this.notifyNestedSubs();
-        } else {
-          this.componentDidUpdate = this.notifyNestedSubsOnComponentDidUpdate;
-          this.setState(dummyState);
-        }
-      };
-
-      Connect.prototype.notifyNestedSubsOnComponentDidUpdate = function notifyNestedSubsOnComponentDidUpdate() {
-        // `componentDidUpdate` is conditionally implemented when `onStateChange` determines it
-        // needs to notify nested subs. Once called, it unimplements itself until further state
-        // changes occur. Doing it this way vs having a permanent `componentDidMount` that does
-        // a boolean check every time avoids an extra method call most of the time, resulting
-        // in some perf boost.
-        this.componentDidUpdate = undefined;
-        this.notifyNestedSubs();
-      };
-
-      Connect.prototype.isSubscribed = function isSubscribed() {
-        return Boolean(this.subscription) && this.subscription.isSubscribed();
-      };
-
-      Connect.prototype.addExtraProps = function addExtraProps(props) {
-        if (!withRef && !renderCountProp && !(this.propsMode && this.subscription)) return props;
-        // make a shallow copy so that fields added don't leak to the original selector.
-        // this is especially important for 'ref' since that's a reference back to the component
-        // instance. a singleton memoized selector would then be holding a reference to the
-        // instance, preventing the instance from being garbage collected, and that would be bad
-        var withExtras = _extends({}, props);
-        if (withRef) withExtras.ref = this.setWrappedInstance;
-        if (renderCountProp) withExtras[renderCountProp] = this.renderCount++;
-        if (this.propsMode && this.subscription) withExtras[subscriptionKey] = this.subscription;
-        return withExtras;
-      };
-
-      Connect.prototype.render = function render() {
-        var selector = this.selector;
-        selector.shouldComponentUpdate = false;
-
-        if (selector.error) {
-          throw selector.error;
-        } else {
-          return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_react__["createElement"])(WrappedComponent, this.addExtraProps(selector.props));
-        }
-      };
-
-      return Connect;
-    }(__WEBPACK_IMPORTED_MODULE_2_react__["Component"]);
-
-    Connect.WrappedComponent = WrappedComponent;
-    Connect.displayName = displayName;
-    Connect.childContextTypes = childContextTypes;
-    Connect.contextTypes = contextTypes;
-    Connect.propTypes = contextTypes;
-
-    if (process.env.NODE_ENV !== 'production') {
-      Connect.prototype.componentWillUpdate = function componentWillUpdate() {
-        // We are hot reloading!
-        if (this.version !== version) {
-          this.version = version;
-          this.initSelector();
-
-          if (this.subscription) this.subscription.tryUnsubscribe();
-          this.initSubscription();
-          if (shouldHandleStateChanges) this.subscription.trySubscribe();
-        }
-      };
-    }
-
-    return __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default()(Connect, WrappedComponent);
-  };
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 33 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(36);
-/* harmony export (immutable) */ __webpack_exports__["b"] = wrapMapToPropsConstant;
-/* unused harmony export getDependsOnOwnProps */
-/* harmony export (immutable) */ __webpack_exports__["a"] = wrapMapToPropsFunc;
-
-
-function wrapMapToPropsConstant(getConstant) {
-  return function initConstantSelector(dispatch, options) {
-    var constant = getConstant(dispatch, options);
-
-    function constantSelector() {
-      return constant;
-    }
-    constantSelector.dependsOnOwnProps = false;
-    return constantSelector;
-  };
-}
-
-// dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
-// to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
-// whether mapToProps needs to be invoked when props have changed.
-// 
-// A length of one signals that mapToProps does not depend on props from the parent component.
-// A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
-// therefore not reporting its length accurately..
-function getDependsOnOwnProps(mapToProps) {
-  return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
-}
-
-// Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
-// this function wraps mapToProps in a proxy function which does several things:
-// 
-//  * Detects whether the mapToProps function being called depends on props, which
-//    is used by selectorFactory to decide if it should reinvoke on props changes.
-//    
-//  * On first call, handles mapToProps if returns another function, and treats that
-//    new function as the true mapToProps for subsequent calls.
-//    
-//  * On first call, verifies the first result is a plain object, in order to warn
-//    the developer that their mapToProps function is not returning a valid result.
-//    
-function wrapMapToPropsFunc(mapToProps, methodName) {
-  return function initProxySelector(dispatch, _ref) {
-    var displayName = _ref.displayName;
-
-    var proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
-      return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch);
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch (x) {}
     };
 
-    // allow detectFactoryAndVerify to get ownProps
-    proxy.dependsOnOwnProps = true;
-
-    proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
-      proxy.mapToProps = mapToProps;
-      proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
-      var props = proxy(stateOrDispatch, ownProps);
-
-      if (typeof props === 'function') {
-        proxy.mapToProps = props;
-        proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
-        props = proxy(stateOrDispatch, ownProps);
+    warning = function warning(condition, format) {
+      if (format === undefined) {
+        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
       }
 
-      if (process.env.NODE_ENV !== 'production') __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__["a" /* default */])(props, displayName, methodName);
+      if (format.indexOf('Failed Composite propType: ') === 0) {
+        return; // Ignore CompositeComponent proptype check.
+      }
 
-      return props;
+      if (!condition) {
+        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+          args[_key2 - 2] = arguments[_key2];
+        }
+
+        printWarning.apply(undefined, [format].concat(args));
+      }
     };
-
-    return proxy;
-  };
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(95);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
-
-
-
-
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscriptionShape; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return storeShape; });
-
-
-var subscriptionShape = __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].shape({
-  trySubscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
-  tryUnsubscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
-  notifyNestedSubs: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
-  isSubscribed: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired
-});
-
-var storeShape = __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].shape({
-  subscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
-  dispatch: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
-  getState: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired
-});
-
-/***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(12);
-/* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-
-
-
-function verifyPlainObject(value, displayName, methodName) {
-  if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__["a" /* default */])(value)) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__warning__["a" /* default */])(methodName + '() in ' + displayName + ' must return a plain object. Instead received ' + value + '.');
-  }
+  })();
 }
 
+module.exports = warning;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
 /***/ }),
-/* 37 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(4);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouter = __webpack_require__(2);
-
-var _store = __webpack_require__(18);
-
-var _reactRedux = __webpack_require__(34);
-
-var _Home = __webpack_require__(54);
-
-var _Home2 = _interopRequireDefault(_Home);
-
-var _Room = __webpack_require__(15);
-
-var _Room2 = _interopRequireDefault(_Room);
-
-var _FullRoom = __webpack_require__(14);
-
-var _FullRoom2 = _interopRequireDefault(_FullRoom);
-
-var _Shop = __webpack_require__(57);
-
-var _Shop2 = _interopRequireDefault(_Shop);
-
-var _User = __webpack_require__(16);
-
-var _User2 = _interopRequireDefault(_User);
-
-var _User_orderList = __webpack_require__(17);
-
-var _User_orderList2 = _interopRequireDefault(_User_orderList);
-
-var _HomeDetail = __webpack_require__(55);
-
-var _HomeDetail2 = _interopRequireDefault(_HomeDetail);
-
-var _Footer = __webpack_require__(53);
-
-var _Footer2 = _interopRequireDefault(_Footer);
-
-var _login = __webpack_require__(5);
-
-var _login2 = _interopRequireDefault(_login);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //引入router
-
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
-
-  function App() {
-    _classCallCheck(this, App);
-
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { id: 'main_container' },
-        _react2.default.createElement(
-          'section',
-          { id: 'header_and_content' },
-          this.props.children
-        ),
-        _react2.default.createElement(_Footer2.default, null)
-      );
-    }
-  }]);
-
-  return App;
-}(_react2.default.Component);
-
-{/* Provider组件接受redux的store作为props 通过context往下传 */}
-_reactDom2.default.render(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: _store.store },
-  _react2.default.createElement(
-    _reactRouter.Router,
-    { history: _reactRouter.hashHistory },
-    _react2.default.createElement(
-      _reactRouter.Route,
-      { path: '/', component: App },
-      _react2.default.createElement(_reactRouter.IndexRedirect, { to: 'home/room' }),
-      _react2.default.createElement(_reactRouter.Redirect, { from: 'home', to: 'home/room' }),
-      _react2.default.createElement(
-        _reactRouter.Route,
-        { path: 'home', component: _Home2.default },
-        _react2.default.createElement(_reactRouter.Route, { path: 'room', titleName: '\u623F\u95F4', component: _Room2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'fullroom', titleName: '\u5168\u5C4B', component: _FullRoom2.default })
-      ),
-      _react2.default.createElement(_reactRouter.Route, { path: 'shop', component: _Shop2.default }),
-      _react2.default.createElement(
-        _reactRouter.Route,
-        { path: 'user', component: _User2.default },
-        _react2.default.createElement(_reactRouter.Route, { path: 'user_orderlist', component: _User_orderList2.default })
-      ),
-      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _login2.default })
-    ),
-    _react2.default.createElement(_reactRouter.Route, { path: 'homedetail/:homegoodid', component: _HomeDetail2.default })
-  )
-), document.getElementById('root'));
-
-// class Index extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       name: []
-//     }
-//   }
-//
-//   render() {
-//     return (
-//       <div>{ this.state.name }</div>
-//     )
-//   }
-//
-//   componentDidMount() {
-//     fetch('/api/list.php')
-//     .then(response=>response.json())
-//     // function(response) {
-//     //   return response.json()
-//     // }
-//     .then(res=>{
-//       // console.log(res);
-//       this.setState({
-//         name: <div>{res.xixixi}</div>
-//       })
-//     })
-//   }
-// }
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-/**
- * Allows extraction of a minified key. Let's the build system minify keys
- * without losing the ability to dynamically use key strings as values
- * themselves. Pass in an object with a single key/val pair and it will return
- * you the string key of that single record. Suppose you want to grab the
- * value for a key 'className' inside of an object. Key/val minification may
- * have aliased that key to be 'xa12'. keyOf({className: null}) will return
- * 'xa12' in that case. Resolve keys you want to use once at startup time, then
- * reuse those resolutions.
- */
-var keyOf = function keyOf(oneKeyObj) {
-  var key;
-  for (key in oneKeyObj) {
-    if (!oneKeyObj.hasOwnProperty(key)) {
-      continue;
-    }
-    return key;
-  }
-  return null;
-};
-
-module.exports = keyOf;
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @typechecks
- * 
- */
-
-/*eslint-disable no-self-compare */
-
-
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-/**
- * inlined Object.is polyfill to avoid requiring consumers ship their own
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
- */
-function is(x, y) {
-  // SameValue algorithm
-  if (x === y) {
-    // Steps 1-5, 7-10
-    // Steps 6.b-6.e: +0 != -0
-    // Added the nonzero y check to make Flow happy, but it is redundant
-    return x !== 0 || y !== 0 || 1 / x === 1 / y;
-  } else {
-    // Step 6.a: NaN == NaN
-    return x !== x && y !== y;
-  }
-}
-
-/**
- * Performs equality by iterating through keys on an object and returning false
- * when any key has values which are not strictly equal between the arguments.
- * Returns true when the values of all keys are strictly equal.
- */
-function shallowEqual(objA, objB) {
-  if (is(objA, objB)) {
-    return true;
-  }
-
-  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
-    return false;
-  }
-
-  var keysA = Object.keys(objA);
-  var keysB = Object.keys(objB);
-
-  if (keysA.length !== keysB.length) {
-    return false;
-  }
-
-  // Test for A's keys different from B.
-  for (var i = 0; i < keysA.length; i++) {
-    if (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-module.exports = shallowEqual;
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(42);
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _ponyfill = __webpack_require__(43);
-
-var _ponyfill2 = _interopRequireDefault(_ponyfill);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var root; /* global window */
-
-
-if (typeof self !== 'undefined') {
-  root = self;
-} else if (typeof window !== 'undefined') {
-  root = window;
-} else if (typeof global !== 'undefined') {
-  root = global;
-} else if (true) {
-  root = module;
-} else {
-  root = Function('return this')();
-}
-
-var result = (0, _ponyfill2['default'])(root);
-exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26), __webpack_require__(81)(module)))
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports['default'] = symbolObservablePonyfill;
-function symbolObservablePonyfill(root) {
-	var result;
-	var _Symbol = root.Symbol;
-
-	if (typeof _Symbol === 'function') {
-		if (_Symbol.observable) {
-			result = _Symbol.observable;
-		} else {
-			result = _Symbol('observable');
-			_Symbol.observable = result;
-		}
-	} else {
-		result = '@@observable';
-	}
-
-	return result;
-};
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2015, Yahoo! Inc.
- * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
- */
-
-
-var REACT_STATICS = {
-    childContextTypes: true,
-    contextTypes: true,
-    defaultProps: true,
-    displayName: true,
-    getDefaultProps: true,
-    mixins: true,
-    propTypes: true,
-    type: true
-};
-
-var KNOWN_STATICS = {
-    name: true,
-    length: true,
-    prototype: true,
-    caller: true,
-    arguments: true,
-    arity: true
-};
-
-var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
-
-module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
-    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
-        var keys = Object.getOwnPropertyNames(sourceComponent);
-
-        /* istanbul ignore else */
-        if (isGetOwnPropertySymbolsAvailable) {
-            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
-        }
-
-        for (var i = 0; i < keys.length; ++i) {
-            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
-                try {
-                    targetComponent[keys[i]] = sourceComponent[keys[i]];
-                } catch (error) {
-
-                }
-            }
-        }
-    }
-
-    return targetComponent;
-};
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-exports.default = function () {
-    var ALLOWANCEAngle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0.57;
-    var ALLOWANCEDistance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 30;
-    return {
-        handleData: function handleData(_ref, children) {
-            var loop = _ref.loop,
-                pageNow = _ref.pageNow;
-
-            var newChildren = _react2.default.Children.toArray(children);
-            if (loop) {
-                var len = children.length;
-                var lastfakeDomStyle = {
-                    key: 0
-                };
-                var firstFakeDomStyle = {
-                    key: -1
-                };
-                if (children[0].type === 'li') {
-                    lastfakeDomStyle.className = children[len - 1].props.className ? children[len - 1].props.className + ' extra-item' : 'extra-item';
-                } else {
-                    lastfakeDomStyle.index = len;
-                    lastfakeDomStyle.extraClass = children[len - 1].props.extraClass ? children[len - 1].props.extraClass + ' extra-item' : 'extra-item';
-                    firstFakeDomStyle.index = 1;
-                }
-                var header = _react2.default.cloneElement(children[len - 1], lastfakeDomStyle);
-                var footer = _react2.default.cloneElement(children[0], firstFakeDomStyle);
-                newChildren.unshift(header);
-                newChildren.push(footer);
-            }
-            return newChildren;
-        },
-        touchstart: function touchstart() {},
-        touchmove: function touchmove(_ref2) {
-            var touchstartLocation = _ref2.touchstartLocation,
-                touchmoveLocation = _ref2.touchmoveLocation,
-                pageNow = _ref2.pageNow,
-                containerDOM = _ref2.containerDOM,
-                width = _ref2.width;
-
-            var translateX = (pageNow - 1) * width + touchstartLocation[0] - touchmoveLocation[0];
-            this._addCss({
-                dom: containerDOM,
-                speed: 0,
-                translateX: -translateX,
-                reset: true,
-                width: width
-            });
-        },
-        touchend: function touchend(aniObj) {
-            var touchstartLocation = aniObj.touchstartLocation,
-                touchendLocation = aniObj.touchendLocation,
-                pageNow = aniObj.pageNow;
-
-            var distanceX = touchendLocation[0] - touchstartLocation[0];
-            var distanceY = touchendLocation[1] - touchstartLocation[1];
-            var tan = Math.abs(distanceX) / Math.abs(distanceY);
-            var newpageNow = pageNow;
-            if (Math.abs(distanceX) > ALLOWANCEDistance && tan > ALLOWANCEAngle) {
-                newpageNow = distanceX > 0 ? pageNow - 1 : pageNow + 1;
-            } else {
-                newpageNow = pageNow;
-            }
-            return this.checkAni(aniObj, newpageNow);
-        },
-        checkAni: function checkAni(aniObj, pageNow) {
-            var _this = this;
-
-            var pagesNum = aniObj.pagesNum,
-                speed = aniObj.speed,
-                containerDOM = aniObj.containerDOM,
-                loop = aniObj.loop,
-                aniSpeed = aniObj.aniSpeed,
-                width = aniObj.width;
-
-            if (this.moving) window.clearInterval(this.moving);
-            var translateX = width * (1 - pageNow);
-            var newpageNow = pageNow;
-            if (pageNow < 1 || pageNow > pagesNum) {
-                if (loop) {
-                    // console.log(`checkAni 延迟处理${pageNow}`);
-                    this.moving = window.setTimeout(function () {
-                        var translate = 0;
-                        if (pageNow === 0) {
-                            translate = width * (1 - pagesNum);
-                        }
-                        _this._addCss({
-                            dom: containerDOM,
-                            reset: true,
-                            translateX: translate,
-                            width: width
-                        });
-                        _this.moving = null;
-                    }, (speed + aniSpeed) * 1000);
-                    newpageNow = pageNow === 0 ? pagesNum : 1;
-                } else {
-                    newpageNow = pageNow < 1 ? 1 : pagesNum;
-                    translateX = width * (1 - newpageNow);
-                }
-            }
-            this._addCss({
-                dom: containerDOM,
-                reset: false,
-                speed: speed,
-                translateX: translateX,
-                width: width
-            });
-            return newpageNow;
-        },
-        next: function next(aniObj) {
-            var pageNow = aniObj.pageNow;
-
-            var pageNext = pageNow + 1;
-            return this.checkAni(aniObj, pageNext);
-        },
-        prev: function prev(aniObj) {
-            var pageNow = aniObj.pageNow,
-                containerDOM = aniObj.containerDOM,
-                speed = aniObj.speed,
-                width = aniObj.width;
-
-            var pageNext = pageNow - 1;
-            var translateX = width * (1 - pageNext);
-            this._addCss({
-                dom: containerDOM,
-                speed: speed,
-                translateX: translateX
-            });
-            return this.checkAni(aniObj, pageNext);
-        },
-        arrive: function arrive(aniObj, num, isAni) {
-            if (num >= 1 && num <= aniObj.pagesNum) {
-                var translateX = (1 - num) * aniObj.width;
-                this._addCss({
-                    dom: aniObj.containerDOM,
-                    speed: 0.1,
-                    translateX: translateX,
-                    reset: !isAni,
-                    width: aniObj.width
-                });
-            } else {
-                console.log('\u4F20\u5165carousel\u7EC4\u5EFA\u7684arrive\u65B9\u6CD5\u7684\u9875\u9762\u4E3A' + num + ',\u8BE5\u503C\u4E0D\u5408\u6CD5');
-            }
-            return num;
-        },
-        _addCss: function _addCss(_ref3) {
-            var dom = _ref3.dom,
-                _ref3$translateX = _ref3.translateX,
-                translateX = _ref3$translateX === undefined ? 0 : _ref3$translateX,
-                reset = _ref3.reset,
-                ani = _objectWithoutProperties(_ref3, ['dom', 'translateX', 'reset']);
-
-            // 此处为Dom操作
-            if (reset) {
-                dom.style.webkitTransition = 'none';
-                dom.style.transition = 'none';
-            } else {
-                dom.style.webkitTransition = '';
-                dom.style.transition = '';
-            }
-            dom.style.webkitTransform = 'translate(' + translateX + 'px, 0) translateZ(0)';
-            dom.style.transform = 'translate(' + translateX + 'px, 0) translateZ(0)';
-        }
-    };
-};
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "aniScrollx.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(78);
-
-__webpack_require__(49);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__(24);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _reactAddonsShallowCompare = __webpack_require__(64);
-
-var _reactAddonsShallowCompare2 = _interopRequireDefault(_reactAddonsShallowCompare);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component Carousel.CarouselItem
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description Carousel组件内部的Item组件，和普通的dom节点相比增加了懒加载图片功能。也可以使用`onTap`给Item绑定tap事件回调。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 你可以通过Carousel.CarouselItem来使用这个组件，或者引用`yo3/component/carousel/src/carouselItem`的js模块来使用。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * ** 注意：`CarouselItem`不能和`Touchable`一起使用，请使用它的`onTap`属性来绑定事件回调。 **
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-
-var ALLOWANCE = 1;
-var LOADED = 1;
-var UNLOAD = 0;
-var FAIL = 2;
-
-var CarouselItem = function (_Component) {
-    _inherits(CarouselItem, _Component);
-
-    function CarouselItem(props) {
-        _classCallCheck(this, CarouselItem);
-
-        var _this = _possibleConstructorReturn(this, (CarouselItem.__proto__ || Object.getPrototypeOf(CarouselItem)).call(this, props));
-
-        if (props.img) {
-            _this.state = {
-                img: 0
-            };
-        }
-        _this.handleTap = _this.handleTap.bind(_this);
-        _this.hasUnmount = false;
-        return _this;
-    }
-
-    _createClass(CarouselItem, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            this.lazyload(this.props);
-        }
-    }, {
-        key: 'shouldComponentUpdate',
-        value: function shouldComponentUpdate(nextProps, nextState, nextContext) {
-            var propsChange = (0, _reactAddonsShallowCompare2.default)(this, nextProps, nextState);
-            var contextChange = this.context.currentPage !== nextContext.currentPage || this.context.pagesNum !== nextContext.pagesNum;
-            return propsChange || contextChange;
-        }
-    }, {
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextProps, nextState, nextContext) {
-            this.lazyload(nextContext.currentPage);
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            this.hasUnmount = true;
-        }
-    }, {
-        key: 'handleTap',
-        value: function handleTap(e) {
-            this.props.onTap(e);
-        }
-    }, {
-        key: 'loadImg',
-        value: function loadImg() {
-            var _this2 = this;
-
-            if (!this.props.img) {
-                return;
-            }
-            this.imgNode = new Image();
-            this.imgNode.onload = function () {
-                var imgState = void 0;
-                imgState = 1;
-                if (_this2.props.checkImgFun && !_this2.props.checkImgFun(_this2.imgNode)) {
-                    imgState = 2;
-                }
-                if (!_this2.hasUnmount) {
-                    _this2.setState({
-                        img: imgState
-                    });
-                }
-            };
-            this.imgNode.onerror = function () {
-                if (!_this2.hasUnmount) {
-                    _this2.setState({
-                        img: 2
-                    });
-                }
-            };
-            this.imgNode.src = this.props.img;
-        }
-    }, {
-        key: 'lazyload',
-        value: function lazyload(currentPage) {
-            if (this.state.img) {
-                return;
-            }
-            if (!this.props.lazyload) {
-                this.loadImg();
-            } else {
-                if (Math.abs(currentPage - this.props.index) <= ALLOWANCE || this.props.index === 1 || this.props.index === this.context.pagesNum) {
-                    this.loadImg();
-                }
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var img = null;
-            var classList = void 0;
-            var activeClass = {};
-            if (this.props.img) {
-                switch (this.state.img) {
-                    case LOADED:
-                        img = _react2.default.createElement('img', { alt: '', src: this.props.img, className: 'img', draggable: 'false' });
-                        break;
-                    case FAIL:
-                        img = _react2.default.createElement('img', { alt: '', src: this.props.errorImg, className: 'img', draggable: 'false' });
-                        break;
-                    case UNLOAD:
-                    default:
-                        img = this.props.loadingEle;
-                        break;
-                }
-            }
-            activeClass[this.props.activeClass] = this.context.currentPage === this.props.index;
-            if (this.props.extraClass) {
-                activeClass[this.props.extraClass] = true;
-            }
-            classList = (0, _classnames2.default)('item', activeClass);
-            return _react2.default.createElement(
-                'li',
-                { className: classList, style: this.props.style, onTouchTap: this.handleTap },
-                img
-            );
-        }
-    }]);
-
-    return CarouselItem;
-}(_react.Component);
-
-CarouselItem.propTypes = {
-    /**
-     * @type String
-     * @property img
-     * @description 图片地址。
-     */
-    img: _react.PropTypes.string,
-    /**
-     * @type String
-     * @property errorImg
-     * @description 图片加载失败时的替换图片。
-     */
-    errorImg: _react.PropTypes.string,
-    /**
-     * @type Function
-     * @property checkImgFun
-     * @description 目标图片onload时触发进行判断的函数。
-     * @param 图片实例
-     */
-    checkImgFun: _react.PropTypes.func,
-    /**
-     * @type Function
-     * @property onTap
-     * @param {e} 事件对象，传入组件数据
-     * @description item点击事件处理函数。
-     */
-    onTap: _react.PropTypes.func,
-    /**
-     * @property extraClass
-     * @type String
-     * @description 为组件根节点提供额外的class。
-     */
-    extraClass: _react.PropTypes.string,
-    /**
-     * @type Element
-     * @property loadingEle
-     * @description 图片加载时的loading Element。
-     */
-    loadingEle: _react.PropTypes.element,
-    /**
-     * @type Bool
-     * @property lazyload
-     * @description 是否需要图片懒加载。默认值为true,当前图片的前后两个节点图片被加载。
-     */
-    lazyload: _react.PropTypes.bool,
-    /**
-     * item是当前展示item的样式名
-     * @type String
-     * @property activeClass
-     * @description item是当前展示item的样式名，默认值为'on'。
-     */
-    activeClass: _react.PropTypes.string,
-    index: _react.PropTypes.number,
-    style: _react.PropTypes.object
-};
-CarouselItem.defaultProps = {
-    errorImg: '//s.qunarzz.com/mobile_search_touch/intention-search-h5/loading.gif',
-    loadingEle: null,
-    lazyload: true,
-    activeClass: 'on',
-    onTap: function onTap() {}
-};
-CarouselItem.contextTypes = {
-    currentPage: _react2.default.PropTypes.number.isRequired,
-    pagesNum: _react2.default.PropTypes.number.isRequired
-};
-exports.default = CarouselItem;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "carouselItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -5759,15 +2635,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _aniScrollx = __webpack_require__(45);
+var _aniScrollx = __webpack_require__(50);
 
 var _aniScrollx2 = _interopRequireDefault(_aniScrollx);
 
-var _reactAddonsPureRenderMixin = __webpack_require__(63);
+var _reactAddonsPureRenderMixin = __webpack_require__(81);
 
 var _reactAddonsPureRenderMixin2 = _interopRequireDefault(_reactAddonsPureRenderMixin);
 
-var _carouselItem = __webpack_require__(46);
+var _carouselItem = __webpack_require__(51);
 
 var _carouselItem2 = _interopRequireDefault(_carouselItem);
 
@@ -6275,13 +3151,4023 @@ Carousel.Item = _carouselItem2.default;
 
 exports.default = Carousel;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = __webpack_require__(11);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Mycarousel = function (_React$Component) {
+	_inherits(Mycarousel, _React$Component);
+
+	function Mycarousel(props) {
+		_classCallCheck(this, Mycarousel);
+
+		var _this = _possibleConstructorReturn(this, (Mycarousel.__proto__ || Object.getPrototypeOf(Mycarousel)).call(this, props));
+
+		_this.state = {
+			list: []
+		};
+
+		return _this;
+	}
+
+	_createClass(Mycarousel, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				_index2.default,
+				{ autoplay: this.props.autoplay },
+				this.state.list
+			);
+		}
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var _list = [];
+			this.props.list.map(function (item) {
+				_list.push(_react2.default.createElement(
+					"li",
+					{ className: "item" },
+					_react2.default.createElement("img", { src: item, className: "" })
+				));
+			});
+
+			this.setState({
+				list: _list
+			});
+		}
+	}]);
+
+	return Mycarousel;
+}(_react2.default.Component);
+
+exports.default = Mycarousel;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "mycarousel.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var _prodInvariant = __webpack_require__(8);
+
+var ReactErrorUtils = __webpack_require__(26);
+
+var invariant = __webpack_require__(4);
+var warning = __webpack_require__(10);
+
+/**
+ * Injected dependencies:
+ */
+
+/**
+ * - `ComponentTree`: [required] Module that can convert between React instances
+ *   and actual node references.
+ */
+var ComponentTree;
+var TreeTraversal;
+var injection = {
+  injectComponentTree: function (Injected) {
+    ComponentTree = Injected;
+    if (process.env.NODE_ENV !== 'production') {
+      process.env.NODE_ENV !== 'production' ? warning(Injected && Injected.getNodeFromInstance && Injected.getInstanceFromNode, 'EventPluginUtils.injection.injectComponentTree(...): Injected ' + 'module is missing getNodeFromInstance or getInstanceFromNode.') : void 0;
+    }
+  },
+  injectTreeTraversal: function (Injected) {
+    TreeTraversal = Injected;
+    if (process.env.NODE_ENV !== 'production') {
+      process.env.NODE_ENV !== 'production' ? warning(Injected && Injected.isAncestor && Injected.getLowestCommonAncestor, 'EventPluginUtils.injection.injectTreeTraversal(...): Injected ' + 'module is missing isAncestor or getLowestCommonAncestor.') : void 0;
+    }
+  }
+};
+
+function isEndish(topLevelType) {
+  return topLevelType === 'topMouseUp' || topLevelType === 'topTouchEnd' || topLevelType === 'topTouchCancel';
+}
+
+function isMoveish(topLevelType) {
+  return topLevelType === 'topMouseMove' || topLevelType === 'topTouchMove';
+}
+function isStartish(topLevelType) {
+  return topLevelType === 'topMouseDown' || topLevelType === 'topTouchStart';
+}
+
+var validateEventDispatches;
+if (process.env.NODE_ENV !== 'production') {
+  validateEventDispatches = function (event) {
+    var dispatchListeners = event._dispatchListeners;
+    var dispatchInstances = event._dispatchInstances;
+
+    var listenersIsArr = Array.isArray(dispatchListeners);
+    var listenersLen = listenersIsArr ? dispatchListeners.length : dispatchListeners ? 1 : 0;
+
+    var instancesIsArr = Array.isArray(dispatchInstances);
+    var instancesLen = instancesIsArr ? dispatchInstances.length : dispatchInstances ? 1 : 0;
+
+    process.env.NODE_ENV !== 'production' ? warning(instancesIsArr === listenersIsArr && instancesLen === listenersLen, 'EventPluginUtils: Invalid `event`.') : void 0;
+  };
+}
+
+/**
+ * Dispatch the event to the listener.
+ * @param {SyntheticEvent} event SyntheticEvent to handle
+ * @param {boolean} simulated If the event is simulated (changes exn behavior)
+ * @param {function} listener Application-level callback
+ * @param {*} inst Internal component instance
+ */
+function executeDispatch(event, simulated, listener, inst) {
+  var type = event.type || 'unknown-event';
+  event.currentTarget = EventPluginUtils.getNodeFromInstance(inst);
+  if (simulated) {
+    ReactErrorUtils.invokeGuardedCallbackWithCatch(type, listener, event);
+  } else {
+    ReactErrorUtils.invokeGuardedCallback(type, listener, event);
+  }
+  event.currentTarget = null;
+}
+
+/**
+ * Standard/simple iteration through an event's collected dispatches.
+ */
+function executeDispatchesInOrder(event, simulated) {
+  var dispatchListeners = event._dispatchListeners;
+  var dispatchInstances = event._dispatchInstances;
+  if (process.env.NODE_ENV !== 'production') {
+    validateEventDispatches(event);
+  }
+  if (Array.isArray(dispatchListeners)) {
+    for (var i = 0; i < dispatchListeners.length; i++) {
+      if (event.isPropagationStopped()) {
+        break;
+      }
+      // Listeners and Instances are two parallel arrays that are always in sync.
+      executeDispatch(event, simulated, dispatchListeners[i], dispatchInstances[i]);
+    }
+  } else if (dispatchListeners) {
+    executeDispatch(event, simulated, dispatchListeners, dispatchInstances);
+  }
+  event._dispatchListeners = null;
+  event._dispatchInstances = null;
+}
+
+/**
+ * Standard/simple iteration through an event's collected dispatches, but stops
+ * at the first dispatch execution returning true, and returns that id.
+ *
+ * @return {?string} id of the first dispatch execution who's listener returns
+ * true, or null if no listener returned true.
+ */
+function executeDispatchesInOrderStopAtTrueImpl(event) {
+  var dispatchListeners = event._dispatchListeners;
+  var dispatchInstances = event._dispatchInstances;
+  if (process.env.NODE_ENV !== 'production') {
+    validateEventDispatches(event);
+  }
+  if (Array.isArray(dispatchListeners)) {
+    for (var i = 0; i < dispatchListeners.length; i++) {
+      if (event.isPropagationStopped()) {
+        break;
+      }
+      // Listeners and Instances are two parallel arrays that are always in sync.
+      if (dispatchListeners[i](event, dispatchInstances[i])) {
+        return dispatchInstances[i];
+      }
+    }
+  } else if (dispatchListeners) {
+    if (dispatchListeners(event, dispatchInstances)) {
+      return dispatchInstances;
+    }
+  }
+  return null;
+}
+
+/**
+ * @see executeDispatchesInOrderStopAtTrueImpl
+ */
+function executeDispatchesInOrderStopAtTrue(event) {
+  var ret = executeDispatchesInOrderStopAtTrueImpl(event);
+  event._dispatchInstances = null;
+  event._dispatchListeners = null;
+  return ret;
+}
+
+/**
+ * Execution of a "direct" dispatch - there must be at most one dispatch
+ * accumulated on the event or it is considered an error. It doesn't really make
+ * sense for an event with multiple dispatches (bubbled) to keep track of the
+ * return values at each dispatch execution, but it does tend to make sense when
+ * dealing with "direct" dispatches.
+ *
+ * @return {*} The return value of executing the single dispatch.
+ */
+function executeDirectDispatch(event) {
+  if (process.env.NODE_ENV !== 'production') {
+    validateEventDispatches(event);
+  }
+  var dispatchListener = event._dispatchListeners;
+  var dispatchInstance = event._dispatchInstances;
+  !!Array.isArray(dispatchListener) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'executeDirectDispatch(...): Invalid `event`.') : _prodInvariant('103') : void 0;
+  event.currentTarget = dispatchListener ? EventPluginUtils.getNodeFromInstance(dispatchInstance) : null;
+  var res = dispatchListener ? dispatchListener(event) : null;
+  event.currentTarget = null;
+  event._dispatchListeners = null;
+  event._dispatchInstances = null;
+  return res;
+}
+
+/**
+ * @param {SyntheticEvent} event
+ * @return {boolean} True iff number of dispatches accumulated is greater than 0.
+ */
+function hasDispatches(event) {
+  return !!event._dispatchListeners;
+}
+
+/**
+ * General utilities that are useful in creating custom Event Plugins.
+ */
+var EventPluginUtils = {
+  isEndish: isEndish,
+  isMoveish: isMoveish,
+  isStartish: isStartish,
+
+  executeDirectDispatch: executeDirectDispatch,
+  executeDispatchesInOrder: executeDispatchesInOrder,
+  executeDispatchesInOrderStopAtTrue: executeDispatchesInOrderStopAtTrue,
+  hasDispatches: hasDispatches,
+
+  getInstanceFromNode: function (node) {
+    return ComponentTree.getInstanceFromNode(node);
+  },
+  getNodeFromInstance: function (node) {
+    return ComponentTree.getNodeFromInstance(node);
+  },
+  isAncestor: function (a, b) {
+    return TreeTraversal.isAncestor(a, b);
+  },
+  getLowestCommonAncestor: function (a, b) {
+    return TreeTraversal.getLowestCommonAncestor(a, b);
+  },
+  getParentInstance: function (inst) {
+    return TreeTraversal.getParentInstance(inst);
+  },
+  traverseTwoPhase: function (target, fn, arg) {
+    return TreeTraversal.traverseTwoPhase(target, fn, arg);
+  },
+  traverseEnterLeave: function (from, to, fn, argFrom, argTo) {
+    return TreeTraversal.traverseEnterLeave(from, to, fn, argFrom, argTo);
+  },
+
+  injection: injection
+};
+
+module.exports = EventPluginUtils;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(112);
+
+
+
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__["a" /* default */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__["a" /* default */])(value) != objectTag) {
+    return false;
+  }
+  var proto = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__getPrototype_js__["a" /* default */])(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isPlainObject);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = warning;
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+    /* eslint-disable no-empty */
+  } catch (e) {}
+  /* eslint-enable no-empty */
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+module.exports = emptyFunction;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+var _fastclick = __webpack_require__(54);
+
+var _fastclick2 = _interopRequireDefault(_fastclick);
+
+var _reactTapEventPlugin = __webpack_require__(95);
+
+var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by Ellery1 on 16/7/8.
+ */
+if (!window.___yoTapEventInjected) {
+    // 不要觉得这里没用
+    // 因为yo-router也用了tap-event-plugin，如果不加try catch会报引用两次tap-event-plugin的警告
+    try {
+        (0, _reactTapEventPlugin2.default)();
+    } catch (e) {}
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        _fastclick2.default.attach(document.body);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        _fastclick2.default.attach(document.body);
+    });
+    document.body.addEventListener('touchmove', function (evt) {
+        evt.preventDefault();
+    });
+    window.___yoTapEventInjected = true;
+}
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "tapEventPluginInit.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _util = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component LazyImage
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author jiao.shen
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 懒加载图片组件，只能在 `Scroller` 和 `List` 中使用。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 使用这个组件代替img标签后，会延迟加载这个图片，直到List组件的滚动使得该图片位于可视区域之内。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./lazyimage.md}{instruUrl: scroller/lazyimage.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @version  3.0.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var TO_BE_LOADED = 0;
+var LOADING = 1;
+var LOADED = 2;
+
+var _class = function (_Component) {
+    _inherits(_class, _Component);
+
+    function _class(props) {
+        _classCallCheck(this, _class);
+
+        // 0->等待load,1->loading,2->loaded
+        var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
+
+        _this.loading = TO_BE_LOADED;
+        _this.state = {
+            src: _this.props.defaultImage
+        };
+        return _this;
+    }
+
+    _createClass(_class, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.refresh(this.context);
+            var scroller = this.context.list || this.context.scroller;
+            if (scroller) {
+                scroller.childLazyImages.push(this);
+            }
+        }
+
+        // 父组件render时,需要重置这个组件的loaded状态和context
+
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps, nextContext) {
+            this.refresh(nextContext);
+
+            if (this.state.src !== nextProps.src) {
+                this.loading = TO_BE_LOADED;
+                this.setState({ src: this.props.defaultImage });
+            }
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            var scroller = this.context.list || this.context.scroller;
+            if (scroller) {
+                scroller.childLazyImages.splice(scroller.childLazyImages.indexOf(this), 1);
+            }
+            this.canLoadImage = false;
+        }
+    }, {
+        key: 'refresh',
+        value: function refresh(context) {
+            this.canLoadImage = true;
+            this.offsetY = context.offsetY;
+            this.itemRef = context.itemRef;
+            this.infinite = context.infinite;
+            // 如果不是infinite的列表，那么应该获取offsetTop(这个开销还挺大的，不过没得优化了)，反之，则使用translateY
+            if (!this.infinite) {
+                this.offsetTop = (0, _util.getElementOffsetY)(this.img);
+                this.height = this.img.offsetHeight;
+            }
+        }
+    }, {
+        key: 'load',
+        value: function load(callback) {
+            var _this2 = this;
+
+            if (this.loading === TO_BE_LOADED) {
+                var src = this.props.src,
+                    tmpImg = new Image();
+
+                this.loading = LOADING;
+                tmpImg.onload = function () {
+                    // 在lazyimage正在加载时组件unmount(主要是在SPA模式下有可能发生关闭view的情况)会报错
+                    // 因此这里需要简单判断一下组件的实例是否还存在
+                    if (_this2 && _this2.canLoadImage) {
+                        _this2.loading = LOADED;
+                        _this2.setState({ src: src, loaded: true });
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                };
+                tmpImg.src = src;
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            var _props = this.props,
+                height = _props.height,
+                style = _props.style,
+                customAttr = _props.customAttr;
+            // 解决和touchable组件结合使用的问题，必须能够接收这四个属性
+
+            if (this.context.list) {
+                if (height == null && style.height == null) {
+                    throw Error('yo-lazyimage: 在List组件中使用LazyImage必须指定图片的高度。');
+                }
+            }
+
+            return _react2.default.createElement('img', _extends({}, (0, _util.inheritProps)(this.props, ['onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel', 'width', 'height', 'className', 'title', 'style']), {
+                alt: this.props.alt,
+                ref: function ref(img) {
+                    if (img) _this3.img = img;
+                },
+                src: this.state.src
+            }, customAttr));
+        }
+    }]);
+
+    return _class;
+}(_react.Component);
+
+_class.contextTypes = {
+    // 从父组件context接收的属性
+    // list/scroller组件实例的引用
+    list: _react.PropTypes.object,
+    scroller: _react.PropTypes.object,
+    // listitem的offsetY(infinite模式下)
+    offsetY: _react.PropTypes.number,
+    // listitem实例的引用
+    itemRef: _react.PropTypes.object,
+    // 是否是Scroller下面的Lazyload,而不是List下面的
+    isScroller: _react.PropTypes.bool,
+    // 是否是infinite列表
+    infinite: _react.PropTypes.bool
+};
+_class.propTypes = {
+    /**
+     * @property defaultImage
+     * @type String
+     * @default null
+     * @description 默认图片，在原图片还没有完成加载时展示。
+     */
+    defaultImage: _react.PropTypes.string,
+    /**
+     * @property src
+     * @type String
+     * @default null
+     * @description 图片src，必需。
+     */
+    src: _react.PropTypes.string.isRequired,
+    /**
+     * @property className
+     * @type String
+     * @default null
+     * @description 给img标签加的类名。
+     */
+    className: _react.PropTypes.string,
+    /**
+     * @property width
+     * @type Number
+     * @default null
+     * @description 图片宽度。
+     */
+    width: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+    /**
+     * @property height
+     * @type Number
+     * @default null
+     * @description 图片高度。
+     */
+    height: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+    /**
+     * @property customAttr
+     * @type Object
+     * @default null
+     * @description 附加给img dom节点的自定义属性，属性名需要以data-开头。
+     */
+    customAttr: _react.PropTypes.object,
+    /**
+     * @property style
+     * @type Object
+     * @default null
+     * @description 附加给img dom节点的style。
+     */
+    style: _react.PropTypes.object,
+    /**
+     * @property alt
+     * @type String
+     * @default null
+     * @description 和img标签的alt属性相同。
+     */
+    alt: _react.PropTypes.string,
+    /**
+     * @property title
+     * @type String
+     * @default null
+     * @description 和img标签的title属性相同。
+     */
+    title: _react.PropTypes.string,
+    onTouchStart: _react.PropTypes.func,
+    onTouchMove: _react.PropTypes.func,
+    onTouchEnd: _react.PropTypes.func,
+    onTouchCancel: _react.PropTypes.func
+};
+_class.defaultProps = {
+    defaultImage: null,
+    src: null,
+    className: null,
+    width: null,
+    height: null,
+    customAttr: {},
+    style: null
+};
+exports.default = _class;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _index = __webpack_require__(5);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _reactRouter = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FullRoom = function (_React$Component) {
+	_inherits(FullRoom, _React$Component);
+
+	function FullRoom(props) {
+		_classCallCheck(this, FullRoom);
+
+		var _this = _possibleConstructorReturn(this, (FullRoom.__proto__ || Object.getPrototypeOf(FullRoom)).call(this, props));
+
+		_this.state = {
+			fullHouseUrl: '/api/v2/h5/index/home?&is_json=',
+			jsonIndex: 1,
+			pageNum: 1,
+			fullHouseList: [],
+			sonHouseList: []
+		};
+		return _this;
+	}
+
+	_createClass(FullRoom, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+
+			var self = this;
+			var url = this.state.fullHouseUrl + self.state.jsonIndex + '&page=' + self.state.pageNum + '&type=&style=';
+
+			window.fetch(url).then(function (response) {
+				return response.json();
+			}).then(function (result) {
+				var Data = result.data;
+				var tmpArr = [];
+
+				Data.map(function (item, index) {
+					var len = item['aes_list'].length;
+					var sonImg = [];
+					var width = void 0;
+					for (var i = 0; i < len; i++) {
+						sonImg.push(_react2.default.createElement(
+							'li',
+							{ className: 'fullhome_detail_img_into' },
+							_react2.default.createElement('img', { style: { width: '100%' }, src: item['aes_list'][i]['img'] })
+						));
+					}
+					console.log(sonImg);
+
+					tmpArr.push(_react2.default.createElement(
+						'dl',
+						{ className: 'good_list' },
+						_react2.default.createElement(
+							'dt',
+							{ className: 'fullhouse_img' },
+							_react2.default.createElement(
+								'a',
+								{ href: '#' },
+								_react2.default.createElement('img', { style: { height: '3.75rem' }, src: item['img'] })
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'fullhome_detail_img_div', style: { height: '1.05469rem' } },
+							_react2.default.createElement(
+								_index2.default,
+								{ scrollX: true, scrollY: false, style: { height: '100%' } },
+								_react2.default.createElement(
+									'div',
+									null,
+									_react2.default.createElement(
+										'ul',
+										{ className: 'sonC', style: { width: len * 1.2048 + 'rem' } },
+										sonImg
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'dd',
+							null,
+							_react2.default.createElement(
+								'ul',
+								null,
+								_react2.default.createElement(
+									'li',
+									{ className: 'good_list_name' },
+									item['app_name']
+								),
+								_react2.default.createElement(
+									'li',
+									{ className: 'good_price' },
+									'\uFFE5',
+									item['default_money'],
+									'/',
+									item['type_name']
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'good_list_button' },
+								_react2.default.createElement(
+									'button',
+									{ className: 'yo-btn yo-btn-goodbtn' },
+									'\u5546\u54C1\u6E05\u5355'
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'good_list_type' },
+								_react2.default.createElement(
+									'button',
+									{ className: 'yo-btn yo-btn-typebtn' },
+									item['type_name']
+								),
+								_react2.default.createElement(
+									'button',
+									{ className: 'yo-btn yo-btn-typebtn' },
+									item['style_name']
+								)
+							)
+						)
+					));
+				});
+
+				self.setState(Object.assign({}, { fullHouseList: tmpArr }));
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				_index2.default,
+				{ style: { height: '100%' } },
+				this.state.fullHouseList
+			);
+		}
+	}]);
+
+	return FullRoom;
+}(_react2.default.Component);
+
+//var FullRoom = React.createClass({
+//getInitialState: function () {
+//  return {
+//    checked: false
+//  };
+//},
+//onChildChanged: function (newState) {
+//  this.setState({
+//    checked: newState
+//  });
+//},
+//render: function() {
+//  var isChecked = this.state.checked ? 'yes' : 'no';
+//  return (
+//    <div>
+//      <div>Are you checked: {isChecked}</div>
+//      <ToggleButton text="Toggle me"
+//        initialChecked={this.state.checked}
+//        callbackParent={this.onChildChanged}
+//        />
+//    </div>
+//  );
+//}
+//});
+
+// 子组件
+//var ToggleButton = React.createClass({
+//getInitialState: function () {
+//  return {
+//    checked: this.props.initialChecked
+//  };
+//},
+//onTextChange: function () {
+//  var newState = !this.state.checked;
+//  this.setState({
+//    checked: newState
+//  });
+//  // 这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
+//  this.props.callbackParent(newState);
+//},
+//render: function () {
+//  // 从【父组件】获取的值
+//  var text = this.props.text;
+//  // 组件自身的状态数据
+//  var checked = this.state.checked;
+//
+//  return (
+//      <label>{text}: <input type="checkbox" checked={checked} onChange={this.onTextChange} /></label>
+//  );
+//}
+//});
+
+
+exports.default = FullRoom;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "FullRoom.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _index = __webpack_require__(5);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _reactRouter = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Room = function (_React$Component) {
+  _inherits(Room, _React$Component);
+
+  function Room(props) {
+    _classCallCheck(this, Room);
+
+    var _this = _possibleConstructorReturn(this, (Room.__proto__ || Object.getPrototypeOf(Room)).call(this, props));
+
+    _this.state = {
+      good_list: []
+    };
+    return _this;
+  }
+
+  _createClass(Room, [{
+    key: 'toHomedetail',
+    value: function toHomedetail() {
+      console.log(1);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'scrol' },
+        this.state.good_list
+      );
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      fetch('/api/v2/h5/index/space?is_json=1&page=' + 1 + '&space=&style=').then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        var tempArr = [];{/* 定义空数组保存dom元素集合 */}
+        var _data = result.data;
+        _data.map(function (item) {
+
+          tempArr.push(_react2.default.createElement(
+            'dl',
+            { className: 'good_list' },
+            _react2.default.createElement(
+              'dt',
+              null,
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: 'homedetail/' + item['id'] },
+                _react2.default.createElement('img', { style: { width: '100%' }, src: item['img'] })
+              )
+            ),
+            _react2.default.createElement(
+              'dd',
+              null,
+              _react2.default.createElement(
+                'ul',
+                null,
+                _react2.default.createElement(
+                  'li',
+                  { className: 'good_list_name' },
+                  item['app_title']
+                ),
+                _react2.default.createElement(
+                  'li',
+                  { className: 'good_price' },
+                  '\uFFE5',
+                  item['default_money'],
+                  '/',
+                  item['space_name']
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'good_list_button' },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'yo-btn yo-btn-goodbtn' },
+                  '\u5546\u54C1\u6E05\u5355'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'good_list_type' },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'yo-btn yo-btn-typebtn' },
+                  item['space_name']
+                ),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'yo-btn yo-btn-typebtn' },
+                  item['style_name']
+                )
+              )
+            )
+          ));
+        });
+        this.setState({
+          good_list: tempArr
+        });
+      }.bind(this)).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }]);
+
+  return Room;
+}(_react2.default.Component);
+
+exports.default = Room;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Room.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(3);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouter = __webpack_require__(2);
+
+var _User_head = __webpack_require__(68);
+
+var _User_head2 = _interopRequireDefault(_User_head);
+
+var _User_order = __webpack_require__(70);
+
+var _User_order2 = _interopRequireDefault(_User_order);
+
+var _User_list = __webpack_require__(69);
+
+var _User_list2 = _interopRequireDefault(_User_list);
+
+var _User_bar = __webpack_require__(67);
+
+var _User_bar2 = _interopRequireDefault(_User_bar);
+
+var _login = __webpack_require__(7);
+
+var _login2 = _interopRequireDefault(_login);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var User = function (_React$Component) {
+  _inherits(User, _React$Component);
+
+  function User() {
+    _classCallCheck(this, User);
+
+    return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
+  }
+
+  _createClass(User, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'user' },
+        _react2.default.createElement(_User_head2.default, null),
+        _react2.default.createElement(_User_order2.default, null),
+        _react2.default.createElement(_User_list2.default, null),
+        _react2.default.createElement(_User_bar2.default, null),
+        this.props.children
+      );
+    }
+  }]);
+
+  return User;
+}(_react2.default.Component);
+
+exports.default = User;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var User_orderList = function (_React$Component) {
+	_inherits(User_orderList, _React$Component);
+
+	function User_orderList(props) {
+		_classCallCheck(this, User_orderList);
+
+		var _this = _possibleConstructorReturn(this, (User_orderList.__proto__ || Object.getPrototypeOf(User_orderList)).call(this, props));
+
+		_this.state = {};
+		return _this;
+	}
+
+	_createClass(User_orderList, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ id: 'user_orderlist' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'orserlist_head' },
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/user' },
+						_react2.default.createElement('section', { className: 'go_back' })
+					),
+					_react2.default.createElement('section', { className: 'logo' })
+				),
+				_react2.default.createElement('div', { className: 'orserlist_content' })
+			);
+		}
+	}]);
+
+	return User_orderList;
+}(_react2.default.Component);
+
+exports.default = User_orderList;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_orderList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Story = function (_React$Component) {
+	_inherits(Story, _React$Component);
+
+	function Story(props) {
+		_classCallCheck(this, Story);
+
+		return _possibleConstructorReturn(this, (Story.__proto__ || Object.getPrototypeOf(Story)).call(this, props));
+	}
+
+	_createClass(Story, [{
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"div",
+				{ className: "shop-story" },
+				React.createElement(
+					"p",
+					null,
+					"\u5BB6\u5C45\u751F\u6D3B\u6545\u4E8B"
+				),
+				React.createElement("img", { src: "/shopimg/2017011314270112829.jpg" }),
+				React.createElement(
+					"p",
+					{ className: "art_text" },
+					"\u996D\u5C40\u624D\u662F\u4E2D\u56FD\u4EBA\u6700\u6DF1\u7684\u5957\u8DEF"
+				),
+				React.createElement(
+					"p",
+					null,
+					"\u5403-\u4E5F\u662F\u6709\u8BB2\u7A76\u7684"
+				),
+				React.createElement("img", { src: "/shopimg/2017011117070199924.jpg" }),
+				React.createElement(
+					"p",
+					{ className: "art_text" },
+					"\u8BA9\u4F60\u58C1\u549A\u90FD\u8D70\u795E\u7684\u5168\u80FD\u6302\u753B\u6280\u80FD"
+				),
+				React.createElement(
+					"p",
+					null,
+					"\u767D\u5899\u8BE5\u5982\u4F55\u6302\u753B"
+				)
+			);
+		}
+	}]);
+
+	return Story;
+}(React.Component);
+
+exports.default = Story;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "story.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.store = exports.mapDispatchToprops = exports.mapStateToprops = undefined;
+
+var _redux = __webpack_require__(34);
+
+function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { title: 'defaultTitle' };
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SETHEADERNAME':
+      return { title: action.title };
+      break;
+    default:
+      return state;
+  }
+}
+
+function mapStateToprops(state) {
+  return {
+    value: state.title
+  };
+}
+
+function mapDispatchToprops(dispatch) {
+  return {
+    //返回一个方法
+    onChange: function onChange(action) {
+      return dispatch(action);
+    }
+  };
+}
+
+var store = (0, _redux.createStore)(reducer); //将reducer纯函数作为参数输入 生成新的store
+
+exports.mapStateToprops = mapStateToprops;
+exports.mapDispatchToprops = mapDispatchToprops;
+exports.store = store;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "store.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var _prodInvariant = __webpack_require__(8);
+
+var EventPluginRegistry = __webpack_require__(84);
+var EventPluginUtils = __webpack_require__(13);
+var ReactErrorUtils = __webpack_require__(26);
+
+var accumulateInto = __webpack_require__(27);
+var forEachAccumulated = __webpack_require__(28);
+var invariant = __webpack_require__(4);
+
+/**
+ * Internal store for event listeners
+ */
+var listenerBank = {};
+
+/**
+ * Internal queue of events that have accumulated their dispatches and are
+ * waiting to have their dispatches executed.
+ */
+var eventQueue = null;
+
+/**
+ * Dispatches an event and releases it back into the pool, unless persistent.
+ *
+ * @param {?object} event Synthetic event to be dispatched.
+ * @param {boolean} simulated If the event is simulated (changes exn behavior)
+ * @private
+ */
+var executeDispatchesAndRelease = function (event, simulated) {
+  if (event) {
+    EventPluginUtils.executeDispatchesInOrder(event, simulated);
+
+    if (!event.isPersistent()) {
+      event.constructor.release(event);
+    }
+  }
+};
+var executeDispatchesAndReleaseSimulated = function (e) {
+  return executeDispatchesAndRelease(e, true);
+};
+var executeDispatchesAndReleaseTopLevel = function (e) {
+  return executeDispatchesAndRelease(e, false);
+};
+
+var getDictionaryKey = function (inst) {
+  // Prevents V8 performance issue:
+  // https://github.com/facebook/react/pull/7232
+  return '.' + inst._rootNodeID;
+};
+
+function isInteractive(tag) {
+  return tag === 'button' || tag === 'input' || tag === 'select' || tag === 'textarea';
+}
+
+function shouldPreventMouseEvent(name, type, props) {
+  switch (name) {
+    case 'onClick':
+    case 'onClickCapture':
+    case 'onDoubleClick':
+    case 'onDoubleClickCapture':
+    case 'onMouseDown':
+    case 'onMouseDownCapture':
+    case 'onMouseMove':
+    case 'onMouseMoveCapture':
+    case 'onMouseUp':
+    case 'onMouseUpCapture':
+      return !!(props.disabled && isInteractive(type));
+    default:
+      return false;
+  }
+}
+
+/**
+ * This is a unified interface for event plugins to be installed and configured.
+ *
+ * Event plugins can implement the following properties:
+ *
+ *   `extractEvents` {function(string, DOMEventTarget, string, object): *}
+ *     Required. When a top-level event is fired, this method is expected to
+ *     extract synthetic events that will in turn be queued and dispatched.
+ *
+ *   `eventTypes` {object}
+ *     Optional, plugins that fire events must publish a mapping of registration
+ *     names that are used to register listeners. Values of this mapping must
+ *     be objects that contain `registrationName` or `phasedRegistrationNames`.
+ *
+ *   `executeDispatch` {function(object, function, string)}
+ *     Optional, allows plugins to override how an event gets dispatched. By
+ *     default, the listener is simply invoked.
+ *
+ * Each plugin that is injected into `EventsPluginHub` is immediately operable.
+ *
+ * @public
+ */
+var EventPluginHub = {
+
+  /**
+   * Methods for injecting dependencies.
+   */
+  injection: {
+
+    /**
+     * @param {array} InjectedEventPluginOrder
+     * @public
+     */
+    injectEventPluginOrder: EventPluginRegistry.injectEventPluginOrder,
+
+    /**
+     * @param {object} injectedNamesToPlugins Map from names to plugin modules.
+     */
+    injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
+
+  },
+
+  /**
+   * Stores `listener` at `listenerBank[registrationName][key]`. Is idempotent.
+   *
+   * @param {object} inst The instance, which is the source of events.
+   * @param {string} registrationName Name of listener (e.g. `onClick`).
+   * @param {function} listener The callback to store.
+   */
+  putListener: function (inst, registrationName, listener) {
+    !(typeof listener === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected %s listener to be a function, instead got type %s', registrationName, typeof listener) : _prodInvariant('94', registrationName, typeof listener) : void 0;
+
+    var key = getDictionaryKey(inst);
+    var bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
+    bankForRegistrationName[key] = listener;
+
+    var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
+    if (PluginModule && PluginModule.didPutListener) {
+      PluginModule.didPutListener(inst, registrationName, listener);
+    }
+  },
+
+  /**
+   * @param {object} inst The instance, which is the source of events.
+   * @param {string} registrationName Name of listener (e.g. `onClick`).
+   * @return {?function} The stored callback.
+   */
+  getListener: function (inst, registrationName) {
+    // TODO: shouldPreventMouseEvent is DOM-specific and definitely should not
+    // live here; needs to be moved to a better place soon
+    var bankForRegistrationName = listenerBank[registrationName];
+    if (shouldPreventMouseEvent(registrationName, inst._currentElement.type, inst._currentElement.props)) {
+      return null;
+    }
+    var key = getDictionaryKey(inst);
+    return bankForRegistrationName && bankForRegistrationName[key];
+  },
+
+  /**
+   * Deletes a listener from the registration bank.
+   *
+   * @param {object} inst The instance, which is the source of events.
+   * @param {string} registrationName Name of listener (e.g. `onClick`).
+   */
+  deleteListener: function (inst, registrationName) {
+    var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
+    if (PluginModule && PluginModule.willDeleteListener) {
+      PluginModule.willDeleteListener(inst, registrationName);
+    }
+
+    var bankForRegistrationName = listenerBank[registrationName];
+    // TODO: This should never be null -- when is it?
+    if (bankForRegistrationName) {
+      var key = getDictionaryKey(inst);
+      delete bankForRegistrationName[key];
+    }
+  },
+
+  /**
+   * Deletes all listeners for the DOM element with the supplied ID.
+   *
+   * @param {object} inst The instance, which is the source of events.
+   */
+  deleteAllListeners: function (inst) {
+    var key = getDictionaryKey(inst);
+    for (var registrationName in listenerBank) {
+      if (!listenerBank.hasOwnProperty(registrationName)) {
+        continue;
+      }
+
+      if (!listenerBank[registrationName][key]) {
+        continue;
+      }
+
+      var PluginModule = EventPluginRegistry.registrationNameModules[registrationName];
+      if (PluginModule && PluginModule.willDeleteListener) {
+        PluginModule.willDeleteListener(inst, registrationName);
+      }
+
+      delete listenerBank[registrationName][key];
+    }
+  },
+
+  /**
+   * Allows registered plugins an opportunity to extract events from top-level
+   * native browser events.
+   *
+   * @return {*} An accumulation of synthetic events.
+   * @internal
+   */
+  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
+    var events;
+    var plugins = EventPluginRegistry.plugins;
+    for (var i = 0; i < plugins.length; i++) {
+      // Not every plugin in the ordering may be loaded at runtime.
+      var possiblePlugin = plugins[i];
+      if (possiblePlugin) {
+        var extractedEvents = possiblePlugin.extractEvents(topLevelType, targetInst, nativeEvent, nativeEventTarget);
+        if (extractedEvents) {
+          events = accumulateInto(events, extractedEvents);
+        }
+      }
+    }
+    return events;
+  },
+
+  /**
+   * Enqueues a synthetic event that should be dispatched when
+   * `processEventQueue` is invoked.
+   *
+   * @param {*} events An accumulation of synthetic events.
+   * @internal
+   */
+  enqueueEvents: function (events) {
+    if (events) {
+      eventQueue = accumulateInto(eventQueue, events);
+    }
+  },
+
+  /**
+   * Dispatches all synthetic events on the event queue.
+   *
+   * @internal
+   */
+  processEventQueue: function (simulated) {
+    // Set `eventQueue` to null before processing it so that we can tell if more
+    // events get enqueued while processing.
+    var processingEventQueue = eventQueue;
+    eventQueue = null;
+    if (simulated) {
+      forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseSimulated);
+    } else {
+      forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseTopLevel);
+    }
+    !!eventQueue ? process.env.NODE_ENV !== 'production' ? invariant(false, 'processEventQueue(): Additional events were enqueued while processing an event queue. Support for this has not yet been implemented.') : _prodInvariant('95') : void 0;
+    // This would be a good time to rethrow if any of the event handlers threw.
+    ReactErrorUtils.rethrowCaughtError();
+  },
+
+  /**
+   * These are needed for tests only. Do not use!
+   */
+  __purge: function () {
+    listenerBank = {};
+  },
+
+  __getListenerBank: function () {
+    return listenerBank;
+  }
+
+};
+
+module.exports = EventPluginHub;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+
+
+var caughtError = null;
+
+/**
+ * Call a function while guarding against errors that happens within it.
+ *
+ * @param {String} name of the guard to use for logging or debugging
+ * @param {Function} func The function to invoke
+ * @param {*} a First argument
+ * @param {*} b Second argument
+ */
+function invokeGuardedCallback(name, func, a) {
+  try {
+    func(a);
+  } catch (x) {
+    if (caughtError === null) {
+      caughtError = x;
+    }
+  }
+}
+
+var ReactErrorUtils = {
+  invokeGuardedCallback: invokeGuardedCallback,
+
+  /**
+   * Invoked by ReactTestUtils.Simulate so that any errors thrown by the event
+   * handler are sure to be rethrown by rethrowCaughtError.
+   */
+  invokeGuardedCallbackWithCatch: invokeGuardedCallback,
+
+  /**
+   * During execution of guarded functions we will capture the first error which
+   * we will rethrow to be handled by the top level error handler.
+   */
+  rethrowCaughtError: function () {
+    if (caughtError) {
+      var error = caughtError;
+      caughtError = null;
+      throw error;
+    }
+  }
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  /**
+   * To help development we can get better devtools integration by simulating a
+   * real browser event.
+   */
+  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
+    var fakeNode = document.createElement('react');
+    ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
+      var boundFunc = func.bind(null, a);
+      var evtType = 'react-' + name;
+      fakeNode.addEventListener(evtType, boundFunc, false);
+      var evt = document.createEvent('Event');
+      // $FlowFixMe https://github.com/facebook/flow/issues/2336
+      evt.initEvent(evtType, false, false);
+      fakeNode.dispatchEvent(evt);
+      fakeNode.removeEventListener(evtType, boundFunc, false);
+    };
+  }
+}
+
+module.exports = ReactErrorUtils;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2014-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+
+
+var _prodInvariant = __webpack_require__(8);
+
+var invariant = __webpack_require__(4);
+
+/**
+ * Accumulates items that must not be null or undefined into the first one. This
+ * is used to conserve memory by avoiding array allocations, and thus sacrifices
+ * API cleanness. Since `current` can be null before being passed in and not
+ * null after this function, make sure to assign it back to `current`:
+ *
+ * `a = accumulateInto(a, b);`
+ *
+ * This API should be sparingly used. Try `accumulate` for something cleaner.
+ *
+ * @return {*|array<*>} An accumulation of items.
+ */
+
+function accumulateInto(current, next) {
+  !(next != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'accumulateInto(...): Accumulated items must not be null or undefined.') : _prodInvariant('30') : void 0;
+
+  if (current == null) {
+    return next;
+  }
+
+  // Both are not empty. Warning: Never call x.concat(y) when you are not
+  // certain that x is an Array (x could be a string with concat method).
+  if (Array.isArray(current)) {
+    if (Array.isArray(next)) {
+      current.push.apply(current, next);
+      return current;
+    }
+    current.push(next);
+    return current;
+  }
+
+  if (Array.isArray(next)) {
+    // A bit too dangerous to mutate `next`.
+    return [current].concat(next);
+  }
+
+  return [current, next];
+}
+
+module.exports = accumulateInto;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+
+
+/**
+ * @param {array} arr an "accumulation" of items which is either an Array or
+ * a single item. Useful when paired with the `accumulate` module. This is a
+ * simple utility that allows us to reason about a collection of items, but
+ * handling the case when there is exactly one item (and we do not need to
+ * allocate an array).
+ */
+
+function forEachAccumulated(arr, cb, scope) {
+  if (Array.isArray(arr)) {
+    arr.forEach(cb, scope);
+  } else if (arr) {
+    cb.call(scope, arr);
+  }
+}
+
+module.exports = forEachAccumulated;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var shallowEqual = __webpack_require__(45);
+
+/**
+ * Does a shallow comparison for props and state.
+ * See ReactComponentWithPureRenderMixin
+ * See also https://facebook.github.io/react/docs/shallow-compare.html
+ */
+function shallowCompare(instance, nextProps, nextState) {
+  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
+}
+
+module.exports = shallowCompare;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = compose;
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+
+function compose() {
+  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) {
+    return function (arg) {
+      return arg;
+    };
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+
+  var last = funcs[funcs.length - 1];
+  var rest = funcs.slice(0, -1);
+  return function () {
+    return rest.reduceRight(function (composed, f) {
+      return f(composed);
+    }, last.apply(undefined, arguments));
+  };
+}
+
+/***/ }),
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
+
+
+
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */
+var ActionTypes = {
+  INIT: '@@redux/INIT'
+};
+
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} enhancer The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */
+function createStore(reducer, preloadedState, enhancer) {
+  var _ref2;
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+    enhancer = preloadedState;
+    preloadedState = undefined;
+  }
+
+  if (typeof enhancer !== 'undefined') {
+    if (typeof enhancer !== 'function') {
+      throw new Error('Expected the enhancer to be a function.');
+    }
+
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  if (typeof reducer !== 'function') {
+    throw new Error('Expected the reducer to be a function.');
+  }
+
+  var currentReducer = reducer;
+  var currentState = preloadedState;
+  var currentListeners = [];
+  var nextListeners = currentListeners;
+  var isDispatching = false;
+
+  function ensureCanMutateNextListeners() {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice();
+    }
+  }
+
+  /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */
+  function getState() {
+    return currentState;
+  }
+
+  /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */
+  function subscribe(listener) {
+    if (typeof listener !== 'function') {
+      throw new Error('Expected listener to be a function.');
+    }
+
+    var isSubscribed = true;
+
+    ensureCanMutateNextListeners();
+    nextListeners.push(listener);
+
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      isSubscribed = false;
+
+      ensureCanMutateNextListeners();
+      var index = nextListeners.indexOf(listener);
+      nextListeners.splice(index, 1);
+    };
+  }
+
+  /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */
+  function dispatch(action) {
+    if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__["a" /* default */])(action)) {
+      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+    }
+
+    if (typeof action.type === 'undefined') {
+      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+    }
+
+    if (isDispatching) {
+      throw new Error('Reducers may not dispatch actions.');
+    }
+
+    try {
+      isDispatching = true;
+      currentState = currentReducer(currentState, action);
+    } finally {
+      isDispatching = false;
+    }
+
+    var listeners = currentListeners = nextListeners;
+    for (var i = 0; i < listeners.length; i++) {
+      listeners[i]();
+    }
+
+    return action;
+  }
+
+  /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */
+  function replaceReducer(nextReducer) {
+    if (typeof nextReducer !== 'function') {
+      throw new Error('Expected the nextReducer to be a function.');
+    }
+
+    currentReducer = nextReducer;
+    dispatch({ type: ActionTypes.INIT });
+  }
+
+  /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/zenparsing/es-observable
+   */
+  function observable() {
+    var _ref;
+
+    var outerSubscribe = subscribe;
+    return _ref = {
+      /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */
+      subscribe: function subscribe(observer) {
+        if (typeof observer !== 'object') {
+          throw new TypeError('Expected the observer to be an object.');
+        }
+
+        function observeState() {
+          if (observer.next) {
+            observer.next(getState());
+          }
+        }
+
+        observeState();
+        var unsubscribe = outerSubscribe(observeState);
+        return { unsubscribe: unsubscribe };
+      }
+    }, _ref[__WEBPACK_IMPORTED_MODULE_1_symbol_observable___default.a] = function () {
+      return this;
+    }, _ref;
+  }
+
+  // When a store is created, an "INIT" action is dispatched so that every
+  // reducer returns their initial state. This effectively populates
+  // the initial state tree.
+  dispatch({ type: ActionTypes.INIT });
+
+  return _ref2 = {
+    dispatch: dispatch,
+    subscribe: subscribe,
+    getState: getState,
+    replaceReducer: replaceReducer
+  }, _ref2[__WEBPACK_IMPORTED_MODULE_1_symbol_observable___default.a] = observable, _ref2;
+}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(35);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return __WEBPACK_IMPORTED_MODULE_1__combineReducers__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "applyMiddleware", function() { return __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "compose", function() { return __WEBPACK_IMPORTED_MODULE_4__compose__["a"]; });
+
+
+
+
+
+
+
+/*
+* This is a dummy function to check if the function name has been altered by minification.
+* If the function has been minified and NODE_ENV !== 'production', warn the user.
+*/
+function isCrushed() {}
+
+if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_warning__["a" /* default */])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = warning;
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+    /* eslint-disable no-empty */
+  } catch (e) {}
+  /* eslint-enable no-empty */
+}
+
+/***/ }),
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(111);
+
+
+/** Built-in value references. */
+var Symbol = __WEBPACK_IMPORTED_MODULE_0__root_js__["a" /* default */].Symbol;
+
+/* harmony default export */ __webpack_exports__["a"] = (Symbol);
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(40);
+/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+
+
+
+
+
+
+
+var hotReloadingVersion = 0;
+var dummyState = {};
+function noop() {}
+function makeSelectorStateful(sourceSelector, store) {
+  // wrap the selector in an object that tracks its results between runs.
+  var selector = {
+    run: function runComponentSelector(props) {
+      try {
+        var nextProps = sourceSelector(store.getState(), props);
+        if (nextProps !== selector.props || selector.error) {
+          selector.shouldComponentUpdate = true;
+          selector.props = nextProps;
+          selector.error = null;
+        }
+      } catch (error) {
+        selector.shouldComponentUpdate = true;
+        selector.error = error;
+      }
+    }
+  };
+
+  return selector;
+}
+
+function connectAdvanced(
+/*
+  selectorFactory is a func that is responsible for returning the selector function used to
+  compute new props from state, props, and dispatch. For example:
+     export default connectAdvanced((dispatch, options) => (state, props) => ({
+      thing: state.things[props.thingId],
+      saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
+    }))(YourComponent)
+   Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+  outside of their selector as an optimization. Options passed to connectAdvanced are passed to
+  the selectorFactory, along with displayName and WrappedComponent, as the second argument.
+   Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+  props. Do not use connectAdvanced directly without memoizing results between calls to your
+  selector, otherwise the Connect component will re-render on every state or props change.
+*/
+selectorFactory) {
+  var _contextTypes, _childContextTypes;
+
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$getDisplayName = _ref.getDisplayName,
+      getDisplayName = _ref$getDisplayName === undefined ? function (name) {
+    return 'ConnectAdvanced(' + name + ')';
+  } : _ref$getDisplayName,
+      _ref$methodName = _ref.methodName,
+      methodName = _ref$methodName === undefined ? 'connectAdvanced' : _ref$methodName,
+      _ref$renderCountProp = _ref.renderCountProp,
+      renderCountProp = _ref$renderCountProp === undefined ? undefined : _ref$renderCountProp,
+      _ref$shouldHandleStat = _ref.shouldHandleStateChanges,
+      shouldHandleStateChanges = _ref$shouldHandleStat === undefined ? true : _ref$shouldHandleStat,
+      _ref$storeKey = _ref.storeKey,
+      storeKey = _ref$storeKey === undefined ? 'store' : _ref$storeKey,
+      _ref$withRef = _ref.withRef,
+      withRef = _ref$withRef === undefined ? false : _ref$withRef,
+      connectOptions = _objectWithoutProperties(_ref, ['getDisplayName', 'methodName', 'renderCountProp', 'shouldHandleStateChanges', 'storeKey', 'withRef']);
+
+  var subscriptionKey = storeKey + 'Subscription';
+  var version = hotReloadingVersion++;
+
+  var contextTypes = (_contextTypes = {}, _contextTypes[storeKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["a" /* storeShape */], _contextTypes[subscriptionKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["b" /* subscriptionShape */], _contextTypes);
+  var childContextTypes = (_childContextTypes = {}, _childContextTypes[subscriptionKey] = __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__["b" /* subscriptionShape */], _childContextTypes);
+
+  return function wrapWithConnect(WrappedComponent) {
+    __WEBPACK_IMPORTED_MODULE_1_invariant___default()(typeof WrappedComponent == 'function', 'You must pass a component to the function returned by ' + ('connect. Instead received ' + JSON.stringify(WrappedComponent)));
+
+    var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+
+    var displayName = getDisplayName(wrappedComponentName);
+
+    var selectorFactoryOptions = _extends({}, connectOptions, {
+      getDisplayName: getDisplayName,
+      methodName: methodName,
+      renderCountProp: renderCountProp,
+      shouldHandleStateChanges: shouldHandleStateChanges,
+      storeKey: storeKey,
+      withRef: withRef,
+      displayName: displayName,
+      wrappedComponentName: wrappedComponentName,
+      WrappedComponent: WrappedComponent
+    });
+
+    var Connect = function (_Component) {
+      _inherits(Connect, _Component);
+
+      function Connect(props, context) {
+        _classCallCheck(this, Connect);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props, context));
+
+        _this.version = version;
+        _this.state = {};
+        _this.renderCount = 0;
+        _this.store = props[storeKey] || context[storeKey];
+        _this.propsMode = Boolean(props[storeKey]);
+        _this.setWrappedInstance = _this.setWrappedInstance.bind(_this);
+
+        __WEBPACK_IMPORTED_MODULE_1_invariant___default()(_this.store, 'Could not find "' + storeKey + '" in either the context or props of ' + ('"' + displayName + '". Either wrap the root component in a <Provider>, ') + ('or explicitly pass "' + storeKey + '" as a prop to "' + displayName + '".'));
+
+        _this.initSelector();
+        _this.initSubscription();
+        return _this;
+      }
+
+      Connect.prototype.getChildContext = function getChildContext() {
+        var _ref2;
+
+        // If this component received store from props, its subscription should be transparent
+        // to any descendants receiving store+subscription from context; it passes along
+        // subscription passed to it. Otherwise, it shadows the parent subscription, which allows
+        // Connect to control ordering of notifications to flow top-down.
+        var subscription = this.propsMode ? null : this.subscription;
+        return _ref2 = {}, _ref2[subscriptionKey] = subscription || this.context[subscriptionKey], _ref2;
+      };
+
+      Connect.prototype.componentDidMount = function componentDidMount() {
+        if (!shouldHandleStateChanges) return;
+
+        // componentWillMount fires during server side rendering, but componentDidMount and
+        // componentWillUnmount do not. Because of this, trySubscribe happens during ...didMount.
+        // Otherwise, unsubscription would never take place during SSR, causing a memory leak.
+        // To handle the case where a child component may have triggered a state change by
+        // dispatching an action in its componentWillMount, we have to re-run the select and maybe
+        // re-render.
+        this.subscription.trySubscribe();
+        this.selector.run(this.props);
+        if (this.selector.shouldComponentUpdate) this.forceUpdate();
+      };
+
+      Connect.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+        this.selector.run(nextProps);
+      };
+
+      Connect.prototype.shouldComponentUpdate = function shouldComponentUpdate() {
+        return this.selector.shouldComponentUpdate;
+      };
+
+      Connect.prototype.componentWillUnmount = function componentWillUnmount() {
+        if (this.subscription) this.subscription.tryUnsubscribe();
+        this.subscription = null;
+        this.notifyNestedSubs = noop;
+        this.store = null;
+        this.selector.run = noop;
+        this.selector.shouldComponentUpdate = false;
+      };
+
+      Connect.prototype.getWrappedInstance = function getWrappedInstance() {
+        __WEBPACK_IMPORTED_MODULE_1_invariant___default()(withRef, 'To access the wrapped instance, you need to specify ' + ('{ withRef: true } in the options argument of the ' + methodName + '() call.'));
+        return this.wrappedInstance;
+      };
+
+      Connect.prototype.setWrappedInstance = function setWrappedInstance(ref) {
+        this.wrappedInstance = ref;
+      };
+
+      Connect.prototype.initSelector = function initSelector() {
+        var sourceSelector = selectorFactory(this.store.dispatch, selectorFactoryOptions);
+        this.selector = makeSelectorStateful(sourceSelector, this.store);
+        this.selector.run(this.props);
+      };
+
+      Connect.prototype.initSubscription = function initSubscription() {
+        if (!shouldHandleStateChanges) return;
+
+        // parentSub's source should match where store came from: props vs. context. A component
+        // connected to the store via props shouldn't use subscription from context, or vice versa.
+        var parentSub = (this.propsMode ? this.props : this.context)[subscriptionKey];
+        this.subscription = new __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__["a" /* default */](this.store, parentSub, this.onStateChange.bind(this));
+
+        // `notifyNestedSubs` is duplicated to handle the case where the component is  unmounted in
+        // the middle of the notification loop, where `this.subscription` will then be null. An
+        // extra null check every change can be avoided by copying the method onto `this` and then
+        // replacing it with a no-op on unmount. This can probably be avoided if Subscription's
+        // listeners logic is changed to not call listeners that have been unsubscribed in the
+        // middle of the notification loop.
+        this.notifyNestedSubs = this.subscription.notifyNestedSubs.bind(this.subscription);
+      };
+
+      Connect.prototype.onStateChange = function onStateChange() {
+        this.selector.run(this.props);
+
+        if (!this.selector.shouldComponentUpdate) {
+          this.notifyNestedSubs();
+        } else {
+          this.componentDidUpdate = this.notifyNestedSubsOnComponentDidUpdate;
+          this.setState(dummyState);
+        }
+      };
+
+      Connect.prototype.notifyNestedSubsOnComponentDidUpdate = function notifyNestedSubsOnComponentDidUpdate() {
+        // `componentDidUpdate` is conditionally implemented when `onStateChange` determines it
+        // needs to notify nested subs. Once called, it unimplements itself until further state
+        // changes occur. Doing it this way vs having a permanent `componentDidMount` that does
+        // a boolean check every time avoids an extra method call most of the time, resulting
+        // in some perf boost.
+        this.componentDidUpdate = undefined;
+        this.notifyNestedSubs();
+      };
+
+      Connect.prototype.isSubscribed = function isSubscribed() {
+        return Boolean(this.subscription) && this.subscription.isSubscribed();
+      };
+
+      Connect.prototype.addExtraProps = function addExtraProps(props) {
+        if (!withRef && !renderCountProp && !(this.propsMode && this.subscription)) return props;
+        // make a shallow copy so that fields added don't leak to the original selector.
+        // this is especially important for 'ref' since that's a reference back to the component
+        // instance. a singleton memoized selector would then be holding a reference to the
+        // instance, preventing the instance from being garbage collected, and that would be bad
+        var withExtras = _extends({}, props);
+        if (withRef) withExtras.ref = this.setWrappedInstance;
+        if (renderCountProp) withExtras[renderCountProp] = this.renderCount++;
+        if (this.propsMode && this.subscription) withExtras[subscriptionKey] = this.subscription;
+        return withExtras;
+      };
+
+      Connect.prototype.render = function render() {
+        var selector = this.selector;
+        selector.shouldComponentUpdate = false;
+
+        if (selector.error) {
+          throw selector.error;
+        } else {
+          return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_react__["createElement"])(WrappedComponent, this.addExtraProps(selector.props));
+        }
+      };
+
+      return Connect;
+    }(__WEBPACK_IMPORTED_MODULE_2_react__["Component"]);
+
+    Connect.WrappedComponent = WrappedComponent;
+    Connect.displayName = displayName;
+    Connect.childContextTypes = childContextTypes;
+    Connect.contextTypes = contextTypes;
+    Connect.propTypes = contextTypes;
+
+    if (process.env.NODE_ENV !== 'production') {
+      Connect.prototype.componentWillUpdate = function componentWillUpdate() {
+        // We are hot reloading!
+        if (this.version !== version) {
+          this.version = version;
+          this.initSelector();
+
+          if (this.subscription) this.subscription.tryUnsubscribe();
+          this.initSubscription();
+          if (shouldHandleStateChanges) this.subscription.trySubscribe();
+        }
+      };
+    }
+
+    return __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default()(Connect, WrappedComponent);
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(41);
+/* harmony export (immutable) */ __webpack_exports__["b"] = wrapMapToPropsConstant;
+/* unused harmony export getDependsOnOwnProps */
+/* harmony export (immutable) */ __webpack_exports__["a"] = wrapMapToPropsFunc;
+
+
+function wrapMapToPropsConstant(getConstant) {
+  return function initConstantSelector(dispatch, options) {
+    var constant = getConstant(dispatch, options);
+
+    function constantSelector() {
+      return constant;
+    }
+    constantSelector.dependsOnOwnProps = false;
+    return constantSelector;
+  };
+}
+
+// dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
+// to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
+// whether mapToProps needs to be invoked when props have changed.
+// 
+// A length of one signals that mapToProps does not depend on props from the parent component.
+// A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
+// therefore not reporting its length accurately..
+function getDependsOnOwnProps(mapToProps) {
+  return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
+}
+
+// Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
+// this function wraps mapToProps in a proxy function which does several things:
+// 
+//  * Detects whether the mapToProps function being called depends on props, which
+//    is used by selectorFactory to decide if it should reinvoke on props changes.
+//    
+//  * On first call, handles mapToProps if returns another function, and treats that
+//    new function as the true mapToProps for subsequent calls.
+//    
+//  * On first call, verifies the first result is a plain object, in order to warn
+//    the developer that their mapToProps function is not returning a valid result.
+//    
+function wrapMapToPropsFunc(mapToProps, methodName) {
+  return function initProxySelector(dispatch, _ref) {
+    var displayName = _ref.displayName;
+
+    var proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
+      return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch);
+    };
+
+    // allow detectFactoryAndVerify to get ownProps
+    proxy.dependsOnOwnProps = true;
+
+    proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
+      proxy.mapToProps = mapToProps;
+      proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
+      var props = proxy(stateOrDispatch, ownProps);
+
+      if (typeof props === 'function') {
+        proxy.mapToProps = props;
+        proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
+        props = proxy(stateOrDispatch, ownProps);
+      }
+
+      if (process.env.NODE_ENV !== 'production') __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__["a" /* default */])(props, displayName, methodName);
+
+      return props;
+    };
+
+    return proxy;
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(114);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscriptionShape; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return storeShape; });
+
+
+var subscriptionShape = __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].shape({
+  trySubscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
+  tryUnsubscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
+  notifyNestedSubs: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
+  isSubscribed: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired
+});
+
+var storeShape = __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].shape({
+  subscribe: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
+  dispatch: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
+  getState: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(15);
+/* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
+
+
+
+function verifyPlainObject(value, displayName, methodName) {
+  if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__["a" /* default */])(value)) {
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__warning__["a" /* default */])(methodName + '() in ' + displayName + ' must return a plain object. Instead received ' + value + '.');
+  }
+}
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(3);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouter = __webpack_require__(2);
+
+var _store = __webpack_require__(24);
+
+var _reactRedux = __webpack_require__(39);
+
+var _Home = __webpack_require__(63);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+var _Room = __webpack_require__(20);
+
+var _Room2 = _interopRequireDefault(_Room);
+
+var _FullRoom = __webpack_require__(19);
+
+var _FullRoom2 = _interopRequireDefault(_FullRoom);
+
+var _Shop = __webpack_require__(66);
+
+var _Shop2 = _interopRequireDefault(_Shop);
+
+var _User = __webpack_require__(21);
+
+var _User2 = _interopRequireDefault(_User);
+
+var _User_orderList = __webpack_require__(22);
+
+var _User_orderList2 = _interopRequireDefault(_User_orderList);
+
+var _HomeDetail = __webpack_require__(64);
+
+var _HomeDetail2 = _interopRequireDefault(_HomeDetail);
+
+var _Footer = __webpack_require__(62);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _login = __webpack_require__(7);
+
+var _login2 = _interopRequireDefault(_login);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //引入router
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'main_container' },
+        _react2.default.createElement(
+          'section',
+          { id: 'header_and_content' },
+          this.props.children
+        ),
+        _react2.default.createElement(_Footer2.default, null)
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
+
+{/* Provider组件接受redux的store作为props 通过context往下传 */}
+_reactDom2.default.render(_react2.default.createElement(
+  _reactRedux.Provider,
+  { store: _store.store },
+  _react2.default.createElement(
+    _reactRouter.Router,
+    { history: _reactRouter.hashHistory },
+    _react2.default.createElement(
+      _reactRouter.Route,
+      { path: '/', component: App },
+      _react2.default.createElement(_reactRouter.IndexRedirect, { to: 'home/room' }),
+      _react2.default.createElement(_reactRouter.Redirect, { from: 'home', to: 'home/room' }),
+      _react2.default.createElement(
+        _reactRouter.Route,
+        { path: 'home', component: _Home2.default },
+        _react2.default.createElement(_reactRouter.Route, { path: 'room', titleName: '\u623F\u95F4', component: _Room2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'fullroom', titleName: '\u5168\u5C4B', component: _FullRoom2.default })
+      ),
+      _react2.default.createElement(_reactRouter.Route, { path: 'shop', component: _Shop2.default }),
+      _react2.default.createElement(
+        _reactRouter.Route,
+        { path: 'user', component: _User2.default },
+        _react2.default.createElement(_reactRouter.Route, { path: 'user_orderlist', component: _User_orderList2.default })
+      ),
+      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _login2.default })
+    ),
+    _react2.default.createElement(_reactRouter.Route, { path: 'homedetail/:homegoodid', component: _HomeDetail2.default })
+  )
+), document.getElementById('root'));
+
+// class Index extends React.Component {
+//   constructor (props) {
+//     super(props)
+//     this.state = {
+//       name: []
+//     }
+//   }
+//
+//   render() {
+//     return (
+//       <div>{ this.state.name }</div>
+//     )
+//   }
+//
+//   componentDidMount() {
+//     fetch('/api/list.php')
+//     .then(response=>response.json())
+//     // function(response) {
+//     //   return response.json()
+//     // }
+//     .then(res=>{
+//       // console.log(res);
+//       this.setState({
+//         name: <div>{res.xixixi}</div>
+//       })
+//     })
+//   }
+// }
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "App.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+/**
+ * Allows extraction of a minified key. Let's the build system minify keys
+ * without losing the ability to dynamically use key strings as values
+ * themselves. Pass in an object with a single key/val pair and it will return
+ * you the string key of that single record. Suppose you want to grab the
+ * value for a key 'className' inside of an object. Key/val minification may
+ * have aliased that key to be 'xa12'. keyOf({className: null}) will return
+ * 'xa12' in that case. Resolve keys you want to use once at startup time, then
+ * reuse those resolutions.
+ */
+var keyOf = function keyOf(oneKeyObj) {
+  var key;
+  for (key in oneKeyObj) {
+    if (!oneKeyObj.hasOwnProperty(key)) {
+      continue;
+    }
+    return key;
+  }
+  return null;
+};
+
+module.exports = keyOf;
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @typechecks
+ * 
+ */
+
+/*eslint-disable no-self-compare */
+
+
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+/**
+ * inlined Object.is polyfill to avoid requiring consumers ship their own
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+ */
+function is(x, y) {
+  // SameValue algorithm
+  if (x === y) {
+    // Steps 1-5, 7-10
+    // Steps 6.b-6.e: +0 != -0
+    // Added the nonzero y check to make Flow happy, but it is redundant
+    return x !== 0 || y !== 0 || 1 / x === 1 / y;
+  } else {
+    // Step 6.a: NaN == NaN
+    return x !== x && y !== y;
+  }
+}
+
+/**
+ * Performs equality by iterating through keys on an object and returning false
+ * when any key has values which are not strictly equal between the arguments.
+ * Returns true when the values of all keys are strictly equal.
+ */
+function shallowEqual(objA, objB) {
+  if (is(objA, objB)) {
+    return true;
+  }
+
+  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  // Test for A's keys different from B.
+  for (var i = 0; i < keysA.length; i++) {
+    if (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+module.exports = shallowEqual;
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(47);
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global, module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ponyfill = __webpack_require__(48);
+
+var _ponyfill2 = _interopRequireDefault(_ponyfill);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var root; /* global window */
+
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (true) {
+  root = module;
+} else {
+  root = Function('return this')();
+}
+
+var result = (0, _ponyfill2['default'])(root);
+exports['default'] = result;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31), __webpack_require__(100)(module)))
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_RESULT__;/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports['default'] = symbolObservablePonyfill;
+function symbolObservablePonyfill(root) {
+	var result;
+	var _Symbol = root.Symbol;
+
+	if (typeof _Symbol === 'function') {
+		if (_Symbol.observable) {
+			result = _Symbol.observable;
+		} else {
+			result = _Symbol('observable');
+			_Symbol.observable = result;
+		}
+	} else {
+		result = '@@observable';
+	}
+
+	return result;
+};
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+
+
+var REACT_STATICS = {
+    childContextTypes: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+
+var KNOWN_STATICS = {
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    arguments: true,
+    arity: true
+};
+
+var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
+
+module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
+    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+        var keys = Object.getOwnPropertyNames(sourceComponent);
+
+        /* istanbul ignore else */
+        if (isGetOwnPropertySymbolsAvailable) {
+            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
+        }
+
+        for (var i = 0; i < keys.length; ++i) {
+            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
+                try {
+                    targetComponent[keys[i]] = sourceComponent[keys[i]];
+                } catch (error) {
+
+                }
+            }
+        }
+    }
+
+    return targetComponent;
+};
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+exports.default = function () {
+    var ALLOWANCEAngle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0.57;
+    var ALLOWANCEDistance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 30;
+    return {
+        handleData: function handleData(_ref, children) {
+            var loop = _ref.loop,
+                pageNow = _ref.pageNow;
+
+            var newChildren = _react2.default.Children.toArray(children);
+            if (loop) {
+                var len = children.length;
+                var lastfakeDomStyle = {
+                    key: 0
+                };
+                var firstFakeDomStyle = {
+                    key: -1
+                };
+                if (children[0].type === 'li') {
+                    lastfakeDomStyle.className = children[len - 1].props.className ? children[len - 1].props.className + ' extra-item' : 'extra-item';
+                } else {
+                    lastfakeDomStyle.index = len;
+                    lastfakeDomStyle.extraClass = children[len - 1].props.extraClass ? children[len - 1].props.extraClass + ' extra-item' : 'extra-item';
+                    firstFakeDomStyle.index = 1;
+                }
+                var header = _react2.default.cloneElement(children[len - 1], lastfakeDomStyle);
+                var footer = _react2.default.cloneElement(children[0], firstFakeDomStyle);
+                newChildren.unshift(header);
+                newChildren.push(footer);
+            }
+            return newChildren;
+        },
+        touchstart: function touchstart() {},
+        touchmove: function touchmove(_ref2) {
+            var touchstartLocation = _ref2.touchstartLocation,
+                touchmoveLocation = _ref2.touchmoveLocation,
+                pageNow = _ref2.pageNow,
+                containerDOM = _ref2.containerDOM,
+                width = _ref2.width;
+
+            var translateX = (pageNow - 1) * width + touchstartLocation[0] - touchmoveLocation[0];
+            this._addCss({
+                dom: containerDOM,
+                speed: 0,
+                translateX: -translateX,
+                reset: true,
+                width: width
+            });
+        },
+        touchend: function touchend(aniObj) {
+            var touchstartLocation = aniObj.touchstartLocation,
+                touchendLocation = aniObj.touchendLocation,
+                pageNow = aniObj.pageNow;
+
+            var distanceX = touchendLocation[0] - touchstartLocation[0];
+            var distanceY = touchendLocation[1] - touchstartLocation[1];
+            var tan = Math.abs(distanceX) / Math.abs(distanceY);
+            var newpageNow = pageNow;
+            if (Math.abs(distanceX) > ALLOWANCEDistance && tan > ALLOWANCEAngle) {
+                newpageNow = distanceX > 0 ? pageNow - 1 : pageNow + 1;
+            } else {
+                newpageNow = pageNow;
+            }
+            return this.checkAni(aniObj, newpageNow);
+        },
+        checkAni: function checkAni(aniObj, pageNow) {
+            var _this = this;
+
+            var pagesNum = aniObj.pagesNum,
+                speed = aniObj.speed,
+                containerDOM = aniObj.containerDOM,
+                loop = aniObj.loop,
+                aniSpeed = aniObj.aniSpeed,
+                width = aniObj.width;
+
+            if (this.moving) window.clearInterval(this.moving);
+            var translateX = width * (1 - pageNow);
+            var newpageNow = pageNow;
+            if (pageNow < 1 || pageNow > pagesNum) {
+                if (loop) {
+                    // console.log(`checkAni 延迟处理${pageNow}`);
+                    this.moving = window.setTimeout(function () {
+                        var translate = 0;
+                        if (pageNow === 0) {
+                            translate = width * (1 - pagesNum);
+                        }
+                        _this._addCss({
+                            dom: containerDOM,
+                            reset: true,
+                            translateX: translate,
+                            width: width
+                        });
+                        _this.moving = null;
+                    }, (speed + aniSpeed) * 1000);
+                    newpageNow = pageNow === 0 ? pagesNum : 1;
+                } else {
+                    newpageNow = pageNow < 1 ? 1 : pagesNum;
+                    translateX = width * (1 - newpageNow);
+                }
+            }
+            this._addCss({
+                dom: containerDOM,
+                reset: false,
+                speed: speed,
+                translateX: translateX,
+                width: width
+            });
+            return newpageNow;
+        },
+        next: function next(aniObj) {
+            var pageNow = aniObj.pageNow;
+
+            var pageNext = pageNow + 1;
+            return this.checkAni(aniObj, pageNext);
+        },
+        prev: function prev(aniObj) {
+            var pageNow = aniObj.pageNow,
+                containerDOM = aniObj.containerDOM,
+                speed = aniObj.speed,
+                width = aniObj.width;
+
+            var pageNext = pageNow - 1;
+            var translateX = width * (1 - pageNext);
+            this._addCss({
+                dom: containerDOM,
+                speed: speed,
+                translateX: translateX
+            });
+            return this.checkAni(aniObj, pageNext);
+        },
+        arrive: function arrive(aniObj, num, isAni) {
+            if (num >= 1 && num <= aniObj.pagesNum) {
+                var translateX = (1 - num) * aniObj.width;
+                this._addCss({
+                    dom: aniObj.containerDOM,
+                    speed: 0.1,
+                    translateX: translateX,
+                    reset: !isAni,
+                    width: aniObj.width
+                });
+            } else {
+                console.log('\u4F20\u5165carousel\u7EC4\u5EFA\u7684arrive\u65B9\u6CD5\u7684\u9875\u9762\u4E3A' + num + ',\u8BE5\u503C\u4E0D\u5408\u6CD5');
+            }
+            return num;
+        },
+        _addCss: function _addCss(_ref3) {
+            var dom = _ref3.dom,
+                _ref3$translateX = _ref3.translateX,
+                translateX = _ref3$translateX === undefined ? 0 : _ref3$translateX,
+                reset = _ref3.reset,
+                ani = _objectWithoutProperties(_ref3, ['dom', 'translateX', 'reset']);
+
+            // 此处为Dom操作
+            if (reset) {
+                dom.style.webkitTransition = 'none';
+                dom.style.transition = 'none';
+            } else {
+                dom.style.webkitTransition = '';
+                dom.style.transition = '';
+            }
+            dom.style.webkitTransform = 'translate(' + translateX + 'px, 0) translateZ(0)';
+            dom.style.transform = 'translate(' + translateX + 'px, 0) translateZ(0)';
+        }
+    };
+};
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "aniScrollx.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(96);
+
+__webpack_require__(17);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(9);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactAddonsShallowCompare = __webpack_require__(82);
+
+var _reactAddonsShallowCompare2 = _interopRequireDefault(_reactAddonsShallowCompare);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component Carousel.CarouselItem
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description Carousel组件内部的Item组件，和普通的dom节点相比增加了懒加载图片功能。也可以使用`onTap`给Item绑定tap事件回调。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 你可以通过Carousel.CarouselItem来使用这个组件，或者引用`yo3/component/carousel/src/carouselItem`的js模块来使用。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * ** 注意：`CarouselItem`不能和`Touchable`一起使用，请使用它的`onTap`属性来绑定事件回调。 **
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var ALLOWANCE = 1;
+var LOADED = 1;
+var UNLOAD = 0;
+var FAIL = 2;
+
+var CarouselItem = function (_Component) {
+    _inherits(CarouselItem, _Component);
+
+    function CarouselItem(props) {
+        _classCallCheck(this, CarouselItem);
+
+        var _this = _possibleConstructorReturn(this, (CarouselItem.__proto__ || Object.getPrototypeOf(CarouselItem)).call(this, props));
+
+        if (props.img) {
+            _this.state = {
+                img: 0
+            };
+        }
+        _this.handleTap = _this.handleTap.bind(_this);
+        _this.hasUnmount = false;
+        return _this;
+    }
+
+    _createClass(CarouselItem, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.lazyload(this.props);
+        }
+    }, {
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState, nextContext) {
+            var propsChange = (0, _reactAddonsShallowCompare2.default)(this, nextProps, nextState);
+            var contextChange = this.context.currentPage !== nextContext.currentPage || this.context.pagesNum !== nextContext.pagesNum;
+            return propsChange || contextChange;
+        }
+    }, {
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextProps, nextState, nextContext) {
+            this.lazyload(nextContext.currentPage);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.hasUnmount = true;
+        }
+    }, {
+        key: 'handleTap',
+        value: function handleTap(e) {
+            this.props.onTap(e);
+        }
+    }, {
+        key: 'loadImg',
+        value: function loadImg() {
+            var _this2 = this;
+
+            if (!this.props.img) {
+                return;
+            }
+            this.imgNode = new Image();
+            this.imgNode.onload = function () {
+                var imgState = void 0;
+                imgState = 1;
+                if (_this2.props.checkImgFun && !_this2.props.checkImgFun(_this2.imgNode)) {
+                    imgState = 2;
+                }
+                if (!_this2.hasUnmount) {
+                    _this2.setState({
+                        img: imgState
+                    });
+                }
+            };
+            this.imgNode.onerror = function () {
+                if (!_this2.hasUnmount) {
+                    _this2.setState({
+                        img: 2
+                    });
+                }
+            };
+            this.imgNode.src = this.props.img;
+        }
+    }, {
+        key: 'lazyload',
+        value: function lazyload(currentPage) {
+            if (this.state.img) {
+                return;
+            }
+            if (!this.props.lazyload) {
+                this.loadImg();
+            } else {
+                if (Math.abs(currentPage - this.props.index) <= ALLOWANCE || this.props.index === 1 || this.props.index === this.context.pagesNum) {
+                    this.loadImg();
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var img = null;
+            var classList = void 0;
+            var activeClass = {};
+            if (this.props.img) {
+                switch (this.state.img) {
+                    case LOADED:
+                        img = _react2.default.createElement('img', { alt: '', src: this.props.img, className: 'img', draggable: 'false' });
+                        break;
+                    case FAIL:
+                        img = _react2.default.createElement('img', { alt: '', src: this.props.errorImg, className: 'img', draggable: 'false' });
+                        break;
+                    case UNLOAD:
+                    default:
+                        img = this.props.loadingEle;
+                        break;
+                }
+            }
+            activeClass[this.props.activeClass] = this.context.currentPage === this.props.index;
+            if (this.props.extraClass) {
+                activeClass[this.props.extraClass] = true;
+            }
+            classList = (0, _classnames2.default)('item', activeClass);
+            return _react2.default.createElement(
+                'li',
+                { className: classList, style: this.props.style, onTouchTap: this.handleTap },
+                img
+            );
+        }
+    }]);
+
+    return CarouselItem;
+}(_react.Component);
+
+CarouselItem.propTypes = {
+    /**
+     * @type String
+     * @property img
+     * @description 图片地址。
+     */
+    img: _react.PropTypes.string,
+    /**
+     * @type String
+     * @property errorImg
+     * @description 图片加载失败时的替换图片。
+     */
+    errorImg: _react.PropTypes.string,
+    /**
+     * @type Function
+     * @property checkImgFun
+     * @description 目标图片onload时触发进行判断的函数。
+     * @param 图片实例
+     */
+    checkImgFun: _react.PropTypes.func,
+    /**
+     * @type Function
+     * @property onTap
+     * @param {e} 事件对象，传入组件数据
+     * @description item点击事件处理函数。
+     */
+    onTap: _react.PropTypes.func,
+    /**
+     * @property extraClass
+     * @type String
+     * @description 为组件根节点提供额外的class。
+     */
+    extraClass: _react.PropTypes.string,
+    /**
+     * @type Element
+     * @property loadingEle
+     * @description 图片加载时的loading Element。
+     */
+    loadingEle: _react.PropTypes.element,
+    /**
+     * @type Bool
+     * @property lazyload
+     * @description 是否需要图片懒加载。默认值为true,当前图片的前后两个节点图片被加载。
+     */
+    lazyload: _react.PropTypes.bool,
+    /**
+     * item是当前展示item的样式名
+     * @type String
+     * @property activeClass
+     * @description item是当前展示item的样式名，默认值为'on'。
+     */
+    activeClass: _react.PropTypes.string,
+    index: _react.PropTypes.number,
+    style: _react.PropTypes.object
+};
+CarouselItem.defaultProps = {
+    errorImg: '//s.qunarzz.com/mobile_search_touch/intention-search-h5/loading.gif',
+    loadingEle: null,
+    lazyload: true,
+    activeClass: 'on',
+    onTap: function onTap() {}
+};
+CarouselItem.contextTypes = {
+    currentPage: _react2.default.PropTypes.number.isRequired,
+    pagesNum: _react2.default.PropTypes.number.isRequired
+};
+exports.default = CarouselItem;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "carouselItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _EventEmitter2 = __webpack_require__(53);
+
+var _EventEmitter3 = _interopRequireDefault(_EventEmitter2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 大型组件使用的抽象Model类，用于集中管理组件内部的逻辑和状态。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var ComponentCore = function (_EventEmitter) {
+    _inherits(ComponentCore, _EventEmitter);
+
+    function ComponentCore(namespace) {
+        _classCallCheck(this, ComponentCore);
+
+        var _this = _possibleConstructorReturn(this, (ComponentCore.__proto__ || Object.getPrototypeOf(ComponentCore)).call(this));
+
+        _this.instanceId = ++ComponentCore.instanceId;
+        _this.namespace = namespace;
+        return _this;
+    }
+
+    _createClass(ComponentCore, [{
+        key: '_getEventName',
+        value: function _getEventName(eventName) {
+            return 'yo/component/' + this.namespace + '/' + eventName + '/' + this.instanceId;
+        }
+    }, {
+        key: 'emitEvent',
+        value: function emitEvent(eventName) {
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                args[_key - 1] = arguments[_key];
+            }
+
+            this.emit.apply(this, [this._getEventName(eventName)].concat(args));
+            return this;
+        }
+    }, {
+        key: 'registerEventHandler',
+        value: function registerEventHandler(eventName, handler) {
+            this.on(this._getEventName(eventName), handler.bind(this));
+            return this;
+        }
+    }, {
+        key: 'getAttr',
+        value: function getAttr(item, attrKey) {
+            return typeof item.get === 'function' ? item.get(attrKey) : item[attrKey];
+        }
+    }, {
+        key: 'setAttr',
+        value: function setAttr(item, attrKey, value) {
+            var ret = null;
+            if (typeof item.set === 'function') {
+                ret = item.set(attrKey, value);
+            } else {
+                ret = Object.assign({}, item, _defineProperty({}, attrKey, value));
+            }
+            return ret;
+        }
+    }]);
+
+    return ComponentCore;
+}(_EventEmitter3.default);
+
+ComponentCore.instanceId = -1;
+exports.default = ComponentCore;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ComponentCore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Apply = Function.prototype.apply;
+var privateMap = new WeakMap();
+
+// For making private properties.
+function internal(obj) {
+  if (!privateMap.has(obj)) {
+    privateMap.set(obj, {});
+  }
+
+  return privateMap.get(obj);
+}
+
+/** Class EventEmitter for event-driven architecture. */
+
+var EventEmitter = function () {
+  /**
+   * Constructor.
+   *
+   * @constructor
+   * @param {number|null} maxListeners.
+   * @param {object} localConsole.
+   *
+   * Set private initial parameters:
+   *   _events, _callbacks, _maxListeners, _console.
+   *
+   * @return {this}
+   */
+  function EventEmitter() {
+    var maxListeners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var localConsole = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : console;
+
+    _classCallCheck(this, EventEmitter);
+
+    var self = internal(this);
+
+    self._events = new Set();
+    self._callbacks = {};
+    self._console = localConsole;
+    self._maxListeners = maxListeners === null ? null : parseInt(maxListeners, 10);
+
+    return this;
+  }
+
+  /**
+   * Add callback to the event.
+   *
+   * @param {string} eventName.
+   * @param {function} callback
+   * @param {object|null} context - In than context will be called callback.
+   * @param {number} weight - Using for sorting callbacks calls.
+   *
+   * @return {this}
+   */
+
+
+  _createClass(EventEmitter, [{
+    key: '_addCallback',
+    value: function _addCallback(eventName, callback, context, weight) {
+      this._getCallbacks(eventName).push({
+        callback: callback,
+        context: context,
+        weight: weight
+      });
+
+      // Sort the array of callbacks in
+      // the order of their call by "weight".
+      this._getCallbacks(eventName).sort(function (a, b) {
+        return a.weight > b.weight;
+      });
+
+      return this;
+    }
+
+    /**
+     * Get all callback for the event.
+     *
+     * @param {string} eventName
+     *
+     * @return {object|undefined}
+     */
+
+  }, {
+    key: '_getCallbacks',
+    value: function _getCallbacks(eventName) {
+      return internal(this)._callbacks[eventName];
+    }
+
+    /**
+     * Get callback's index for the event.
+     *
+     * @param {string} eventName
+     * @param {callback} callback
+     *
+     * @return {number|null}
+     */
+
+  }, {
+    key: '_getCallbackIndex',
+    value: function _getCallbackIndex(eventName, callback) {
+      return this._has(eventName) ? this._getCallbacks(eventName).findIndex(function (element) {
+        return element.callback === callback;
+      }) : null;
+    }
+
+    /**
+     * Check if we achive maximum of listeners for the event.
+     *
+     * @param {string} eventName
+     *
+     * @return {bool}
+     */
+
+  }, {
+    key: '_achieveMaxListener',
+    value: function _achieveMaxListener(eventName) {
+      return internal(this)._maxListeners !== null && internal(this)._maxListeners <= this.listenersNumber(eventName);
+    }
+
+    /**
+     * Check if callback is already exists for the event.
+     *
+     * @param {string} eventName
+     * @param {function} callback
+     * @param {object|null} context - In than context will be called callback.
+     *
+     * @return {bool}
+     */
+
+  }, {
+    key: '_callbackIsExists',
+    value: function _callbackIsExists(eventName, callback, context) {
+      var callbackInd = this._getCallbackIndex(eventName, callback);
+      var activeCallback = callbackInd !== -1 ? this._getCallbacks(eventName)[callbackInd] : void 0;
+
+      return callbackInd !== -1 && activeCallback && activeCallback.context === context;
+    }
+
+    /**
+     * Check is the event was already added.
+     *
+     * @param {string} eventName
+     *
+     * @return {bool}
+     */
+
+  }, {
+    key: '_has',
+    value: function _has(eventName) {
+      return internal(this)._events.has(eventName);
+    }
+
+    /**
+     * Add the listener.
+     *
+     * @param {string} eventName
+     * @param {function} callback
+     * @param {object|null} context - In than context will be called callback.
+     * @param {number} weight - Using for sorting callbacks calls.
+     *
+     * @return {this}
+     */
+
+  }, {
+    key: 'on',
+    value: function on(eventName, callback) {
+      var context = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var weight = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+
+      /* eslint no-unused-vars: 0 */
+      var self = internal(this);
+
+      if (typeof callback !== 'function') {
+        throw new TypeError(callback + ' is not a function');
+      }
+
+      // If event wasn't added before - just add it
+      // and define callbacks as an empty object.
+      if (!this._has(eventName)) {
+        self._events.add(eventName);
+        self._callbacks[eventName] = [];
+      } else {
+        // Check if we reached maximum number of listeners.
+        if (this._achieveMaxListener(eventName)) {
+          self._console.warn('Max listeners (' + self._maxListeners + ')' + (' for event "' + eventName + '" is reached!'));
+        }
+
+        // Check if the same callback has already added.
+        if (this._callbackIsExists.apply(this, arguments)) {
+          self._console.warn('Event "' + eventName + '"' + (' already has the callback ' + callback + '.'));
+        }
+      }
+
+      this._addCallback.apply(this, arguments);
+
+      return this;
+    }
+
+    /**
+     * Add the listener which will be executed only once.
+     *
+     * @param {string} eventName
+     * @param {function} callback
+     * @param {object|null} context - In than context will be called callback.
+     * @param {number} weight - Using for sorting callbacks calls.
+     *
+     * @return {this}
+     */
+
+  }, {
+    key: 'once',
+    value: function once(eventName, callback) {
+      var _this = this;
+
+      var context = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var weight = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+
+      var onceCallback = function onceCallback() {
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        _this.off(eventName, onceCallback);
+        return Apply.call(callback, context, args);
+      };
+
+      return this.on(eventName, onceCallback, context, weight);
+    }
+
+    /**
+     * Remove an event at all or just remove selected callback from the event.
+     *
+     * @param {string} eventName
+     * @param {function} callback
+     *
+     * @return {this}
+     */
+
+  }, {
+    key: 'off',
+    value: function off(eventName) {
+      var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      var self = internal(this);
+      var callbackInd = void 0;
+
+      if (this._has(eventName)) {
+        if (callback === null) {
+          // Remove the event.
+          self._events.delete(eventName);
+          // Remove all listeners.
+          self._callbacks[eventName] = null;
+        } else {
+          callbackInd = this._getCallbackIndex(eventName, callback);
+
+          if (callbackInd !== -1) {
+            self._callbacks[eventName].splice(callbackInd, 1);
+            // Remove all equal callbacks.
+            this.off.apply(this, arguments);
+          }
+        }
+      }
+
+      return this;
+    }
+
+    /**
+     * Trigger the event.
+     *
+     * @param {string} eventName
+     * @param {...args} args - All arguments which should be passed into callbacks.
+     *
+     * @return {this}
+     */
+
+  }, {
+    key: 'emit',
+    value: function emit(eventName) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        args[_key2 - 1] = arguments[_key2];
+      }
+
+      if (this._has(eventName)) {
+        // All callbacks will be triggered sorter by "weight" parameter.
+        this._getCallbacks(eventName).forEach(function (element) {
+          return Apply.call(element.callback, element.context, args);
+        });
+      }
+
+      return this;
+    }
+
+    /**
+     * Clear all events and callback links.
+     *
+     * @return {this}
+     */
+
+  }, {
+    key: 'clear',
+    value: function clear() {
+      var self = internal(this);
+
+      self._events.clear();
+      self._callbacks = {};
+
+      return this;
+    }
+
+    /**
+     * Returns number of listeners for the event.
+     *
+     * @param {string} eventName
+     *
+     * @return {number|null} - Number of listeners for event
+     *                         or null if event isn't exists.
+     */
+
+  }, {
+    key: 'listenersNumber',
+    value: function listenersNumber(eventName) {
+      return this._has(eventName) ? this._getCallbacks(eventName).length : null;
+    }
+  }]);
+
+  return EventEmitter;
+}();
+
+exports.default = EventEmitter;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "EventEmitter.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7111,7 +7997,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return new FastClick(layer, options);
     };
 
-    if ("function" === 'function' && _typeof(__webpack_require__(25)) === 'object' && __webpack_require__(25)) {
+    if ("function" === 'function' && _typeof(__webpack_require__(30)) === 'object' && __webpack_require__(30)) {
 
         // AMD. Register as an anonymous module.
         !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -7126,56 +8012,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
 })();
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "fastclick.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "fastclick.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 49 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-var _fastclick = __webpack_require__(48);
-
-var _fastclick2 = _interopRequireDefault(_fastclick);
-
-var _reactTapEventPlugin = __webpack_require__(77);
-
-var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Created by Ellery1 on 16/7/8.
- */
-if (!window.___yoTapEventInjected) {
-    // 不要觉得这里没用
-    // 因为yo-router也用了tap-event-plugin，如果不加try catch会报引用两次tap-event-plugin的警告
-    try {
-        (0, _reactTapEventPlugin2.default)();
-    } catch (e) {}
-
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        _fastclick2.default.attach(document.body);
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        _fastclick2.default.attach(document.body);
-    });
-    document.body.addEventListener('touchmove', function (evt) {
-        evt.preventDefault();
-    });
-    window.___yoTapEventInjected = true;
-}
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "tapEventPluginInit.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* WEBPACK VAR INJECTION */(function(process) {/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7187,11 +8030,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(0);
+var _ComponentCore2 = __webpack_require__(52);
 
-var _react2 = _interopRequireDefault(_react);
-
-var _util = __webpack_require__(9);
+var _ComponentCore3 = _interopRequireDefault(_ComponentCore2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7200,235 +8041,1662 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component LazyImage
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author jiao.shen
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 懒加载图片组件，只能在 `Scroller` 和 `List` 中使用。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 使用这个组件代替img标签后，会延迟加载这个图片，直到List组件的滚动使得该图片位于可视区域之内。
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./lazyimage.md}{instruUrl: scroller/lazyimage.html?hideIcon}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @version  3.0.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * List核心逻辑,负责管理List组件的内部状态
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
-var TO_BE_LOADED = 0;
-var LOADING = 1;
-var LOADED = 2;
+var ListCore = function (_ComponentCore) {
+    _inherits(ListCore, _ComponentCore);
+
+    /**
+     * @param dataSource 数据源
+     * @param offsetY 列表的初始Y偏移
+     * @param infinite 是否是无穷列表
+     * @param itemHeight 列表项高度
+     * @param visibleSize 保留在列表容器中列表项的数组
+     * @description 构造函数,会通过调用refresh方法进行初始化
+     */
+    function ListCore(_ref) {
+        var dataSource = _ref.dataSource,
+            _ref$offsetY = _ref.offsetY,
+            offsetY = _ref$offsetY === undefined ? 0 : _ref$offsetY,
+            _ref$infinite = _ref.infinite,
+            infinite = _ref$infinite === undefined ? true : _ref$infinite,
+            itemHeight = _ref.itemHeight,
+            _ref$infiniteSize = _ref.infiniteSize,
+            infiniteSize = _ref$infiniteSize === undefined ? 12 : _ref$infiniteSize,
+            _ref$staticSectionHei = _ref.staticSectionHeight,
+            staticSectionHeight = _ref$staticSectionHei === undefined ? 0 : _ref$staticSectionHei;
+
+        _classCallCheck(this, ListCore);
+
+        // 静态属性
+        // 这些属性不会随着父组件render改变
+        var _this = _possibleConstructorReturn(this, (ListCore.__proto__ || Object.getPrototypeOf(ListCore)).call(this, 'list'));
+
+        _this.itemHeight = itemHeight;
+        // 保存列表项定位信息的表,List组件不定高模式的核心数据结构
+        _this.positionMap = {};
+        // 在refresh中设置的属性可以通过父组件的render改变
+        _this.refresh({
+            dataSource: dataSource,
+            refreshAll: false,
+            infiniteSize: infiniteSize,
+            staticSectionHeight: staticSectionHeight,
+            offsetY: offsetY,
+            infinite: infinite
+        });
+        return _this;
+    }
+
+    /**
+     * @param ds
+     * @param refreshAll
+     * @param visibleSize
+     * @param offsetY
+     * @param infinite
+     * @param startIndex
+     * @returns {ListCore}
+     * @description 设置实例属性, 在构造函数中被调用,也会在组件的componentWillReceiveProps回调中调用
+     * 可以根据props初始化/重置组件的状态
+     */
+
+
+    _createClass(ListCore, [{
+        key: 'refresh',
+        value: function refresh(_ref2) {
+            var _ref2$dataSource = _ref2.dataSource,
+                dataSource = _ref2$dataSource === undefined ? this.dataSource : _ref2$dataSource,
+                _ref2$refreshAll = _ref2.refreshAll,
+                refreshAll = _ref2$refreshAll === undefined ? false : _ref2$refreshAll,
+                _ref2$infiniteSize = _ref2.infiniteSize,
+                infiniteSize = _ref2$infiniteSize === undefined ? this.visibleSize : _ref2$infiniteSize,
+                _ref2$staticSectionHe = _ref2.staticSectionHeight,
+                staticSectionHeight = _ref2$staticSectionHe === undefined ? this.staticSectionHeight : _ref2$staticSectionHe,
+                _ref2$offsetY = _ref2.offsetY,
+                offsetY = _ref2$offsetY === undefined ? this.offsetY : _ref2$offsetY,
+                _ref2$infinite = _ref2.infinite,
+                infinite = _ref2$infinite === undefined ? this.infinite : _ref2$infinite;
+
+            if (!Array.isArray(dataSource)) {
+                if (typeof dataSource.toArray === 'function') {
+                    dataSource = dataSource.toArray();
+                } else {
+                    throw new Error('yo-list: dataSource必须为数组或者Immutable List!');
+                }
+            }
+
+            if (!dataSource.length) {
+                throw new Error('yo-list: dataSource不能为空数组!');
+            }
+
+            this.WINDOW_HEIGHT = window.screen.height;
+            this.infinite = infinite;
+            this.VISIBLE_SIZE = infiniteSize;
+            this.dataSource = this.renderDataSource(dataSource, refreshAll);
+            this.isHeightFixed = this.ifHeightFixed();
+            this.direction = this.getDirection(offsetY);
+            this.offsetY = offsetY;
+            this.startIndex = this.refreshStartIndexByOffsetY(offsetY);
+            this.visibleList = this.getVisibleList(offsetY);
+            this.staticSectionHeight = staticSectionHeight;
+            this.totalHeight = this.getTotalHeight();
+
+            this.emitChange();
+
+            return this;
+        }
+
+        /**
+         * @param dataSource
+         * @returns {boolean}
+         * 判断数据源中的元素是否都被计算出(设置了)高度
+         */
+
+    }, {
+        key: 'ifHeightFixed',
+        value: function ifHeightFixed() {
+            var _this2 = this;
+
+            var dataSource = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.dataSource;
+
+            return dataSource.every(function (item) {
+                return !!_this2.getAttr(item.srcData, 'height');
+            }) || !!this.itemHeight || !this.infinite;
+        }
+
+        /**
+         * @returns {number}
+         * 返回一个guid
+         */
+
+    }, {
+        key: 'getGuid',
+        value: function getGuid() {
+            return ++ListCore.guid;
+        }
+
+        /**
+         * @param offsetY
+         * @returns {string}
+         * 根据传入的offsetY计算出组件滚动的方向
+         */
+
+    }, {
+        key: 'getDirection',
+        value: function getDirection(offsetY) {
+            return offsetY - this.offsetY >= 0 ? 'down' : 'up';
+        }
+
+        /**
+         * @param offsetY
+         * @returns {number}
+         * 根据传入的offsetY计算startIndex,startIndex被用来计算visibleList(无穷模式中保留在容器中的列表项的数组)
+         */
+
+    }, {
+        key: 'refreshStartIndexByOffsetY',
+        value: function refreshStartIndexByOffsetY(y) {
+            var offsetY = y - window.screen.height / 5;
+
+            if (this.infinite && this.isHeightFixed) {
+                for (var i = 0; i < this.dataSource.length; i++) {
+                    var item = this.dataSource[i];
+                    var itemPosData = this.getItemPositionData(item);
+                    if (i === 0 && itemPosData.height > offsetY) {
+                        return i;
+                    } else if (i > 0) {
+                        var prev = this.dataSource[i - 1];
+                        var prevPosData = this.getItemPositionData(prev);
+                        if (prevPosData._translateY < offsetY && prevPosData._translateY >= offsetY) {
+                            return i;
+                        }
+                    }
+                }
+            } else if (this.infinite) {
+                return this.startIndex ? this.startIndex : 0;
+            }
+
+            return 0;
+        }
+
+        /**
+         * @param offsetY
+         * @returns {ListCore}
+         * 在列表滚动时,根据offsetY更新visibleList
+         */
+
+    }, {
+        key: 'onScrollTo',
+        value: function onScrollTo(offsetY, manually) {
+            this.direction = this.getDirection(offsetY);
+            this.offsetY = offsetY;
+            if (manually) {
+                this.startIndex = 0;
+            }
+            var cachedIndex = this.startIndex;
+            if (this.infinite) {
+                this.visibleList = this.getVisibleList(offsetY);
+                // 只有当visibleList里面的内容真正发生变化的时候才触发onchange
+                // 这样可以确保setState调用次数最少
+                if (this.startIndex !== cachedIndex || this.startIndex === 0 && this.offsetY === 0 || manually) {
+                    this.emitChange();
+                }
+            }
+
+            return this;
+        }
+    }, {
+        key: 'getItemPositionData',
+        value: function getItemPositionData(item) {
+            var key = this.getAttr(item, 'key');
+            return item._type === 'groupTitle' ? item : this.positionMap[key];
+        }
+    }, {
+        key: 'setItemPositionData',
+        value: function setItemPositionData(item, attr) {
+            // grouptitle做特殊处理,因为grouptitle是grouplist组件内部的数据对象,所以不会修改到源数据
+            // 与此同时，grouplist需要获取到_translateY这些信息，因此也只能在原来的数据对象上修改
+            if (item._type === 'groupTitle') {
+                Object.assign(item, attr);
+            } else if (this.positionMap[item.key]) {
+                Object.assign(this.positionMap[item.key], attr);
+            }
+        }
+
+        /**
+         * @param ds
+         * @param refreshAll
+         * @returns {Array}
+         * 处理数据源
+         * 为每个元素的在pos表中的项添加_order(无穷模式下该列表项对应的槽的index),_resolved(是否已经计算出位置),_index(在数据源中的位置)
+         * _translateY(无穷列表中元素的translateY)和_bottom(列表项的bottom)
+         */
+
+    }, {
+        key: 'renderDataSource',
+        value: function renderDataSource(ds) {
+            var _this3 = this;
+
+            var refreshAll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+            return ds.map(function (ditem, i) {
+                var key = _this3.getAttr(ditem, 'key');
+                var renderedItem = {};
+
+                if (key == null) {
+                    if (_this3.infinite) {
+                        throw new Error('infinite模式的列表数据源的每一项必须有key属性。');
+                    } else {
+                        key = _this3.getGuid();
+                        if (process.env.NODE_ENV === 'dev') {
+                            console.warn('Yo-List:列表项没有key属性,将自动添加自增的key。这会使得列表在更新时出现大量的不必要的dom操作，请为每一个列表项指定一个唯一的key。');
+                        }
+                    }
+                }
+
+                // 区分groupTitle和item，因为groupTitle是组件添加的，不会影响到源数据，所以可以直接在上面增加属性
+                renderedItem = ditem._type !== 'groupTitle' ? {
+                    // srcData指向源数据
+                    srcData: ditem,
+                    key: key,
+                    _index: i,
+                    _type: 'item'
+                } : Object.assign(ditem, { srcData: ditem, _index: i }); // 这里给title增加了一个指向自己的指针srcData，这是为了兼容其他普通item的数据格式，而不是在使用它的地方做各种判断
+
+                if (refreshAll) {
+                    _this3.setItemPositionData(renderedItem, { _bottom: null, _translateY: null, _order: null });
+                }
+
+                var itemPosData = _this3.getItemPositionData(renderedItem);
+                if (!itemPosData) {
+                    itemPosData = _this3.positionMap[renderedItem.key] = {};
+                }
+
+                var itemHeight = _this3.getAttr(ditem, 'height');
+                var noHeightIdentified = _this3.itemHeight == null && itemHeight == null && itemPosData.height == null;
+                if (_this3.infinite) {
+                    // 设置height,_order,_resolved和_index
+                    // 如果这个item具有高度,则直接设为resolved
+                    _this3.setItemPositionData(renderedItem, {
+                        height: itemHeight || itemPosData.height || _this3.itemHeight,
+                        _order: i % _this3.VISIBLE_SIZE,
+                        _resolved: _this3.infinite && !noHeightIdentified,
+                        _index: i
+                    });
+                    // 即使这个元素高度确定,之前一个高度为null,也无法算出translateY和bottom
+                    // 此处再次验证之前一个元素是否为resolve
+                    if (i > 0) {
+                        var prevItemPosData = _this3.getItemPositionData(ds[i - 1]);
+                        if (!prevItemPosData._resolved) {
+                            _this3.setItemPositionData(renderedItem, { _resolved: false });
+                        }
+                    }
+                    // 第一个item,直接设置_translateY为0
+                    if (i === 0) {
+                        _this3.setItemPositionData(renderedItem, { _translateY: 0 });
+                    }
+                    // 之后的所有item,如果有height,设置它们的_translateY为前一个元素的bottom
+                    // 设置它们的bottom为_translateY+height
+                    if (itemPosData._resolved && !itemPosData._bottom) {
+                        var _translateY = i === 0 ? 0 : _this3.getItemPositionData(ds[i - 1])._bottom;
+                        var _bottom = _translateY + itemPosData.height;
+                        _this3.setItemPositionData(renderedItem, {
+                            _translateY: _translateY,
+                            _bottom: _bottom
+                        });
+                    } else if (!itemPosData._resolved) {
+                        // 不定高的情况
+                        if (i > 0) {
+                            var _prevItemPosData = _this3.getItemPositionData(ds[i - 1]);
+                            if (_prevItemPosData._bottom) {
+                                _this3.setItemPositionData(renderedItem, { _translateY: _prevItemPosData._bottom });
+                            }
+                        }
+                    }
+                }
+
+                return renderedItem;
+            });
+        }
+
+        /**
+         * @param i
+         * @param borderY
+         * @param dataSource
+         * @returns {boolean}
+         * 根据offsetY计算出刚好跨过offsetY的元素(top在y之上,bottom在y之下),或者是一个没有完成定位的元素
+         */
+
+    }, {
+        key: 'isBorderItem',
+        value: function isBorderItem(i, borderY) {
+            var dataSource = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.dataSource;
+
+            var itemPosData = this.getItemPositionData(dataSource[i]);
+            return itemPosData._resolved && itemPosData._bottom >= borderY && itemPosData._translateY <= borderY || !itemPosData._resolved;
+        }
+
+        /**
+         * @param startY
+         * @param startIndex
+         * @param direction
+         * @param dataSource
+         * @param VISIBLE_SIZE
+         * @returns {Number}
+         * 根据当前滚动的方向和y计算出startIndex
+         * 缓存了当前的startIndex,这样可以将查找的开销从O(n)降低到O(1),在处理大列表的时候可以提升性能
+         */
+
+    }, {
+        key: 'getStartItemIndex',
+        value: function getStartItemIndex(startY) {
+            var sIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.startIndex;
+            var direction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.direction;
+            var dataSource = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : this.dataSource;
+            var VISIBLE_SIZE = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : this.VISIBLE_SIZE;
+
+            var len = dataSource.length;
+            var startIndex = sIndex;
+            // 从保存的startIndex开始循环,根据当前滚动的方向的不同,i相应增加/减少
+            // 这样可以将查找的时间复杂度从线性降低到常量
+            if (direction === 'down' || startIndex === 0) {
+                for (var i = startIndex; i < len; i++) {
+                    if (this.isBorderItem(i, startY)) {
+                        startIndex = i;
+                        break;
+                    }
+                }
+            } else {
+                for (var _i = startIndex; _i >= 0; _i--) {
+                    if (this.isBorderItem(_i, startY)) {
+                        startIndex = _i;
+                        break;
+                    }
+                }
+            }
+
+            if (startIndex > dataSource.length - VISIBLE_SIZE) {
+                startIndex = dataSource.length - VISIBLE_SIZE > 0 ? dataSource.length - VISIBLE_SIZE : 0;
+            }
+
+            return startIndex;
+        }
+
+        /**
+         * @param startIndex
+         * @param dataSource
+         * @param VISIBLE_SIZE
+         * @returns {Number}
+         * 根据startIndex算出endIndex
+         */
+
+    }, {
+        key: 'getEndItemIndex',
+        value: function getEndItemIndex(startIndex) {
+            var dataSource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.dataSource;
+            var VISIBLE_SIZE = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.VISIBLE_SIZE;
+
+            return startIndex + VISIBLE_SIZE > dataSource.length ? dataSource.length : startIndex + VISIBLE_SIZE;
+        }
+
+        /**
+         * @param offsetY
+         * @param sIndex
+         * @param dataSource
+         * @param VISIBLE_SIZE
+         * @returns {Array}
+         * 根据offsetY算出visibleList
+         */
+
+    }, {
+        key: 'getVisibleList',
+        value: function getVisibleList() {
+            var offsetY = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.offsetY;
+            var sIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var dataSource = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.dataSource;
+
+            offsetY = offsetY - this.staticSectionHeight;
+            var ret = null;
+
+            if (this.infinite) {
+                var startY = offsetY - this.WINDOW_HEIGHT / 5;
+                startY = startY > 0 ? startY : 0;
+                var startIndex = sIndex === null ? this.getStartItemIndex(startY) : sIndex,
+                    endIndex = this.getEndItemIndex(startIndex);
+
+                ret = [];
+                for (var i = startIndex; i < endIndex; i++) {
+                    var item = this.dataSource[i];
+                    ret.push(_extends({}, item, this.getItemPositionData(item)));
+                }
+                this.startIndex = startIndex;
+            } else {
+                ret = dataSource.slice();
+            }
+
+            return ret;
+        }
+
+        /**
+         * @param dataSource
+         * @returns {Object}
+         * 获取数据源中第一个还没有resolve的元素
+         */
+
+    }, {
+        key: 'getFirstNotResolvedItemIndex',
+        value: function getFirstNotResolvedItemIndex() {
+            var _this4 = this;
+
+            var dataSource = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.dataSource;
+
+            return dataSource.findIndex(function (ditem, i) {
+                if (i > 0) {
+                    var itemPosData = _this4.getItemPositionData(ditem);
+                    var prevItemPosData = _this4.getItemPositionData(dataSource[i - 1]);
+                    return !itemPosData._resolved && prevItemPosData._resolved;
+                }
+                return false;
+            });
+        }
+
+        /**
+         * @param key
+         * @param dataSource
+         * @returns {Number}
+         * 根据key返回一个数据源中的元素
+         */
+
+    }, {
+        key: 'getItemIndexByKey',
+        value: function getItemIndexByKey(key) {
+            var dataSource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.dataSource;
+
+            return dataSource.findIndex(function (item) {
+                return item.key === key;
+            });
+        }
+
+        /**
+         * @param notResolvedItemIndex
+         * @param dataSource
+         * 更新一个未定位元素的_translateY,它是前一个元素的_bottom
+         */
+
+    }, {
+        key: 'updateTranslateY',
+        value: function updateTranslateY(notResolvedItemIndex) {
+            var dataSource = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.dataSource;
+
+            var notResolvedItem = dataSource[notResolvedItemIndex];
+
+            if (notResolvedItem) {
+                var prevItemIndex = notResolvedItemIndex - 1;
+                var prevItem = dataSource[prevItemIndex];
+                var prevItemPosData = this.getItemPositionData(prevItem);
+
+                if (prevItemPosData && prevItemPosData._resolved) {
+                    this.setItemPositionData(notResolvedItem, { _translateY: prevItemPosData._bottom });
+                    // 同时也需要更新visibleList里面对应item的定位信息
+                    var visibleListItemToBeUpdated = this.visibleList.find(function (item) {
+                        return item.key === notResolvedItem.key;
+                    });
+                    if (visibleListItemToBeUpdated) {
+                        Object.assign(visibleListItemToBeUpdated, this.getItemPositionData(notResolvedItem));
+                    }
+                }
+            }
+        }
+
+        /**
+         * @param key
+         * @param height
+         * @param dataSource
+         * @returns {ListCore}
+         * 不定高模式的核心逻辑,定位一个尚未定位的列表项
+         * 在列表项的componentDidUpdate和Mount中被调用,传入已经渲染好的列表项的dom高度,然后更新数据源中对应元素的高度并计算它的定位
+         * 在该元素完成定位后,渲染下一个未被定位的列表项,并重复以上逻辑,直到visibleList中所有的项都完成定位
+         */
+
+    }, {
+        key: 'resolveItem',
+        value: function resolveItem(key, height) {
+            var dataSource = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.dataSource;
+
+            var targetIndex = this.getItemIndexByKey(key);
+            var targetItem = this.dataSource[targetIndex];
+            var _translateY = void 0;
+
+            if (targetIndex > 0) {
+                var prevItemPosData = this.getItemPositionData(dataSource[targetIndex - 1]);
+                _translateY = prevItemPosData._bottom;
+            } else {
+                _translateY = 0;
+            }
+
+            if (_translateY != null) {
+                var _bottom = _translateY + height;
+                var _resolved = true;
+                this.setItemPositionData(targetItem, { _translateY: _translateY, _bottom: _bottom, _resolved: _resolved, height: height });
+                this.visibleList = this.getVisibleList();
+                this.totalHeight += height;
+                this.updateTranslateY(this.getFirstNotResolvedItemIndex());
+                this.emitChange();
+            }
+
+            return this;
+        }
+
+        /**
+         * @param dataSource
+         * @returns {Array}
+         * 计算列表中所有项的高度,用来refresh Scroller
+         */
+
+    }, {
+        key: 'getTotalHeight',
+        value: function getTotalHeight() {
+            var _this5 = this;
+
+            var dataSource = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.dataSource;
+
+            return dataSource.reduce(function (acc, item) {
+                var ret = acc;
+                var itemPosData = _this5.getItemPositionData(item);
+                ret += itemPosData._resolved ? itemPosData.height : 0;
+                return ret;
+            }, 0) + this.staticSectionHeight;
+        }
+
+        /**
+         * @returns {ListCore}
+         * 触发组件change事件,组件收到change事件后会执行setState
+         */
+
+    }, {
+        key: 'emitChange',
+        value: function emitChange() {
+            this.emitEvent('change', this.visibleList, this.totalHeight);
+            return this;
+        }
+    }]);
+
+    return ListCore;
+}(_ComponentCore3.default);
+
+ListCore.guid = -1;
+exports.default = ListCore;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ListCore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _util = __webpack_require__(6);
+
+var _classnames = __webpack_require__(9);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _src = __webpack_require__(61);
+
+var _src2 = _interopRequireDefault(_src);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 列表项组件
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
 
 var _class = function (_Component) {
     _inherits(_class, _Component);
 
+    /**
+     * key和translateY在shouldComponentUpdate中会被使用
+     * 将会根据nextProps.item中对应的值,来决定是否render
+     * @param props
+     */
     function _class(props) {
         _classCallCheck(this, _class);
 
-        // 0->等待load,1->loading,2->loaded
         var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
-        _this.loading = TO_BE_LOADED;
-        _this.state = {
-            src: _this.props.defaultImage
-        };
+        _this.key = props.item.key;
+        _this.translateY = props.item._translateY;
         return _this;
     }
 
     _createClass(_class, [{
+        key: 'getChildContext',
+        value: function getChildContext() {
+            return { offsetY: this.props.item._translateY, itemRef: this };
+        }
+
+        /**
+         * 不定高的核心逻辑,在dom rendered以后更新对应列表项的定位信息,并渲染出下一个未经定位的列表项,直到填满visibleList的size
+         */
+
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.refresh(this.context);
-            var scroller = this.context.list || this.context.scroller;
-            if (scroller) {
-                scroller.childLazyImages.push(this);
-            }
-        }
-
-        // 父组件render时,需要重置这个组件的loaded状态和context
-
-    }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps, nextContext) {
-            this.refresh(nextContext);
-
-            if (this.state.src !== nextProps.src) {
-                this.loading = TO_BE_LOADED;
-                this.setState({ src: this.props.defaultImage });
-            }
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            var scroller = this.context.list || this.context.scroller;
-            if (scroller) {
-                scroller.childLazyImages.splice(scroller.childLazyImages.indexOf(this), 1);
-            }
-            this.canLoadImage = false;
-        }
-    }, {
-        key: 'refresh',
-        value: function refresh(context) {
-            this.canLoadImage = true;
-            this.offsetY = context.offsetY;
-            this.itemRef = context.itemRef;
-            this.infinite = context.infinite;
-            // 如果不是infinite的列表，那么应该获取offsetTop(这个开销还挺大的，不过没得优化了)，反之，则使用translateY
-            if (!this.infinite) {
-                this.offsetTop = (0, _util.getElementOffsetY)(this.img);
-                this.height = this.img.offsetHeight;
-            }
-        }
-    }, {
-        key: 'load',
-        value: function load(callback) {
             var _this2 = this;
 
-            if (this.loading === TO_BE_LOADED) {
-                var src = this.props.src,
-                    tmpImg = new Image();
+            var isHeightFixed = this.props.listModel.isHeightFixed;
+            // 不定高无穷列表的容器是flex-box的话, 浏览器会先渲染dom然后调整高度, 这时候取到的高度不准
+            // setTimeout是无奈之举，确实没有想到更好的办法，因为这个调整高度的时机用js根本无法准确获取
 
-                this.loading = LOADING;
-                tmpImg.onload = function () {
-                    // 在lazyimage正在加载时组件unmount(主要是在SPA模式下有可能发生关闭view的情况)会报错
-                    // 因此这里需要简单判断一下组件的实例是否还存在
-                    if (_this2 && _this2.canLoadImage) {
-                        _this2.loading = LOADED;
-                        _this2.setState({ src: src, loaded: true });
-                        if (callback) {
-                            callback();
-                        }
-                    }
-                };
-                tmpImg.src = src;
+            if (isHeightFixed) {
+                this.updateItemHeightWhenDomRendered();
+            } else {
+                this.domNode.style.visibility = 'hidden';
+                setTimeout(function () {
+                    _this2.updateItemHeightWhenDomRendered();
+                    _this2.domNode.style.visibility = 'visible';
+                }, _util.DELAY_TIME_FOR_INFINITE_WITHOUT_HEIGHT);
             }
+        }
+
+        /**
+         * 根据之前的key和_translateY和接收到的props.item中的对应值,决定是否render
+         * 使用者定义的shouldItemUpdate可以接收到shouldComponentUpdate的结果,并返回一个新的结果
+         * @param nextProps
+         * @returns {Bool}
+         */
+
+    }, {
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps) {
+            var listModel = nextProps.listModel,
+                shouldItemUpdate = nextProps.shouldItemUpdate;
+
+            var ret = true;
+            // 当容器内部item的key和translateY发生变化时重新render
+            if (listModel.infinite && this.key === nextProps.item.key && this.translateY === nextProps.item._translateY) {
+                ret = false;
+            }
+
+            this.key = nextProps.item.key;
+            this.translateY = nextProps.item._translateY;
+
+            if (shouldItemUpdate && !ret) {
+                return shouldItemUpdate(nextProps.item.srcData, this.props.item.srcData);
+            }
+            return ret;
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            this.updateItemHeightWhenDomRendered();
+        }
+
+        /**
+         * 不定高模式的无穷列表需要在列表项渲染后更新它的位置信息
+         */
+
+    }, {
+        key: 'updateItemHeightWhenDomRendered',
+        value: function updateItemHeightWhenDomRendered() {
+            var _props = this.props,
+                item = _props.item,
+                listModel = _props.listModel,
+                onListItemUpdate = _props.onListItemUpdate;
+
+
+            if (!item._resolved && item._translateY !== undefined && listModel.infinite && !listModel.isHeightFixed) {
+                listModel.resolveItem(item.key, this.domNode.offsetHeight);
+            }
+
+            onListItemUpdate(item.srcData, this.domNode);
         }
     }, {
         key: 'render',
         value: function render() {
             var _this3 = this;
 
-            var _props = this.props,
-                height = _props.height,
-                style = _props.style,
-                customAttr = _props.customAttr;
-            // 解决和touchable组件结合使用的问题，必须能够接收这四个属性
+            var _props2 = this.props,
+                renderItem = _props2.renderItem,
+                item = _props2.item,
+                onItemTap = _props2.onItemTap,
+                listModel = _props2.listModel,
+                itemTouchClass = _props2.itemTouchClass,
+                itemExtraClass = _props2.itemExtraClass,
+                onItemTouchStart = _props2.onItemTouchStart;
 
-            if (this.context.list) {
-                if (height == null && style.height == null) {
-                    throw Error('yo-lazyimage: 在List组件中使用LazyImage必须指定图片的高度。');
-                }
-            }
-
-            return _react2.default.createElement('img', _extends({}, (0, _util.inheritProps)(this.props, ['onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel', 'width', 'height', 'className', 'title', 'style']), {
-                alt: this.props.alt,
-                ref: function ref(img) {
-                    if (img) _this3.img = img;
+            var transform = 'translate(0,' + item._translateY + 'px) translateZ(0px)';
+            var infiniteStyle = {
+                WebkitTransform: transform,
+                transform: transform,
+                height: item.height,
+                position: 'absolute',
+                top: 0
+            };
+            var basicProps = {
+                ref: function ref(dom) {
+                    _this3.domNode = dom;
                 },
-                src: this.state.src
-            }, customAttr));
+                style: listModel.infinite ? infiniteStyle : null
+            };
+            var additionalProps = {
+                className: (0, _classnames2.default)(itemExtraClass(item.srcData, item._index), item._type !== 'groupTitle' ? 'item' : 'group-title label')
+            };
+
+            return _react2.default.createElement(
+                _src2.default,
+                {
+                    internalUse: true,
+                    onTap: onItemTap,
+                    touchClass: itemTouchClass(item.srcData, item._index),
+                    onTouchStart: function onTouchStart(evt) {
+                        onItemTouchStart(item.srcData, item._index, evt);
+                    }
+                },
+                _react2.default.createElement(
+                    'li',
+                    Object.assign({}, basicProps, additionalProps),
+                    renderItem(item.srcData, item._index)
+                )
+            );
         }
     }]);
 
     return _class;
 }(_react.Component);
 
-_class.contextTypes = {
-    // 从父组件context接收的属性
-    // list/scroller组件实例的引用
-    list: _react.PropTypes.object,
-    scroller: _react.PropTypes.object,
-    // listitem的offsetY(infinite模式下)
-    offsetY: _react.PropTypes.number,
-    // listitem实例的引用
-    itemRef: _react.PropTypes.object,
-    // 是否是Scroller下面的Lazyload,而不是List下面的
-    isScroller: _react.PropTypes.bool,
-    // 是否是infinite列表
-    infinite: _react.PropTypes.bool
-};
 _class.propTypes = {
+    item: _react.PropTypes.object,
+    listModel: _react.PropTypes.object,
+    itemTouchClass: _react.PropTypes.func,
+    itemExtraClass: _react.PropTypes.func,
+    scroller: _react.PropTypes.object,
+    onItemTouchStart: _react.PropTypes.func,
+    renderItem: _react.PropTypes.func,
+    onItemTap: _react.PropTypes.func,
+    onListItemUpdate: _react.PropTypes.func
+};
+_class.childContextTypes = {
+    offsetY: _react.PropTypes.number,
+    itemRef: _react.PropTypes.object
+};
+_class.defaultProps = {
+    onListItemUpdate: function onListItemUpdate() {}
+};
+exports.default = _class;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ListItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ListCore = __webpack_require__(55);
+
+var _ListCore2 = _interopRequireDefault(_ListCore);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _src = __webpack_require__(5);
+
+var _src2 = _interopRequireDefault(_src);
+
+var _ListItem = __webpack_require__(56);
+
+var _ListItem2 = _interopRequireDefault(_ListItem);
+
+var _lazyimage = __webpack_require__(18);
+
+var _lazyimage2 = _interopRequireDefault(_lazyimage);
+
+var _classnames = __webpack_require__(9);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _util = __webpack_require__(6);
+
+__webpack_require__(17);
+
+__webpack_require__(97);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component List
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @version 3.0.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 列表组件，继承了Scroller的特性，有下拉刷新和加载更多功能。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 除此之外，List优化了长列表的性能，在数据源较大时能够提升滚动的性能并避免内存溢出。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 使用列表组件实现的组件：GroupList、Calendar、SwipeMenuList。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 特别感谢大明哥(leeds.li)和她的不定高无穷列表的实现思路。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author jiao.shen
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./list/list.md}{instruUrl: list/infinite_mode_with_height.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./list/example.md}{instruUrl: list/base.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./list/modify_height.md}{instruUrl: list/modify_height.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./list/static_section.md}{instruUrl: list/static_section.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var defaultProps = {
+    infinite: false,
+    offsetY: 0,
+    infiniteSize: 12,
+    itemTouchClass: 'item-touch',
+    onScroll: function onScroll() {},
+    onInfiniteAppend: function onInfiniteAppend() {},
+    renderItem: function renderItem(item) {
+        return typeof item.get === 'function' ? item.get('text') : item.text;
+    },
+
+    extraClass: '',
+    containerExtraClass: '',
+    groupTitleExtraClass: '',
+    usePullRefresh: false,
+    onRefresh: function onRefresh() {},
+
+    useLoadMore: false,
+    onLoad: function onLoad() {},
+    onItemTap: function onItemTap() {},
+
+    shouldItemUpdate: null,
+    itemExtraClass: function itemExtraClass() {
+        return '';
+    },
+    onItemTouchStart: function onItemTouchStart() {},
+
+    disabled: false,
+    directionLockThreshold: 50,
+    style: null,
+    scrollWithoutTouchStart: true,
+    staticSection: null,
+    staticSectionHeight: null,
+    deceleration: 0.0015,
+    stickyOffset: 0
+};
+
+var propTypes = {
     /**
-     * @property defaultImage
-     * @type String
-     * @default null
-     * @description 默认图片，在原图片还没有完成加载时展示。
+     * @property dataSource
+     * @type Array/Immutable List
+     * @default none
+     * @description 组件的数据源，数组或者Immutable List类型，内部元素必须是对象或者Immutable Map。
+     * 如果需要给无穷列表的项定高度，可以给元素添加height属性(数字类型)，
+     * 也可以通过itemHeight属性统一设置列表项的高度(见itemHeight属性的描述)，
+     * 如果列表元素有text属性且没有传入renderItem，会直接以text的值作为listitem的内容渲染。
      */
-    defaultImage: _react.PropTypes.string,
+    dataSource: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf(_react.PropTypes.shape({
+        height: _react.PropTypes.number,
+        text: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+        key: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
+    })), _react.PropTypes.object]).isRequired,
     /**
-     * @property src
-     * @type String
-     * @default null
-     * @description 图片src，必需。
+     * @property renderItem
+     * @type Function
+     * @default (item)=>item.text
+     * @description 定制如何根据列表项数据对象渲染列表项的函数，接收参数item(数据对象)和index(在数据源中的index)，返回一个JSX。
+     * 如果传入字符串，则会应用于所有列表项。
+     *
+     * 例子:`` renderItem={(item)=><p>{item.someAttr}</p>} ``
      */
-    src: _react.PropTypes.string.isRequired,
+    renderItem: _react.PropTypes.func,
     /**
-     * @property className
-     * @type String
+     * @property onItemTap
+     * @type Function
      * @default null
-     * @description 给img标签加的类名。
+     * @param {Object} item 列表项对应的数据对象
+     * @param {Number} index 列表项在数据源中的index
+     * @param {DOMElement} target 当前tap事件的target
+     * @description 点击列表项时的事件回调，接收三个参数item(列表项对应的数据对象)，index(列表项在数据源中的index)以及target(当前事件的event.target)，
+     *
+     * List实现了独特的手势系统以达到iOS列表的手势效果，任何情况下都应该使用这个属性为ListItem绑定事件，而不是给ListItem中的节点绑定onTouchTap事件。
      */
-    className: _react.PropTypes.string,
+    onItemTap: _react.PropTypes.func,
     /**
-     * @property width
+     * @property infinite
+     * @type Bool
+     * @default false
+     * @description 是否使用无穷列表模式。
+     *
+     * 开启无穷列表模式后，列表中只会保留infiniteSize个节点，并随着滚动复用这些节点，以此来优化大列表的性能，但是滚动过程中会有性能损耗。
+     * 如果你的列表项数量不大(比如只有几十个)，请不要开启无穷模式。
+     */
+    infinite: _react.PropTypes.bool,
+    /**
+     * @property infiniteSize
+     * @type Number
+     * @default 12
+     * @description 无穷列表模式下，保留在列表容器中列表项的个数(参见无穷列表模式的说明).
+     *
+     * 注意:这个值应该随着列表容器的高度和列表项高度选取一个合适的值，否则可能出现列表容器底部出现空白的情况。
+     * 如果这个值设置的过大，会降低列表的滚动性能，因此请根据实际情况(List容器的高度和列表项的高度)灵活配置。
+     */
+    infiniteSize: _react.PropTypes.number,
+    /**
+     * @property itemHeight
      * @type Number
      * @default null
-     * @description 图片宽度。
+     * @description 无穷列表中列表项的高度。
+     *
+     * 如果数据源中的对象没有height属性，也没有设置itemHeight，则会使用不定高的无穷列表模式。
+     * 在不定高模式下，每个项的高度会在渲染进容器以后确定，因此比定高模式多一次offsetHeight的查询，性能会差一些。
      */
-    width: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+    itemHeight: _react.PropTypes.number,
     /**
-     * @property height
+     * @property offsetY
      * @type Number
-     * @default null
-     * @description 图片高度。
+     * @default 0
+     * @description 组件的初始位置的Y坐标。
      */
-    height: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
+    offsetY: _react.PropTypes.number,
     /**
-     * @property customAttr
-     * @type Object
-     * @default null
-     * @description 附加给img dom节点的自定义属性，属性名需要以data-开头。
+     * @property itemExtraClass
+     * @type String/Function
+     * @default "item item-wrap"
+     * @param {Object} item 列表项对应的数据对象
+     * @param {Number} index 列表项在数据源中的index
+     * 可以接受字符串形式。例如"custom-list-item"（会自动应用在所有列表项容器上）
+     * 或者一个函数，这个函数接受参数item（列表项对应的dataSource中的数据对象），index（数据源index）
+     *
+     * 例:(item)=>{return item.customClassName}/'custom-item-classname'。
+     * @description 给列表项容器元素添加的class
      */
-    customAttr: _react.PropTypes.object,
+    itemExtraClass: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
+    /**
+     * @skip
+     * 给grouptitle定制的属性,不会向外暴露。
+     */
+    groupTitleExtraClass: _react.PropTypes.string,
+    /**
+     * @property itemTouchClass
+     * @type String/Function
+     * @default item-touch
+     * @param {Object} item 列表项对应的数据对象
+     * @param {Number} index 列表项在数据源中的index
+     * @description 列表项被点击时的className，可以接收字符串或者函数，使用方式与itemExtraClass一致。
+     */
+    itemTouchClass: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
+    /**
+     * @property onScroll
+     * @type Function
+     * @default null
+     * @param {Number} y 当前列表的y轴偏移
+     * @param {Enum {'up','down'}} direction 列表滚动的方向,向上('up')或者向下('down')
+     * @description 绑定给list内部scroller的onScroll回调,在列表滚动时触发。
+     */
+    onScroll: _react.PropTypes.func,
     /**
      * @property style
      * @type Object
      * @default null
-     * @description 附加给img dom节点的style。
+     * @description 给List容器节点绑定的额外样式。
+     * @version 3.0.2
      */
     style: _react.PropTypes.object,
     /**
-     * @property alt
-     * @type String
+     * @property onInfiniteAppend
+     * @type Function
      * @default null
-     * @description 和img标签的alt属性相同。
+     * @param {Array} visibleList 当前渲染在列表容器中的数据项数组
+     * @description 无穷列表中列表项update时触发的事件回调，接收参数visibleList(数组)，为目前渲染在列表容器中的数据项。
      */
-    alt: _react.PropTypes.string,
+    onInfiniteAppend: _react.PropTypes.func,
     /**
-     * @property title
+     * @property staticSection
+     * @type Element
+     * @default null
+     * @version 3.0.3
+     * @description 在所有列表项之上渲染的一块静态区域，在开启Infinite模式时，这块区域不会参与列表项的回收复用。
+     */
+    staticSection: _react.PropTypes.element,
+    /**
+     * @property extraClass
      * @type String
      * @default null
-     * @description 和img标签的title属性相同。
+     * @description 组件容器元素的额外className。
      */
-    title: _react.PropTypes.string,
-    onTouchStart: _react.PropTypes.func,
-    onTouchMove: _react.PropTypes.func,
-    onTouchEnd: _react.PropTypes.func,
-    onTouchCancel: _react.PropTypes.func
+    extraClass: _react.PropTypes.string,
+    /**
+     * @property containerExtraClass
+     * @type String
+     * @default null
+     * @description 列表容器元素额外的className(对应ul.yo-list节点)。
+     */
+    containerExtraClass: _react.PropTypes.string,
+    /**
+     * @property usePullRefresh
+     * @type Bool
+     * @default false
+     * @description 是否使用下拉刷新，见Scroller同名属性。
+     */
+    usePullRefresh: _react.PropTypes.bool,
+    /**
+     * 下拉刷新高度
+     *
+     * @property pullRefreshHeight
+     * @type Number
+     * @description 触发下拉刷新状态的高度（一般即为下拉刷新提示区域的高度）。
+     * @default 40
+     */
+    pullRefreshHeight: _react.PropTypes.number,
+    /**
+     * 下拉刷新渲染函数
+     *
+     * @property renderPullRefresh
+     * @type Function
+     * @returns {JSX} 用来渲染 pullRefresh 的 JSX
+     * @description () => JSX
+     *
+     * 自定义的下拉刷新渲染函数。
+     */
+    renderPullRefresh: _react.PropTypes.func,
+    /**
+     * @property onRefresh
+     * @type Function
+     * @param {Array} dataSource 当前的数据源
+     * @default null
+     * @description 下拉刷新触发的事件回调。
+     */
+    onRefresh: _react.PropTypes.func,
+    /**
+     * @property useLoadMore
+     * @type Bool
+     * @default false
+     * @description 是否开启加载更多，见Scroller同名属性。
+     */
+    useLoadMore: _react.PropTypes.bool,
+    /**
+     * 加载更多高度
+     *
+     * @property loadMoreHeight
+     * @type Number
+     * @description 触发加载更多状态的高度（一般即为加载更多提示区域的高度）。
+     * @default 40
+     */
+    loadMoreHeight: _react.PropTypes.number,
+    /**
+     * 加载更多渲染函数
+     *
+     * @property renderLoadMore
+     * @type Function
+     * @returns {JSX} 用来渲染 loadMore 的 JSX
+     * @description () => JSX
+     *
+     * 自定义的加载更多渲染函数。
+     */
+    renderLoadMore: _react.PropTypes.func,
+    /**
+     * @property onLoad
+     * @type Function
+     * @param {Array} dataSource 当前数据源
+     * @default null
+     * @description 加载更多时触发的事件回调。
+     */
+    onLoad: _react.PropTypes.func,
+    /**
+     * @property shouldItemUpdate
+     * @type Function
+     * @default null
+     * @param {Object} next 即将传给列表项组件的item对象
+     * @param {Object} now 当前列表项组件对应的item对象
+     * @description 绑定给列表项组件的shouldComponentUpdate，可以避免额外的render，用于提升列表的滚动性能。
+     *
+     * 实验表明，组件的render开销对于某些老式手机(例如三星Note2)是不能忽视的，因此list默认为所有的列表项组件配置了shouldComponentUpdate，会根据
+     * item的_guid属性(List组件自己做的，不需要使用者传入)做比较决定是否需要render，这样可以最小化render的次数。有些情况下，这种比较方式会阻止使用者期待触发的render，导致组件更新行为违反了使用者的意愿，这时候需要通过设置shouldItemUpdate属性改变默认的shouldComponentUpdate的返回值
+     *
+     * shouldItemUpdate能够接受两个参数，next(ListItem组件的下一个props中的item属性)，
+     * now(ListItem当前的props的item属性)。它必须返回一个布尔值，false则会跳过render，true会继续执行render(与shouldComponentUpdate返回值的含义相同)。
+     */
+    shouldItemUpdate: _react.PropTypes.func,
+    /**
+     * @property disabled
+     * @type Bool
+     * @default false
+     * @description 是否禁止滚动，参见Scroller的同名属性。
+     */
+    disabled: _react.PropTypes.bool,
+    /**
+     * @property stickyOffset
+     * @type Number
+     * @default 0
+     * @description 给staticSection内部吸顶容器设置的y轴偏移。
+     * @version 3.0.6
+     */
+    stickyOffset: _react.PropTypes.number,
+    /**
+     * @skip
+     * @property onItemTouchStart
+     * 专门给SwipeMenuList使用的属性，不向外暴露
+     */
+    onItemTouchStart: _react.PropTypes.func,
+    onListItemUpdate: _react.PropTypes.func,
+    /**
+     * 方向锁定阈值
+     *
+     * @property directionLockThreshold
+     * @type Number
+     * @description 只允许单向滚动的时候，会根据这个阈值来判定响应哪个方向上的位移：某一方向位移减去另一个方向位移超过阈值，就会判定为这个方向的滚动。
+     * @default 5
+     * @version 3.0.2
+     */
+    directionLockThreshold: _react.PropTypes.number,
+    /**
+     * @property deceleration
+     * @type Number
+     * @description 滚动视图开始惯性滚动时减速的加速度，默认为0.001。
+     * @version 3.0.6
+     */
+    deceleration: _react.PropTypes.number,
+    /**
+     * @property scrollWithoutTouchStart
+     * @type Bool
+     * @default false
+     * @description ** 实验中的属性 **
+     * 在默认情况下一次用户触发（非调用scrollTo方法）scroller的滚动需要由touchstart事件来启动，在某些情况下，例如scroller从disable状态切换到enable状态时，
+     * 可能不能接收到这一瞬间的touchstart事件，这可能导致用户期待的滚动过程没有发生。
+     * 开启这个属性为true以后将允许scroller用touchmove启动滚动过程，这可以解决上述场景的问题。
+     * @version 3.0.2
+     */
+    scrollWithoutTouchStart: _react.PropTypes.bool
 };
-_class.defaultProps = {
-    defaultImage: null,
-    src: null,
-    className: null,
-    width: null,
-    height: null,
-    customAttr: {},
-    style: null
-};
-exports.default = _class;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+var List = function (_Component) {
+    _inherits(List, _Component);
+
+    function List(props) {
+        _classCallCheck(this, List);
+
+        var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+
+        var dataSource = props.dataSource,
+            offsetY = props.offsetY,
+            itemHeight = props.itemHeight,
+            infinite = props.infinite,
+            infiniteSize = props.infiniteSize;
+
+
+        _this.childLazyImages = [];
+        _this.staticSectionContaienr = null;
+        _this.listModel = new _ListCore2.default({
+            dataSource: dataSource,
+            offsetY: offsetY,
+            infinite: infinite,
+            itemHeight: itemHeight,
+            infiniteSize: infiniteSize
+        });
+        _this.state = {
+            visibleList: _this.listModel.visibleList,
+            totalHeight: _this.listModel.totalHeight
+        };
+        return _this;
+    }
+
+    _createClass(List, [{
+        key: 'getChildContext',
+        value: function getChildContext() {
+            return { list: this, infinite: this.listModel.infinite };
+        }
+    }, {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            this.listModel.registerEventHandler('change', function (visibleList, totalHeight) {
+                _this2.setState({ visibleList: visibleList, totalHeight: totalHeight });
+                _this2.props.onInfiniteAppend(visibleList, totalHeight);
+            }).registerEventHandler('scrollTo', function (offsetY, time, easing) {
+                if (_this2.scroller) {
+                    _this2.scroller.scrollTo(0, offsetY, time, easing);
+                }
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this3 = this;
+
+            // 在不定高模式下,需要等待所有列表项完成定位才能刷新scroller, didmount的时候虽然dom已经渲染完成
+            // 但是所有列表项做定位尚未完成
+            setTimeout(function () {
+                // 一定要优先刷新staticSectionHeight，否则下面的一系列操作都可能出现不准确的情况
+                _this3.refreshStaticSectionHeight();
+                if (_this3.scroller) {
+                    // 用来标记列表是否在滚动,和手势有关,在gesture.js中可以查到这个属性是如何被使用的
+                    _this3.scroller.isScrolling = false;
+                }
+                // 刷新scroller,因为infinite不定高模式的totalHeight要等到item渲染完毕才能计算出来
+                if (_this3.listModel.infinite && _this3.scroller) {
+                    _this3.scroller.refresh({ scrollerHeight: _this3.listModel.totalHeight }, true);
+                }
+                // 如果设置了offsetY,滚动到offsetY
+                var offsetY = _this3.props.offsetY;
+
+                if (offsetY !== 0) {
+                    _this3.scrollTo(offsetY, 0);
+                }
+                // 刷新lazyload图片,不然头几个item的懒加载图片都不会加载
+                // 加setTimeout是为了处理不定高的场景,因为不定高的列表会先把列表项渲染进容器然后再去做定位
+                // 所以didmount时间触发的时候,列表项还没有完成定位
+                _this3.tryLoadLazyImages(offsetY);
+            }, this.listModel.isHeightFixed ? 0 : _util.DELAY_TIME_FOR_INFINITE_WITHOUT_HEIGHT);
+        }
+
+        /**
+         * @param nextProps
+         * dataSource,infiniteSize是根据初始值计算出来的状态,在这里需要进行reset
+         * 其他属性不需要reset
+         */
+
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            var _this4 = this;
+
+            var dataSource = nextProps.dataSource,
+                infiniteSize = nextProps.infiniteSize,
+                offsetY = nextProps.offsetY;
+
+            this.listModel.refresh({
+                dataSource: dataSource,
+                refreshAll: true,
+                infiniteSize: infiniteSize
+            });
+
+            // 等待dom更新结束后再做以下操作
+            setTimeout(function () {
+                if (_this4.props.offsetY !== offsetY) {
+                    _this4.scrollTo(offsetY, 0);
+                }
+                _this4.refreshStaticSectionHeight();
+                _this4.tryLoadLazyImages(_this4.listModel.offsetY);
+                // 当offsetY位于可滚动范围之外时自动调整
+                if (_this4.scroller && -_this4.scroller.maxScrollY < _this4.listModel.offsetY) {
+                    _this4.scrollTo(_this4.scroller.maxScrollY, 300);
+                }
+            }, 0);
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            // infinite模式的lazyload不需要再didupdate时刷新
+            // 因为infinite的节点是复用的,而随着滚动会不定的render,因此会触发大量的didupdate,浪费性能
+            // 所以可以在receiveprops时做刷新,因为节点复用的缘故,不需要等待dom render
+            if (!this.listModel.infinite) {
+                this.tryLoadLazyImages(this.listModel.offsetY);
+            }
+            // infinite模式下，刷新列表的总高度
+            if (this.scroller && this.listModel.infinite) {
+                this.scroller.refresh({ scrollerHeight: this.state.totalHeight }, true);
+            }
+        }
+
+        /**
+         * 绑定给Scoller的ScrollEnd事件回调
+         */
+
+    }, {
+        key: 'onScrollEnd',
+        value: function onScrollEnd() {
+            // 滚动停止后重置isScrolling标志
+            this.scroller.isScrolling = false;
+        }
+
+        /**
+         * @param offsetY
+         * @param manually
+         * 随着Scroller的滚动更新visibleList
+         */
+
+    }, {
+        key: 'onScroll',
+        value: function onScroll(offsetY, manually) {
+            if (this.scroller && offsetY !== this.listModel.offsetY) {
+                if (!manually) {
+                    this.scroller.isScrolling = true;
+                }
+                this.listModel.onScrollTo(offsetY, manually);
+                this.props.onScroll(-offsetY, this.listModel.direction);
+                this.tryLoadLazyImages(offsetY);
+            }
+        }
+
+        /**
+         * @skip
+         * @method refreshStaticSectionHeight
+         * @description 获取staticSectionHeight，然后更新列表的总高度
+         */
+
+    }, {
+        key: 'refreshStaticSectionHeight',
+        value: function refreshStaticSectionHeight() {
+            if (this.staticSectionContaienr != null) {
+                this.listModel.staticSectionHeight = this.staticSectionContaienr.offsetHeight;
+                this.listModel.totalHeight = this.listModel.getTotalHeight();
+                // 获取到最新的totalHeight之后需要刷新一下
+                if (this.scroller && this.listModel.infinite) {
+                    this.scroller.refresh({ scrollerHeight: this.listModel.totalHeight }, true);
+                }
+            }
+        }
+
+        /**
+         * @method refresh
+         * @description 刷新列表,应该在列表容器高度发生改变时调用
+         */
+
+    }, {
+        key: 'refresh',
+        value: function refresh() {
+            this.scroller.refresh({ scrollerHeight: this.state.totalHeight });
+        }
+
+        /**
+         * @method stopRefreshing
+         * @param {Bool} [successed]  下拉刷新是否成功,默认为false
+         * @description 中止下拉刷新过程。在列表发生下拉刷新之后你应该调用这个方法去中止它(比如服务器响应已经返回的时候),否则刷新不会自动终止。
+         */
+
+    }, {
+        key: 'stopRefreshing',
+        value: function stopRefreshing(successed) {
+            if (this.scroller) {
+                this.scroller.stopRefreshing(successed);
+            }
+        }
+
+        /**
+         * @method stopLoading
+         * @param {Bool} [successed]  加载更多是否成功,默认为false
+         * @description 中止加载更多过程,使用方式和场景与stopRefreshing一致。
+         */
+
+    }, {
+        key: 'stopLoading',
+        value: function stopLoading(successed) {
+            if (this.scroller) {
+                this.scroller.stopLoading(successed);
+            }
+        }
+
+        /**
+         * @method startRefreshing
+         * @description 模拟下拉刷新,调用这个方法后,会立刻停止当前的滚动并回到列表顶部,然后开始下拉刷新过程。
+         *
+         * 注意:你仍然需要手动调用stopRefreshing方法
+         */
+
+    }, {
+        key: 'startRefreshing',
+        value: function startRefreshing() {
+            if (this.scroller.isScrolling) {
+                this.scroller.stopAnimate();
+                this.scroller.isScrolling = false;
+            }
+
+            if (this.listModel.infinite) {
+                this.scroller.startRefreshing(0);
+                this.onScroll(0, true);
+            } else {
+                this.scroller.startRefreshing();
+            }
+        }
+
+        /**
+         * 尝试加载处于可视区域内的lazyimage
+         * @param y
+         */
+
+    }, {
+        key: 'tryLoadLazyImages',
+        value: function tryLoadLazyImages(y) {
+            var _this5 = this;
+
+            y = y - this.listModel.staticSectionHeight;
+            if (this.childLazyImages.length && this.scroller) {
+                this.childLazyImages.forEach(function (child) {
+                    var containerBottomY = y + _this5.scroller.wrapperHeight;
+                    if (_this5.listModel.infinite) {
+                        if (containerBottomY > child.itemRef.translateY) {
+                            child.load();
+                        }
+                    } else if (child.loading !== 2) {
+                        var listItemDom = child.itemRef.domNode;
+                        var offsetTop = listItemDom.offsetTop;
+                        if (listItemDom && containerBottomY > offsetTop) {
+                            child.load();
+                        }
+                    }
+                });
+            }
+        }
+
+        /**
+         * @method scrollTo
+         * @param {Number} y 要滚动到的目标y坐标
+         * @param {Number} [time] 动画时间,默认为0。
+         * (在开启了无穷模式的情况下,为了提高滚动的性能,不管time传入什么值都会被重设为0.因为快速滚过很长的距离在无穷模式下会带来巨大的性能损耗)
+         * @description 让List滚动到某个位置
+         */
+
+    }, {
+        key: 'scrollTo',
+        value: function scrollTo() {
+            var offsetY = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            if (this.scroller) {
+                // 考虑到infinite的渲染机制,滚动一个过长的距离会触发大量的dom更新,性能会很差
+                // 因此当当前offetY大于一定数值时就将time设为0,2000是个magic number,凭感觉设的
+                var aniDuration = this.listModel.infinite ? 0 : time;
+                this.scroller.scrollTo(0, offsetY, aniDuration);
+                this.onScroll(-offsetY, true);
+            }
+        }
+
+        /**
+         * @method stopAnimate
+         * @description 立刻停止滚动。
+         */
+
+    }, {
+        key: 'stopAnimate',
+        value: function stopAnimate() {
+            if (this.scroller) {
+                this.scroller.stopAnimate();
+            }
+        }
+
+        /**
+         * @param item
+         * @param i
+         * @returns {JSX}
+         * 渲染列表项容器
+         */
+
+    }, {
+        key: 'renderItemWrap',
+        value: function renderItemWrap(item, i) {
+            var _props = this.props,
+                _onItemTap = _props.onItemTap,
+                renderItem = _props.renderItem,
+                onListItemUpdate = _props.onListItemUpdate,
+                groupTitleExtraClass = _props.groupTitleExtraClass,
+                shouldItemUpdate = _props.shouldItemUpdate,
+                onItemTouchStart = _props.onItemTouchStart;
+            var _props2 = this.props,
+                itemTouchClass = _props2.itemTouchClass,
+                itemExtraClass = _props2.itemExtraClass;
+
+            var realActiveClass = itemTouchClass,
+                realExtraClass = itemExtraClass;
+            // 由于itemExtraClass可以传入string或者函数,这里统一为函数
+            // 做法是将string转换成一个返回该string的id函数
+            if (typeof itemExtraClass === 'string' || itemExtraClass === null) {
+                realExtraClass = function realExtraClass() {
+                    return itemExtraClass;
+                };
+            }
+            // the same
+            if (typeof itemTouchClass === 'string' || itemTouchClass === null) {
+                realActiveClass = function realActiveClass() {
+                    return itemTouchClass;
+                };
+            }
+
+            return _react2.default.createElement(_ListItem2.default, {
+                parent: this,
+                itemTouchClass: realActiveClass,
+                key: this.listModel.infinite ? i : item.key,
+                renderItem: renderItem,
+                onItemTap: function onItemTap(target) {
+                    _onItemTap(item.srcData, item._index, target);
+                },
+                shouldItemUpdate: shouldItemUpdate,
+                onItemTouchStart: onItemTouchStart,
+                item: item,
+                itemExtraClass: realExtraClass,
+                groupTitleExtraClass: groupTitleExtraClass,
+                listModel: this.listModel,
+                onListItemUpdate: onListItemUpdate
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this6 = this;
+
+            var _props3 = this.props,
+                containerExtraClass = _props3.containerExtraClass,
+                infiniteSize = _props3.infiniteSize,
+                _onRefresh = _props3.onRefresh,
+                _onLoad = _props3.onLoad;
+            var infinite = this.listModel.infinite;
+
+            var containerClass = (0, _classnames2.default)('yo-list', containerExtraClass, infinite ? 'yo-list-infinite' : '');
+            var visibleList = this.state.visibleList;
+
+
+            return _react2.default.createElement(
+                _src2.default,
+                _extends({}, (0, _util.inheritProps)(this.props, ['scrollWithoutTouchStart', 'style', 'directionLockThreshold', 'disabled', 'extraClass', 'pullRefreshHeight', 'renderPullRefresh', 'loadMoreHeight', 'renderLoadMore', 'useLoadMore', 'usePullRefresh', 'deceleration', 'stickyOffset']), {
+                    tap: true,
+                    autoRefresh: !infinite,
+                    ref: function ref(scroller) {
+                        if (scroller) {
+                            _this6.scroller = scroller;
+                        }
+                    },
+                    onScroll: function onScroll(evt) {
+                        return _this6.onScroll(-evt.contentOffset.y);
+                    },
+                    onScrollEnd: function onScrollEnd() {
+                        return _this6.onScrollEnd();
+                    },
+                    onRefresh: function onRefresh() {
+                        _onRefresh(_this6.listModel.dataSource);
+                    },
+                    onLoad: function onLoad() {
+                        _onLoad(_this6.listModel.dataSource);
+                    },
+                    enableLazyLoad: false
+                }),
+                this.props.staticSection != null ? _react2.default.createElement(
+                    'div',
+                    {
+                        ref: function ref(dom) {
+                            if (dom) {
+                                _this6.staticSectionContaienr = dom;
+                            }
+                        },
+                        className: 'yo-list-static-section'
+                    },
+                    this.props.staticSection
+                ) : null,
+                _react2.default.createElement(
+                    'ul',
+                    {
+                        className: containerClass,
+                        ref: function ref(dom) {
+                            _this6.listContainer = dom;
+                        }
+                    },
+                    infinite ?
+                    // 无穷列表模式,在列表容器内设置固定数目的槽,随着滚动不停更新这些槽内部的内容和translateY
+                    (0, _util.getArrayByLength)(infiniteSize).fill(1).map(function (__, i) {
+                        var item = visibleList.find(function (it) {
+                            return it._order === i;
+                        });
+                        return item ? _this6.renderItemWrap(item, i) : null;
+                    }) :
+                    // 静态列表,渲染出所有的item
+                    visibleList.map(function (item, i) {
+                        return _this6.renderItemWrap(item, i);
+                    })
+                )
+            );
+        }
+    }]);
+
+    return List;
+}(_react.Component);
+
+List.INFINITE_SCROLLTO_WITH_ANIMATION_DISTANCE = 2000;
+List.childContextTypes = {
+    list: _react.PropTypes.object,
+    infinite: _react.PropTypes.bool
+};
+exports.default = List;
+
+
+List.defaultProps = defaultProps;
+List.propTypes = propTypes;
+List.LazyImage = _lazyimage2.default;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 51 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7680,13 +9948,13 @@ var utils = function () {
 
 exports.default = utils;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "utils.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "utils.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 52 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7700,11 +9968,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(3);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7817,13 +10085,266 @@ Sticky.contextTypes = {
 };
 exports.default = Sticky;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 53 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = exports.TAP_DELAY = undefined;
+
+var _reactDom = __webpack_require__(3);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TAP_SLOP = 5; /**
+                   * touchable手势处理,解决Scroller内部的手势冲突
+                   * 在滚动时不会触发active
+                   * 在active之后发生滚动会取消active状态
+                   */
+var TAP_DELAY = exports.TAP_DELAY = 50;
+/**
+ * @param endPoint
+ * @param startPoint
+ * @returns {number}
+ * 根据个点的坐标计算出位移
+ */
+function getDistance(endPoint, startPoint) {
+    return Math.sqrt(Math.pow(endPoint.pageX - startPoint.pageX, 2) + Math.pow(endPoint.pageY - startPoint.pageY, 2));
+}
+
+/**
+ * @param endPoint
+ * @param startPoint
+ * @returns {boolean}
+ * 根据两个点的位移判断是否应该取消Tap事件的触发
+ */
+function onTouchMoveShouldCancelTap(endPoint, startPoint) {
+    return getDistance(endPoint, startPoint) > TAP_SLOP;
+}
+
+/**
+ * @param evt
+ * @returns {touch/null}
+ * 获取触点
+ */
+function getTouchPoint(evt) {
+    return evt.touches.length ? { pageX: evt.touches[0].pageX, pageY: evt.touches[0].pageY } : null;
+}
+
+/**
+ * @param domNode
+ * @param activeClass
+ * 移除item的activeClass
+ */
+function removeActiveClass(domNode, activeClass) {
+    if (domNode && activeClass) {
+        domNode.className = domNode.className.replace(' ' + activeClass, '');
+    }
+}
+
+/**
+ * @param scroller
+ * @returns {boolean}
+ * 判断组件是否在滚动
+ */
+function isScrolling(scroller) {
+    return scroller ? scroller.isScrolling : false;
+}
+
+function isAnySwipeMenuOpen(swipeMenuList) {
+    return swipeMenuList ? swipeMenuList.openIndex !== -1 : false;
+}
+
+// touchStart的位置,是否需要放弃Tap触发,Tap周期(start,move,end)是否已经结束
+var startPoint = void 0,
+    shouldAbortTap = void 0;
+var captured = null;
+
+function _default(component, scroller, swipeMenuList, activeClass, onTap, _onTouchStart) {
+    var gestureObj = {
+        onTouchStart: function onTouchStart(evt) {
+            var domNode = _reactDom2.default.findDOMNode(component);
+            removeActiveClass(domNode, activeClass);
+            // 如果组件正在滚动,直接放弃Tap触发
+            shouldAbortTap = isScrolling(scroller) || isAnySwipeMenuOpen(swipeMenuList);
+            startPoint = getTouchPoint(evt);
+            _onTouchStart(evt);
+            if (!captured) {
+                captured = domNode;
+            }
+            // TAP_DELAY之后再次判断是否要触发Tap,如果这段时间内出现了大的位移,if后面的逻辑就不会执行
+            setTimeout(function () {
+                var className = activeClass;
+                if (!shouldAbortTap && className && captured === domNode) {
+                    domNode.className += ' ' + className;
+                }
+            }, TAP_DELAY);
+        },
+        onTouchMove: function onTouchMove(evt) {
+            var domNode = _reactDom2.default.findDOMNode(component);
+            var currentPoint = getTouchPoint(evt);
+            // 根据touchmove的距离判断是否要放弃tap
+            if (onTouchMoveShouldCancelTap(currentPoint, startPoint)) {
+                shouldAbortTap = true;
+                captured = null;
+                removeActiveClass(domNode, activeClass);
+            }
+        },
+        onTouchEnd: function onTouchEnd(evt) {
+            var target = evt.target;
+            var domNode = _reactDom2.default.findDOMNode(component);
+            // 如果需要触发tap,在TAP_DELAY之后触发onTap回调
+            if (!shouldAbortTap && captured === domNode) {
+                setTimeout(function () {
+                    onTap(target);
+                    removeActiveClass(domNode, activeClass);
+                    captured = null;
+                }, TAP_DELAY + 10);
+            } else if (shouldAbortTap) {
+                captured = null;
+            }
+        },
+        onTouchCancel: function onTouchCancel() {
+            var domNode = _reactDom2.default.findDOMNode(component);
+            removeActiveClass(domNode, activeClass);
+        }
+    };
+
+    return gestureObj;
+}
+exports.default = _default;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "gesture.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _gesture = __webpack_require__(60);
+
+var _gesture2 = _interopRequireDefault(_gesture);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @component Touchable
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @version 3.0.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `Touchable` 组件是一个"虚拟"组件，它不会真的在文档中创建一个 `dom` 节点作为根节点，而是返回它唯一的子组件的一个克隆，并给它绑定一些手势事件。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 除了能给 `dom` 绑定 `tap` 事件之外，它还解决了一些移动端的手势"顽疾"，例如触摸反馈和滚动/触摸的冲突问题。在需要绑定 `tap` 事件的情况下，应该优先使用 `Touchable`，
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 而不是直接把 `tap` 事件回调绑定给 `dom`。
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author jiao.shen
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @instructions {instruInfo: ./touchable.md}{instruUrl: touchable.html?hideIcon}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+var Touchable = function (_Component) {
+    _inherits(Touchable, _Component);
+
+    function Touchable() {
+        _classCallCheck(this, Touchable);
+
+        return _possibleConstructorReturn(this, (Touchable.__proto__ || Object.getPrototypeOf(Touchable)).apply(this, arguments));
+    }
+
+    _createClass(Touchable, [{
+        key: 'render',
+        value: function render() {
+            if (process.env.NODE_ENV !== 'production') {
+                if (this.props.touchClass == null && !this.props.internalUse) {
+                    console.error('yo-touchable: Touchable组件没有设置touchClass, 出于用户体验考虑, 应该尽量给触摸区域添加触摸反馈。');
+                }
+            }
+
+            var onlyChild = _react2.default.Children.only(this.props.children);
+            var gestureObj = (0, _gesture2.default)(this, this.context.scroller, this.context.swipeMenuList, this.props.touchClass, this.props.onTap, this.props.onTouchStart);
+            var onTouchStart = gestureObj.onTouchStart,
+                onTouchMove = gestureObj.onTouchMove,
+                onTouchEnd = gestureObj.onTouchEnd,
+                onTouchCancel = gestureObj.onTouchCancel;
+
+
+            return _react2.default.cloneElement(onlyChild, { onTouchStart: onTouchStart, onTouchMove: onTouchMove, onTouchEnd: onTouchEnd, onTouchCancel: onTouchCancel });
+        }
+    }]);
+
+    return Touchable;
+}(_react.Component);
+
+Touchable.propTypes = {
+    /**
+     * @property touchClass
+     * @type String
+     * @default null
+     * @description 触摸Touchable时附加的className，可以用来实现Native常见的触摸反馈功能(例如给触摸区域添加深色背景或者改变透明度等等)。
+     */
+    touchClass: _react.PropTypes.string,
+    /**
+     * @property onTap
+     * @type Function
+     * @default null
+     * @param {DOMElement} target tap事件的target
+     * @description 给Touchable绑定的onTap事件。
+     */
+    onTap: _react.PropTypes.func,
+    /**
+     * @skip 给List定制的属性
+     */
+    onTouchStart: _react.PropTypes.func,
+    /**
+     * @skip 内部使用标志
+     */
+    internalUse: _react.PropTypes.bool,
+    children: _react.PropTypes.object
+};
+Touchable.defaultProps = {
+    onTouchStart: function onTouchStart() {},
+    touchClass: null,
+    onTap: function onTap() {},
+    internalUse: false
+};
+Touchable.contextTypes = {
+    scroller: _react.PropTypes.object,
+    swipeMenuList: _react.PropTypes.object
+};
+exports.default = Touchable;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7929,13 +10450,13 @@ var Footer = function (_React$Component) {
 
 exports.default = Footer;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Footer.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Footer.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 54 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -7951,21 +10472,21 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(2);
 
-var _Room = __webpack_require__(15);
+var _Room = __webpack_require__(20);
 
 var _Room2 = _interopRequireDefault(_Room);
 
-var _FullRoom = __webpack_require__(14);
+var _FullRoom = __webpack_require__(19);
 
 var _FullRoom2 = _interopRequireDefault(_FullRoom);
 
-var _LocationList = __webpack_require__(56);
+var _LocationList = __webpack_require__(65);
 
 var _LocationList2 = _interopRequireDefault(_LocationList);
 
-var _reactRedux = __webpack_require__(34);
+var _reactRedux = __webpack_require__(39);
 
-var _store = __webpack_require__(18);
+var _store = __webpack_require__(24);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8113,13 +10634,13 @@ var Home = function (_React$Component) {
 
 exports.default = (0, _reactRedux.connect)(_store.mapStateToprops, _store.mapDispatchToprops)(Home);
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Home.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Home.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 55 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8133,13 +10654,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = __webpack_require__(47);
+var _index = __webpack_require__(11);
 
 var _index2 = _interopRequireDefault(_index);
-
-var _index3 = __webpack_require__(7);
-
-var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8159,111 +10676,82 @@ var HomeDetail = function (_React$Component) {
 
 		_this.state = {
 			app_title: '',
-			tag: '',
-			space: '',
 			space_name: '',
 			style: '',
 			style_name: '',
 			img: '',
 			default_money: '',
-			discount: ''
+			homeDetailList: [],
+			allprice: 0,
+			isSelected: [],
+			checkall: true
 		};
+		_this.checkall = _this.checkall.bind(_this);
+		_this.selectGoods = _this.selectGoods.bind(_this);
+		_this.loadList = _this.loadList.bind(_this);
 		return _this;
 	}
 
 	_createClass(HomeDetail, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
+		key: 'checkall',
+		value: function checkall() {}
+	}, {
+		key: 'goback',
+		value: function goback() {
+			history.back(-1);
+		}
+	}, {
+		key: 'selectGoods',
+		value: function selectGoods(something, e) {
+			var domName = e.target.className;
+			if (domName === 'undisplay_icon') {
+				return false;
+			}
+			var num = something.index;
+			var arr = this.state.isSelected;
+			var cal_price = Number(something.price);
+			var tol_price = Number(this.state.allprice);
+
+			if (this.state.isSelected[num] === true) {
+				tol_price = tol_price - cal_price;
+			} else if (this.state.isSelected[num] === false) {
+				tol_price = tol_price + cal_price;
+			}
+
+			arr[num] = !arr[num];
+
+			this.setState({
+				allprice: tol_price,
+				isSelected: arr
+			});
+			this.loadList();
+		}
+	}, {
+		key: 'loadList',
+		value: function loadList() {
 			var _this2 = this;
 
-			console.log('Mounted');
-			var homeGoodId = this.props.params['homegoodid'];
 			var self = this;
-			var tempArr = [];
-			window.fetch('/api/v2/h5/index/space?is_json=1&page=' + 1 + '&space=&style=').then(function (response) {
+			var homeDetailList = [];
+			var tolPrice = 0;
+			window.fetch('/json/detail.json').then(function (response) {
 				return response.json();
-			}).then(function (result) {
-				var Data = result.data;
-				for (var i = 0, len = Data.length; i < len; i++) {
-					if (Data[i]['id'] == homeGoodId) {
-						console.log(Data[i]);
-						self.setState({
-							app_title: Data[i]['app_title'],
-							tag: Data[i]['tag'],
-							space: Data[i]['space'],
-							space_name: Data[i]['space_name'],
-							style: Data[i]['style'],
-							style_name: Data[i]['style_name'],
-							img: Data[i]['img'],
-							default_money: Data[i]['default_money'],
-							discount: Data[i]['discount']
-						});
-						break;
+			}).then(function (json) {
+				var Json = json.data.goods_list;
+				var len = Json.length;
+				if (_this2.state.isSelected.length === 0) {
+					for (var i = 0; i < len; i++) {
+						_this2.state.isSelected.push(true);
 					}
 				}
-
-				tempArr.push(_react2.default.createElement(
-					'div',
-					{ className: 'hbc' },
-					_react2.default.createElement('span', { className: 'goback', onClick: _this2.goback }),
-					_react2.default.createElement(
-						_index2.default,
-						{ loop: true },
-						_react2.default.createElement('img', { className: 'home_detail_banner', src: _this2.state.img, alt: '' }),
-						_react2.default.createElement('img', { className: 'home_detail_banner', src: _this2.state.img, alt: '' })
-					),
-					_react2.default.createElement('section', { className: 'gapbar' }),
-					_react2.default.createElement(
-						'section',
-						{ className: 'art_author' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'author_img' },
-							_react2.default.createElement('img', { src: '/home_img/author.png', alt: '' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'author_name' },
-							'\u9648\u4E25'
-						)
-					),
-					_react2.default.createElement(
-						'section',
-						{ className: 'gtip' },
-						_react2.default.createElement(
-							'header',
-							null,
-							'\u6821\u8F66\u513F\u7AE5\u623F'
-						),
-						_react2.default.createElement(
-							'section',
-							{ className: 'gtype' },
-							_react2.default.createElement(
-								'span',
-								{ className: 'fl' },
-								'\u513F\u7AE5\u623F \u73B0\u4EE3'
-							),
-							' ',
-							_react2.default.createElement(
-								'span',
-								{ className: 'fr' },
-								'\uFFE517858.78/\u513F\u7AE5\u623F'
-							)
-						),
-						_react2.default.createElement(
-							'p',
-							null,
-							'\u5B66\u751F\u65F6\u4EE3\u7684\u68A6\u60F3\uFF0C\u9760\u6821\u8F66\u53BB\u627F\u8F7D\uFF0C\u5E26\u7740\u6211\u4EEC\u6210\u957F\uFF0C\u53EF\u7231\u7684\u4E0A\u4E0B\u94FA\u6C7D\u8F66\u5E8A\uFF0C\u4E00\u5B9A\u662F\u5C0F\u7537\u751F\u949F\u7231\u7684\u5927\u73A9\u5177\uFF01'
-						)
-					),
-					_react2.default.createElement(
-						'section',
-						{ className: 'trans_gap' },
-						'\u513F\u7AE5\u623F\u5546\u54C1\u6E05\u5355'
-					),
-					_react2.default.createElement(
+				console.log(_this2.state.isSelected);
+				homeDetailList = Json.map(function (item, index) {
+					if (item['msg'] === '') {
+						tolPrice += Number(item['goods_price']);
+					}
+					return _react2.default.createElement(
 						'ul',
-						{ className: 'hdgc' },
+						{ key: index, className: 'hdgc' },
 						_react2.default.createElement(
 							'li',
 							{ className: 'goods' },
@@ -8273,19 +10761,17 @@ var HomeDetail = function (_React$Component) {
 								_react2.default.createElement(
 									'div',
 									null,
-									_react2.default.createElement(
-										'button',
-										null,
-										'BBB'
-									)
+									_react2.default.createElement('span', { className: item['msg'] == '' ? _this2.state.isSelected[index] ? 'choose_icon' : 'unchoose_icon' : 'undisplay_icon',
+										onClick: self.selectGoods.bind(self, { price: item['goods_price'], index: index }) })
 								),
 								_react2.default.createElement(
 									'a',
 									{ href: 'javascript:void(0)' },
+									_react2.default.createElement('div', null),
 									_react2.default.createElement(
 										'div',
 										{ className: 'div123' },
-										_react2.default.createElement('img', { src: '/home_img/author.png', alt: '' })
+										_react2.default.createElement('img', { src: item['goods_thumb'], alt: '' })
 									),
 									_react2.default.createElement(
 										'div',
@@ -8293,7 +10779,7 @@ var HomeDetail = function (_React$Component) {
 										_react2.default.createElement(
 											'p',
 											{ className: 'dgoodname' },
-											'\u513F\u7AE5\u6821\u8F66\u53CC\u95E8\u5361\u901A\u8863\u67DC'
+											item['goods_name']
 										),
 										_react2.default.createElement(
 											'section',
@@ -8301,7 +10787,7 @@ var HomeDetail = function (_React$Component) {
 											_react2.default.createElement(
 												'span',
 												null,
-												'\u82B1\u8272/\u56FE\u6848:\u9EC4\u8272'
+												item['goods_attr'].substring(0, item['goods_attr'].indexOf(' '))
 											),
 											_react2.default.createElement('br', null),
 											_react2.default.createElement(
@@ -8317,7 +10803,7 @@ var HomeDetail = function (_React$Component) {
 											_react2.default.createElement(
 												'span',
 												null,
-												'1321.00'
+												item['goods_price']
 											),
 											_react2.default.createElement(
 												'span',
@@ -8333,29 +10819,139 @@ var HomeDetail = function (_React$Component) {
 								{ className: 'changed' },
 								_react2.default.createElement(
 									'button',
-									null,
+									{ style: { display: item['msg'] == '' ? 'inline-block' : 'none' }, className: 'fr yo-btn yo-btn-changeAbtn' },
 									'\u4FEE\u6539\u89C4\u683C'
+								),
+								_react2.default.createElement(
+									'span',
+									{ style: { display: item['msg'] == '' ? 'none' : 'inline-block' } },
+									item['msg']
 								)
+							)
+						)
+					);
+				});
+
+				tolPrice = tolPrice.toFixed(2);
+
+				if (!_this2.allprice) {
+					self.setState({
+						allprice: tolPrice
+					});
+				}
+
+				homeDetailList.push(_react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'section',
+						{ className: 'price_tip' },
+						_react2.default.createElement(
+							'header',
+							null,
+							'\u8D2D\u4E70\u4F18\u60E0'
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							'1.\u573A\u666F\u8D2D\u4E70\u7684\u5546\u54C1\u5C06\u4EAB\u53D7\u5305\u90AE\u670D\u52A1\uFF0C\u5BA2\u670D\u4E0E\u60A8\u6C9F\u901A\u540E\u518D\u786E\u8BA4\u5B89\u88C5\u670D\u52A1'
+						)
+					),
+					_react2.default.createElement(
+						'section',
+						{ className: 'logicOrder' },
+						_react2.default.createElement(
+							'section',
+							{ className: 'pt' },
+							_react2.default.createElement(
+								'p',
+								null,
+								_react2.default.createElement(
+									'span',
+									{ className: 'fl' },
+									'\u8282\u7701\uFF1A ',
+									_react2.default.createElement(
+										'b',
+										null,
+										'\uFFE50.00'
+									)
+								),
+								' ',
+								_react2.default.createElement(
+									'span',
+									{ className: 'fr' },
+									'\u4EF7\u683C\uFF1A',
+									_react2.default.createElement(
+										'b',
+										null,
+										'\uFFE5',
+										_this2.state.allprice ? _this2.state.allprice : _this2.state.allprice
+									)
+								)
+							)
+						),
+						_react2.default.createElement(
+							'section',
+							{ className: 'pb' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'checkall' },
+								_react2.default.createElement('span', { className: 'choose_icon', onClick: _this2.checkall }),
+								'\u5168\u9009'
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'oserver' },
+								_react2.default.createElement('span', { className: 'server_icon' }),
+								'\u5BA2\u670D'
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'order_it' },
+								'\u4E00\u952E\u4E0B\u5355(',
+								_this2.state.goodcount,
+								')'
 							)
 						)
 					)
 				));
 
-				_this2.setState({
-					homeDetailList: tempArr
-				});
-			});
+				self.setState({
+					homeDetailList: homeDetailList
 
-			window.fetch('/json/detail.json').then(function (response) {
-				return response.json();
-			}).then(function (result) {
-				//console.log(result);
+				});
 			});
 		}
 	}, {
-		key: 'goback',
-		value: function goback() {
-			history.back(-1);
+		key: 'componentWillMount',
+		value: function componentWillMount() {}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var homeGoodId = this.props.params['homegoodid'];
+			var self = this;
+
+			this.loadList();
+
+			/* 通过父路由传值得到参数 然后请求数据 */
+			window.fetch('/api/v2/h5/index/space?is_json=1&page=' + 1 + '&space=&style=').then(function (response) {
+				return response.json();
+			}).then(function (result) {
+				var Data = result.data;
+				for (var i = 0, len = Data.length; i < len; i++) {
+					if (Data[i]['id'] == homeGoodId) {
+						self.setState({
+							app_title: Data[i]['app_title'],
+							space_name: Data[i]['space_name'],
+							style: Data[i]['style'],
+							style_name: Data[i]['style_name'],
+							img: Data[i]['img'],
+							default_money: Data[i]['default_money']
+						});
+						break;
+					}
+				}
+			});
 		}
 	}, {
 		key: 'render',
@@ -8363,6 +10959,72 @@ var HomeDetail = function (_React$Component) {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'hd_container' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'head_banner_container' },
+					_react2.default.createElement('span', { className: 'goback', onClick: this.goback }),
+					_react2.default.createElement(
+						_index2.default,
+						{ loop: true },
+						_react2.default.createElement('img', { className: 'home_detail_banner', src: this.state.img, alt: '' }),
+						_react2.default.createElement('img', { className: 'home_detail_banner', src: this.state.img, alt: '' })
+					)
+				),
+				_react2.default.createElement('section', { className: 'gapbar' }),
+				_react2.default.createElement(
+					'section',
+					{ className: 'art_author' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'author_img' },
+						_react2.default.createElement('img', { src: '/home_img/author.png', alt: '' })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'author_name' },
+						'\u9648\u4E25'
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					{ className: 'gtip' },
+					_react2.default.createElement(
+						'header',
+						null,
+						'\u6821\u8F66\u513F\u7AE5\u623F'
+					),
+					_react2.default.createElement(
+						'section',
+						{ className: 'gtype' },
+						_react2.default.createElement(
+							'span',
+							{ className: 'fl' },
+							this.state.space_name,
+							' ',
+							this.state.style_name
+						),
+						' ',
+						_react2.default.createElement(
+							'span',
+							{ className: 'fr' },
+							'\uFFE5',
+							this.state.default_money,
+							'/',
+							this.state.space_name
+						)
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						'\u5B66\u751F\u65F6\u4EE3\u7684\u68A6\u60F3\uFF0C\u9760\u6821\u8F66\u53BB\u627F\u8F7D\uFF0C\u5E26\u7740\u6211\u4EEC\u6210\u957F\uFF0C\u53EF\u7231\u7684\u4E0A\u4E0B\u94FA\u6C7D\u8F66\u5E8A\uFF0C\u4E00\u5B9A\u662F\u5C0F\u7537\u751F\u949F\u7231\u7684\u5927\u73A9\u5177\uFF01'
+					)
+				),
+				_react2.default.createElement(
+					'section',
+					{ className: 'trans_gap' },
+					this.state.space_name,
+					'\u5546\u54C1\u6E05\u5355'
+				),
 				this.state.homeDetailList
 			);
 		}
@@ -8373,13 +11035,13 @@ var HomeDetail = function (_React$Component) {
 
 exports.default = HomeDetail;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "HomeDetail.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "HomeDetail.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 56 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8393,7 +11055,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = __webpack_require__(7);
+var _index = __webpack_require__(5);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -8542,19 +11204,242 @@ var LocationList = function (_React$Component) {
 
 exports.default = LocationList;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "LocationList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "LocationList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: SyntaxError: H:/AtomWorkSpace/Gpro/src/components/Shop.js: Unexpected token (14:0)\n\n  12 | import Newproduct from './shop/newproduct'\n  13 | import Allgoose from './shop/allgoose'\n> 14 | <<<<<<< HEAD\n     | ^\n  15 | =======\n  16 | \n  17 | >>>>>>> wangfan\n");
-
-/***/ }),
-/* 58 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _kind = __webpack_require__(75);
+
+var _kind2 = _interopRequireDefault(_kind);
+
+var _mycarousel = __webpack_require__(12);
+
+var _mycarousel2 = _interopRequireDefault(_mycarousel);
+
+var _recommend = __webpack_require__(78);
+
+var _recommend2 = _interopRequireDefault(_recommend);
+
+var _match = __webpack_require__(76);
+
+var _match2 = _interopRequireDefault(_match);
+
+var _scroller = __webpack_require__(79);
+
+var _scroller2 = _interopRequireDefault(_scroller);
+
+var _design = __webpack_require__(73);
+
+var _design2 = _interopRequireDefault(_design);
+
+var _hotSale = __webpack_require__(74);
+
+var _hotSale2 = _interopRequireDefault(_hotSale);
+
+var _story = __webpack_require__(23);
+
+var _story2 = _interopRequireDefault(_story);
+
+var _newproduct = __webpack_require__(77);
+
+var _newproduct2 = _interopRequireDefault(_newproduct);
+
+var _allgoose = __webpack_require__(72);
+
+var _allgoose2 = _interopRequireDefault(_allgoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Shop = function (_React$Component) {
+  _inherits(Shop, _React$Component);
+
+  function Shop(props) {
+    _classCallCheck(this, Shop);
+
+    var _this = _possibleConstructorReturn(this, (Shop.__proto__ || Object.getPrototypeOf(Shop)).call(this, props));
+
+    _this.state = {
+      list: ["/shopimg/2017011216550161634.jpg"],
+      playflag: true,
+      hts: []
+    };
+    return _this;
+  }
+
+  _createClass(Shop, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'shop_container' },
+        _react2.default.createElement(
+          'div',
+          { id: 'shop-top' },
+          _react2.default.createElement(
+            'div',
+            { className: 'yo-header yo-header-top' },
+            _react2.default.createElement(
+              'h2',
+              { className: 'title' },
+              '\u597D\u5728'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'regret' },
+              '\u53D6\u6D88'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'affirm' },
+              '\u786E\u5B9A'
+            ),
+            _react2.default.createElement(
+              'h2',
+              { className: 'title' },
+              _react2.default.createElement('img', { src: '/shopimg/logo.png' })
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'regret' },
+              _react2.default.createElement('img', { src: '/shopimg/search.png' })
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'affirm' },
+              _react2.default.createElement('img', { src: '/shopimg/cart.png' })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'shop-content' },
+          _react2.default.createElement(_mycarousel2.default, { list: this.state.list, autoplay: this.state.playflag }),
+          _react2.default.createElement(_kind2.default, null),
+          _react2.default.createElement(_recommend2.default, null),
+          _react2.default.createElement(_match2.default, null),
+          _react2.default.createElement(_scroller2.default, null),
+          _react2.default.createElement(_design2.default, null),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'div',
+              { className: 'yo-header yo-header-hotsale' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'title' },
+                '\u597D\u5728'
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'regret' },
+                '\u53D6\u6D88'
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'affirm' },
+                '\u786E\u5B9A'
+              )
+            ),
+            this.state.hts,
+            _react2.default.createElement(
+              'div',
+              { className: 'more' },
+              '\u67E5\u770B\u66F4\u591A'
+            )
+          ),
+          _react2.default.createElement(_story2.default, null),
+          _react2.default.createElement(_newproduct2.default, null),
+          _react2.default.createElement(_allgoose2.default, null)
+        )
+      );
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _content1 = [];
+      var _content2 = [];
+      var _content3 = [];
+      var _content4 = [];
+      var _content5 = [];
+      var _hts = [];
+      var that = this;
+      fetch("http://wwbtygm.duapp.com/readhaozai", { method: "POST" }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        var step = null;
+        for (var i = 0; i < res.length; i++) {
+          for (var j = i + 1; j < res.length - 1; j++) {
+            if (Number(res[i].username) > Number(res[j].username)) {
+              step = res[i];
+              res[i] = res[j];
+              res[j] = step;
+            }
+          }
+        }
+        for (var f = 17; f <= 44; f++) {
+          _content1.push(res[f]);
+        }
+        for (var g = 46; g <= 84; g++) {
+          _content2.push(res[g]);
+        }
+        for (var g = 85; g <= 131; g++) {
+          _content3.push(res[g]);
+        }
+        for (var g = 132; g <= 186; g++) {
+          _content4.push(res[g]);
+        }
+        for (var g = 187; g <= 203; g++) {
+          _content5.push(res[g]);
+        }
+
+        _hts.push(_react2.default.createElement(_hotSale2.default, { list: _content1, subtitle: '\u8FD9\u4E2A\u6625\u5929\u8BA9\u3010\u6E05\u65B0\u6587\u827A\u98CE\u3011\u5439\u8FDB\u5367\u5BA4\u5427~', content: 'shop-content1' }));
+        _hts.push(_react2.default.createElement(_hotSale2.default, { list: _content2, subtitle: '\u676F\u676F\u65B0\u6C14\u8C61 \u9910\u9910\u597D\u5FC3\u60C5', content: 'shop-content2' }));
+        _hts.push(_react2.default.createElement(_hotSale2.default, { list: _content3, subtitle: '\u827A\u672F\u753B-\u5927\u6709\u4E0D\u540C', content: 'shop-content3' }));
+        _hts.push(_react2.default.createElement(_hotSale2.default, { list: _content4, subtitle: '\u7B80\u7EA6\u8F7B\u5FEB-\u5BB6\u5C45\u56DB\u4EF6\u5957', content: 'shop-content4' }));
+        _hts.push(_react2.default.createElement(_hotSale2.default, { list: _content5, subtitle: '\u8303\u5E97-\u966A\u4F60\u8FC7\u4ECA\u51AC', content: 'shop-content5' }));
+
+        that.setState({
+          hts: _hts
+        });
+      });
+    }
+  }]);
+
+  return Shop;
+}(_react2.default.Component);
+
+exports.default = Shop;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Shop.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8570,7 +11455,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(2);
 
-var _login = __webpack_require__(5);
+var _login = __webpack_require__(7);
 
 var _login2 = _interopRequireDefault(_login);
 
@@ -8656,13 +11541,13 @@ var User_bar = function (_React$Component) {
 
 exports.default = User_bar;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_bar.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_bar.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 59 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8676,7 +11561,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(3);
 
 var _reactRouter = __webpack_require__(2);
 
@@ -8780,13 +11665,13 @@ var User_head = function (_React$Component) {
 
 exports.default = User_head;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_head.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_head.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 60 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8802,7 +11687,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(2);
 
-var _login = __webpack_require__(5);
+var _login = __webpack_require__(7);
 
 var _login2 = _interopRequireDefault(_login);
 
@@ -8908,13 +11793,13 @@ var User_list = function (_React$Component) {
 
 exports.default = User_list;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_list.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_list.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 61 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
@@ -8930,11 +11815,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(2);
 
-var _User_orderList = __webpack_require__(17);
+var _User_orderList = __webpack_require__(22);
 
 var _User_orderList2 = _interopRequireDefault(_User_orderList);
 
-var _login = __webpack_require__(5);
+var _login = __webpack_require__(7);
 
 var _login2 = _interopRequireDefault(_login);
 
@@ -9002,36 +11887,943 @@ var User_order = function (_React$Component) {
 
 exports.default = User_order;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_order.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "User_order.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 62 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = ajaxRequest;
+/**
+ * 创建XMLHttpRequest对象
+ * @param _method 请求方式: post||get
+ * @param _url 远程服务器地址
+ * @param _async 是否异步
+ * @param _parameter 向服务器发送数据
+ * @param _callBack 回调函数
+ */
+function parameterDeal(_parameter) {
+    var _sender = "";
+    if (_parameter instanceof Object) {
+        for (var k in _parameter) {
+            _sender += k + "=" + _parameter[k] + "&";
+        }
+        return _sender.replace(/\&$/g, "");
+    } else {
+        return _parameter;
+    }
+}
+function createXMLHttpRequest() {
+    try {
+        return new window.XMLHttpRequest();
+    } catch (e) {
+        try {
+            return new ActiveXObject("MSXML2.XMLHTTP.6.0");
+        } catch (e) {
+            try {
+                return new ActiveXObject("MSXML2.XMLHTTP.3.0");
+            } catch (e) {
+                try {
+                    return new ActiveXObject("MSXML2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        return new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        throw new Error("该浏览器版本太低,已经被大部分市场淘汰,请升级!!!");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+function ajaxRequest(_method, _url, _async, _parameter, _callBack) {
+    var _ajax = createXMLHttpRequest();
+    if (_ajax) {
+        _ajax.onreadystatechange = function () {
+            if (_ajax.readyState == 4 && _ajax.status == 200) {
+                _callBack(_ajax.responseText);
+            }
+        };
+        _ajax.open(_method, _url, _async);
+        _ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        _ajax.send(parameterDeal(_parameter));
+    }
+}
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Ajax.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 'use strict';
 
-__webpack_require__(38);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
-__webpack_require__(37);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Gpro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "entry.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+var _index = __webpack_require__(57);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _story = __webpack_require__(23);
+
+var _story2 = _interopRequireDefault(_story);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var guid = -1;
+
+var Allgoose = function (_React$Component) {
+	_inherits(Allgoose, _React$Component);
+
+	function Allgoose(props) {
+		_classCallCheck(this, Allgoose);
+
+		var _this = _possibleConstructorReturn(this, (Allgoose.__proto__ || Object.getPrototypeOf(Allgoose)).call(this, props));
+
+		_this.refetch = _this.refetch.bind(_this);
+		_this.state = {
+			listitem: [{}]
+		};
+		return _this;
+	}
+
+	_createClass(Allgoose, [{
+		key: 'refetch',
+		value: function refetch() {
+			var that = this;
+			var num = 1;
+			var _list = [];
+			fetch('/api/v2/api/shop/listGoods?').then(function (res) {
+				return res.json();
+			}).then(function (res) {
+				var _len = res.data.data.length;
+				var res = res.data.data;
+				console.log(res);
+				for (var i = 0; i < _len; i++) {
+					_list.push({ content: React.createElement(
+							'li',
+							{ className: 'listitem' },
+							React.createElement('img', { src: res[i].goods_img }),
+							React.createElement(
+								'p',
+								{ className: 'goodsname' },
+								res[i].goods_name
+							),
+							React.createElement(
+								'p',
+								{ className: 'goodsprice' },
+								'\uFFE5',
+								res[i].shop_price
+							)
+						), key: ++guid });
+				}
+
+				that.setState({
+					listitem: that.state.listitem.concat(_list)
+				});
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			console.log(this.state.listitem);
+			return React.createElement(
+				'div',
+				{ className: 'allgoose' },
+				React.createElement(
+					'p',
+					null,
+					'\u6240\u6709\u5546\u54C1'
+				),
+				React.createElement(_index2.default, {
+					ref: 'list',
+					extraClass: 'goosebox',
+					dataSource: this.state.listitem,
+					useLoadMore: true,
+					onLoad: function onLoad() {
+						setTimeout(function () {
+							_this2.refetch();
+							_this2.refs.list.stopLoading(true);
+						}, 500);
+					},
+					renderItem: function renderItem(item, i) {
+						return React.createElement(
+							'div',
+							null,
+							item.content
+						);
+					}
+				})
+			);
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			var that = this;
+			var num = 1;
+			var _list = [];
+			fetch('/api/v2/api/shop/listGoods?').then(function (res) {
+				return res.json();
+			}).then(function (res) {
+				var _len = res.data.data.length;
+				var res = res.data.data;
+				console.log(res);
+				for (var i = 0; i < _len; i++) {
+					_list.push({ content: React.createElement(
+							'li',
+							{ className: 'listitem' },
+							React.createElement('img', { src: res[i].goods_img }),
+							React.createElement(
+								'p',
+								{ className: 'goodsname' },
+								res[i].goods_name
+							),
+							React.createElement(
+								'p',
+								{ className: 'goodsprice' },
+								'\uFFE5',
+								res[i].shop_price
+							)
+						), key: ++guid });
+				}
+
+				that.setState({
+					listitem: _list
+				});
+			});
+		}
+	}]);
+
+	return Allgoose;
+}(React.Component);
+
+exports.default = Allgoose;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "allgoose.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 63 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(73);
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = __webpack_require__(11);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Design = function (_React$Component) {
+	_inherits(Design, _React$Component);
+
+	function Design(props) {
+		_classCallCheck(this, Design);
+
+		var _this = _possibleConstructorReturn(this, (Design.__proto__ || Object.getPrototypeOf(Design)).call(this, props));
+
+		_this.state = {
+			list: [{ urlimg: "/shopimg/2017011110460169349.png", title: "中粮项目小高层 客厅 现代风格" }],
+			playflag: false,
+			datalist: []
+		};
+		return _this;
+	}
+
+	_createClass(Design, [{
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"div",
+				{ className: "shop-design" },
+				React.createElement(
+					"div",
+					{ className: "yo-header yo-header-design" },
+					React.createElement(
+						"h2",
+						{ className: "title" },
+						"\u642D\u914D\u8BBE\u8BA1\u65B9\u6848"
+					)
+				),
+				React.createElement(
+					_index2.default,
+					{ autoplay: false },
+					this.state.datalist
+				)
+			);
+		}
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var _list = [];
+			this.state.list.map(function (item) {
+				_list.push(React.createElement(
+					"li",
+					{ className: "item" },
+					React.createElement("img", { src: item.urlimg, className: "" }),
+					React.createElement(
+						"p",
+						{ className: "subtitle" },
+						item.title
+					)
+				));
+			});
+
+			this.setState({
+				datalist: _list
+			});
+		}
+	}]);
+
+	return Design;
+}(React.Component);
+
+exports.default = Design;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "design.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 64 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23);
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = __webpack_require__(5);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Hotsale = function (_React$Component) {
+	_inherits(Hotsale, _React$Component);
+
+	function Hotsale(props) {
+		_classCallCheck(this, Hotsale);
+
+		var _this = _possibleConstructorReturn(this, (Hotsale.__proto__ || Object.getPrototypeOf(Hotsale)).call(this, props));
+
+		_this.state = {
+			list: []
+		};
+		return _this;
+	}
+
+	_createClass(Hotsale, [{
+		key: "render",
+		value: function render() {
+
+			return React.createElement(
+				"div",
+				{ className: "hot-sale" },
+				React.createElement(
+					"p",
+					{ className: "hot-title" },
+					this.props.subtitle
+				),
+				React.createElement(
+					_index2.default,
+					{ scrollX: true },
+					React.createElement(
+						"ul",
+						{ className: this.props.content },
+						this.state.list
+					)
+				)
+			);
+		}
+	}, {
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var _list = [];
+			this.props.list.map(function (item) {
+				_list.push(React.createElement(
+					"li",
+					{ className: "item", "data-id": item.id },
+					React.createElement("img", { src: item.urlimg }),
+					React.createElement(
+						"p",
+						{ className: "match_name" },
+						item.name
+					),
+					React.createElement(
+						"p",
+						{ className: "match_price" },
+						item.price
+					)
+				));
+			});
+			this.setState({
+				list: _list
+			});
+		}
+	}]);
+
+	return Hotsale;
+}(React.Component);
+
+exports.default = Hotsale;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "hot-sale.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 65 */
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Kind = function (_React$Component) {
+	_inherits(Kind, _React$Component);
+
+	function Kind() {
+		_classCallCheck(this, Kind);
+
+		return _possibleConstructorReturn(this, (Kind.__proto__ || Object.getPrototypeOf(Kind)).apply(this, arguments));
+	}
+
+	_createClass(Kind, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"div",
+				{ className: "shop-kind" },
+				_react2.default.createElement(
+					"p",
+					{ className: "title" },
+					"\u5206\u7C7B"
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "kind" },
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "jingpin", className: "item" },
+						_react2.default.createElement(
+							"i",
+							null,
+							"1"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"\u7CBE\u54C1\u5BB6\u5177"
+						)
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "jiaju", className: "item" },
+						_react2.default.createElement(
+							"i",
+							null,
+							"1"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"\u5BB6\u5177\u5E03\u827A"
+						)
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "peishi", className: "item" },
+						_react2.default.createElement(
+							"i",
+							null,
+							"1"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"\u914D\u9970\u65E5\u7528"
+						)
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "chufang", className: "item" },
+						_react2.default.createElement(
+							"i",
+							null,
+							"1"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"\u53A8\u623F\u9910\u996E"
+						)
+					),
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: "dengshi", className: "item" },
+						_react2.default.createElement(
+							"i",
+							null,
+							"1"
+						),
+						_react2.default.createElement(
+							"span",
+							null,
+							"\u706F\u9970\u7167\u660E"
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Kind;
+}(_react2.default.Component);
+
+exports.default = Kind;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "kind.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _mycarousel = __webpack_require__(12);
+
+var _mycarousel2 = _interopRequireDefault(_mycarousel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Match = function (_React$Component) {
+	_inherits(Match, _React$Component);
+
+	function Match(props) {
+		_classCallCheck(this, Match);
+
+		var _this = _possibleConstructorReturn(this, (Match.__proto__ || Object.getPrototypeOf(Match)).call(this, props));
+
+		_this.state = {
+			list: ["/shopimg/2017011109460138311.jpg"],
+			playflag: false
+		};
+		return _this;
+	}
+
+	_createClass(Match, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"div",
+				{ className: "shop-match" },
+				_react2.default.createElement(
+					"div",
+					{ className: "yo-header yo-header-match" },
+					_react2.default.createElement(
+						"h2",
+						{ className: "title" },
+						"\u5FAE\u642D\u914D"
+					)
+				),
+				_react2.default.createElement(_mycarousel2.default, { list: this.state.list, autoplay: this.state.playflag })
+			);
+		}
+	}]);
+
+	return Match;
+}(_react2.default.Component);
+
+exports.default = Match;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "match.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Story = function (_React$Component) {
+	_inherits(Story, _React$Component);
+
+	function Story(props) {
+		_classCallCheck(this, Story);
+
+		var _this = _possibleConstructorReturn(this, (Story.__proto__ || Object.getPrototypeOf(Story)).call(this, props));
+
+		_this.state = {
+			list: []
+		};
+
+		return _this;
+	}
+
+	_createClass(Story, [{
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"div",
+				{ className: "shop-news" },
+				React.createElement(
+					"p",
+					{ className: "subtitle" },
+					"\u65B0\u54C1\u4E0A\u65B0"
+				),
+				React.createElement(
+					"ul",
+					null,
+					this.state.list
+				)
+			);
+		}
+	}, {
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			var that = this;
+			var _list = [],
+			    _arr = [];
+			fetch("http://wwbtygm.duapp.com/readhaozai", { method: "POST" }).then(function (res) {
+				return res.json();
+			}).then(function (res) {
+				for (var i = 120; i < 152; i += 4) {
+					_arr.push(res[i]);
+				}
+				_arr.map(function (item) {
+					_list.push(React.createElement(
+						"li",
+						{ className: "item" },
+						React.createElement("img", { src: item.urlimg }),
+						React.createElement(
+							"p",
+							null,
+							item.name
+						),
+						React.createElement(
+							"p",
+							null,
+							item.price
+						)
+					));
+				});
+				that.setState({
+					list: _list
+
+				});
+			});
+		}
+	}]);
+
+	return Story;
+}(React.Component);
+
+exports.default = Story;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "newproduct.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _mycarousel = __webpack_require__(12);
+
+var _mycarousel2 = _interopRequireDefault(_mycarousel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Recommend = function (_React$Component) {
+	_inherits(Recommend, _React$Component);
+
+	function Recommend(props) {
+		_classCallCheck(this, Recommend);
+
+		var _this = _possibleConstructorReturn(this, (Recommend.__proto__ || Object.getPrototypeOf(Recommend)).call(this, props));
+
+		_this.state = {
+			list: ["/shopimg/2017012110040140909.jpg"],
+			playflag: false
+		};
+		return _this;
+	}
+
+	_createClass(Recommend, [{
+		key: "render",
+		value: function render() {
+			return _react2.default.createElement(
+				"div",
+				{ className: "shop-recommend" },
+				_react2.default.createElement(
+					"div",
+					{ className: "yo-header yo-header-recommend" },
+					_react2.default.createElement(
+						"h2",
+						{ className: "title" },
+						"\u8FBE\u4EBA\u7CBE\u54C1\u63A8\u8350"
+					),
+					_react2.default.createElement(
+						"span",
+						{ className: "affirm" },
+						"\u66F4\u591A"
+					)
+				),
+				_react2.default.createElement(_mycarousel2.default, { list: this.state.list, autoplay: this.state.playflag })
+			);
+		}
+	}]);
+
+	return Recommend;
+}(_react2.default.Component);
+
+exports.default = Recommend;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "recommend.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _index = __webpack_require__(5);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _Ajax = __webpack_require__(71);
+
+var _Ajax2 = _interopRequireDefault(_Ajax);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Myscroller = function (_React$Component) {
+	_inherits(Myscroller, _React$Component);
+
+	function Myscroller(props) {
+		_classCallCheck(this, Myscroller);
+
+		var _this = _possibleConstructorReturn(this, (Myscroller.__proto__ || Object.getPrototypeOf(Myscroller)).call(this, props));
+
+		_this.state = {
+			list: [{ id: 'goods_id=2989',
+				urlimg: 'http://img5.haozaishop.com/images/201607/thumb_img/2989_thumb_P_1468218870564.jpg',
+				name: '环保玻璃 复古瓶5711_1',
+				price: ' ￥104.13' }, { id: 'goods_id=2986',
+				urlimg: 'http://img5.haozaishop.com/images/201607/thumb_img/2986_thumb_P_1468217448866.jpg',
+				name: '手工玻璃圆形果盘7006',
+				price: ' ￥92.43' }, { id: 'goods_id=2966',
+				urlimg: 'http://img2.haozaishop.com/images/201607/thumb_img/2966_thumb_P_1467964237082.jpg',
+				name: '红蓝线大盘',
+				price: ' ￥57.33' }, { id: 'goods_id=2965',
+				urlimg: 'http://img1.haozaishop.com/images/201607/thumb_img/2965_thumb_P_1467964018161.jpg',
+				name: 'TCM茶壶',
+				price: ' ￥117.00' }]
+		};
+		return _this;
+	}
+
+	_createClass(Myscroller, [{
+		key: "render",
+		value: function render() {
+			var _list = [];
+			this.state.list.map(function (item) {
+				_list.push(React.createElement(
+					"li",
+					{ className: "item", "data-id": item.id },
+					React.createElement("img", { src: item.urlimg }),
+					React.createElement(
+						"p",
+						{ className: "match_name" },
+						item.name
+					),
+					React.createElement(
+						"p",
+						{ className: "match_price" },
+						item.price
+					)
+				));
+			});
+			return React.createElement(
+				"div",
+				{ className: "shop-scroller" },
+				React.createElement(
+					_index2.default,
+					{ scrollX: true },
+					React.createElement(
+						"ul",
+						{ className: "scroller-box" },
+						_list
+					)
+				)
+			);
+		}
+	}, {
+		key: "componentDidMount",
+		value: function componentDidMount() {}
+	}]);
+
+	return Myscroller;
+}(React.Component);
+
+exports.default = Myscroller;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "scroller.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.0.4.7@react-hot-api\\modules\\index.js"), RootInstanceProvider = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+__webpack_require__(43);
+
+__webpack_require__(42);
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("H:\\AtomWorkSpace\\Group-react-pro\\node_modules\\.1.3.1@react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "entry.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(91);
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(29);
+
+/***/ }),
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9128,7 +12920,7 @@ var EventConstants = {
 module.exports = EventConstants;
 
 /***/ }),
-/* 66 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9145,9 +12937,9 @@ module.exports = EventConstants;
 
 
 
-var _prodInvariant = __webpack_require__(6);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(3);
+var invariant = __webpack_require__(4);
 
 /**
  * Injectable ordering of event plugins.
@@ -9389,7 +13181,7 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 67 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9405,12 +13197,12 @@ module.exports = EventPluginRegistry;
 
 
 
-var EventPluginHub = __webpack_require__(19);
-var EventPluginUtils = __webpack_require__(10);
+var EventPluginHub = __webpack_require__(25);
+var EventPluginUtils = __webpack_require__(13);
 
-var accumulateInto = __webpack_require__(21);
-var forEachAccumulated = __webpack_require__(22);
-var warning = __webpack_require__(8);
+var accumulateInto = __webpack_require__(27);
+var forEachAccumulated = __webpack_require__(28);
+var warning = __webpack_require__(10);
 
 var getListener = EventPluginHub.getListener;
 
@@ -9529,7 +13321,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 68 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9546,9 +13338,9 @@ module.exports = EventPropagators;
 
 
 
-var _prodInvariant = __webpack_require__(6);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(3);
+var invariant = __webpack_require__(4);
 
 /**
  * Static poolers. Several custom versions for each potential number of
@@ -9647,7 +13439,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 69 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9663,12 +13455,12 @@ module.exports = PooledClass;
 
 
 
-var _assign = __webpack_require__(85);
+var _assign = __webpack_require__(104);
 
-var PooledClass = __webpack_require__(68);
+var PooledClass = __webpack_require__(86);
 
-var emptyFunction = __webpack_require__(13);
-var warning = __webpack_require__(8);
+var emptyFunction = __webpack_require__(16);
+var warning = __webpack_require__(10);
 
 var didWarnForAddedNewProperty = false;
 var isProxySupported = typeof Proxy === 'function';
@@ -9921,7 +13713,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 70 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9937,9 +13729,9 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
 
 
-var SyntheticEvent = __webpack_require__(69);
+var SyntheticEvent = __webpack_require__(87);
 
-var getEventTarget = __webpack_require__(72);
+var getEventTarget = __webpack_require__(90);
 
 /**
  * @interface UIEvent
@@ -9985,7 +13777,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 71 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10017,7 +13809,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 72 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10057,7 +13849,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 73 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10073,7 +13865,7 @@ module.exports = getEventTarget;
 
 
 
-var shallowCompare = __webpack_require__(23);
+var shallowCompare = __webpack_require__(29);
 
 /**
  * If your React component's render function is "pure", e.g. it will render the
@@ -10110,7 +13902,7 @@ var ReactComponentWithPureRenderMixin = {
 module.exports = ReactComponentWithPureRenderMixin;
 
 /***/ }),
-/* 74 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10135,14 +13927,14 @@ module.exports = ReactComponentWithPureRenderMixin;
 
 
 
-var EventConstants = __webpack_require__(65);
-var EventPluginUtils = __webpack_require__(10);
-var EventPropagators = __webpack_require__(67);
-var SyntheticUIEvent = __webpack_require__(70);
-var TouchEventUtils = __webpack_require__(75);
-var ViewportMetrics = __webpack_require__(71);
+var EventConstants = __webpack_require__(83);
+var EventPluginUtils = __webpack_require__(13);
+var EventPropagators = __webpack_require__(85);
+var SyntheticUIEvent = __webpack_require__(88);
+var TouchEventUtils = __webpack_require__(93);
+var ViewportMetrics = __webpack_require__(89);
 
-var keyOf = __webpack_require__(39);
+var keyOf = __webpack_require__(44);
 var topLevelTypes = EventConstants.topLevelTypes;
 
 var isStartish = EventPluginUtils.isStartish;
@@ -10288,7 +14080,7 @@ module.exports = createTapEventPlugin;
 
 
 /***/ }),
-/* 75 */
+/* 93 */
 /***/ (function(module, exports) {
 
 /**
@@ -10336,7 +14128,7 @@ module.exports = TouchEventUtils;
 
 
 /***/ }),
-/* 76 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = function(lastTouchEvent, clickTimestamp) {
@@ -10347,11 +14139,11 @@ module.exports = function(lastTouchEvent, clickTimestamp) {
 
 
 /***/ }),
-/* 77 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(3);
-var defaultClickRejectionStrategy = __webpack_require__(76);
+/* WEBPACK VAR INJECTION */(function(process) {var invariant = __webpack_require__(4);
+var defaultClickRejectionStrategy = __webpack_require__(94);
 
 var alreadyInjected = false;
 
@@ -10372,27 +14164,33 @@ should be injected by the application.'
 
   alreadyInjected = true;
 
-  __webpack_require__(19).injection.injectEventPluginsByName({
-    'TapEventPlugin':       __webpack_require__(74)(shouldRejectClick)
+  __webpack_require__(25).injection.injectEventPluginsByName({
+    'TapEventPlugin':       __webpack_require__(92)(shouldRejectClick)
   });
 };
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 78 */
+/* 96 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 79 */
+/* 97 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 80 */
+/* 98 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10451,7 +14249,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 81 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -10479,11 +14277,11 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 82 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose__ = __webpack_require__(32);
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyMiddleware;
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -10535,7 +14333,7 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 83 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10589,13 +14387,13 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 84 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(30);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_es_isPlainObject__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(35);
 /* harmony export (immutable) */ __webpack_exports__["a"] = combineReducers;
 
 
@@ -10729,7 +14527,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 85 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10826,13 +14624,13 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 86 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(109);
 
 
 
@@ -10864,7 +14662,7 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 87 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10873,14 +14671,14 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 /* harmony default export */ __webpack_exports__["a"] = (freeGlobal);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(31)))
 
 /***/ }),
-/* 88 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(110);
 
 
 /** Built-in value references. */
@@ -10890,11 +14688,11 @@ var getPrototype = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__overArg_js
 
 
 /***/ }),
-/* 89 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(36);
 
 
 /** Used for built-in method references. */
@@ -10944,7 +14742,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 90 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10973,7 +14771,7 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 91 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10995,11 +14793,11 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 92 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(106);
 
 
 /** Detect free variable `self`. */
@@ -11012,7 +14810,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 93 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11048,14 +14846,14 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 94 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_PropTypes__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_PropTypes__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_warning__ = __webpack_require__(15);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Provider; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11127,16 +14925,16 @@ Provider.displayName = 'Provider';
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 95 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_connectAdvanced__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_shallowEqual__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapDispatchToProps__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapStateToProps__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mergeProps__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__selectorFactory__ = __webpack_require__(118);
 /* unused harmony export createConnect */
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -11243,12 +15041,12 @@ function createConnect() {
 /* harmony default export */ __webpack_exports__["a"] = (createConnect());
 
 /***/ }),
-/* 96 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wrapMapToProps__ = __webpack_require__(38);
 /* unused harmony export whenMapDispatchToPropsIsFunction */
 /* unused harmony export whenMapDispatchToPropsIsMissing */
 /* unused harmony export whenMapDispatchToPropsIsObject */
@@ -11274,11 +15072,11 @@ function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject]);
 
 /***/ }),
-/* 97 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__wrapMapToProps__ = __webpack_require__(38);
 /* unused harmony export whenMapStateToPropsIsFunction */
 /* unused harmony export whenMapStateToPropsIsMissing */
 
@@ -11296,11 +15094,11 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing]);
 
 /***/ }),
-/* 98 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(36);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_verifyPlainObject__ = __webpack_require__(41);
 /* unused harmony export defaultMergeProps */
 /* unused harmony export wrapMergePropsFunc */
 /* unused harmony export whenMergePropsIsFunction */
@@ -11353,11 +15151,11 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 99 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(100);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verifySubselectors__ = __webpack_require__(119);
 /* unused harmony export impureFinalPropsSelectorFactory */
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
@@ -11466,11 +15264,11 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 100 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warning__ = __webpack_require__(15);
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifySubselectors;
 
 
@@ -11491,7 +15289,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 101 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11587,7 +15385,7 @@ var Subscription = function () {
 
 
 /***/ }),
-/* 102 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
