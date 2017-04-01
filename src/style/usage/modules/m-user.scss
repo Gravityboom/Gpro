@@ -1,14 +1,10 @@
 section{
     background: #fff;
+    font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
     #user{
         font-size: .14rem;
         height:100%; 
-        font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
-    .fr{
-        width: 100%;
-        height: .1rem;
-        background-color: #f5f5f5; 
-    }
+    
     .dis{
         display: none;
     }
@@ -17,12 +13,18 @@ section{
         content: '';
         clear: both; 
     }
+    
         .user-head{
             height:2.24844rem;
             overflow: hidden;
+            .fr{
+                width: 100%;
+                height: .1rem;
+                background-color: #f5f5f5; 
+            }
             .user-header{
                 height:2.14844rem;
-                background: url('http://static.haozaishop.com/mobile2/v1/img/u_b.png') 50% 50% / 120% no-repeat;
+                background: url(/home_img/head.png) 50% 50% / 120% no-repeat;
                 .img{
                     height:1.03rem;
                     padding-top:.3rem;
@@ -82,10 +84,9 @@ section{
             }
         }
         .order_list {
-            height:.585938rem;
+            height:.58rem;
             background-color: #fff;
             display:-webkit-box;
-            
             .order_list_box{
                 -webkit-box-flex:1;
                 .no_pay{
@@ -107,16 +108,22 @@ section{
                 }
                 .order_list_one{
                     background-size: 100%;
-                    width: .585938rem;
-                    height: .585938rem;
+                    width: .58rem;
+                    height: .58rem;
                     position: relative;
                     margin-left: .1875rem;
                 }
             }
         }
-        .my_bar{
-            height:1.184689rem;
+        #my_bar{
+            height:1.28rem;
             background-color: #fff;
+            width: 100%;
+            .fr{
+                width: 100%;
+                height: .1rem;
+                background-color: #f5f5f5; 
+            }
             .right_go {
                 float: right;
                 background: url('http://m.haozaishop.com/js_web/images/arrows.png') no-repeat;
@@ -134,32 +141,37 @@ section{
                 margin-right:.046875rem;
                 float: left;
             }
-            .my_coupon,.my_car,.my_adress{
-                height:.361563rem;
-                line-height: .361563rem;
-                border-bottom: 1px solid #ccc;
-                color:#3b3b3b;
-            }
-            .my_coupon{
+            .my_change{
+                height:1.18rem;
+                background: #fff;
+                padding-top:.1rem;
+                .my_coupon,.my_car,.my_adress{
+                    height:.35rem;
+                    line-height: .35rem;
+                    border-bottom: 1px solid #ccc;
+                    color:#3b3b3b;
+                }
+                .my_coupon{
+                    .my_icon {
+                        background: url('http://m.haozaishop.com/js_web/images/coupon.png') no-repeat;
+                        background-size: 100% auto;
+                    }
+                }
                 
-                .my_icon {
-                    background: url('http://m.haozaishop.com/js_web/images/coupon.png') no-repeat;
-                    background-size: 100% auto;
+                .my_car{
+                    .my_icon {
+                        background: url('http://m.haozaishop.com/js_web/images/buycar1.png') no-repeat;   
+                        background-size: 100% auto;
+                    }
+                }
+                .my_adress{
+                    .my_icon {
+                        background: url('http://m.haozaishop.com/js_web/images/address.png') no-repeat; 
+                        background-size: 100% auto;
+                    }
                 }
             }
-            
-            .my_car{
-                .my_icon {
-                    background: url('http://m.haozaishop.com/js_web/images/buycar1.png') no-repeat;   
-                    background-size: 100% auto;
-                }
-            }
-            .my_adress{
-                .my_icon {
-                    background: url('http://m.haozaishop.com/js_web/images/address.png') no-repeat; 
-                    background-size: 100% auto;
-                }
-            }  
+              
         } 
          
         #user_orderlist{
@@ -169,7 +181,7 @@ section{
             position: absolute;
             top:0;
             left:0;
-            background: #fff;
+            background: #f5f5f5;
             color:#000;
             z-index: 999;
             width: 100%;
@@ -183,7 +195,7 @@ section{
                     bottom: .12rem;
                     width: .11rem;
                     height: .2578rem;
-                    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAoCAYAAAD6xArmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVEhL7dW7DYMwFIXhuwuzpKFAipKSMSjSJwOk9GMKRmILRCIlB+k4lTtfpeH8koW4xWeLAptnOecxpXTmq08AHzHGTwhh4ai9gmK9sC4ctwXoXlBscOW4LaFChQo9IIrr5Laj+PO/3dA9oBPhDZv0HPuEkz75KVbhv4RXE15NeDXh1f6Jnzj2qeB4zhz5BXjAFdeZmX0BtVyADGPYPGQAAAAASUVORK5CYII=");
+                    background-image: url(/home_img/goback.png);
                     background-size: 100%;
                     background-repeat: no-repeat;
                 }
@@ -197,16 +209,191 @@ section{
                     margin-top: -.1464rem;
                     background-repeat: no-repeat;
                     background-size: 100%;
-                    
+                    background-image: url(/home_img/logo.png);
                 }
             }
-            .orserlist_content{
+            .orderlist_content{
                 flex: 1;
                 background: #f5f5f5;
             }
         }    
-    } 
+    }
+    .user_car{
+        height:100%;
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height:100%;
+        background-color: #f5f5f5;
+        z-index: 999;
+        @include flexbox();
+        @include flex-direction(column);
+        color:#333333;
+        .car_head{
+            height:.59rem;
+            background: #fff;
+            line-height:.59rem;
+            .go_back{
+                    position: absolute;
+                    left: .21rem;
+                    top: .2rem;
+                    width: .117rem;
+                    height: .257rem;
+                    background-image: url(/home_img/goback.png);
+                    background-size: 100%;
+                    background-repeat: no-repeat;
+            }
+            .title{
+                text-align: center;
+                font-size: .14rem;
+                letter-spacing: 1px;
+                border-bottom: 1px solid #d2d2d2;
+                color:rgb(51,51,51);
+            }
+            .redact {
+                position: absolute;
+                right: .14rem;
+                top: 0;
+                color: #5c5859;
+            }
+        }
+        .car_content{
+            flex: 1;
+            overflow-y: auto;
+        }
+        .car_footer{
+            height:.59rem;
+            background: #fff;
+            line-height:.59rem;
+            .choose,.del{
+                width: .16rem;
+                height: .16rem;
+                margin: .21rem .11rem 0 .12rem;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+            .choose{
+                background-image: url(/home_img/down.png);
+            }
+            .del {
+                background-image: url(/home_img/choose.png);
+            }
+            .fl{
+                float: left;
+            }
+            .account {
+                width: 1.17rem;
+                height: .58rem;
+                margin-left: .18rem;
+                background-color: #37865c;
+                text-align: center;
+                font-size: .17rem;
+                letter-spacing: 1px;
+                color:#fff;
+            }
+            .price span {
+                color: #cc2b1d;
+            }
+            
+            .remove {
+                width: 1.17rem;
+                height: .58rem;
+                margin-left: .18rem;
+                background-color: #cc2b1d;
+                text-align: center;
+                font-size: .17rem;
+                color: #fff;
+                letter-spacing: 1px;
+            }     
+        }
+    }
+    .user_adress{
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background: #f5f5f5;
+        z-index:999;
+        .head {
+            position: relative;
+            height: .58rem;
+            line-height: .58rem;
+            .return {
+                position: absolute;
+                left: .14rem;
+                top: 0;
+            }
+            .head_title {
+                text-align: center;
+                font-size: .18rem;
+            }
+            .sure, .change_sure {
+                position: absolute;
+                right: .14rem;
+                top: 0;
+            }
+        }
+        .top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: .5859rem;
+            line-height: .5859rem;
+            background-color: #fff;
+            z-index: 999;
+            .go_back {
+                position: absolute;
+                left: .21rem;
+                bottom: .12rem;
+                width: .11rem;
+                height: .25rem;
+                background-image: url(/home_img/goback.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+            .title {
+                text-align: center;
+                font-size: .15rem;
+                letter-spacing: 1px;
+                border-bottom: 1px solid #d2d2d2;
+            }
+        }
+        .bottom {
+            position: fixed;
+            bottom: .44rem;
+            left: 50%;
+            width: 3.28rem;
+            height: .46rem;
+            margin-left: -1.64rem;
+            line-height: .46rem;
+            text-align: center;
+            color: #fff;
+            font-size: .16rem;
+            background-color: #007846;
+        }
+        .change_list{
+            input {
+                border: none;
+                width: 2.46rem;
+                height: .35rem;
+                padding-left: .11rem;
+                margin-left: .23rem;
+                line-height: .35rem;
+                background-color: #f5f5f5;
+            }
+            >li{
+                height: .5959rem;
+                padding: 0 .11rem;
+                line-height: .5959rem;
+                border-bottom: 1px solid #ccc;
+                color: #888;
+                background-color: #fff;
+            }
+        }
+    }
 }
-
 
 

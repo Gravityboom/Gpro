@@ -3,8 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Login from './login';
-import User_orderlist from './login';
-
+import User_orderlist from './User_orderlist';
 class User_list extends React.Component{
 	
 	constructor (props) {
@@ -26,6 +25,7 @@ class User_list extends React.Component{
 			window.location.href="#/login"
 		}
 	}
+	
   render(){
     return(
         <div className="order_list">
