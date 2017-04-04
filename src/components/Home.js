@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
-import Room from './Room.js';
-import FullRoom from './FullRoom.js';
+
 import LocationList from './LocationList.js';
 
 import { connect } from 'react-redux';
@@ -20,6 +19,7 @@ class Home extends React.Component{
     this.locationFnOff.bind(this);
     this.locationFn.bind(this);
     this.toGetLocatiton.bind(this);
+    this.add.bind(this);
   }
 
   locationFnOff(){
@@ -55,16 +55,19 @@ class Home extends React.Component{
           <span onClick={this.locationFn.bind(this)} className="regret"><i className="yo-ico">&#xe61c;</i>{this.state.locationFixed}</span>
           <span className="affirm">筛选<i className="yo-ico">&#xe62d;</i></span>
         </div>
-
+        <div onClick={this.add.bind(this)}>{/*this.props.big*/}</div>
         <ul className="yo-tab">
+
           <li className="item item-on"><Link to='home/room' activeClassName='onsele' activeStyle={{color: '#007846'}}>房间</Link></li>
           <li className="item"><Link to='home/fullroom' activeClassName='onsele'  activeStyle={{color: '#007846'}}>全屋</Link></li>
         </ul>
-				
+
         <div className="scroller_container">
           {/* Home二级路由视口 */}
+
           {this.props.children}
         </div>
+
         <section onClick={this.locationFnOff.bind(this)} className={this.state.shadowClassName}></section>
         <LocationList
           callbackHome={this.toGetLocatiton.bind(this)}
@@ -74,16 +77,39 @@ class Home extends React.Component{
       </div>
     )
   }
+  add (){
+      // console.log(this.props.big);
+      // let  num = this.props.big;
+      // this.props.onChange({
+      //     type:'ADD',
+      //     num:num
+      // });
+  }
   componentDidMount(){
+    //react-redux部分
+      //this.props['routes'][2]['titleName'];
+
+    // let tabname = 'ftyfyuf';
+    //
+    // this.props.onChange({
+    //   type:'SETHEADERNAME',
+    //   title:tabname
+    // });
+    //
+    // var num = this.props.big;
+    //
+    // this.props.onChange({
+    //     type:'ADD',
+    //     num:num
+    // });
 
     //react-redux部分
-    let tabname = this.props['routes'][2]['titleName'];
-    this.props.onChange({
-      type:'SETHEADERNAME',
-      title:tabname
-    });
-    //react-redux部分
   }
+
+
+  componentDidUpdate(){
+  }
+
 
 }
 

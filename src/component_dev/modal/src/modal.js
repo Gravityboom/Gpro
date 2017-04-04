@@ -256,7 +256,8 @@ export default class RealModal extends Component {
                 ref="container"
                 className={containerClass}
                 onTouchTap={(evt) => {
-                    if (evt.target === this.refs.container) {
+                    if (evt.target == this.refs.container) {
+                        console.log(aaa);
                         onMaskTap(evt);
                     }
                 }}

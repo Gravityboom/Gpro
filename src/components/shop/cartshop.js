@@ -95,7 +95,7 @@ class Cartshop extends React.Component{
 								<span>活动:</span>
 								<span className="noMoney" >包邮</span>
 							</div>
-							<div className="right" className="yo-ico" ref='icon'>&#xe6cb;</div>
+							<div className = "right yo-ico" ref='icon'>&#xe6cb;</div>
 							<div className='hide' ref='hide'>包邮:本商品包邮 </div>
 						</div>
 					</div>

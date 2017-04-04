@@ -1,18 +1,24 @@
 import { createStore } from 'redux'
 
-function reducer(state={title:'defaultTitle'},action){
+function reducer(state={title:'默认',num:90000},action){
   switch (action.type) {
     case 'SETHEADERNAME':
       return {title:action.title};
-      break;
+
+    case 'ADD':
+      return {num:++action.num};
     default:
       return state
   }
 }
 
+
+
+
 function mapStateToprops(state){
   return {
-    value:state.title
+    value:state.title,
+    big:state.num
   }
 }
 

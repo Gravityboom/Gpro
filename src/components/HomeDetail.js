@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from '../component_dev/carousel/src/index.js';
-
+import Popup from '../component_dev/popup/src/index.js';
 class HomeDetail extends React.Component{
 	constructor(props){
 		super(props);
@@ -19,11 +19,15 @@ class HomeDetail extends React.Component{
 			goodPriceArr:[],
 			isAll:true,
 			ordernum:0,
-			stallnum:0
+			stallnum:0,
+			showAttr:false,
+			attrList:[]
 		};
 		this.checkall = this.checkall.bind(this);
 		this.selectGoods = this.selectGoods.bind(this);
         this.loadList = this.loadList.bind(this);
+        this.showAttr = this.showAttr.bind(this);
+        this.hideAttr = this.hideAttr.bind(this);
 	}
 
     checkall(len){
@@ -61,29 +65,110 @@ class HomeDetail extends React.Component{
         history.back(-1);
     }
 
+    hideAttr(){
+    	this.setState({
+    		showAttr:false
+		})
+	}
+
+    showAttr(data){
+
+		let dataId = data['goods_id'];
+    	var url = '/api/v2/api/goods/getSceneAttr?&goods_id='+dataId+'&product_id=&num=';
+    	var self = this;
+        let a = [];
+        let b = [];
+        let c = [];
+    	console.log(url);
+    	window.fetch(url)
+			.then(response=>{
+				return response.json();
+			})
+			.then(result=>{
+				let DATA = result.data.spe;
+
+                b = DATA[0]['values'].map(ccc=>{
+					return (<span onClick={self.changeAttr.bind(self,ccc['id'])}>{ ccc['label'] }</span>)
+				});
+
+                c = DATA[1]['values'].map(ddd=>{
+                    return (<span onClick={self.changeAttr.bind(self,ddd['id'])}>{ ddd['label'] }</span>)
+                });
+
+				this.setState({
+                    sonAttr1:b,
+                    sonAttr2:c
+				});
+
+                a.push(<section className="attr_list">
+					<header>
+						<div><img style={{width:'1.1646rem',height:'1.1646rem'}} src={data['goods_thumb']} alt=""/></div>
+						<div>
+							<p>{data['goods_name']}</p>
+							<span>￥{data['goods_price']}</span>
+						</div>
+					</header>
+					<div className="obj1">
+						<header>{ DATA[0]['name']}</header>
+
+                        {this.state.sonAttr1}
+					</div>
+					<div className="obj2">
+						<header>{ DATA[1]['name']}</header>
+                        {this.state.sonAttr2}
+					</div>
+					<div className="obj3">
+						<header>数量</header>
+						<span>- <span>1</span> +</span>
+					</div>
+					<div className="obj4">
+						确定
+					</div>
+				</section>
+				)
+
+                this.setState({
+                    showAttr:!this.state.showAttr,
+                    attrList:a
+                });
+			});
+	}
+    changeAttr(){
+    	console.log(1);
+	}
     selectGoods(something,e){
     	let domName = e.target.className;
 		if(domName==='undisplay_icon'){
-			return false;
+			return;
 		}
-		let num = something.index;
+
+		this.state.isSelected.map(item=>{
+			if(!item){
+				this.setState({
+					isAll:false
+				})
+			}
+		});
+
+
 		let ordernum = this.state.ordernum;
 		let arr = this.state.isSelected;
 		let cal_price = Number(something.price);
 		let tol_price = Number(this.state.allprice);
 		let new_price;
 		let isAll;
-        if(this.state.isSelected[num]===true){
+
+        if(this.state.isSelected[something.index]===true){
             new_price = tol_price - cal_price;
             ordernum --;
-        }else if(this.state.isSelected[num]===false){
+        }else if(this.state.isSelected[something.index]===false){
             new_price = tol_price + cal_price;
             isAll = false;
             ordernum ++;
         }
 
 
-        arr[num] = !arr[num];
+        arr[something.index] = !arr[something.index];
         new_price = new_price.toFixed(2);
 		this.setState({
 			allprice:new_price,
@@ -155,7 +240,7 @@ class HomeDetail extends React.Component{
 								</section>
 
 								<section className="changed">
-									<button style={{ display: item['msg']=='' ?  'inline-block':'none' }} className="fr yo-btn yo-btn-changeAbtn">修改规格</button>
+									<button onClick={self.showAttr.bind(this,{'goods_thumb':item['goods_thumb'],'goods_id':item['goods_id'],'goods_name':item['goods_name'],'goods_price':item['goods_price']})} style={{ display: item['msg']=='' ?  'inline-block':'none' }} className="fr yo-btn yo-btn-changeAbtn">修改规格</button>
 									<span style={{ display: item['msg']=='' ? 'none' : 'inline-block' }}>{item['msg']}</span>
 								</section>
 							</li>
@@ -203,21 +288,16 @@ class HomeDetail extends React.Component{
 				);
 
 
-
                 self.setState({
                     homeDetailList:homeDetailList
 
                 });
 
-
-
             })
 	}
 
 
-	componentWillMount(){
 
-	}
 
 	componentDidMount(){
         let homeGoodId = this.props.params['homegoodid'];
@@ -249,6 +329,7 @@ class HomeDetail extends React.Component{
 	}
 
 	render(){
+		let  self = this;
 		return(
 			<div className = 'hd_container'>
 				<div className="head_banner_container">
@@ -278,7 +359,10 @@ class HomeDetail extends React.Component{
 
 				{ this.state.homeDetailList }
 
-
+				<Popup show={this.state.showAttr} maskOffset={[0, 0]}>
+					<div className="bugfix" onClick={this.hideAttr}></div>
+					{ this.state.attrList }
+				</Popup>
 			</div>
 		)
 	}

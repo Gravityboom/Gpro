@@ -20,14 +20,14 @@ import HomeDetail from './HomeDetail.js';
 
 import Footer from './Footer.js';
 
-import User_car from './User_car';
-import User_adress from './User_adress';
+
 
 
 
 import Cartshop from './shop/cartshop'
-import Login from './login.js';
+
 import Search from './shop/search'
+import Login from './shop/login'
 import Goodslists from './shop/goodslists'
 import Exchange from "./shop/exchange"
 
@@ -54,7 +54,7 @@ class App extends React.Component {
 
 { /* Provider组件接受redux的store作为props 通过context往下传 */ }
 ReactDOM.render((
-	<Provider store = {store}>
+  <Provider store = {store}>
   <Router history = {hashHistory}>
     <Route path = '/' component = {App}>
       <IndexRedirect to = "home/room" />
@@ -65,17 +65,12 @@ ReactDOM.render((
       </Route>
 
       <Route path='shop' component={Shop} />
-      <Route path='user' component={User} >
-	      <Route path='user_orderlist' component={User_orderList} />
-      </Route>
-      <Route path='login' component={Login} />
-      <Route path='user_car' component={User_car} />
-      <Route path='user_adress' component={User_adress} />
+      <Route path='user' component={User} />
     </Route>
     <Route path='cartshop/:id' component={Cartshop}>
     </Route>
      <Route path='search' component={Search}/>
-     
+     <Route path='login' component={Login}/>
      <Route path='goodslist/:cid' component={Goodslists}/>
      <Route path="exchange" component={Exchange}/>
      <Route path = 'homedetail/:homegoodid' component = {HomeDetail} />

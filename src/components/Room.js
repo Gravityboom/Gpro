@@ -14,6 +14,7 @@ class Room extends React.Component{
   }
 
   loadMore(){
+      console.log(2);
       fetch('/api/v2/h5/index/space?is_json=1&page='+ 2 +'&space=&style=')
           .then(function(response){
               return response.json();})
@@ -26,7 +27,7 @@ class Room extends React.Component{
                       <dl className='good_list'>
                         <dt>
                           <Link to={'homedetail/' + item['id']}>
-                            <List.LazyImage style={{width:'100%'}} src={item['img']} />
+                            <List.LazyImage style={{height:'3.75rem',width:'3.75rem'}} src={item['img']} />
                           </Link>
                         </dt>
                         <dd>
@@ -75,8 +76,6 @@ class Room extends React.Component{
             }}
 
         />
-
-
       </div>
     )
   }
