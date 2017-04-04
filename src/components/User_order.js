@@ -27,7 +27,6 @@ class User_order extends React.Component{
 	
   render(){
     return(
-    	
       <div onClick={this.jump}>
 	      <div className="my_order">
 	        <p>我的订单</p>

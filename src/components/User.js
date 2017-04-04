@@ -9,7 +9,8 @@ import User_order from './User_order';
 import User_list from './User_list';
 import User_bar from './User_bar';
 import Login from './login';
-
+import User_car from './User_car';
+import User_adress from './User_adress';
 class User extends React.Component{
 
   render(){
